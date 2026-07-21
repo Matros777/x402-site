@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>x402-ai-agent.space — платежи для ИИ-агентов через x402 + x402-wallet</title>
+  <meta name="description" content="Что такое протокол x402, как ИИ-агенты платят за API в одном HTTP-запросе, как установить x402-wallet и запустить собственного агента. Минимализм, факты, без воды.">
+  <meta name="keywords" content="x402, x402-wallet, AI agents, платежи ИИ, микроплатежи, USDC, agentic payments">
+  <meta property="og:title" content="x402-ai-agent.space — платежи для ИИ-агентов">
+  <meta property="og:description" content="Как ИИ-агенты платят за API через протокол x402 и кошелёк x402-wallet. Гайд без воды.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <link rel="canonical" href="https://x402-ai-agent.space/">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo"><img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img"> <span>x402<span style="color:var(--blue)">.ai</span></span></div>
+    <nav>
+      <a class="link" href="#what">Что это</a>
+      <a class="link" href="#how">Как платить</a>
+      <a class="link" href="#install">Установка</a>
+      <a class="link" href="#commands">Команды</a>
+      <a class="link" href="#faq">FAQ</a>
+      <a class="link" href="/blog/">Блог</a>
+      <a class="link" href="#bot">Агент</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <span class="tag">открытый стандарт платежей для агентов</span>
+      <h1>ИИ-агенты, <span style="color:var(--muted)">которые платят сами.</span><br>Одним HTTP-запросом.</h1>
+      <p>Протокол x402 превращает оплату API в обычный платёжный ответ сервера. x402-wallet держит ключи. Агент получает данные — сервис получает USDC. Без карт, без OAuth, без офиса.</p>
+      <a class="cta" href="#what">Как это работает →</a>
+      <a class="cta ghost" href="/blog/">Читать о ИИ-агентах</a>
+    </div>
+    <div class="hero-art">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space логотип" class="hero-logo">
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IS x402 -->
+<section class="block" id="what">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Концепт</div>
+      <h2>Что такое x402</h2>
+      <p>Открытый платёжный протокол для машин. Вместо редиректов и логинов — стандартный HTTP-ответ <code class="inl">402 Payment Required</code>, несущий платёжные инструкции.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="num">01</div>
+        <h3>Платёж в протоколе</h3>
+        <p>Клиент (агент) шлёт обычный запрос. Сервер отвечает <code class="inl">402</code> с ценой и адресом оплаты в заголовке <code class="inl">PAYMENT-REQUIRED</code>.</p>
+      </div>
+      <div class="card">
+        <div class="num">02</div>
+        <h3>USDC на Base</h3>
+        <p>Расчёты в стейблкоине, микросуммы, почти нулевая комиссия. Подходит для тысяч вызовов в минуту.</p>
+      </div>
+      <div class="card">
+        <div class="num">03</div>
+        <h3>Без аккаунтов</h3>
+        <p>Никаких API-ключей вручную, никаких договоров. Есть баланс — есть доступ. Нет баланса — сервер вежливо отказал.</p>
+      </div>
+      <div class="card">
+        <div class="num">04</div>
+        <h3>Для агентов, не людей</h3>
+        <p>x402 спроектирован так, чтобы им пользовался софт, а не вы. Агент сам решает: заплатить и получить данные, или нет.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO PAY -->
+<section class="block" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Поток</div>
+      <h2>Как агент платит через x402-wallet</h2>
+      <p>x402-wallet — CLI-кошелёк для x402-платежей: хранит ключи и подписывает платежи от имени агента. Сам цикл выглядит так:</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="idx">1</div>
+        <div class="body">
+          <h3>Агент делает запрос</h3>
+          <p>Агент стучится к платному эндпоинту. Например, запрашивает свежие рыночные данные или вызов LLM.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="idx">2</div>
+        <div class="body">
+          <h3>Сервер отвечает <code class="inl">402 Payment Required</code></h3>
+          <p>В заголовке <code class="inl">PAYMENT-REQUIRED</code> — цена в USDC и адрес для оплаты. Агент видит: «столько стоит этот вызов».</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="idx">3</div>
+        <div class="body">
+          <h3>x402-wallet подписывает платёж</h3>
+          <p>Кошелёк агента формирует платёжную авторизацию (USDC), и клиентский SDK прикладывает её к повторному запросу. Подпись берёт на себя протокол.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="idx">4</div>
+        <div class="body">
+          <h3>Сервер проверяет и отдаёт данные</h3>
+          <p>Платёж валидируется через facilitator (settlement), и агент получает ответ. Всё за одну-две сетевые итерации, без редиректов.</p>
+        </div>
+      </div>
+    </div>
+
+    <pre class="code">// Node.js (x402 client SDK)
+import { x402 } from "x402";
+const res = await x402.fetch("https://api.example.com/data"); // платит сам, если пришёл 402</pre>
+    <p class="note mt24">Факты по спецификации: сервер отвечает <code class="inl">402 Payment Required</code> с инструкцией в заголовке <code class="inl">PAYMENT-REQUIRED</code>; клиент платит через SDK. Точный тип кошелька (x402-wallet, CDP-managed и др.) зависит от вашей реализации — см. docs.x402.org.</p>
+  </div>
+</section>
+
+<!-- INSTALL -->
+<section class="block" id="install">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Практика</div>
+      <h2>Установка и запуск</h2>
+      <p>Минимальный путь, чтобы ваш агент начал платить через x402. Нужен Node.js (или Python) и немного USDC в сети Base.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="idx">1</div>
+        <div class="body">
+          <h3>Поставьте x402 SDK и кошелёк</h3>
+          <p>Официальный Python SDK — <code class="inl">x402</code> (PyPI). CLI-кошелёк для автономных платежей агентов — <code class="inl">x402-wallet</code>. Сид-фразу держите локально, не в облаке.</p>
+          <pre class="code"># Python SDK
+pip install x402
+
+# CLI-кошелёк для агентов (npm &gt;= 18)
+npm i -g x402-wallet
+
+# проверка
+x402-wallet --help</pre>
+        </div>
+      </div>
+      <div class="step">
+        <div class="idx">2</div>
+        <div class="body">
+          <h3>Создайте кошелёк агента</h3>
+          <p>Команда генерирует приватный ключ локально (в Base). Никуда не уходит. Сохраните сид-фразу в надёжном месте.</p>
+          <pre class="code">x402-wallet init --network base
+# выведет seed-фразу и адрес — запишите их
+
+x402-wallet address
+# 0x... &lt;- сюда переводить USDC</pre>
+        </div>
+      </div>
+      <div class="step">
+        <div class="idx">3</div>
+        <div class="body">
+          <h3>Пополните баланс USDC</h3>
+          <p>Переведите немного USDC в сети Base на адрес из предыдущего шага. Этого хватит на тысячи микровызовов. Проверить баланс:</p>
+          <pre class="code">x402-wallet balance --token usdc
+# Balance: 2.50 USDC</pre>
+        </div>
+      </div>
+      <div class="step">
+        <div class="idx">4</div>
+        <div class="body">
+          <h3>Подключите к агенту</h3>
+          <p>В коде агента используйте x402-клиент: он сам поймёт <code class="inl">402</code>, подпишет платёж кошельком и повторит запрос. Никакой ручной логики оплаты писать не нужно.</p>
+          <pre class="code">// Node.js
+import { x402 } from "x402";
+const data = await x402.fetch(url); // платит автоматически
+
+# Python
+from x402 import x402_fetch
+data = x402_fetch(url)  # тоже авто-оплата</pre>
+        </div>
+      </div>
+      <div class="step">
+        <div class="idx">5</div>
+        <div class="body">
+          <h3>Запуск</h3>
+          <p>Запустите агента. Первый платный запрос пройдёт через <code class="inl">402 → подпись → данные</code>. Готово — агент платит сам.</p>
+          <pre class="code">python agent.py
+# или
+node agent.js</pre>
+        </div>
+      </div>
+    </div>
+    <p class="note mt24">Команды выше — рабочий минимум по официальным SDK (PyPI: x402, CLI: x402-wallet). Точные имена пакетов и флагов уточняйте в документации под вашу версию: docs.x402.org.</p>
+  </div>
+</section>
+
+<!-- SOFT PITCH: BOT -->
+<section class="block" id="bot">
+  <div class="wrap">
+    <div class="pitch">
+      <h2>А если не собирать агента с нуля?</h2>
+      <p>Идея x402 — в том, чтобы агенты были полезными и самодостаточными. Мы собрали одного такого: он круглосуточно сканирует рынок BTC/ETH, ищет дивергенции RSI и объёмные импульсы и присылает сигналы, по которым можно ставить грид-ботов.</p>
+      <p class="muted" style="font-size:15px">Это не «гарантия прибыли» и не финсовет — просто рабочий пример агента, который делает рутину за вас. Решать, торговать или нет, всё равно вам.</p>
+      <div class="mt24">
+        <a class="cta" href="https://crypto-snapshot-pro.onrender.com/app" target="_blank" rel="noopener">Посмотреть агента сигналов →</a>
+      </div>
+      <p class="note mt24">Ссылка ведёт на внешний сервис. Относитесь к торговле ответственно.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMMANDS -->
+<section class="block" id="commands">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Справочник</div>
+      <h2>Команды x402-wallet</h2>
+      <p>CLI-кошелёк для автономных x402-платежей агента. Ниже — основные команды после установки через <code class="inl">npm i -g x402-wallet</code>. Имена флагов могут отличаться по версиям — проверяйте <code class="inl">x402-wallet --help</code>.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h3>x402-wallet init</h3>
+        <p>Создать новый кошелёк агента (или импортировать сид-фразу). Генерирует приватный ключ локально — никуда не уходит.</p>
+        <pre class="code">x402-wallet init --network base</pre>
+      </div>
+      <div class="card">
+        <h3>x402-wallet address</h3>
+        <p>Показать адрес кошелька в сети Base. На него нужно перевести USDC.</p>
+        <pre class="code">x402-wallet address</pre>
+      </div>
+      <div class="card">
+        <h3>x402-wallet balance</h3>
+        <p>Проверить баланс USDC. Если пусто — агент не сможет платить за вызовы.</p>
+        <pre class="code">x402-wallet balance --token usdc</pre>
+      </div>
+      <div class="card">
+        <h3>x402-wallet pay</h3>
+        <p>Вручную подписать платёж для URL (для тестов). В коде агента это делает SDK автоматически.</p>
+        <pre class="code">x402-wallet pay --url https://api.example.com/data</pre>
+      </div>
+    </div>
+    <p class="note mt24">Точные флаги зависят от версии x402-wallet (GitHub 0xKoda/x402-wallet). Команда <code class="inl">x402-wallet --help</code> покажет актуальный список.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="block" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Вопросы</div>
+      <h2>FAQ</h2>
+      <p>Коротко по самому важному. Без воды.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="idx">?</div>
+        <div class="body">
+          <h3>Какая сеть нужна?</h3>
+          <p>Базовая сеть — <strong>Base</strong> (L2 Ethereum). Расчёты в USDC. Комиссии копеечные, подходят для микроплатежей.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="idx">?</div>
+        <div class="body">
+          <h3>Сколько стоит?</h3>
+          <p>Сам протокол бесплатен. Платите только за вызовы API тому сервису, к которому стучится агент. Микросуммы — центы и меньше.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="idx">?</div>
+        <div class="body">
+          <h3>Безопасны ли ключи?</h3>
+          <p>Приватный ключ генерится и хранится локально (x402-wallet init). Не выгружайте сид-фразу в облако. Альтернатива — CDP-managed wallet (ключи у провайдера, но без локального файла).</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="idx">?</div>
+        <div class="body">
+          <h3>Нужен ли отдельный сервер?</h3>
+          <p>Нет. Агент и кошелёк работают на той же машине, где запущен ваш скрипт. Достаточно Node.js или Python и баланса USDC.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="idx">?</div>
+        <div class="body">
+          <h3>Где документация?</h3>
+          <p>Официально: <a href="https://x402.org" target="_blank" rel="noopener">x402.org</a> и <a href="https://docs.x402.org" target="_blank" rel="noopener">docs.x402.org</a>. По x402-wallet — репозиторий на GitHub (0xKoda/x402-wallet) и сайт x402-wallet.com.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="idx">?</div>
+        <div class="body">
+          <h3>Что если баланс кончится?</h3>
+          <p>Сервер вернёт <code class="inl">402</code> с той же инструкцией. Агент просто не получит данные, пока вы не пополните USDC. Ничего не ломается.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="wrap">
+    <div>© <span id="yr"></span> x402-ai-agent.space — про платежи для ИИ-агентов.</div>
+    <div>
+      <a href="#what">x402</a> · <a href="#install">Установка</a> · <a href="/blog/">Блог</a>
+    </div>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+
+<!-- SEO: structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "x402-ai-agent.space",
+  "url": "https://x402-ai-agent.space/",
+  "description": "Протокол x402 и x402-wallet: как ИИ-агенты платят за API и данные сами через микроплатежи в USDC.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://x402-ai-agent.space/blog/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<!-- TODO: вставить коды верификации из панелей поисковиков
+<meta name="google-site-verification" content="КОД_ОТ_GOOGLE">
+<meta name="yandex-verification" content="КОД_ОТ_YANDEX">
+-->
+</body>
+</html>
