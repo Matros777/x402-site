@@ -1,4 +1,4 @@
-name = "x402-ai"
+name = "x402-site"
 compatibility_date = "2024-09-23"
 
 # Static assets: Cloudflare serves files from the repo root as a static site
