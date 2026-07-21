@@ -1,0 +1,10 @@
+name = "x402-site"
+compatibility_date = "2024-09-23"
+pages_build_output_dir = "."
+
+# Статика: Cloudflare Pages берёт папку как корень сайта
+[build]
+command = ""
+
+[build.assets]
+directory = "./"
