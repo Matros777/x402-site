@@ -1,0 +1,6 @@
+name = "x402-site"
+main = "workers-site/index.js"
+compatibility_date = "2026-07-21"
+
+[assets]
+directory = "./"
