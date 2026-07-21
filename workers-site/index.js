@@ -4,13 +4,13 @@ export default {
     
     // Если запрос к API чата
     if (url.pathname === "/api/chat") {
-      return new Response(JSON.stringify({error: "API not implemented yet"}), {
+      return new Response(JSON.stringify({ error: "API not implemented yet" }), {
         status: 501,
-        headers: {"Content-Type": "application/json"}
+        headers: { "Content-Type": "application/json" }
       });
     }
     
-    // Для всего остального — статика (раздаётся через assets)
-    return new Response("Static site via Worker with Assets", { status: 200 });
+    // Возвращаем статику (будет обработана assets)
+    return new Response("Not Found", { status: 404 });
   }
 };
