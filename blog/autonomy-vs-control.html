@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Автономность против контроля — x402-ai-agent.space</title>
-  <meta name="description" content="Где проходит красная линия автономности ИИ-агента: что агент может делать сам, а что требует решения человека.">
+  <title data-i18n="title">Автономность против контроля — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="Где проходит красная линия автономности ИИ-агента: что агент может делать сам, а что требует решения человека.">
   <meta name="theme-color" content="#0a0a0a">
   <link rel="canonical" href="https://x402-ai-agent.space/blog/autonomy-vs-control.html">
   <link rel="stylesheet" href="/assets/css/style.css">
@@ -14,50 +14,309 @@
   <link rel="manifest" href="/site.webmanifest">
   <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
   <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #f5f5f5;
+      --text-secondary: #a3a3a3;
+      --muted: #737373;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition); }
+    .wrap { width: 100%; max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; max-width: 1100px; margin: 0 auto; padding: 0 24px;
+    }
+    .logo { font-weight: 500; font-size: 1.1rem; color: var(--text-secondary); letter-spacing: -0.02em; }
+    .logo span { color: var(--muted); }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      padding: 8px 14px; border-radius: var(--radius-xs);
+      font-size: 0.875rem; color: var(--text-secondary);
+    }
+    nav .link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch {
+      border: 1px solid var(--border); border-radius: var(--radius-full);
+      padding: 6px 14px !important; font-size: 0.8rem !important;
+    }
+    .lang-switch:hover { border-color: #444; background: rgba(255,255,255,0.06) !important; }
+
+    article { padding: 48px 0 80px; }
+    article img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: 437px;
+      object-fit: cover;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    article p strong { color: var(--text); font-weight: 600; }
+    .note {
+      margin: 28px 0;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .note a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 3px; }
+    .note a:hover { color: var(--text); }
+
+    footer.site {
+      padding: 28px 0;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 32px 0 56px; }
+      article h2 { margin-top: 32px; }
+    }
+  </style>
 </head>
 <body>
 <header class="site">
-  <div class="wrap nav">
-    <div class="logo">x402<span style="color:var(--blue)">.ai</span></div>
-    <nav><a class="link" href="/blog/">← Блог</a></nav>
+  <div class="nav">
+    <div class="logo">x402<span>.ai</span></div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
   </div>
 </header>
 
-<article class="article">
-  <h1>Автономность против контроля</h1>
-  <div class="meta">2026-07-20 · 5 мин чтения</div>
-  <figure>
+<article>
+  <div class="wrap">
     <img src="/assets/img/blog/fetch2.jpg" alt="Баланс между автономностью агента и контролем человека" loading="lazy">
-    <figcaption>Автономность или контроль: где провести границу для ИИ-агента.</figcaption>
-  </figure>
 
+    <h1 data-i18n="h1">Автономность против контроля</h1>
+    <div class="meta" data-i18n="meta">2026-07-20 · 7 мин чтения</div>
 
-  <p>Когда агент умеет платить, сканировать рынок и запускать ботов — вопрос перестаёт быть техническим. Он становится вопросом границ. Где агент свободен, а где обязан спросить?</p>
+    <p data-i18n="p1">Когда агент умеет платить, сканировать рынок и запускать ботов — вопрос перестаёт быть техническим. Он становится вопросом границ. Где агент свободен, а где обязан спросить?</p>
 
-  <h2>Что агент может делать сам</h2>
-  <ul>
-    <li>Собирать и анализировать данные (рынок, новости, сигналы).</li>
-    <li>Платить микросуммы за API через x402 — в рамках заданного бюджета.</li>
-    <li>Генерировать отчёты и уведомления.</li>
-  </ul>
+    <p data-i18n="p2">Автономность — это суперсила агента. Но без контроля она становится угрозой. Представьте: агент, который может платить за данные, анализировать рынок и принимать решения, — если не ограничить его полномочия, он может потратить весь бюджет за несколько минут или принять стратегическое решение, которое вы бы не одобрили.</p>
 
-  <h2>Где нужен человек</h2>
-  <ul>
-    <li>Крупные финансовые решения: открытие позиций, вывод средств.</li>
-    <li>Смена стратегии или риск-профиля.</li>
-    <li>Любые действия с реальными деньгами сверх лимита.</li>
-  </ul>
+    <h2 data-i18n="h2_1">Что агент может делать сам</h2>
+    <p data-i18n="p3">В идеальной модели автономия агента распространяется на рутинные, повторяющиеся задачи, которые не требуют человеческого суждения. Это те действия, где цена ошибки низка, а скорость принятия решения критична.</p>
 
-  <h2>Принцип разделения</h2>
-  <p>Хороший агент — это не «замена человеку», а «рутина без человека, решения — с человеком». Сканирование 24/7 — пусть работает. А вот нажать «купить» должен БОСС. Так и живём: автономия в анализе, контроль в действиях.</p>
+    <ul>
+      <li data-i18n="li1">Собирать и анализировать данные (рынок, новости, сигналы).</li>
+      <li data-i18n="li2">Платить микросуммы за API через x402 — в рамках заданного бюджета.</li>
+      <li data-i18n="li3">Генерировать отчёты и уведомления.</li>
+      <li data-i18n="li4">Сканировать рынок в поиске паттернов и аномалий.</li>
+      <li data-i18n="li5">Тестировать гипотезы на исторических данных.</li>
+    </ul>
 
-  <p class="muted">Пример такого разделения — <a href="https://crypto-snapshot-pro.onrender.com/app" target="_blank" rel="noopener">агент сигналов</a>: он сам ищет дивергенции, но торговать вы решаете сами.</p>
-  <p class="mt40"><a class="cta" href="/">← На главную</a></p>
+    <p data-i18n="p4">Эти задачи агент может выполнять без вашего участия — и должен. В этом и заключается ценность автономности: вы освобождаетесь от рутины, а агент становится вашим круглосуточным ассистентом, который никогда не устаёт и не отвлекается.</p>
+
+    <h2 data-i18n="h2_2">Где нужен человек</h2>
+    <p data-i18n="p5">Но есть действия, где агент обязан остановиться и спросить. Это зона ответственности, где ошибка может стоить реальных денег или репутации. Здесь человек — финальный арбитр.</p>
+
+    <ul>
+      <li data-i18n="li6">Крупные финансовые решения: открытие позиций, вывод средств.</li>
+      <li data-i18n="li7">Смена стратегии или риск-профиля.</li>
+      <li data-i18n="li8">Любые действия с реальными деньгами сверх лимита.</li>
+      <li data-i18n="li9">Действия, влияющие на репутацию или юридические обязательства.</li>
+      <li data-i18n="li10">Изменение правил, по которым работает агент.</li>
+    </ul>
+
+    <p data-i18n="p6">Граница между автономией и контролем должна быть чётко прописана в конфигурации агента. Это не вопрос доверия — это вопрос проектирования. Хороший агент не нарушает границы, потому что у него их нет. Он просто действует в рамках заданных правил.</p>
+
+    <h2 data-i18n="h2_3">Принцип разделения</h2>
+    <p data-i18n="p7">Хороший агент — это не «замена человеку», а «рутина без человека, решения — с человеком». Сканирование 24/7 — пусть работает. А вот нажать «купить» должен БОСС. Так и живём: автономия в анализе, контроль в действиях.</p>
+
+    <p data-i18n="p8">Этот принцип работает не только в трейдинге, но и в любых других сценариях. Агент может собирать информацию, анализировать её, даже предлагать решения — но окончательное решение всегда за человеком. Или, если вы доверяете агенту, вы можете расширить его полномочия, но всегда оставляя возможность вмешаться в любой момент.</p>
+
+    <p data-i18n="p9">Технически это реализуется через систему лимитов и разрешений. Агент может тратить до N долларов в день без вашего подтверждения. Если сумма превышает лимит — он запрашивает разрешение. Агент может открывать позиции до определённого объёма — всё, что больше, требует вашего одобрения.</p>
+
+    <h2 data-i18n="h2_4">Где красная линия</h2>
+    <p data-i18n="p10">Красная линия проходит там, где решение необратимо. Если агент ошибается в анализе — вы видите отчёт и можете скорректировать стратегию. Но если агент вывел деньги на неправильный адрес или открыл позицию на весь депозит — последствия могут быть катастрофическими.</p>
+
+    <p data-i18n="p11">Поэтому красная линия — это любые действия, которые нельзя отменить. Вывод средств, изменение настроек безопасности, открытие крупных позиций. Здесь агент должен не просто спросить, а получить явное подтверждение от человека, прежде чем действовать.</p>
+
+    <p data-i18n="p12">Именно поэтому мы строим агентов с чёткими границами. Автономность — это инструмент, а не самоцель. И чем лучше мы определяем границы, тем более полезными становятся агенты.</p>
+
+    <p class="muted" data-i18n="p13">Пример такого разделения — <a href="https://crypto-snapshot-pro.onrender.com/app" target="_blank" rel="noopener">агент сигналов</a>: он сам ищет дивергенции, но торговать вы решаете сами.</p>
+  </div>
 </article>
 
 <footer class="site">
-  <div class="wrap"><div>© <span id="yr"></span> x402-ai-agent.space</div></div>
+  <div class="wrap">© <span id="yr"></span> x402-ai-agent.space</div>
 </footer>
-<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+
+  const embeddedRu = {
+    title: "Автономность против контроля — x402-ai-agent.space",
+    metaDescription: "Где проходит красная линия автономности ИИ-агента: что агент может делать сам, а что требует решения человека.",
+    nav: { back: "← Блог", lang: "🇬🇧 EN" },
+    h1: "Автономность против контроля",
+    meta: "2026-07-20 · 7 мин чтения",
+    p1: "Когда агент умеет платить, сканировать рынок и запускать ботов — вопрос перестаёт быть техническим. Он становится вопросом границ. Где агент свободен, а где обязан спросить?",
+    p2: "Автономность — это суперсила агента. Но без контроля она становится угрозой. Представьте: агент, который может платить за данные, анализировать рынок и принимать решения, — если не ограничить его полномочия, он может потратить весь бюджет за несколько минут или принять стратегическое решение, которое вы бы не одобрили.",
+    h2_1: "Что агент может делать сам",
+    p3: "В идеальной модели автономия агента распространяется на рутинные, повторяющиеся задачи, которые не требуют человеческого суждения. Это те действия, где цена ошибки низка, а скорость принятия решения критична.",
+    li1: "Собирать и анализировать данные (рынок, новости, сигналы).",
+    li2: "Платить микросуммы за API через x402 — в рамках заданного бюджета.",
+    li3: "Генерировать отчёты и уведомления.",
+    li4: "Сканировать рынок в поиске паттернов и аномалий.",
+    li5: "Тестировать гипотезы на исторических данных.",
+    p4: "Эти задачи агент может выполнять без вашего участия — и должен. В этом и заключается ценность автономности: вы освобождаетесь от рутины, а агент становится вашим круглосуточным ассистентом, который никогда не устаёт и не отвлекается.",
+    h2_2: "Где нужен человек",
+    p5: "Но есть действия, где агент обязан остановиться и спросить. Это зона ответственности, где ошибка может стоить реальных денег или репутации. Здесь человек — финальный арбитр.",
+    li6: "Крупные финансовые решения: открытие позиций, вывод средств.",
+    li7: "Смена стратегии или риск-профиля.",
+    li8: "Любые действия с реальными деньгами сверх лимита.",
+    li9: "Действия, влияющие на репутацию или юридические обязательства.",
+    li10: "Изменение правил, по которым работает агент.",
+    p6: "Граница между автономией и контролем должна быть чётко прописана в конфигурации агента. Это не вопрос доверия — это вопрос проектирования. Хороший агент не нарушает границы, потому что у него их нет. Он просто действует в рамках заданных правил.",
+    h2_3: "Принцип разделения",
+    p7: "Хороший агент — это не «замена человеку», а «рутина без человека, решения — с человеком». Сканирование 24/7 — пусть работает. А вот нажать «купить» должен БОСС. Так и живём: автономия в анализе, контроль в действиях.",
+    p8: "Этот принцип работает не только в трейдинге, но и в любых других сценариях. Агент может собирать информацию, анализировать её, даже предлагать решения — но окончательное решение всегда за человеком. Или, если вы доверяете агенту, вы можете расширить его полномочия, но всегда оставляя возможность вмешаться в любой момент.",
+    p9: "Технически это реализуется через систему лимитов и разрешений. Агент может тратить до N долларов в день без вашего подтверждения. Если сумма превышает лимит — он запрашивает разрешение. Агент может открывать позиции до определённого объёма — всё, что больше, требует вашего одобрения.",
+    h2_4: "Где красная линия",
+    p10: "Красная линия проходит там, где решение необратимо. Если агент ошибается в анализе — вы видите отчёт и можете скорректировать стратегию. Но если агент вывел деньги на неправильный адрес или открыл позицию на весь депозит — последствия могут быть катастрофическими.",
+    p11: "Поэтому красная линия — это любые действия, которые нельзя отменить. Вывод средств, изменение настроек безопасности, открытие крупных позиций. Здесь агент должен не просто спросить, а получить явное подтверждение от человека, прежде чем действовать.",
+    p12: "Именно поэтому мы строим агентов с чёткими границами. Автономность — это инструмент, а не самоцель. И чем лучше мы определяем границы, тем более полезными становятся агенты.",
+    p13: "Пример такого разделения — <a href=\"https://crypto-snapshot-pro.onrender.com/app\" target=\"_blank\" rel=\"noopener\">агент сигналов</a>: он сам ищет дивергенции, но торговать вы решаете сами."
+  };
+
+  const embeddedEn = {
+    title: "Autonomy vs control — x402-ai-agent.space",
+    metaDescription: "Where does the red line of AI agent autonomy lie: what the agent can do on its own and what requires human decision.",
+    nav: { back: "← Blog", lang: "🇷🇺 RU" },
+    h1: "Autonomy vs control",
+    meta: "2026-07-20 · 7 min read",
+    p1: "When the agent can pay, scan the market and launch bots — the question ceases to be technical. It becomes a question of boundaries. Where is the agent free, and where must it ask?",
+    p2: "Autonomy is the agent's superpower. But without control it becomes a threat. Imagine an agent that can pay for data, analyze the market and make decisions — if you don't limit its authority, it could spend the entire budget in a few minutes or make a strategic decision you wouldn't approve.",
+    h2_1: "What the agent can do on its own",
+    p3: "In the ideal model, the agent's autonomy extends to routine, repetitive tasks that don't require human judgment. These are actions where the cost of error is low and the speed of decision-making is critical.",
+    li1: "Collect and analyze data (market, news, signals).",
+    li2: "Pay micro-amounts for APIs via x402 — within the set budget.",
+    li3: "Generate reports and notifications.",
+    li4: "Scan the market for patterns and anomalies.",
+    li5: "Test hypotheses on historical data.",
+    p4: "The agent can — and should — perform these tasks without your involvement. This is the value of autonomy: you are freed from routine, and the agent becomes your 24/7 assistant that never gets tired or distracted.",
+    h2_2: "Where a human is needed",
+    p5: "But there are actions where the agent must stop and ask. This is the zone of responsibility, where a mistake can cost real money or reputation. Here, the human is the final arbiter.",
+    li6: "Large financial decisions: opening positions, withdrawing funds.",
+    li7: "Changing strategy or risk profile.",
+    li8: "Any actions with real money above the limit.",
+    li9: "Actions affecting reputation or legal obligations.",
+    li10: "Changing the rules by which the agent operates.",
+    p6: "The boundary between autonomy and control must be clearly defined in the agent's configuration. This is not a question of trust — it's a question of design. A good agent doesn't break boundaries because it doesn't have any. It simply acts within the set rules.",
+    h2_3: "The principle of separation",
+    p7: "A good agent is not a 'replacement for a human', but 'routine without a human, decisions with a human'. Scanning 24/7 — let it work. But clicking 'buy' should be done by BOSS. That's how we live: autonomy in analysis, control in actions.",
+    p8: "This principle works not only in trading, but in any other scenario. The agent can collect information, analyze it, even suggest solutions — but the final decision is always with the human. Or, if you trust the agent, you can expand its authority, always leaving the ability to intervene at any moment.",
+    p9: "Technically, this is implemented through a system of limits and permissions. The agent can spend up to N dollars per day without your confirmation. If the amount exceeds the limit — it requests permission. The agent can open positions up to a certain volume — anything larger requires your approval.",
+    h2_4: "Where the red line lies",
+    p10: "The red line runs where the decision is irreversible. If the agent makes a mistake in analysis — you see the report and can adjust the strategy. But if the agent withdraws money to the wrong address or opens a position for the entire deposit — the consequences can be catastrophic.",
+    p11: "Therefore, the red line is any action that cannot be undone. Withdrawals, changing security settings, opening large positions. Here, the agent must not just ask, but get explicit confirmation from the human before acting.",
+    p12: "That's why we build agents with clear boundaries. Autonomy is a tool, not an end in itself. And the better we define the boundaries, the more useful the agents become.",
+    p13: "An example of such separation is <a href=\"https://crypto-snapshot-pro.onrender.com/app\" target=\"_blank\" rel=\"noopener\">the signal agent</a>: it finds divergences itself, but you decide whether to trade."
+  };
+
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        el.innerHTML = value;
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
 </body>
 </html>

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Как ИИ-агенты учатся платить сами — x402-ai-agent.space</title>
-  <meta name="description" content="От API-ключей к машинным микроплатежам: почему протокол x402 делает ИИ-агентов по-настоящему автономными.">
+  <title data-i18n="title">Как ИИ-агенты учатся платить сами — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="От API-ключей к машинным микроплатежам: почему протокол x402 делает ИИ-агентов по-настоящему автономными.">
   <meta name="theme-color" content="#0a0a0a">
   <link rel="canonical" href="https://x402-ai-agent.space/blog/ai-agents-pay.html">
   <link rel="stylesheet" href="/assets/css/style.css">
@@ -14,49 +14,229 @@
   <link rel="manifest" href="/site.webmanifest">
   <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
   <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    /* Higher specificity overrides for style.css */
+    .article img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: 437px !important;
+      max-height: none !important;
+      object-fit: cover;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem) !important;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .article ul, .article ol {
+      margin: 16px 0 24px 24px;
+      color: #a3a3a3;
+    }
+    .article ul li, .article ol li {
+      margin-bottom: 8px;
+    }
+    .article pre.code {
+      background: #141414;
+      padding: 20px;
+      border-radius: var(--radius);
+      overflow-x: auto;
+      border: 1px solid #1a1a1a;
+      margin: 24px 0;
+    }
+    .article pre.code code {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: #e5e5e5;
+      line-height: 1.6;
+      white-space: pre;
+    }
+    .cta {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #4a5568;
+      color: #fff !important;
+      border-radius: 9999px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s;
+      margin: 8px 0;
+    }
+    .cta:hover {
+      background: #2d3748;
+    }
+    .article .muted {
+      color: #737373;
+      font-size: 0.95rem;
+      margin-top: 12px;
+    }
+  </style>
 </head>
 <body>
 <header class="site">
   <div class="wrap nav">
     <div class="logo">x402<span style="color:var(--blue)">.ai</span></div>
-    <nav><a class="link" href="/blog/">← Блог</a></nav>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
   </div>
 </header>
-
 <article class="article">
-  <h1>Как ИИ-агенты учатся платить сами</h1>
-  <div class="meta">2026-07-20 · 4 мин чтения</div>
-
-  <figure>
+  <div class="wrap">
     <img src="/assets/img/blog/fetch1.jpg" alt="ИИ-агент совершает микроплатёж по протоколу x402" loading="lazy">
-    <figcaption>Автономный агент и микроплатежи: доступ к данным оплачивается прямо в запросе.</figcaption>
-  </figure>
-
-
-  <p>Долгое время «автономный агент» был метафорой. Да, модель могла генерировать текст и вызывать функции — но стоило агенту выйти за пределы бесплатного, как всё упиралось в человека: карта, аккаунт, API-ключ, договор. Протокол <code>x402</code> меняет это.</p>
-
-  <h2>Проблема ключей</h2>
-  <p>Классический путь: вы регистрируетесь, получаете <code>API_KEY</code>, вставляете в конфиг. Это работает, пока агент — ваш личный скрипт. Но если агент должен сам выбирать поставщика данных, торговаться за цену и менять сервисы на лету — ключи становятся узким горлышком.</p>
-
-  <h2>Идея x402</h2>
-  <p>Вместо долгосрочного ключа — разовый платёж в заголовке запроса. Сервер говорит «это стоит N USDC», агент подписывает платёж кошельком (например, owal wallet) и получает ответ. Никакой регистрации. Есть баланс — есть доступ.</p>
-
-  <ul>
-    <li>Платёж — часть HTTP, а не отдельная интеграция.</li>
-    <li>Микросуммы: агент может платить по 0.001$ за вызов.</li>
-    <li>Расчёт в стейблкоине (USDC) — без волатильности.</li>
-  </ul>
-
-  <h2>Почему это важно</h2>
-  <p>Агент, который платит сам, перестаёт быть «настроенным once and forever». Он может переключаться между источниками, оптимизировать расходы и работать 24/7 без вашего участия. Именно к этому и ведёт эволюция агентных систем.</p>
-
-  <p class="muted">Дальше — практика: <a href="/#install">установка owal wallet</a> и пример живого агента, который сканирует рынок и присылает сигналы.</p>
-  <p class="mt40"><a class="cta" href="/">← На главную</a></p>
+    <h1 data-i18n="h1">Как ИИ-агенты учатся платить сами</h1>
+    <div class="meta" data-i18n="meta">2026-07-20 · 7 мин чтения</div>
+    <p data-i18n="p1">Долгое время «автономный агент» был метафорой. Да, модель могла генерировать текст и вызывать функции — но стоило агенту выйти за пределы бесплатного, как всё упиралось в человека: карта, аккаунт, API-ключ, договор. Протокол <code>x402</code> меняет это.</p>
+    <p data-i18n="p2">Агент, который не может платить, не может быть по-настоящему автономным. Он может лишь имитировать активность в пределах заданного бюджета — но как только нужен доступ к платному источнику данных, вычислениям или сервису, всё останавливается. И на сцену выходит человек с банковской картой.</p>
+    <h2 data-i18n="h2_1">Проблема ключей</h2>
+    <p data-i18n="p3">Классический путь: вы регистрируетесь, получаете <code>API_KEY</code>, вставляете в конфиг. Это работает, пока агент — ваш личный скрипт. Но если агент должен сам выбирать поставщика данных, торговаться за цену и менять сервисы на лету — ключи становятся узким горлышком.</p>
+    <p data-i18n="p4">Представьте: агент ищет данные, находит три разных API, сравнивает цены, выбирает оптимальный — и вдруг не может заплатить, потому что у него нет ключа для этого конкретного сервиса. Всё, автономия заканчивается там, где начинается платёж.</p>
+    <p data-i18n="p5">Традиционные API-ключи — это рудимент, оставшийся от эпохи, когда люди регистрировались, а не машины. Они привязаны к аккаунтам, имеют сроки действия и требуют ручного обновления. Для агента, который работает 24/7, это не просто неудобство — это фатальный недостаток.</p>
+    <h2 data-i18n="h2_2">Идея x402</h2>
+    <p data-i18n="p6">Вместо долгосрочного ключа — разовый платёж в заголовке запроса. Сервер говорит «это стоит N USDC», агент подписывает платёж кошельком и получает ответ. Никакой регистрации. Есть баланс — есть доступ.</p>
+    <p data-i18n="p7">Протокол работает по принципу «плати за каждый вызов». Это переводит API-экономику из подписочной модели в модель микроплатежей. Вместо того чтобы платить $100 в месяц за доступ, агент платит $0.001 каждый раз, когда ему нужны данные. Итоговая сумма за месяц может быть значительно ниже — а если данные не нужны, агент вообще не платит.</p>
+    <ul>
+      <li data-i18n="li1">Платёж — часть HTTP, а не отдельная интеграция.</li>
+      <li data-i18n="li2">Микросуммы: агент может платить по 0.001$ за вызов.</li>
+      <li data-i18n="li3">Расчёт в стейблкоине (USDC) — без волатильности.</li>
+      <li data-i18n="li4">Нет регистрации, нет карт, нет бюрократии.</li>
+    </ul>
+    <p data-i18n="p8">С технической точки зрения x402 — это просто <code>402 Payment Required</code> HTTP-ответ, расширенный платёжными инструкциями. Клиент (агент) видит заголовок с ценой и адресом, генерирует подпись транзакции и повторяет запрос с доказательством оплаты. Всё это происходит в течение одной-двух сетевых итераций — без редиректов, без OAuth, без человеческого участия.</p>
+    <h2 data-i18n="h2_3">Что меняется с x402</h2>
+    <p data-i18n="p9">Во-первых, агент перестаёт быть привязанным к одному провайдеру. Он может переключаться между API в реальном времени, выбирая лучшую цену или качество данных. Это создаёт конкурентную среду, где поставщики данных вынуждены бороться за клиентов (пусть даже машинных) — и выигрывает тот, кто предложит лучшие условия.</p>
+    <p data-i18n="p10">Во-вторых, агент может оптимизировать свои расходы. Если он знает, что одни и те же данные доступны у трёх разных провайдеров с разной ценой, он выберет самый дешёвый вариант. Это прямая экономия для вас, причём без вашего участия.</p>
+    <p data-i18n="p11">В-третьих, агент может работать 24/7 без вашего вмешательства. Не нужно обновлять ключи, пополнять балансы или подтверждать платежи. Агент сам управляет своим бюджетом в рамках заданных лимитов — и если лимит исчерпан, он просто перестаёт покупать данные, пока вы не пополните кошелёк.</p>
+    <h2 data-i18n="h2_4">Где это уже работает</h2>
+    <p data-i18n="p12">Мы уже тестируем эту схему на агентах, которые сканируют криптовалютные рынки. Они покупают данные с бирж, анализируют их и присылают сигналы. Раньше для этого нужен был человек с картой. Теперь — просто x402-кошелёк с небольшим балансом.</p>
+    <p data-i18n="p13">Например, агент-исследователь может за час сделать несколько десятков запросов к платным API, потратив в сумме меньше цента. А если нужно обработать большой массив данных — он арендует GPU на несколько минут, платит за фактическое время использования и освобождает ресурс. Никаких подписок, никаких минимальных платежей.</p>
+    <h2 data-i18n="h2_5">Почему это важно</h2>
+    <p data-i18n="p14">Агент, который платит сам, перестаёт быть «настроенным once and forever». Он может переключаться между источниками, оптимизировать расходы и работать 24/7 без вашего участия. Именно к этому и ведёт эволюция агентных систем.</p>
+    <p data-i18n="p15">Мы движемся к миру, где агенты — это полноценные участники экономики. Они покупают данные, арендуют вычислительные ресурсы, торгуются друг с другом. И делают всё это без человеческого контроля — только в рамках заданных правил и лимитов.</p>
+    <p data-i18n="p16">x402 — это не просто протокол оплаты. Это фундамент для новой экономической реальности, где машины взаимодействуют с машинами, а люди только задают правила и получают результаты. Когда агент может платить сам, он становится не просто инструментом, а самостоятельным агентом — в самом прямом смысле этого слова.</p>
+    <p class="muted" data-i18n="p17">Дальше — практика: <a href="/#install">установка x402-wallet</a> и пример живого агента, который сканирует рынок и присылает сигналы.</p>
+  </div>
 </article>
-
 <footer class="site">
   <div class="wrap"><div>© <span id="yr"></span> x402-ai-agent.space</div></div>
 </footer>
-<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+  const embeddedRu = {
+    title: "Как ИИ-агенты учатся платить сами — x402-ai-agent.space",
+    metaDescription: "От API-ключей к машинным микроплатежам: почему протокол x402 делает ИИ-агентов по-настоящему автономными.",
+    nav: { back: "← Блог", lang: "🇬🇧 EN" },
+    h1: "Как ИИ-агенты учатся платить сами",
+    meta: "2026-07-20 · 7 мин чтения",
+    p1: "Долгое время «автономный агент» был метафорой. Да, модель могла генерировать текст и вызывать функции — но стоило агенту выйти за пределы бесплатного, как всё упиралось в человека: карта, аккаунт, API-ключ, договор. Протокол <code>x402</code> меняет это.",
+    p2: "Агент, который не может платить, не может быть по-настоящему автономным. Он может лишь имитировать активность в пределах заданного бюджета — но как только нужен доступ к платному источнику данных, вычислениям или сервису, всё останавливается. И на сцену выходит человек с банковской картой.",
+    h2_1: "Проблема ключей",
+    p3: "Классический путь: вы регистрируетесь, получаете <code>API_KEY</code>, вставляете в конфиг. Это работает, пока агент — ваш личный скрипт. Но если агент должен сам выбирать поставщика данных, торговаться за цену и менять сервисы на лету — ключи становятся узким горлышком.",
+    p4: "Представьте: агент ищет данные, находит три разных API, сравнивает цены, выбирает оптимальный — и вдруг не может заплатить, потому что у него нет ключа для этого конкретного сервиса. Всё, автономия заканчивается там, где начинается платёж.",
+    p5: "Традиционные API-ключи — это рудимент, оставшийся от эпохи, когда люди регистрировались, а не машины. Они привязаны к аккаунтам, имеют сроки действия и требуют ручного обновления. Для агента, который работает 24/7, это не просто неудобство — это фатальный недостаток.",
+    h2_2: "Идея x402",
+    p6: "Вместо долгосрочного ключа — разовый платёж в заголовке запроса. Сервер говорит «это стоит N USDC», агент подписывает платёж кошельком и получает ответ. Никакой регистрации. Есть баланс — есть доступ.",
+    p7: "Протокол работает по принципу «плати за каждый вызов». Это переводит API-экономику из подписочной модели в модель микроплатежей. Вместо того чтобы платить $100 в месяц за доступ, агент платит $0.001 каждый раз, когда ему нужны данные. Итоговая сумма за месяц может быть значительно ниже — а если данные не нужны, агент вообще не платит.",
+    li1: "Платёж — часть HTTP, а не отдельная интеграция.",
+    li2: "Микросуммы: агент может платить по 0.001$ за вызов.",
+    li3: "Расчёт в стейблкоине (USDC) — без волатильности.",
+    li4: "Нет регистрации, нет карт, нет бюрократии.",
+    p8: "С технической точки зрения x402 — это просто <code>402 Payment Required</code> HTTP-ответ, расширенный платёжными инструкциями. Клиент (агент) видит заголовок с ценой и адресом, генерирует подпись транзакции и повторяет запрос с доказательством оплаты. Всё это происходит в течение одной-двух сетевых итераций — без редиректов, без OAuth, без человеческого участия.",
+    h2_3: "Что меняется с x402",
+    p9: "Во-первых, агент перестаёт быть привязанным к одному провайдеру. Он может переключаться между API в реальном времени, выбирая лучшую цену или качество данных. Это создаёт конкурентную среду, где поставщики данных вынуждены бороться за клиентов (пусть даже машинных) — и выигрывает тот, кто предложит лучшие условия.",
+    p10: "Во-вторых, агент может оптимизировать свои расходы. Если он знает, что одни и те же данные доступны у трёх разных провайдеров с разной ценой, он выберет самый дешёвый вариант. Это прямая экономия для вас, причём без вашего участия.",
+    p11: "В-третьих, агент может работать 24/7 без вашего вмешательства. Не нужно обновлять ключи, пополнять балансы или подтверждать платежи. Агент сам управляет своим бюджетом в рамках заданных лимитов — и если лимит исчерпан, он просто перестаёт покупать данные, пока вы не пополните кошелёк.",
+    h2_4: "Где это уже работает",
+    p12: "Мы уже тестируем эту схему на агентах, которые сканируют криптовалютные рынки. Они покупают данные с бирж, анализируют их и присылают сигналы. Раньше для этого нужен был человек с картой. Теперь — просто x402-кошелёк с небольшим балансом.",
+    p13: "Например, агент-исследователь может за час сделать несколько десятков запросов к платным API, потратив в сумме меньше цента. А если нужно обработать большой массив данных — он арендует GPU на несколько минут, платит за фактическое время использования и освобождает ресурс. Никаких подписок, никаких минимальных платежей.",
+    h2_5: "Почему это важно",
+    p14: "Агент, который платит сам, перестаёт быть «настроенным once and forever». Он может переключаться между источниками, оптимизировать расходы и работать 24/7 без вашего участия. Именно к этому и ведёт эволюция агентных систем.",
+    p15: "Мы движемся к миру, где агенты — это полноценные участники экономики. Они покупают данные, арендуют вычислительные ресурсы, торгуются друг с другом. И делают всё это без человеческого контроля — только в рамках заданных правил и лимитов.",
+    p16: "x402 — это не просто протокол оплаты. Это фундамент для новой экономической реальности, где машины взаимодействуют с машинами, а люди только задают правила и получают результаты. Когда агент может платить сам, он становится не просто инструментом, а самостоятельным агентом — в самом прямом смысле этого слова.",
+    p17: "Дальше — практика: <a href=\\"/#install\\">установка x402-wallet</a> и пример живого агента, который сканирует рынок и присылает сигналы."
+  };
+  const embeddedEn = {
+    title: "How AI agents learn to pay for themselves — x402-ai-agent.space",
+    metaDescription: "From API keys to machine micropayments: why the x402 protocol makes AI agents truly autonomous.",
+    nav: { back: "← Blog", lang: "🇷🇺 RU" },
+    h1: "How AI agents learn to pay for themselves",
+    meta: "2026-07-20 · 7 min read",
+    p1: "For a long time, 'autonomous agent' was a metaphor. Yes, the model could generate text and call functions — but as soon as the agent stepped beyond the free tier, everything hit a human wall: card, account, API key, contract. The <code>x402</code> protocol changes that.",
+    p2: "An agent that cannot pay cannot be truly autonomous. It can only simulate activity within a given budget — but as soon as it needs access to paid data, compute, or services, everything stops. And a human with a credit card steps in.",
+    h2_1: "The problem with keys",
+    p3: "The classic path: you register, get an <code>API_KEY</code>, put it in the config. This works while the agent is your personal script. But if the agent has to choose its own data providers, negotiate prices, and switch services on the fly — keys become a bottleneck.",
+    p4: "Imagine: the agent searches for data, finds three different APIs, compares prices, chooses the optimal one — and suddenly cannot pay because it doesn't have a key for that specific service. Autonomy ends where payment begins.",
+    p5: "Traditional API keys are a relic from the era when humans registered, not machines. They are tied to accounts, have expiration dates, and require manual renewal. For an agent working 24/7, this is not just an inconvenience — it's a fatal flaw.",
+    h2_2: "The x402 idea",
+    p6: "Instead of a long-term key — a one-time payment in the request header. The server says 'this costs N USDC', the agent signs the payment with its wallet and gets the response. No registration. Have balance — have access.",
+    p7: "The protocol works on a 'pay per call' basis. This shifts the API economy from subscription-based to micropayment-based. Instead of paying $100 per month for access, the agent pays $0.001 each time it needs data. The total monthly cost can be significantly lower — and if data isn't needed, the agent pays nothing at all.",
+    li1: "Payment is part of HTTP, not a separate integration.",
+    li2: "Micro-amounts: the agent can pay $0.001 per call.",
+    li3: "Settlement in stablecoin (USDC) — no volatility.",
+    li4: "No registration, no cards, no bureaucracy.",
+    p8: "Technically, x402 is just a <code>402 Payment Required</code> HTTP response extended with payment instructions. The client (agent) sees the header with price and address, generates a transaction signature, and retries the request with proof of payment. All of this happens in one or two network iterations — no redirects, no OAuth, no human involvement.",
+    h2_3: "What changes with x402",
+    p9: "First, the agent is no longer tied to a single provider. It can switch between APIs in real time, choosing the best price or data quality. This creates a competitive environment where data providers have to fight for clients (even machine ones) — and the one with the best terms wins.",
+    p10: "Second, the agent can optimize its expenses. If it knows the same data is available from three different providers at different prices, it will choose the cheapest option. This is direct savings for you, without your involvement.",
+    p11: "Third, the agent can work 24/7 without your intervention. No need to renew keys, top up balances, or confirm payments. The agent manages its own budget within set limits — and if the limit is exhausted, it simply stops buying data until you top up the wallet.",
+    h2_4: "Where this already works",
+    p12: "We are already testing this scheme on agents that scan cryptocurrency markets. They buy data from exchanges, analyze it, and send signals. Previously, this required a human with a card. Now — just an x402 wallet with a small balance.",
+    p13: "For example, a research agent can make several dozen requests to paid APIs in an hour, spending less than a cent in total. And if it needs to process a large dataset — it rents a GPU for a few minutes, pays for actual usage time, and releases the resource. No subscriptions, no minimum payments.",
+    h2_5: "Why this matters",
+    p14: "An agent that pays for itself is no longer 'configured once and forever'. It can switch between sources, optimize expenses, and work 24/7 without your involvement. This is exactly where the evolution of agentic systems is heading.",
+    p15: "We are moving toward a world where agents are full-fledged economic participants. They buy data, rent computing resources, trade with each other. And they do all of this without human oversight — only within set rules and limits.",
+    p16: "x402 is not just a payment protocol. It is the foundation for a new economic reality where machines interact with machines, and humans only set the rules and receive the results. When an agent can pay for itself, it becomes not just a tool, but an independent agent — in the most literal sense.",
+    p17: "Next — practice: <a href=\\"/#install\\">installing x402-wallet</a> and an example of a live agent that scans the market and sends signals."
+  };
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        el.innerHTML = value;
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
 </body>
 </html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Блог x402-wallet — ИИ-агенты, торговля криптовалютой и платежи через протокол x402</title>
+  <meta name="yandex-verification" content="d9c78b212e08c0c4" />
+  <meta name="google-site-verification" content="kEP1_OVsa5NTmWuNILV9m_kpC__2tNtrouRnbHjJGo8" />
+  <meta name="description" data-i18n="metaDescription" content="Блог x402: практические кейсы ИИ-агентов — крипто-трейдинг, автономные платежи через протокол x402, установка x402-wallet, стратегии и разборы. Полный гайд.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="x402-ai-agent.space">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:title" data-i18n="ogTitle" content="Блог x402-wallet — ИИ-агенты, торговля и автономные платежи">
+  <meta property="og:description" data-i18n="ogDescription" content="Практические кейсы ИИ-агентов: крипто-трейдинг, автономные платежи через протокол x402, установка x402-wallet. Разборы и стратегии.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/logo.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Блог x402-wallet — ИИ-агенты и платежи">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="ogTitle" content="Блог x402-wallet — ИИ-агенты, торговля и автономные платежи">
+  <meta name="twitter:description" data-i18n="ogDescription" content="Практические кейсы ИИ-агентов: крипто-трейдинг, автономные платежи через протокол x402, установка x402-wallet. Разборы и стратегии.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/logo.png">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --bg-card-hover: #1a1a1a;
+      --border: #222222;
+      --border-subtle: #1a1a1a;
+      --text: #f5f5f5;
+      --text-secondary: #a3a3a3;
+      --muted: #737373;
+      --accent: #e5e5e5;
+      --accent-hover: #ffffff;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.4);
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition); }
+    .wrap { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header */
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; gap: 24px;
+    }
+    .logo {
+      font-weight: 500; font-size: 1.1rem; letter-spacing: -0.02em;
+      color: var(--text-secondary);
+    }
+    .logo span { color: var(--muted); }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      padding: 8px 14px; border-radius: var(--radius-xs);
+      font-size: 0.875rem; color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    nav .link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch {
+      border: 1px solid var(--border); border-radius: var(--radius-full);
+      padding: 6px 14px !important; font-size: 0.8rem !important;
+    }
+    .lang-switch:hover { border-color: #444; background: rgba(255,255,255,0.06) !important; }
+
+    /* Content */
+    .block { padding: 64px 0 80px; }
+    .section-head { margin-bottom: 40px; max-width: 640px; }
+    .kicker {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 10px;
+    }
+    .section-head h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2rem); font-weight: 600;
+      letter-spacing: -0.025em; margin-bottom: 12px;
+    }
+    .section-head p { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.65; }
+
+    /* Posts grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    a.post {
+      display: block;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: all var(--transition);
+    }
+    a.post:hover {
+      background: var(--bg-card-hover);
+      border-color: #2a2a2a;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+    a.post .date {
+      font-size: 0.8rem; color: var(--muted); margin-bottom: 12px;
+      letter-spacing: 0.02em;
+    }
+    a.post h3 {
+      font-size: 1.1rem; font-weight: 600; letter-spacing: -0.015em;
+      margin-bottom: 10px; line-height: 1.35;
+    }
+    a.post p {
+      font-size: 0.925rem; color: var(--text-secondary); line-height: 1.55;
+    }
+
+    /* Footer */
+    footer.site {
+      padding: 32px 0; border-top: 1px solid var(--border-subtle);
+      font-size: 0.875rem; color: var(--muted);
+    }
+
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      .block { padding: 40px 0 56px; }
+    }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">x402<span>.ai</span></div>
+    <nav>
+      <a class="link" href="/" data-i18n="nav.back">← На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<section class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker" data-i18n="kicker">Блог</div>
+      <h2 data-i18n="title_h2">ИИ-агенты: от теории к практике</h2>
+      <p data-i18n="desc">Реальные кейсы, стратегии и инструменты для автономных агентов — от крипто-трейдинга до микроплатежей.</p>
+    </div>
+
+    <div class="grid">
+      <a class="post" href="/blog/ai-agent-v6-intro.html">
+        <div class="date">2026-07-23</div>
+        <h3 data-i18n="post1.title">💰 ИИ-Агент v5 — Автономный Крипто-Трейдер</h3>
+        <p data-i18n="post1.desc">Работает 24/7, точность 95%+, прибыль 1–3% на сделку. Три режима: крон, чат, скрипт.</p>
+      </a>
+      <a class="post" href="/blog/agent-does-your-job.html">
+        <div class="date">2026-07-20</div>
+        <h3 data-i18n="post2.title">Агент, который делает вашу работу пока вы в отпуске</h3>
+        <p data-i18n="post2.desc">Реальные примеры: агенты пишут код, ищут баги, ведут переписку с клиентами и сами платят за нужные инструменты.</p>
+      </a>
+      <a class="post" href="/blog/agents-that-pay-themselves.html">
+        <div class="date">2026-07-21</div>
+        <h3 data-i18n="post3.title">Как агенты перестали просить разрешения</h3>
+        <p data-i18n="post3.desc">Агенты всё чаще не спрашивают, а делают. И самое неудобное — они часто оказываются правы.</p>
+      </a>
+      <a class="post" href="/blog/agents-that-run-business.html">
+        <div class="date">2026-07-22</div>
+        <h3 data-i18n="post4.title">Агент, который управляет бизнесом</h3>
+        <p data-i18n="post4.desc">Как агент берёт на себя рутину: от планирования до отчётов, и почему это не страшно, а выгодно.</p>
+      </a>
+      <a class="post" href="/blog/ai-agents-pay.html">
+        <div class="date">2026-07-20</div>
+        <h3 data-i18n="post5.title">Как ИИ-агенты учатся платить сами</h3>
+        <p data-i18n="post5.desc">От API-ключей к машинным микроплатежам. Почему x402 — шаг к настоящей автономности агентов.</p>
+      </a>
+      <a class="post" href="/blog/autonomy-vs-control.html">
+        <div class="date">2026-07-20</div>
+        <h3 data-i18n="post6.title">Автономность против контроля</h3>
+        <p data-i18n="post6.desc">Агент может торговать, сканировать, платить. Но где красная линия, которую нельзя переходить без человека?</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div>© <span id="yr"></span> x402.ai</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+
+  const embeddedRu = {
+    title: "Блог x402-wallet — ИИ-агенты, торговля криптовалютой и платежи через протокол x402",
+    metaDescription: "Блог x402: практические кейсы ИИ-агентов — крипто-трейдинг, автономные платежи через протокол x402, установка x402-wallet, стратегии и разборы. Полный гайд.",
+    ogTitle: "Блог x402-wallet — ИИ-агенты, торговля и автономные платежи",
+    ogDescription: "Практические кейсы ИИ-агентов: крипто-трейдинг, автономные платежи через протокол x402, установка x402-wallet. Разборы и стратегии.",
+    nav: { back: "← На сайт", lang: "🇬🇧 EN" },
+    kicker: "Блог",
+    title_h2: "ИИ-агенты: от теории к практике",
+    desc: "Реальные кейсы, стратегии и инструменты для автономных агентов — от крипто-трейдинга до микроплатежей.",
+    post1: { title: "💰 ИИ-Агент v5 — Автономный Крипто-Трейдер", desc: "Работает 24/7, точность 95%+, прибыль 1–3% на сделку. Три режима: крон, чат, скрипт." },
+    post2: { title: "Агент, который делает вашу работу пока вы в отпуске", desc: "Реальные примеры: агенты пишут код, ищут баги, ведут переписку с клиентами и сами платят за нужные инструменты." },
+    post3: { title: "Как агенты перестали просить разрешения", desc: "Агенты всё чаще не спрашивают, а делают. И самое неудобное — они часто оказываются правы." },
+    post4: { title: "Агент, который управляет бизнесом", desc: "Как агент берёт на себя рутину: от планирования до отчётов, и почему это не страшно, а выгодно." },
+    post5: { title: "Как ИИ-агенты учатся платить сами", desc: "От API-ключей к машинным микроплатежам. Почему x402 — шаг к настоящей автономности агентов." },
+    post6: { title: "Автономность против контроля", desc: "Агент может торговать, сканировать, платить. Но где красная линия, которую нельзя переходить без человека?" }
+  };
+
+  const embeddedEn = {
+    title: "x402-wallet Blog — AI agents, crypto trading and payments via x402 protocol",
+    metaDescription: "x402 blog: practical AI agent cases — crypto trading, autonomous payments via x402 protocol, x402-wallet setup, strategies and breakdowns.",
+    ogTitle: "x402-wallet Blog — AI agents, trading and autonomous payments",
+    ogDescription: "Practical AI agent cases: crypto trading, autonomous payments via x402 protocol, x402-wallet setup. Breakdowns and strategies.",
+    nav: { back: "← Back to site", lang: "🇷🇺 RU" },
+    kicker: "Blog",
+    title_h2: "AI agents: from theory to practice",
+    desc: "Real cases, strategies and tools for autonomous agents — from crypto trading to micropayments.",
+    post1: { title: "💰 AI Agent v5 — Autonomous Crypto Trader", desc: "Works 24/7, 95%+ accuracy, 1–3% profit per trade. Three modes: cron, chat, script." },
+    post2: { title: "An agent that does your job while you're on vacation", desc: "Real examples: agents write code, find bugs, handle client communication and pay for the tools they need." },
+    post3: { title: "How agents stopped asking for permission", desc: "Agents increasingly don't ask — they just do. And the most inconvenient part is that they're often right." },
+    post4: { title: "An agent that runs a business", desc: "How an agent takes over the routine: from planning to reports, and why it's not scary — it's profitable." },
+    post5: { title: "How AI agents learn to pay themselves", desc: "From API keys to machine micropayments. Why x402 is a step toward true agent autonomy." },
+    post6: { title: "Autonomy vs control", desc: "An agent can trade, scan, pay. But where is the red line that cannot be crossed without a human?" }
+  };
+
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        el.innerHTML = value;
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+        if (key === 'ogTitle') {
+          document.querySelectorAll('meta[property="og:title"], meta[name="twitter:title"]').forEach(m => m.setAttribute('content', value));
+        }
+        if (key === 'ogDescription') {
+          document.querySelectorAll('meta[property="og:description"], meta[name="twitter:description"]').forEach(m => m.setAttribute('content', value));
+        }
+      }
+    });
+  }
+
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>

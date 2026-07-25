@@ -2,13 +2,14 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
+  <meta name="yandex-verification" content="d9c78b212e08c0c4" />
   <meta name="google-site-verification" content="kEP1_OVsa5NTmWuNILV9m_kpC__2tNtrouRnbHjJGo8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>x402-ai-agent.space — платежи для ИИ-агентов через x402 + x402-wallet</title>
-  <meta name="description" content="Что такое протокол x402, как ИИ-агенты платят за API в одном HTTP-запросе, как установить x402-wallet и запустить собственного агента. Минимализм, факты, без воды.">
+  <title data-i18n="title">x402-ai-agent.space — платежи для ИИ-агентов через x402 + x402-wallet</title>
+  <meta name="description" data-i18n="metaDescription" content="Что такое протокол x402, как ИИ-агенты платят за API в одном HTTP-запросе, как установить x402-wallet и запустить собственного агента. Минимализм, факты, без воды.">
   <meta name="keywords" content="x402, x402-wallet, AI agents, платежи ИИ, микроплатежи, USDC, agentic payments">
-  <meta property="og:title" content="x402-ai-agent.space — платежи для ИИ-агентов">
-  <meta property="og:description" content="Как ИИ-агенты платят за API через протокол x402 и кошелёк x402-wallet. Гайд без воды.">
+  <meta property="og:title" data-i18n="ogTitle" content="x402-ai-agent.space — платежи для ИИ-агентов">
+  <meta property="og:description" data-i18n="ogDescription" content="Как ИИ-агенты платят за API через протокол x402 и кошелёк x402-wallet. Гайд без воды.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#0a0a0a">
   <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
@@ -18,140 +19,595 @@
   <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
   <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
   <link rel="canonical" href="https://x402-ai-agent.space/">
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-elevated: #111111;
+      --bg-card: #141414;
+      --bg-card-hover: #1a1a1a;
+      --border: #222222;
+      --border-subtle: #1a1a1a;
+      --text: #f5f5f5;
+      --text-secondary: #a3a3a3;
+      --muted: #737373;
+      --accent: #e5e5e5;
+      --accent-hover: #ffffff;
+      --code-bg: #0f0f0f;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.4);
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    code, .inl {
+      font-family: "SF Mono", "Fira Code", "Cascadia Code", Menlo, Consolas, monospace;
+      font-size: 0.875em;
+      background: var(--code-bg);
+      padding: 0.15em 0.45em;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      color: #d4d4d4;
+    }
+    .wrap {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    /* ─── HEADER ─── */
+    header.site {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      gap: 24px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      color: var(--text-secondary);
+      flex-shrink: 0;
+    }
+    .logo-img {
+      height: 28px;
+      width: auto;
+      border-radius: 6px;
+    }
+    .logo span span {
+      color: var(--muted);
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    nav .link {
+      padding: 8px 12px;
+      border-radius: var(--radius-xs);
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    nav .link:hover {
+      color: var(--text);
+      background: rgba(255,255,255,0.05);
+    }
+    .lang-switch {
+      margin-left: 8px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 6px 14px !important;
+      font-size: 0.8rem !important;
+    }
+    .lang-switch:hover {
+      border-color: #444;
+      background: rgba(255,255,255,0.06) !important;
+    }
+    /* ─── HERO ─── */
+    .hero {
+      padding: 80px 0 64px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4.5vw, 2.75rem);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+    .hero h1 span {
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 540px;
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 22px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      border-radius: var(--radius-sm);
+      background: var(--accent);
+      color: #0a0a0a;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+    .cta:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .cta.ghost {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      box-shadow: none;
+    }
+    .cta.ghost:hover {
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      border-color: #444;
+      transform: translateY(-1px);
+    }
+    .hero-art {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-logo {
+      width: 320px;
+      max-width: 100%;
+      height: auto;
+      opacity: 0.95;
+      filter: drop-shadow(0 12px 40px rgba(0,0,0,0.55));
+      border-radius: 24px;
+    }
+    /* ─── SECTIONS ─── */
+    .block {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .section-head {
+      margin-bottom: 40px;
+      max-width: 640px;
+    }
+    .kicker {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .section-head h2 {
+      font-size: clamp(1.5rem, 3vw, 1.9rem);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .section-head p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+    /* ─── CARDS GRID ─── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: all var(--transition);
+    }
+    .card:hover {
+      background: var(--bg-card-hover);
+      border-color: #2a2a2a;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+    .card .num {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 14px;
+    }
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .card p {
+      font-size: 0.925rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    /* ─── STEPS ─── */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .step {
+      display: flex;
+      gap: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      transition: all var(--transition);
+    }
+    .step:hover {
+      background: var(--bg-card-hover);
+      border-color: #2a2a2a;
+    }
+    .step .idx {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+    .step .body h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+    .step .body p {
+      font-size: 0.925rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .step .body pre {
+      margin-top: 14px;
+    }
+    /* ─── CODE BLOCKS ─── */
+    pre.code {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 18px 20px;
+      font-family: "SF Mono", "Fira Code", Menlo, Consolas, monospace;
+      font-size: 0.85rem;
+      line-height: 1.55;
+      color: #d4d4d4;
+      overflow-x: auto;
+      white-space: pre;
+      margin-top: 20px;
+    }
+    /* ─── NOTES ─── */
+    .note {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+    }
+    .mt24 {
+      margin-top: 24px;
+    }
+    .muted {
+      color: var(--muted);
+    }
+    /* ─── PITCH / BOT ─── */
+    .pitch {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .pitch h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .pitch p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin-bottom: 12px;
+    }
+    .pitch .cta {
+      margin-top: 8px;
+    }
+    /* ─── FOOTER ─── */
+    footer.site {
+      padding: 40px 0;
+      border-top: 1px solid var(--border-subtle);
+    }
+    footer .wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+    footer a {
+      color: var(--text-secondary);
+    }
+    footer a:hover {
+      color: var(--text);
+    }
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 800px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .hero-art {
+        order: -1;
+      }
+      .hero-logo {
+        width: 220px;
+      }
+      nav {
+        gap: 2px;
+      }
+      nav .link {
+        padding: 6px 8px;
+        font-size: 0.8rem;
+      }
+      .pitch {
+        padding: 28px 20px;
+      }
+    }
+    @media (max-width: 560px) {
+      .nav {
+        height: auto;
+        padding: 12px 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      nav {
+        width: 100%;
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 4px;
+      }
+      .hero {
+        padding: 48px 0 40px;
+      }
+      .block {
+        padding: 48px 0;
+      }
+      .step {
+        flex-direction: column;
+        gap: 12px;
+        padding: 18px;
+      }
+      .hero-logo {
+        width: 180px;
+      }
+    }
+  </style>
 </head>
 <body>
-
 <header class="site">
   <div class="wrap nav">
-    <div class="logo"><img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img"> <span>x402<span style="color:var(--blue)">.ai</span></span></div>
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <span>x402<span>.ai</span></span>
+    </div>
     <nav>
-      <a class="link" href="#what">Что это</a>
-      <a class="link" href="#how">Как платить</a>
-      <a class="link" href="#install">Установка</a>
-      <a class="link" href="#commands">Команды</a>
-      <a class="link" href="#faq">FAQ</a>
-      <a class="link" href="/blog/">Блог</a>
-      <a class="link" href="#bot">Агент</a>
+      <a class="link" href="#what" data-i18n="nav.what">Что это</a>
+      <a class="link" href="#how" data-i18n="nav.how">Как платить</a>
+      <a class="link" href="#install" data-i18n="nav.install">Установка</a>
+      <a class="link" href="#commands" data-i18n="nav.commands">Команды</a>
+      <a class="link" href="#faq" data-i18n="nav.faq">FAQ</a>
+      <a class="link" href="/blog/" data-i18n="nav.blog">Блог</a>
+      <a class="link" href="#bot" data-i18n="nav.bot">Агент</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
     </nav>
   </div>
 </header>
-
 <!-- HERO -->
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-text">
-      <span class="tag">открытый стандарт платежей для агентов</span>
-      <h1>ИИ-агенты, <span style="color:var(--muted)">которые платят сами.</span><br>Одним HTTP-запросом.</h1>
-      <p>Протокол x402 превращает оплату API в обычный платёжный ответ сервера. x402-wallet держит ключи. Агент получает данные — сервис получает USDC. Без карт, без OAuth, без офиса.</p>
-      <a class="cta" href="#what">Как это работает →</a>
-      <a class="cta ghost" href="/blog/">Читать о ИИ-агентах</a>
+      <span class="tag" data-i18n="hero.tag">открытый стандарт платежей для агентов</span>
+      <h1 data-i18n="hero.title">ИИ-агенты, <span>которые платят сами.</span><br>Одним HTTP-запросом.</h1>
+      <p data-i18n="hero.desc">Протокол x402 превращает оплату API в обычный платёжный ответ сервера. x402-wallet держит ключи. Агент получает данные — сервис получает USDC. Без карт, без OAuth, без офиса.</p>
+      <div class="hero-actions">
+        <a class="cta" href="#what" data-i18n="hero.cta">Как это работает →</a>
+        <a class="cta ghost" href="/blog/" data-i18n="hero.cta2">Читать о ИИ-агентах</a>
+      </div>
     </div>
     <div class="hero-art">
       <img src="/assets/img/logo.png" alt="x402-ai-agent.space логотип" class="hero-logo">
     </div>
   </div>
 </section>
-
 <!-- WHAT IS x402 -->
 <section class="block" id="what">
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker">Концепт</div>
-      <h2>Что такое x402</h2>
-      <p>Открытый платёжный протокол для машин. Вместо редиректов и логинов — стандартный HTTP-ответ <code class="inl">402 Payment Required</code>, несущий платёжные инструкции.</p>
+      <div class="kicker" data-i18n="what.kicker">Концепт</div>
+      <h2 data-i18n="what.title">Что такое x402</h2>
+      <p data-i18n="what.desc">Открытый платёжный протокол для машин. Вместо редиректов и логинов — стандартный HTTP-ответ <code class="inl">402 Payment Required</code>, несущий платёжные инструкции.</p>
     </div>
     <div class="grid">
       <div class="card">
         <div class="num">01</div>
-        <h3>Платёж в протоколе</h3>
-        <p>Клиент (агент) шлёт обычный запрос. Сервер отвечает <code class="inl">402</code> с ценой и адресом оплаты в заголовке <code class="inl">PAYMENT-REQUIRED</code>.</p>
+        <h3 data-i18n="what.card1.title">Платёж в протоколе</h3>
+        <p data-i18n="what.card1.text">Клиент (агент) шлёт обычный запрос. Сервер отвечает <code class="inl">402</code> с ценой и адресом оплаты в заголовке <code class="inl">PAYMENT-REQUIRED</code>.</p>
       </div>
       <div class="card">
         <div class="num">02</div>
-        <h3>USDC на Base</h3>
-        <p>Расчёты в стейблкоине, микросуммы, почти нулевая комиссия. Подходит для тысяч вызовов в минуту.</p>
+        <h3 data-i18n="what.card2.title">USDC на Base</h3>
+        <p data-i18n="what.card2.text">Расчёты в стейблкоине, микросуммы, почти нулевая комиссия. Подходит для тысяч вызовов в минуту.</p>
       </div>
       <div class="card">
         <div class="num">03</div>
-        <h3>Без аккаунтов</h3>
-        <p>Никаких API-ключей вручную, никаких договоров. Есть баланс — есть доступ. Нет баланса — сервер вежливо отказал.</p>
+        <h3 data-i18n="what.card3.title">Без аккаунтов</h3>
+        <p data-i18n="what.card3.text">Никаких API-ключей вручную, никаких договоров. Есть баланс — есть доступ. Нет баланса — сервер вежливо отказал.</p>
       </div>
       <div class="card">
         <div class="num">04</div>
-        <h3>Для агентов, не людей</h3>
-        <p>x402 спроектирован так, чтобы им пользовался софт, а не вы. Агент сам решает: заплатить и получить данные, или нет.</p>
+        <h3 data-i18n="what.card4.title">Для агентов, не людей</h3>
+        <p data-i18n="what.card4.text">x402 спроектирован так, чтобы им пользовался софт, а не вы. Агент сам решает: заплатить и получить данные, или нет.</p>
       </div>
     </div>
   </div>
 </section>
-
 <!-- HOW TO PAY -->
 <section class="block" id="how">
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker">Поток</div>
-      <h2>Как агент платит через x402-wallet</h2>
-      <p>x402-wallet — CLI-кошелёк для x402-платежей: хранит ключи и подписывает платежи от имени агента. Сам цикл выглядит так:</p>
+      <div class="kicker" data-i18n="how.kicker">Поток</div>
+      <h2 data-i18n="how.title">Как агент платит через x402-wallet</h2>
+      <p data-i18n="how.desc">x402-wallet — CLI-кошелёк для x402-платежей: хранит ключи и подписывает платежи от имени агента. Сам цикл выглядит так:</p>
     </div>
-
     <div class="steps">
       <div class="step">
         <div class="idx">1</div>
         <div class="body">
-          <h3>Агент делает запрос</h3>
-          <p>Агент стучится к платному эндпоинту. Например, запрашивает свежие рыночные данные или вызов LLM.</p>
+          <h3 data-i18n="how.step1.title">Агент делает запрос</h3>
+          <p data-i18n="how.step1.text">Агент стучится к платному эндпоинту. Например, запрашивает свежие рыночные данные или вызов LLM.</p>
         </div>
       </div>
       <div class="step">
         <div class="idx">2</div>
         <div class="body">
-          <h3>Сервер отвечает <code class="inl">402 Payment Required</code></h3>
-          <p>В заголовке <code class="inl">PAYMENT-REQUIRED</code> — цена в USDC и адрес для оплаты. Агент видит: «столько стоит этот вызов».</p>
+          <h3 data-i18n="how.step2.title">Сервер отвечает <code class="inl">402 Payment Required</code></h3>
+          <p data-i18n="how.step2.text">В заголовке <code class="inl">PAYMENT-REQUIRED</code> — цена в USDC и адрес для оплаты. Агент видит: «столько стоит этот вызов».</p>
         </div>
       </div>
       <div class="step">
         <div class="idx">3</div>
         <div class="body">
-          <h3>x402-wallet подписывает платёж</h3>
-          <p>Кошелёк агента формирует платёжную авторизацию (USDC), и клиентский SDK прикладывает её к повторному запросу. Подпись берёт на себя протокол.</p>
+          <h3 data-i18n="how.step3.title">x402-wallet подписывает платёж</h3>
+          <p data-i18n="how.step3.text">Кошелёк агента формирует платёжную авторизацию (USDC), и клиентский SDK прикладывает её к повторному запросу. Подпись берёт на себя протокол.</p>
         </div>
       </div>
       <div class="step">
         <div class="idx">4</div>
         <div class="body">
-          <h3>Сервер проверяет и отдаёт данные</h3>
-          <p>Платёж валидируется через facilitator (settlement), и агент получает ответ. Всё за одну-две сетевые итерации, без редиректов.</p>
+          <h3 data-i18n="how.step4.title">Сервер проверяет и отдаёт данные</h3>
+          <p data-i18n="how.step4.text">Платёж валидируется через facilitator (settlement), и агент получает ответ. Всё за одну-две сетевые итерации, без редиректов.</p>
         </div>
       </div>
     </div>
-
-    <pre class="code">// Node.js (x402 client SDK)
+    <pre class="code" data-i18n="how.code">// Node.js (x402 client SDK)
 import { x402 } from "x402";
 const res = await x402.fetch("https://api.example.com/data"); // платит сам, если пришёл 402</pre>
-    <p class="note mt24">Факты по спецификации: сервер отвечает <code class="inl">402 Payment Required</code> с инструкцией в заголовке <code class="inl">PAYMENT-REQUIRED</code>; клиент платит через SDK. Точный тип кошелька (x402-wallet, CDP-managed и др.) зависит от вашей реализации — см. docs.x402.org.</p>
+    <p class="note mt24" data-i18n="how.note">Факты по спецификации: сервер отвечает <code class="inl">402 Payment Required</code> с инструкцией в заголовке <code class="inl">PAYMENT-REQUIRED</code>; клиент платит через SDK. Точный тип кошелька (x402-wallet, CDP-managed и др.) зависит от вашей реализации — см. docs.x402.org.</p>
   </div>
 </section>
-
 <!-- INSTALL -->
 <section class="block" id="install">
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker">Практика</div>
-      <h2>Установка и запуск</h2>
-      <p>Минимальный путь, чтобы ваш агент начал платить через x402. Нужен Node.js (или Python) и немного USDC в сети Base.</p>
+      <div class="kicker" data-i18n="install.kicker">Практика</div>
+      <h2 data-i18n="install.title">Установка и запуск</h2>
+      <p data-i18n="install.desc">Минимальный путь, чтобы ваш агент начал платить через x402. Нужен Node.js (или Python) и немного USDC в сети Base.</p>
     </div>
-
     <div class="steps">
       <div class="step">
         <div class="idx">1</div>
         <div class="body">
-          <h3>Поставьте x402 SDK и кошелёк</h3>
-          <p>Официальный Python SDK — <code class="inl">x402</code> (PyPI). CLI-кошелёк для автономных платежей агентов — <code class="inl">x402-wallet</code>. Сид-фразу держите локально, не в облаке.</p>
-          <pre class="code"># Python SDK
+          <h3 data-i18n="install.step1.title">Поставьте x402 SDK и кошелёк</h3>
+          <p data-i18n="install.step1.text">Официальный Python SDK — <code class="inl">x402</code> (PyPI). CLI-кошелёк для автономных платежей агентов — <code class="inl">x402-wallet</code>. Сид-фразу держите локально, не в облаке.</p>
+          <pre class="code" data-i18n="install.step1.code"># Python SDK
 pip install x402
 
-# CLI-кошелёк для агентов (npm &gt;= 18)
+# CLI-кошелёк для агентов (npm >= 18)
 npm i -g x402-wallet
 
 # проверка
@@ -161,167 +617,162 @@ x402-wallet --help</pre>
       <div class="step">
         <div class="idx">2</div>
         <div class="body">
-          <h3>Создайте кошелёк агента</h3>
-          <p>Команда генерирует приватный ключ локально (в Base). Никуда не уходит. Сохраните сид-фразу в надёжном месте.</p>
-          <pre class="code">x402-wallet init --network base
+          <h3 data-i18n="install.step2.title">Создайте кошелёк агента</h3>
+          <p data-i18n="install.step2.text">Команда генерирует приватный ключ локально (в Base). Никуда не уходит. Сохраните сид-фразу в надёжном месте.</p>
+          <pre class="code" data-i18n="install.step2.code">x402-wallet init --network base
 # выведет seed-фразу и адрес — запишите их
 
 x402-wallet address
-# 0x... &lt;- сюда переводить USDC</pre>
+# 0x... ← сюда переводить USDC</pre>
         </div>
       </div>
       <div class="step">
         <div class="idx">3</div>
         <div class="body">
-          <h3>Пополните баланс USDC</h3>
-          <p>Переведите немного USDC в сети Base на адрес из предыдущего шага. Этого хватит на тысячи микровызовов. Проверить баланс:</p>
-          <pre class="code">x402-wallet balance --token usdc
+          <h3 data-i18n="install.step3.title">Пополните баланс USDC</h3>
+          <p data-i18n="install.step3.text">Переведите немного USDC в сети Base на адрес из предыдущего шага. Этого хватит на тысячи микровызовов. Проверить баланс:</p>
+          <pre class="code" data-i18n="install.step3.code">x402-wallet balance --token usdc
 # Balance: 2.50 USDC</pre>
         </div>
       </div>
       <div class="step">
         <div class="idx">4</div>
         <div class="body">
-          <h3>Подключите к агенту</h3>
-          <p>В коде агента используйте x402-клиент: он сам поймёт <code class="inl">402</code>, подпишет платёж кошельком и повторит запрос. Никакой ручной логики оплаты писать не нужно.</p>
-          <pre class="code">// Node.js
+          <h3 data-i18n="install.step4.title">Подключите к агенту</h3>
+          <p data-i18n="install.step4.text">В коде агента используйте x402-клиент: он сам поймёт <code class="inl">402</code>, подпишет платёж кошельком и повторит запрос. Никакой ручной логики оплаты писать не нужно.</p>
+          <pre class="code" data-i18n="install.step4.code">// Node.js
 import { x402 } from "x402";
 const data = await x402.fetch(url); // платит автоматически
 
 # Python
 from x402 import x402_fetch
-data = x402_fetch(url)  # тоже авто-оплата</pre>
+data = x402_fetch(url) // тоже авто-оплата</pre>
         </div>
       </div>
       <div class="step">
         <div class="idx">5</div>
         <div class="body">
-          <h3>Запуск</h3>
-          <p>Запустите агента. Первый платный запрос пройдёт через <code class="inl">402 → подпись → данные</code>. Готово — агент платит сам.</p>
-          <pre class="code">python agent.py
+          <h3 data-i18n="install.step5.title">Запуск</h3>
+          <p data-i18n="install.step5.text">Запустите агента. Первый платный запрос пройдёт через <code class="inl">402 → подпись → данные</code>. Готово — агент платит сам.</p>
+          <pre class="code" data-i18n="install.step5.code">python agent.py
 # или
 node agent.js</pre>
         </div>
       </div>
     </div>
-    <p class="note mt24">Команды выше — рабочий минимум по официальным SDK (PyPI: x402, CLI: x402-wallet). Точные имена пакетов и флагов уточняйте в документации под вашу версию: docs.x402.org.</p>
+    <p class="note mt24" data-i18n="install.note">Команды выше — рабочий минимум по официальным SDK (PyPI: x402, CLI: x402-wallet). Точные имена пакетов и флагов уточняйте в документации под вашу версию: docs.x402.org.</p>
   </div>
 </section>
-
 <!-- SOFT PITCH: BOT -->
 <section class="block" id="bot">
   <div class="wrap">
     <div class="pitch">
-      <h2>А если не собирать агента с нуля?</h2>
-      <p>Идея x402 — в том, чтобы агенты были полезными и самодостаточными. Мы собрали одного такого: он круглосуточно сканирует рынок BTC/ETH, ищет дивергенции RSI и объёмные импульсы и присылает сигналы, по которым можно ставить грид-ботов.</p>
-      <p class="muted" style="font-size:15px">Это не «гарантия прибыли» и не финсовет — просто рабочий пример агента, который делает рутину за вас. Решать, торговать или нет, всё равно вам.</p>
+      <h2 data-i18n="bot.title">А если не собирать агента с нуля?</h2>
+      <p data-i18n="bot.text">Идея x402 — в том, чтобы агенты были полезными и самодостаточными. Мы собрали одного такого: он круглосуточно сканирует рынок BTC/ETH, ищет дивергенции RSI и объёмные импульсы и присылает сигналы, по которым можно ставить грид-ботов.</p>
+      <p class="muted" style="font-size:15px" data-i18n="bot.note">Это не «гарантия прибыли» и не финсовет — просто рабочий пример агента, который делает рутину за вас. Решать, торговать или нет, всё равно вам.</p>
       <div class="mt24">
-        <a class="cta" href="https://crypto-snapshot-pro.onrender.com/app" target="_blank" rel="noopener">Посмотреть агента сигналов →</a>
+        <a class="cta" href="https://crypto-snapshot-pro.onrender.com/app" target="_blank" rel="noopener" data-i18n="bot.cta">Посмотреть агента сигналов →</a>
       </div>
-      <p class="note mt24">Ссылка ведёт на внешний сервис. Относитесь к торговле ответственно.</p>
+      <p class="note mt24" data-i18n="bot.footnote">Ссылка ведёт на внешний сервис. Относитесь к торговле ответственно.</p>
     </div>
   </div>
 </section>
-
 <!-- COMMANDS -->
 <section class="block" id="commands">
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker">Справочник</div>
-      <h2>Команды x402-wallet</h2>
-      <p>CLI-кошелёк для автономных x402-платежей агента. Ниже — основные команды после установки через <code class="inl">npm i -g x402-wallet</code>. Имена флагов могут отличаться по версиям — проверяйте <code class="inl">x402-wallet --help</code>.</p>
+      <div class="kicker" data-i18n="commands.kicker">Справочник</div>
+      <h2 data-i18n="commands.title">Команды x402-wallet</h2>
+      <p data-i18n="commands.desc">CLI-кошелёк для автономных x402-платежей агента. Ниже — основные команды после установки через <code class="inl">npm i -g x402-wallet</code>. Имена флагов могут отличаться по версиям — проверяйте <code class="inl">x402-wallet --help</code>.</p>
     </div>
     <div class="grid">
       <div class="card">
-        <h3>x402-wallet init</h3>
-        <p>Создать новый кошелёк агента (или импортировать сид-фразу). Генерирует приватный ключ локально — никуда не уходит.</p>
-        <pre class="code">x402-wallet init --network base</pre>
+        <h3 data-i18n="commands.card1.title">x402-wallet init</h3>
+        <p data-i18n="commands.card1.text">Создать новый кошелёк агента (или импортировать сид-фразу). Генерирует приватный ключ локально — никуда не уходит.</p>
+        <pre class="code" data-i18n="commands.card1.code">x402-wallet init --network base</pre>
       </div>
       <div class="card">
-        <h3>x402-wallet address</h3>
-        <p>Показать адрес кошелька в сети Base. На него нужно перевести USDC.</p>
-        <pre class="code">x402-wallet address</pre>
+        <h3 data-i18n="commands.card2.title">x402-wallet address</h3>
+        <p data-i18n="commands.card2.text">Показать адрес кошелька в сети Base. На него нужно перевести USDC.</p>
+        <pre class="code" data-i18n="commands.card2.code">x402-wallet address</pre>
       </div>
       <div class="card">
-        <h3>x402-wallet balance</h3>
-        <p>Проверить баланс USDC. Если пусто — агент не сможет платить за вызовы.</p>
-        <pre class="code">x402-wallet balance --token usdc</pre>
+        <h3 data-i18n="commands.card3.title">x402-wallet balance</h3>
+        <p data-i18n="commands.card3.text">Проверить баланс USDC. Если пусто — агент не сможет платить за вызовы.</p>
+        <pre class="code" data-i18n="commands.card3.code">x402-wallet balance --token usdc</pre>
       </div>
       <div class="card">
-        <h3>x402-wallet pay</h3>
-        <p>Вручную подписать платёж для URL (для тестов). В коде агента это делает SDK автоматически.</p>
-        <pre class="code">x402-wallet pay --url https://api.example.com/data</pre>
+        <h3 data-i18n="commands.card4.title">x402-wallet pay</h3>
+        <p data-i18n="commands.card4.text">Вручную подписать платёж для URL (для тестов). В коде агента это делает SDK автоматически.</p>
+        <pre class="code" data-i18n="commands.card4.code">x402-wallet pay --url https://api.example.com/data</pre>
       </div>
     </div>
-    <p class="note mt24">Точные флаги зависят от версии x402-wallet (GitHub 0xKoda/x402-wallet). Команда <code class="inl">x402-wallet --help</code> покажет актуальный список.</p>
+    <p class="note mt24" data-i18n="commands.note">Точные флаги зависят от версии x402-wallet (GitHub 0xKoda/x402-wallet). Команда <code class="inl">x402-wallet --help</code> покажет актуальный список.</p>
   </div>
 </section>
-
 <!-- FAQ -->
 <section class="block" id="faq">
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker">Вопросы</div>
-      <h2>FAQ</h2>
-      <p>Коротко по самому важному. Без воды.</p>
+      <div class="kicker" data-i18n="faq.kicker">Вопросы</div>
+      <h2 data-i18n="faq.title">FAQ</h2>
+      <p data-i18n="faq.desc">Коротко по самому важному. Без воды.</p>
     </div>
     <div class="steps">
       <div class="step">
         <div class="idx">?</div>
         <div class="body">
-          <h3>Какая сеть нужна?</h3>
-          <p>Базовая сеть — <strong>Base</strong> (L2 Ethereum). Расчёты в USDC. Комиссии копеечные, подходят для микроплатежей.</p>
+          <h3 data-i18n="faq.q1.title">Какая сеть нужна?</h3>
+          <p data-i18n="faq.q1.text">Базовая сеть — <strong>Base</strong> (L2 Ethereum). Расчёты в USDC. Комиссии копеечные, подходят для микроплатежей.</p>
         </div>
       </div>
       <div class="step">
         <div class="idx">?</div>
         <div class="body">
-          <h3>Сколько стоит?</h3>
-          <p>Сам протокол бесплатен. Платите только за вызовы API тому сервису, к которому стучится агент. Микросуммы — центы и меньше.</p>
+          <h3 data-i18n="faq.q2.title">Сколько стоит?</h3>
+          <p data-i18n="faq.q2.text">Сам протокол бесплатен. Платите только за вызовы API тому сервису, к которому стучится агент. Микросуммы — центы и меньше.</p>
         </div>
       </div>
       <div class="step">
         <div class="idx">?</div>
         <div class="body">
-          <h3>Безопасны ли ключи?</h3>
-          <p>Приватный ключ генерится и хранится локально (x402-wallet init). Не выгружайте сид-фразу в облако. Альтернатива — CDP-managed wallet (ключи у провайдера, но без локального файла).</p>
+          <h3 data-i18n="faq.q3.title">Безопасны ли ключи?</h3>
+          <p data-i18n="faq.q3.text">Приватный ключ генерится и хранится локально (x402-wallet init). Не выгружайте сид-фразу в облако. Альтернатива — CDP-managed wallet (ключи у провайдера, но без локального файла).</p>
         </div>
       </div>
       <div class="step">
         <div class="idx">?</div>
         <div class="body">
-          <h3>Нужен ли отдельный сервер?</h3>
-          <p>Нет. Агент и кошелёк работают на той же машине, где запущен ваш скрипт. Достаточно Node.js или Python и баланса USDC.</p>
+          <h3 data-i18n="faq.q4.title">Нужен ли отдельный сервер?</h3>
+          <p data-i18n="faq.q4.text">Нет. Агент и кошелёк работают на той же машине, где запущен ваш скрипт. Достаточно Node.js или Python и баланса USDC.</p>
         </div>
       </div>
       <div class="step">
         <div class="idx">?</div>
         <div class="body">
-          <h3>Где документация?</h3>
-          <p>Официально: <a href="https://x402.org" target="_blank" rel="noopener">x402.org</a> и <a href="https://docs.x402.org" target="_blank" rel="noopener">docs.x402.org</a>. По x402-wallet — репозиторий на GitHub (0xKoda/x402-wallet) и сайт x402-wallet.com.</p>
+          <h3 data-i18n="faq.q5.title">Где документация?</h3>
+          <p data-i18n="faq.q5.text">Официально: <a href="https://x402.org" target="_blank" rel="noopener">x402.org</a> и <a href="https://docs.x402.org" target="_blank" rel="noopener">docs.x402.org</a>. По x402-wallet — репозиторий на GitHub (0xKoda/x402-wallet) и сайт x402-wallet.com.</p>
         </div>
       </div>
       <div class="step">
         <div class="idx">?</div>
         <div class="body">
-          <h3>Что если баланс кончится?</h3>
-          <p>Сервер вернёт <code class="inl">402</code> с той же инструкцией. Агент просто не получит данные, пока вы не пополните USDC. Ничего не ломается.</p>
+          <h3 data-i18n="faq.q6.title">Что если баланс кончится?</h3>
+          <p data-i18n="faq.q6.text">Сервер вернёт <code class="inl">402</code> с той же инструкцией. Агент просто не получит данные, пока вы не пополните USDC. Ничего не ломается.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
-
 <!-- FOOTER -->
 <footer class="site">
   <div class="wrap">
-    <div>© <span id="yr"></span> x402-ai-agent.space — про платежи для ИИ-агентов.</div>
-    <div>
+    <div data-i18n="footer.text">© x402-ai-agent.space — про платежи для ИИ-агентов.</div>
+    <div data-i18n="footer.links">
       <a href="#what">x402</a> · <a href="#install">Установка</a> · <a href="/blog/">Блог</a>
     </div>
   </div>
 </footer>
-
 <!-- SEO: structured data -->
 <script type="application/ld+json">
 {
@@ -337,6 +788,272 @@ node agent.js</pre>
   }
 }
 </script>
+<script>
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
 
-</body>
-</html>
+  // ─── Встроенные переводы (nested) ───
+  const embeddedRu = {
+    "title": "x402-ai-agent.space — платежи для ИИ-агентов через x402 + x402-wallet",
+    "metaDescription": "Что такое протокол x402, как ИИ-агенты платят за API в одном HTTP-запросе, как установить x402-wallet и запустить собственного агента. Минимализм, факты, без воды.",
+    "ogTitle": "x402-ai-agent.space — платежи для ИИ-агентов",
+    "ogDescription": "Как ИИ-агенты платят за API через протокол x402 и кошелёк x402-wallet. Гайд без воды.",
+    "nav": {
+      "what": "Что это",
+      "how": "Как платить",
+      "install": "Установка",
+      "commands": "Команды",
+      "faq": "FAQ",
+      "blog": "Блог",
+      "bot": "Агент",
+      "lang": "🇬🇧 EN"
+    },
+    "hero": {
+      "tag": "открытый стандарт платежей для агентов",
+      "title": "ИИ-агенты, <span>которые платят сами.</span><br>Одним HTTP-запросом.",
+      "desc": "Протокол x402 превращает оплату API в обычный платёжный ответ сервера. x402-wallet держит ключи. Агент получает данные — сервис получает USDC. Без карт, без OAuth, без офиса.",
+      "cta": "Как это работает →",
+      "cta2": "Читать о ИИ-агентах"
+    },
+    "what": {
+      "kicker": "Концепт",
+      "title": "Что такое x402",
+      "desc": "Открытый платёжный протокол для машин. Вместо редиректов и логинов — стандартный HTTP-ответ <code class=\"inl\">402 Payment Required</code>, несущий платёжные инструкции.",
+      "card1": { "title": "Платёж в протоколе", "text": "Клиент (агент) шлёт обычный запрос. Сервер отвечает <code class=\"inl\">402</code> с ценой и адресом оплаты в заголовке <code class=\"inl\">PAYMENT-REQUIRED</code>." },
+      "card2": { "title": "USDC на Base", "text": "Расчёты в стейблкоине, микросуммы, почти нулевая комиссия. Подходит для тысяч вызовов в минуту." },
+      "card3": { "title": "Без аккаунтов", "text": "Никаких API-ключей вручную, никаких договоров. Есть баланс — есть доступ. Нет баланса — сервер вежливо отказал." },
+      "card4": { "title": "Для агентов, не людей", "text": "x402 спроектирован так, чтобы им пользовался софт, а не вы. Агент сам решает: заплатить и получить данные, или нет." }
+    },
+    "how": {
+      "kicker": "Поток",
+      "title": "Как агент платит через x402-wallet",
+      "desc": "x402-wallet — CLI-кошелёк для x402-платежей: хранит ключи и подписывает платежи от имени агента. Сам цикл выглядит так:",
+      "step1": { "title": "Агент делает запрос", "text": "Агент стучится к платному эндпоинту. Например, запрашивает свежие рыночные данные или вызов LLM." },
+      "step2": { "title": "Сервер отвечает <code class=\"inl\">402 Payment Required</code>", "text": "В заголовке <code class=\"inl\">PAYMENT-REQUIRED</code> — цена в USDC и адрес для оплаты. Агент видит: «столько стоит этот вызов»." },
+      "step3": { "title": "x402-wallet подписывает платёж", "text": "Кошелёк агента формирует платёжную авторизацию (USDC), и клиентский SDK прикладывает её к повторному запросу. Подпись берёт на себя протокол." },
+      "step4": { "title": "Сервер проверяет и отдаёт данные", "text": "Платёж валидируется через facilitator (settlement), и агент получает ответ. Всё за одну-две сетевые итерации, без редиректов." },
+      "code": "// Node.js (x402 client SDK)\nimport { x402 } from \"x402\";\nconst res = await x402.fetch(\"https://api.example.com/data\"); // платит сам, если пришёл 402",
+      "note": "Факты по спецификации: сервер отвечает <code class=\"inl\">402 Payment Required</code> с инструкцией в заголовке <code class=\"inl\">PAYMENT-REQUIRED</code>; клиент платит через SDK. Точный тип кошелька (x402-wallet, CDP-managed и др.) зависит от вашей реализации — см. docs.x402.org."
+    },
+    "install": {
+      "kicker": "Практика",
+      "title": "Установка и запуск",
+      "desc": "Минимальный путь, чтобы ваш агент начал платить через x402. Нужен Node.js (или Python) и немного USDC в сети Base.",
+      "step1": { "title": "Поставьте x402 SDK и кошелёк", "text": "Официальный Python SDK — <code class=\"inl\">x402</code> (PyPI). CLI-кошелёк для автономных платежей агентов — <code class=\"inl\">x402-wallet</code>. Сид-фразу держите локально, не в облаке.", "code": "# Python SDK\npip install x402\n\n# CLI-кошелёк для агентов (npm >= 18)\nnpm i -g x402-wallet\n\n# проверка\nx402-wallet --help" },
+      "step2": { "title": "Создайте кошелёк агента", "text": "Команда генерирует приватный ключ локально (в Base). Никуда не уходит. Сохраните сид-фразу в надёжном месте.", "code": "x402-wallet init --network base\n# выведет seed-фразу и адрес — запишите их\n\nx402-wallet address\n# 0x... ← сюда переводить USDC" },
+      "step3": { "title": "Пополните баланс USDC", "text": "Переведите немного USDC в сети Base на адрес из предыдущего шага. Этого хватит на тысячи микровызовов. Проверить баланс:", "code": "x402-wallet balance --token usdc\n# Balance: 2.50 USDC" },
+      "step4": { "title": "Подключите к агенту", "text": "В коде агента используйте x402-клиент: он сам поймёт <code class=\"inl\">402</code>, подпишет платёж кошельком и повторит запрос. Никакой ручной логики оплаты писать не нужно.", "code": "// Node.js\nimport { x402 } from \"x402\";\nconst data = await x402.fetch(url); // платит автоматически\n\n# Python\nfrom x402 import x402_fetch\ndata = x402_fetch(url) // тоже авто-оплата" },
+      "step5": { "title": "Запуск", "text": "Запустите агента. Первый платный запрос пройдёт через <code class=\"inl\">402 → подпись → данные</code>. Готово — агент платит сам.", "code": "python agent.py\n# или\nnode agent.js" },
+      "note": "Команды выше — рабочий минимум по официальным SDK (PyPI: x402, CLI: x402-wallet). Точные имена пакетов и флагов уточняйте в документации под вашу версию: docs.x402.org."
+    },
+    "bot": {
+      "title": "А если не собирать агента с нуля?",
+      "text": "Идея x402 — в том, чтобы агенты были полезными и самодостаточными. Мы собрали одного такого: он круглосуточно сканирует рынок BTC/ETH, ищет дивергенции RSI и объёмные импульсы и присылает сигналы, по которым можно ставить грид-ботов.",
+      "note": "Это не «гарантия прибыли» и не финсовет — просто рабочий пример агента, который делает рутину за вас. Решать, торговать или нет, всё равно вам.",
+      "cta": "Посмотреть агента сигналов →",
+      "footnote": "Ссылка ведёт на внешний сервис. Относитесь к торговле ответственно."
+    },
+    "commands": {
+      "kicker": "Справочник",
+      "title": "Команды x402-wallet",
+      "desc": "CLI-кошелёк для автономных x402-платежей агента. Ниже — основные команды после установки через <code class=\"inl\">npm i -g x402-wallet</code>. Имена флагов могут отличаться по версиям — проверяйте <code class=\"inl\">x402-wallet --help</code>.",
+      "note": "Точные флаги зависят от версии x402-wallet (GitHub 0xKoda/x402-wallet). Команда <code class=\"inl\">x402-wallet --help</code> покажет актуальный список.",
+      "card1": { "title": "x402-wallet init", "text": "Создать новый кошелёк агента (или импортировать сид-фразу). Генерирует приватный ключ локально — никуда не уходит.", "code": "x402-wallet init --network base" },
+      "card2": { "title": "x402-wallet address", "text": "Показать адрес кошелька в сети Base. На него нужно перевести USDC.", "code": "x402-wallet address" },
+      "card3": { "title": "x402-wallet balance", "text": "Проверить баланс USDC. Если пусто — агент не сможет платить за вызовы.", "code": "x402-wallet balance --token usdc" },
+      "card4": { "title": "x402-wallet pay", "text": "Вручную подписать платёж для URL (для тестов). В коде агента это делает SDK автоматически.", "code": "x402-wallet pay --url https://api.example.com/data" }
+    },
+    "faq": {
+      "kicker": "Вопросы",
+      "title": "FAQ",
+      "desc": "Коротко по самому важному. Без воды.",
+      "q1": { "title": "Какая сеть нужна?", "text": "Базовая сеть — <strong>Base</strong> (L2 Ethereum). Расчёты в USDC. Комиссии копеечные, подходят для микроплатежей." },
+      "q2": { "title": "Сколько стоит?", "text": "Сам протокол бесплатен. Платите только за вызовы API тому сервису, к которому стучится агент. Микросуммы — центы и меньше." },
+      "q3": { "title": "Безопасны ли ключи?", "text": "Приватный ключ генерится и хранится локально (x402-wallet init). Не выгружайте сид-фразу в облако. Альтернатива — CDP-managed wallet (ключи у провайдера, но без локального файла)." },
+      "q4": { "title": "Нужен ли отдельный сервер?", "text": "Нет. Агент и кошелёк работают на той же машине, где запущен ваш скрипт. Достаточно Node.js или Python и баланса USDC." },
+      "q5": { "title": "Где документация?", "text": "Официально: <a href=\"https://x402.org\" target=\"_blank\" rel=\"noopener\">x402.org</a> и <a href=\"https://docs.x402.org\" target=\"_blank\" rel=\"noopener\">docs.x402.org</a>. По x402-wallet — репозиторий на GitHub (0xKoda/x402-wallet) и сайт x402-wallet.com." },
+      "q6": { "title": "Что если баланс кончится?", "text": "Сервер вернёт <code class=\"inl\">402</code> с той же инструкцией. Агент просто не получит данные, пока вы не пополните USDC. Ничего не ломается." }
+    },
+    "footer": {
+      "text": "© x402-ai-agent.space — про платежи для ИИ-агентов.",
+      "links": "<a href=\"#what\">x402</a> · <a href=\"#install\">Установка</a> · <a href=\"/blog/\">Блог</a>"
+    }
+  };
+
+  const embeddedEn = {
+    "title": "x402-ai-agent.space — payments for AI agents via x402 + x402-wallet",
+    "metaDescription": "What is the x402 protocol, how AI agents pay for APIs in a single HTTP request, how to install x402-wallet and run your own agent. Minimal, factual, no fluff.",
+    "ogTitle": "x402-ai-agent.space — payments for AI agents",
+    "ogDescription": "How AI agents pay for APIs via the x402 protocol and x402-wallet. A no-fluff guide.",
+    "nav": {
+      "what": "What is it",
+      "how": "How to pay",
+      "install": "Install",
+      "commands": "Commands",
+      "faq": "FAQ",
+      "blog": "Blog",
+      "bot": "Agent",
+      "lang": "🇷🇺 RU"
+    },
+    "hero": {
+      "tag": "open payment standard for agents",
+      "title": "AI agents <span>that pay themselves.</span><br>One HTTP request.",
+      "desc": "The x402 protocol turns API payment into a standard server payment response. x402-wallet holds the keys. The agent gets the data — the service gets USDC. No cards, no OAuth, no office.",
+      "cta": "How it works →",
+      "cta2": "Read about AI agents"
+    },
+    "what": {
+      "kicker": "Concept",
+      "title": "What is x402",
+      "desc": "An open payment protocol for machines. Instead of redirects and logins — a standard HTTP <code class=\"inl\">402 Payment Required</code> response carrying payment instructions.",
+      "card1": { "title": "Payment in the protocol", "text": "The client (agent) sends a regular request. The server responds with <code class=\"inl\">402</code> containing the price and payment address in the <code class=\"inl\">PAYMENT-REQUIRED</code> header." },
+      "card2": { "title": "USDC on Base", "text": "Settlements in stablecoin, micro-amounts, near-zero fees. Suitable for thousands of calls per minute." },
+      "card3": { "title": "No accounts", "text": "No manual API keys, no contracts. Have balance — have access. No balance — the server politely declines." },
+      "card4": { "title": "For agents, not humans", "text": "x402 is designed for software, not for you. The agent decides: pay and get the data, or not." }
+    },
+    "how": {
+      "kicker": "Flow",
+      "title": "How an agent pays via x402-wallet",
+      "desc": "x402-wallet is a CLI wallet for x402 payments: it stores keys and signs payments on behalf of the agent. The flow looks like this:",
+      "step1": { "title": "Agent makes a request", "text": "The agent hits a paid endpoint. For example, requests fresh market data or an LLM call." },
+      "step2": { "title": "Server responds <code class=\"inl\">402 Payment Required</code>", "text": "In the <code class=\"inl\">PAYMENT-REQUIRED</code> header — price in USDC and payment address. The agent sees: \"this is how much this call costs\"." },
+      "step3": { "title": "x402-wallet signs the payment", "text": "The agent’s wallet creates a payment authorization (USDC), and the client SDK attaches it to the retry request. The signature is handled by the protocol." },
+      "step4": { "title": "Server verifies and delivers data", "text": "The payment is validated through a facilitator (settlement), and the agent receives the response. All in one or two network iterations, no redirects." },
+      "code": "// Node.js (x402 client SDK)\nimport { x402 } from \"x402\";\nconst res = await x402.fetch(\"https://api.example.com/data\"); // pays itself if 402 arrives",
+      "note": "Facts from the spec: the server responds with <code class=\"inl\">402 Payment Required</code> with instructions in the <code class=\"inl\">PAYMENT-REQUIRED</code> header; the client pays via SDK. Exact wallet type (x402-wallet, CDP-managed, etc.) depends on your implementation — see docs.x402.org."
+    },
+    "install": {
+      "kicker": "Practice",
+      "title": "Installation and launch",
+      "desc": "The minimal path for your agent to start paying via x402. You need Node.js (or Python) and some USDC on the Base network.",
+      "step1": { "title": "Install x402 SDK and wallet", "text": "Official Python SDK — <code class=\"inl\">x402</code> (PyPI). CLI wallet for standalone agent payments — <code class=\"inl\">x402-wallet</code>. Keep the seed phrase locally, not in the cloud.", "code": "# Python SDK\npip install x402\n\n# CLI wallet for agents (npm >= 18)\nnpm i -g x402-wallet\n\n# check\nx402-wallet --help" },
+      "step2": { "title": "Create agent wallet", "text": "The command generates a private key locally (on Base). It never leaves your machine. Save the seed phrase in a safe place.", "code": "x402-wallet init --network base\n# prints seed phrase and address — write them down\n\nx402-wallet address\n# 0x... ← send USDC here" },
+      "step3": { "title": "Top up USDC balance", "text": "Send some USDC on the Base network to the address from the previous step. This is enough for thousands of micro-calls. Check balance:", "code": "x402-wallet balance --token usdc\n# Balance: 2.50 USDC" },
+      "step4": { "title": "Connect to the agent", "text": "In the agent code use the x402 client: it will understand <code class=\"inl\">402</code>, sign the payment with the wallet, and retry the request. No manual payment logic needed.", "code": "// Node.js\nimport { x402 } from \"x402\";\nconst data = await x402.fetch(url); // pays automatically\n\n# Python\nfrom x402 import x402_fetch\ndata = x402_fetch(url) // also auto-pay" },
+      "step5": { "title": "Run", "text": "Run your agent. The first paid request will go through <code class=\"inl\">402 → signature → data</code>. Done — the agent pays itself.", "code": "python agent.py\n# or\nnode agent.js" },
+      "note": "The commands above are the working minimum from the official SDKs (PyPI: x402, CLI: x402-wallet). Exact package names and flags may vary by version — check docs.x402.org."
+    },
+    "bot": {
+      "title": "Don’t want to build an agent from scratch?",
+      "text": "The idea of x402 is that agents are useful and self-sufficient. We’ve built one: it scans BTC/ETH markets 24/7, looks for RSI divergences and volume impulses, and sends signals that can be used to set up grid bots.",
+      "note": "This is not a “profit guarantee” or financial advice — just a working example of an agent that does routine work for you. The decision to trade or not is still yours.",
+      "cta": "View signal agent →",
+      "footnote": "The link leads to an external service. Trade responsibly."
+    },
+    "commands": {
+      "kicker": "Reference",
+      "title": "x402-wallet commands",
+      "desc": "CLI wallet for standalone agent x402 payments. Below are the main commands after <code class=\"inl\">npm i -g x402-wallet</code>. Flag names may differ by version — check <code class=\"inl\">x402-wallet --help</code>.",
+      "note": "Exact flags depend on the x402-wallet version (GitHub 0xKoda/x402-wallet). Run <code class=\"inl\">x402-wallet --help</code> for the current list.",
+      "card1": { "title": "x402-wallet init", "text": "Create a new agent wallet (or import a seed phrase). Generates a private key locally — it never leaves your machine.", "code": "x402-wallet init --network base" },
+      "card2": { "title": "x402-wallet address", "text": "Show the wallet address on the Base network. Send USDC here.", "code": "x402-wallet address" },
+      "card3": { "title": "x402-wallet balance", "text": "Check the USDC balance. If empty — the agent can’t pay for calls.", "code": "x402-wallet balance --token usdc" },
+      "card4": { "title": "x402-wallet pay", "text": "Manually sign a payment for a URL (for testing). In agent code the SDK does this automatically.", "code": "x402-wallet pay --url https://api.example.com/data" }
+    },
+    "faq": {
+      "kicker": "Questions",
+      "title": "FAQ",
+      "desc": "Short answers to the most important questions. No fluff.",
+      "q1": { "title": "Which network is needed?", "text": "The base network is <strong>Base</strong> (L2 Ethereum). Settlements in USDC. Fees are pennies — perfect for micropayments." },
+      "q2": { "title": "How much does it cost?", "text": "The protocol itself is free. You only pay for the API calls to the service the agent hits. Micro-amounts — cents and less." },
+      "q3": { "title": "Are the keys secure?", "text": "The private key is generated and stored locally (x402-wallet init). Don’t upload the seed phrase to the cloud. Alternative — CDP-managed wallet (keys held by the provider, no local file)." },
+      "q4": { "title": "Is a separate server needed?", "text": "No. The agent and wallet run on the same machine as your script. Node.js or Python and a USDC balance is enough." },
+      "q5": { "title": "Where is the documentation?", "text": "Official: <a href=\"https://x402.org\" target=\"_blank\" rel=\"noopener\">x402.org</a> and <a href=\"https://docs.x402.org\" target=\"_blank\" rel=\"noopener\">docs.x402.org</a>. For x402-wallet — GitHub repo (0xKoda/x402-wallet) and x402-wallet.com." },
+      "q6": { "title": "What if the balance runs out?", "text": "The server returns <code class=\"inl\">402</code> with the same instruction. The agent simply won’t get the data until you top up USDC. Nothing breaks." }
+    },
+    "footer": {
+      "text": "© x402-ai-agent.space — payments for AI agents.",
+      "links": "<a href=\"#what\">x402</a> · <a href=\"#install\">Install</a> · <a href=\"/blog/\">Blog</a>"
+    }
+  };
+
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.placeholder = value;
+        } else {
+          el.innerHTML = value;
+        }
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+        if (key === 'ogTitle') {
+          const meta = document.querySelector('meta[property="og:title"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+        if (key === 'ogDescription') {
+          const meta = document.querySelector('meta[property="og:description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+
+  function updateSwitcher(lang) {
+    const switcher = document.querySelector('.lang-switch');
+    if (!switcher) return;
+    if (lang === 'ru') {
+      switcher.textContent = '🇬🇧 EN';
+      switcher.href = '?lang=en';
+    } else {
+      switcher.textContent = '🇷🇺 RU';
+      switcher.href = '?lang=ru';
+    }
+  }
+
+  function setLanguage(lang) {
+    // Всегда используем встроенные переводы (надёжно)
+    const data = (lang === 'en') ? embeddedEn : embeddedRu;
+    window.langData = data;
+    applyTranslations(data);
+    localStorage.setItem(LANG_KEY, lang);
+    document.documentElement.lang = lang;
+    updateSwitcher(lang);
+
+    // Параллельно пробуем подтянуть внешний файл (если он есть и правильный)
+    fetch(`/lang/${lang}.json`)
+      .then(r => {
+        if (!r.ok) throw new Error('not found');
+        return r.json();
+      })
+      .then(external => {
+        // Если внешний файл успешно загрузился — применяем его
+        window.langData = external;
+        applyTranslations(external);
+        updateSwitcher(lang);
+      })
+      .catch(() => {
+        // молча игнорируем — уже используем embedded
+      });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    const savedLang = localStorage.getItem(LANG_KEY);
+    const lang = (langParam === 'en' || langParam === 'ru') ? langParam : (savedLang || DEFAULT_LANG);
+
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const current = document.documentElement.lang || 'ru';
+        const next = current === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.pushState({}, '', `?lang=${next}`);
+      });
+    }
+
+    setLanguage(lang);
+  });
+</script>

@@ -3,59 +3,270 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ИИ-агенты, которые ведут бизнес пока вы спите — x402-ai-agent.space</title>
-  <meta name="description" content="Реальные кейсы: агенты, которые сами ищут поставщиков, платят за данные, запускают рекламу и закрывают сделки. Без человека в контуре.">
+  <title data-i18n="title">ИИ-агенты, которые ведут бизнес пока вы спите — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="Реальные кейсы: агенты, которые сами ищут поставщиков, платят за данные, запускают рекламу и закрывают сделки. Без человека в контуре.">
   <meta name="theme-color" content="#0a0a0a">
   <link rel="canonical" href="https://x402-ai-agent.space/blog/agents-that-run-business.html">
-  <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
   <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
   <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #f5f5f5;
+      --text-secondary: #a3a3a3;
+      --muted: #737373;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition); }
+    .wrap { width: 100%; max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; max-width: 1100px; margin: 0 auto; padding: 0 24px;
+    }
+    .logo { font-weight: 500; font-size: 1.1rem; color: var(--text-secondary); letter-spacing: -0.02em; }
+    .logo span { color: var(--muted); }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      padding: 8px 14px; border-radius: var(--radius-xs);
+      font-size: 0.875rem; color: var(--text-secondary);
+    }
+    nav .link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch {
+      border: 1px solid var(--border); border-radius: var(--radius-full);
+      padding: 6px 14px !important; font-size: 0.8rem !important;
+    }
+    .lang-switch:hover { border-color: #444; background: rgba(255,255,255,0.06) !important; }
+
+    article { padding: 48px 0 80px; }
+    article img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: 437px;
+      object-fit: cover;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    article p strong { color: var(--text); font-weight: 600; }
+    .note {
+      margin: 28px 0;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .note a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 3px; }
+    .note a:hover { color: var(--text); }
+
+    footer.site {
+      padding: 28px 0;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 32px 0 56px; }
+      article h2 { margin-top: 32px; }
+    }
+  </style>
 </head>
 <body>
 <header class="site">
-  <div class="wrap nav">
-    <div class="logo">x402<span style="color:var(--blue)">.ai</span></div>
-    <nav><a class="link" href="/blog/">← Блог</a></nav>
+  <div class="nav">
+    <div class="logo">x402<span>.ai</span></div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
   </div>
 </header>
 
-<article class="article">
-  <h1>ИИ-агенты, которые ведут бизнес пока вы спите</h1>
-  <div class="meta">2026-07-20 · 5 мин чтения</div>
-
-  <figure>
+<article>
+  <div class="wrap">
     <img src="/assets/img/blog/fetch3.jpg" alt="ИИ-агенты ведут бизнес, пока вы спите" loading="lazy">
-    <figcaption>Агенты не спят: они ведут бизнес, пока вы отдыхаете.</figcaption>
-  </figure>
+    
+    <h1 data-i18n="h1">ИИ-агенты, которые ведут бизнес пока вы спите</h1>
+    <div class="meta" data-i18n="meta">2026-07-20 · 7 мин чтения</div>
 
+    <p data-i18n="p1">Ещё год назад «автономный агент» звучал как фантастика. Сегодня для тех, кто уже в теме, это обычная рабочая практика. Агенты не просто помогают — они берут на себя целые куски бизнеса и делают это без постоянного участия человека.</p>
 
-  <p>Ещё год назад «автономный агент» звучал как фантастика. Сегодня — это уже рутина для тех, кто в теме. Вот три истории, от которых у обычного человека правда отвисает челюсть.</p>
+    <p data-i18n="p2">Вот три реальных кейса, от которых у большинства людей правда отвисает челюсть.</p>
 
-  <h2>1. Агент-закупщик, который не спит</h2>
-  <p>Один мелкий e-com магазин запустил агента, который каждые 15 минут обходит 12 прайс-листов конкурентов, находит, где товар подешевле, и сам переставляет закупочные цены в своей CRM. Когда находит аномально дешёвый лот — автоматически платит поставщику через x402-кошелёк и ставит товар на полку. Владелец заходит утром и видит: за ночь агент сделал 34 закупки, сэкономил $410, ни разу не спросил разрешения.</p>
+    <h2 data-i18n="h2_1">1. Агент-закупщик, который не спит</h2>
+    <p data-i18n="p3">Небольшой e-com магазин запустил агента, который каждые 15 минут обходит 12 прайс-листов поставщиков и конкурентов. Он ищет, где товар можно взять дешевле, и сам обновляет закупочные цены в CRM. Когда находит аномально выгодный лот — автоматически платит поставщику через x402-кошелёк и ставит товар на витрину.</p>
+    <p data-i18n="p4">Владелец заходит утром и видит отчёт: за ночь агент сделал 34 закупки, сэкономил $410 и ни разу не спросил разрешения. Единственный человек в контуре — тот, кто пополнил баланс USDC.</p>
 
-  <p class="muted">Человек в контуре только один: тот, кто пополнил баланс USDC.</p>
+    <h2 data-i18n="h2_2">2. Рекламщик, который сам покупает трафик</h2>
+    <p data-i18n="p5">Другой кейс — агент для небольшого бизнеса. Он генерирует несколько вариантов креативов, загружает их в рекламный кабинет, смотрит конверсию в реальном времени, отключает слабые связки и докупает бюджет у платформы напрямую микроплатежами. Параллельно переписывает заголовки под аудиторию, которая кликает лучше.</p>
+    <p data-i18n="p6">За неделю CPA упал на 38%. Владелец говорит: «Я только смотрю дашборд, как на теннис. Всё остальное делает агент».</p>
 
-  <h2>2. Рекламщик, который сам покупает трафик</h2>
-  <p>Другой кейс — агент для малого бизнеса. Он пишет 5 вариантов креатива, заливает в рекламный кабинет, смотрит за конверсией 2 часа, выключает худший, докупает бюджет у платформы напрямую микроплатежами и переписывает заголовок под аудиторию, которая кликает лучше. За неделю CPA упал на 38%. Владелец говорит: «Я только смотрю дашборд, как на теннис».</p>
+    <h2 data-i18n="h2_3">3. Юрист, которому не нужна зарплата</h2>
+    <p data-i18n="p7">Стартап подключил агента к базе договоров. Когда появляется новый контрагент, агент сам сверяет его карточку с сотнями шаблонов рисков, подсвечивает подозрительные пункты и — если всё чисто — формирует ответную оферту. Если находит спорный момент, пересылает только его живому юристу.</p>
+    <p data-i18n="p8">Остальные 90% рутины агент закрывает сам, параллельно оплачивая доступ к платным правовым базам микросуммами через x402.</p>
 
-  <h2>3. Юрист, которому не нужна зарплата</h2>
-  <p>Стартап подключил агента к базе договоров. Когда приходит новый контрагент, агент сам сверяет его карточку с 400 шаблонами рисков, подсвечивает подозрительные пункты и — если всё чисто — сам формирует ответную оферту. Спорный момент? Пересылает человеку-юристу только его. Остальное — 90% рутины — агент закрывает сам, платя за доступ к платным правовым базам микросуммами через x402.</p>
+    <h2 data-i18n="h2_4">Почему это заработало только сейчас</h2>
+    <p data-i18n="p9">Раньше каждый такой шаг упирался в один и тот же барьер: «дайте мне API-ключ / карту / аккаунт». Агент не мог самостоятельно заплатить — значит, не мог полноценно действовать. Протокол x402 этот барьер убирает. Есть баланс USDC — есть действие. Нет баланса — агент просто останавливается. Без магии, чисто экономика в HTTP-заголовке.</p>
 
-  <h2>Почему это работает только сейчас</h2>
-  <p>Раньше каждый такой шаг упирался в «дайте мне API-ключ / карту / аккаунт». Агент не мог заплатить — значит, не мог действовать. Протокол вроде <a href="/#what">x402</a> убирает этот барьер: есть баланс → есть действие. Нет баланса → агент просто вежливо остановился. Никакой магии, чисто экономика в заголовке HTTP.</p>
-
-  <p class="muted">Дальше — <a href="/blog/autonomy-vs-control.html">где красная линия</a>, которую агент не должен переходить без вас.</p>
-  <p class="mt40"><a class="cta" href="/">← На главную</a></p>
+    <div class="note" data-i18n="note">
+      Дальше — <a href="/blog/autonomy-vs-control.html">где проходит красная линия</a>, которую агент не должен переходить без вас.
+    </div>
+  </div>
 </article>
 
 <footer class="site">
-  <div class="wrap"><div>© <span id="yr"></span> x402-ai-agent.space</div></div>
+  <div class="wrap">© <span id="yr"></span> x402-ai-agent.space</div>
 </footer>
-<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+
+  const embeddedRu = {
+    title: "ИИ-агенты, которые ведут бизнес пока вы спите — x402-ai-agent.space",
+    metaDescription: "Реальные кейсы: агенты, которые сами ищут поставщиков, платят за данные, запускают рекламу и закрывают сделки. Без человека в контуре.",
+    nav: { back: "← Блог", lang: "🇬🇧 EN" },
+    h1: "ИИ-агенты, которые ведут бизнес пока вы спите",
+    meta: "2026-07-20 · 7 мин чтения",
+    p1: "Ещё год назад «автономный агент» звучал как фантастика. Сегодня для тех, кто уже в теме, это обычная рабочая практика. Агенты не просто помогают — они берут на себя целые куски бизнеса и делают это без постоянного участия человека.",
+    p2: "Вот три реальных кейса, от которых у большинства людей правда отвисает челюсть.",
+    h2_1: "1. Агент-закупщик, который не спит",
+    p3: "Небольшой e-com магазин запустил агента, который каждые 15 минут обходит 12 прайс-листов поставщиков и конкурентов. Он ищет, где товар можно взять дешевле, и сам обновляет закупочные цены в CRM. Когда находит аномально выгодный лот — автоматически платит поставщику через x402-кошелёк и ставит товар на витрину.",
+    p4: "Владелец заходит утром и видит отчёт: за ночь агент сделал 34 закупки, сэкономил $410 и ни разу не спросил разрешения. Единственный человек в контуре — тот, кто пополнил баланс USDC.",
+    h2_2: "2. Рекламщик, который сам покупает трафик",
+    p5: "Другой кейс — агент для небольшого бизнеса. Он генерирует несколько вариантов креативов, загружает их в рекламный кабинет, смотрит конверсию в реальном времени, отключает слабые связки и докупает бюджет у платформы напрямую микроплатежами. Параллельно переписывает заголовки под аудиторию, которая кликает лучше.",
+    p6: "За неделю CPA упал на 38%. Владелец говорит: «Я только смотрю дашборд, как на теннис. Всё остальное делает агент».",
+    h2_3: "3. Юрист, которому не нужна зарплата",
+    p7: "Стартап подключил агента к базе договоров. Когда появляется новый контрагент, агент сам сверяет его карточку с сотнями шаблонов рисков, подсвечивает подозрительные пункты и — если всё чисто — формирует ответную оферту. Если находит спорный момент, пересылает только его живому юристу.",
+    p8: "Остальные 90% рутины агент закрывает сам, параллельно оплачивая доступ к платным правовым базам микросуммами через x402.",
+    h2_4: "Почему это заработало только сейчас",
+    p9: "Раньше каждый такой шаг упирался в один и тот же барьер: «дайте мне API-ключ / карту / аккаунт». Агент не мог самостоятельно заплатить — значит, не мог полноценно действовать. Протокол x402 этот барьер убирает. Есть баланс USDC — есть действие. Нет баланса — агент просто останавливается. Без магии, чисто экономика в HTTP-заголовке.",
+    note: "Дальше — <a href=\"/blog/autonomy-vs-control.html\">где проходит красная линия</a>, которую агент не должен переходить без вас."
+  };
+
+  const embeddedEn = {
+    title: "AI agents that run the business while you sleep — x402-ai-agent.space",
+    metaDescription: "Real cases: agents that find suppliers, pay for data, launch ads and close deals on their own. Without a human in the loop.",
+    nav: { back: "← Blog", lang: "🇷🇺 RU" },
+    h1: "AI agents that run the business while you sleep",
+    meta: "2026-07-20 · 7 min read",
+    p1: "A year ago an “autonomous agent” still sounded like science fiction. Today, for those already in the space, it is ordinary working practice. Agents no longer just help — they take over entire pieces of the business and do it without constant human involvement.",
+    p2: "Here are three real cases that make most people’s jaws drop.",
+    h2_1: "1. A purchasing agent that never sleeps",
+    p3: "A small e-commerce store launched an agent that every 15 minutes checks 12 supplier and competitor price lists. It looks for cheaper sources and updates purchase prices in the CRM itself. When it finds an unusually good lot, it automatically pays the supplier via an x402 wallet and puts the product on the storefront.",
+    p4: "The owner comes in the morning and sees the report: overnight the agent made 34 purchases, saved $410 and never asked for permission. The only human in the loop is the one who topped up the USDC balance.",
+    h2_2: "2. An advertiser that buys traffic itself",
+    p5: "Another case — an agent for a small business. It generates several creative variants, uploads them to the ad account, watches conversion in real time, turns off weak combinations and buys more budget from the platform directly with micropayments. At the same time it rewrites headlines for the audience that clicks better.",
+    p6: "In one week CPA dropped 38%. The owner says: “I just watch the dashboard like a tennis match. Everything else is done by the agent.”",
+    h2_3: "3. A lawyer that doesn’t need a salary",
+    p7: "A startup connected an agent to its contract database. When a new counterparty appears, the agent checks its card against hundreds of risk templates, highlights suspicious clauses and — if everything is clean — generates a counter-offer. If it finds a questionable point, it forwards only that to a human lawyer.",
+    p8: "The remaining 90% of routine the agent closes itself, while also paying for access to paid legal databases with micro-amounts via x402.",
+    h2_4: "Why this only started working now",
+    p9: "Previously every such step hit the same barrier: “give me an API key / card / account”. The agent could not pay on its own — therefore it could not fully act. The x402 protocol removes that barrier. There is a USDC balance — there is action. No balance — the agent simply stops. No magic, just economics in an HTTP header.",
+    note: "Next — <a href=\"/blog/autonomy-vs-control.html\">where the red line is</a> that an agent should not cross without you."
+  };
+
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        el.innerHTML = value;
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
 </body>
 </html>

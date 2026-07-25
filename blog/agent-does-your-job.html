@@ -3,53 +3,277 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Агент, который делает вашу работу пока вы в отпуске — x402-ai-agent.space</title>
-  <meta name="description" content="Реальные примеры: агенты, которые пишут код, ищут баги, ведут переписку с клиентами и сами платят за нужные инструменты. Рутина исчезает.">
+  <title data-i18n="title">Агент, который делает вашу работу пока вы в отпуске — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="Реальные примеры: агенты, которые пишут код, ищут баги, ведут переписку с клиентами и сами платят за нужные инструменты. Рутина исчезает.">
   <meta name="theme-color" content="#0a0a0a">
   <link rel="canonical" href="https://x402-ai-agent.space/blog/agent-does-your-job.html">
-  <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
   <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
   <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #f5f5f5;
+      --text-secondary: #a3a3a3;
+      --muted: #737373;
+      --accent: #e5e5e5;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition); }
+    .wrap { width: 100%; max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; max-width: 1100px; margin: 0 auto; padding: 0 24px;
+    }
+    .logo { font-weight: 500; font-size: 1.1rem; color: var(--text-secondary); letter-spacing: -0.02em; }
+    .logo span { color: var(--muted); }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      padding: 8px 14px; border-radius: var(--radius-xs);
+      font-size: 0.875rem; color: var(--text-secondary);
+    }
+    nav .link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch {
+      border: 1px solid var(--border); border-radius: var(--radius-full);
+      padding: 6px 14px !important; font-size: 0.8rem !important;
+    }
+    .lang-switch:hover { border-color: #444; background: rgba(255,255,255,0.06) !important; }
+
+    article { padding: 48px 0 80px; }
+    article img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: 437px;
+      object-fit: cover;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    article p strong { color: var(--text); font-weight: 600; }
+    .note {
+      margin: 28px 0;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .note a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 3px; }
+    .note a:hover { color: var(--text); }
+
+    footer.site {
+      padding: 28px 0;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 32px 0 56px; }
+      article h2 { margin-top: 32px; }
+    }
+  </style>
 </head>
 <body>
 <header class="site">
-  <div class="wrap nav">
-    <div class="logo">x402<span style="color:var(--blue)">.ai</span></div>
-    <nav><a class="link" href="/blog/">← Блог</a></nav>
+  <div class="nav">
+    <div class="logo">x402<span>.ai</span></div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
   </div>
 </header>
 
-<article class="article">
-  <h1>Агент, который делает вашу работу пока вы в отпуске</h1>
-  <div class="meta">2026-07-20 · 6 мин чтения</div>
+<article>
+  <div class="wrap">
+    <img src="/assets/img/blog/agent-does-your-job-cover.jpg" alt="Агент делает вашу работу пока вы в отпуске" loading="lazy">
 
-  <p>Самое жуткое (и прекрасное) в современных агентах — это то, что они не «помогают», а <em>делают</em>. Не советуют. Не набрасывают черновик. А берут задачу и доводят до результата. Вот три сценария, от которых реально дёргает.</p>
+    <h1 data-i18n="h1">Агент, который делает вашу работу пока вы в отпуске</h1>
+    <div class="meta" data-i18n="meta">2026-07-20 · 7 мин чтения</div>
 
-  <h2>1. Девелопер, который сам себя нанимает</h2>
-  <p>Инженер кинул агенту тикет: «сделай экспорт в CSV для модуля отчётов». Агент открыл репо, прочитал код, написал функцию, прогнал тесты, увидел, что один падает, починил, закоммитил, создал PR и сам его описал. Владелец зашёл через час — PR уже висел с зелёным чеком. Человек только нажал «Approve». За ночь агент закрыл 7 таких тикетов.</p>
+    <p data-i18n="p1">Самое жуткое (и одновременно прекрасное) в современных агентах — они больше не «помогают». Они <em>делают</em>. Не предлагают варианты. Не набрасывают черновик. Берут задачу, разбираются, доводят до результата и отчитываются. И самое интересное — часто делают это лучше, чем если бы вы сидели и контролировали каждый шаг.</p>
 
-  <p class="muted">Платил агент только за доступ к приватному LLM и к бенчмаркам — микросуммами, через x402. Ни одного «дай API-ключ».</p>
+    <p data-i18n="p2">Вот три реальных сценария, от которых у многих дёргает глаз. Не фантазии — рабочие кейсы.</p>
 
-  <h2>2. Саппорт, который не спит и не врёт</h2>
-  <p>Агент сидит на входящих тикетов компании. Он не «отвечает шаблоном» — он лезет в базу знаний, в историю переписки клиента, в статус заказа, и формулирует ответ по сути. Если вопрос про деньги — сам сверяет транзакцию по API биллинга. Если не его компетенция — эскалирует человеку одну фразой: «тут налоговая, я не могу». Остальные 80% он закрывает сам, и клиенты не видят разницы.</p>
+    <h2 data-i18n="h2_1">1. Девелопер, который сам себя нанимает</h2>
+    <p data-i18n="p3">Инженер кинул агенту тикет: «сделай экспорт в CSV для модуля отчётов». Агент открыл репозиторий, прочитал существующий код, понял структуру, написал функцию, прогнал тесты. Один упал. Он сам нашёл причину, починил, закоммитил, создал pull request и даже написал нормальное описание, а не «fix stuff».</p>
+    <p data-i18n="p4">Человек зашёл через час. PR уже висел с зелёными галочками. Осталось только нажать «Approve». За ночь агент закрыл семь таких тикетов. Без пингов, без «а можно уточнить?», без ожидания.</p>
+    <div class="note" data-i18n="note1">Платил агент только за доступ к приватному LLM и бенчмаркам — микросуммами через x402. Ни одного «дай API-ключ» и ни одной корпоративной карточки.</div>
 
-  <h2>3. Аналитик, который читает весь интернет за вас</h2>
-  <p>Утром агент обходит 40 источников по вашей нише, вытягивает инсайды, склеивает дайджест, и — самое смешное — платит за доступ к платным отчётам микроплатежами, потому что у него есть x402-кошелёк. Вы получаете в 9:00 письмо: «Вот 3 вещи, которые изменились в отрасли, и вот что с ними делать». Без вашего участия. Без подписки на 10 сервисов.</p>
+    <h2 data-i18n="h2_2">2. Саппорт, который не спит и не врёт</h2>
+    <p data-i18n="p5">Агент сидит на входящих тикетах. Он не отвечает шаблонами. Он лезет в базу знаний, в историю переписки клиента, в статус заказа и в биллинг. Формулирует ответ по сути. Если вопрос про деньги — сам сверяет транзакцию через API. Если тема налоговая или юридическая — эскалирует человеку одной чёткой фразой: «тут нужна живая голова, я не лезу».</p>
+    <p data-i18n="p6">Остальные 80% тикетов он закрывает сам. Клиенты часто даже не понимают, что общались с агентом. А когда понимают — обычно пишут «спасибо, что быстро».</p>
 
-  <h2>Где тут x402</h2>
-  <p>Во всех трёх случаях агент <strong>платит сам</strong>. За LLM, за доступ к данным, за бенчмарки, за API. Без этого он — просто дорогая болтушка, которой каждый шаг надо разрешать. С x402 он — сотрудник с корпоративной картой, у которого есть лимит, но нет бюрократии.</p>
+    <h2 data-i18n="h2_3">3. Аналитик, который читает весь интернет за вас</h2>
+    <p data-i18n="p7">Каждое утро агент обходит 40+ источников по вашей нише. Вытягивает инсайды, отсекает шум, склеивает короткий дайджест. И самое смешное — если попадается платный отчёт, который реально нужен, он сам его покупает микроплатежом. Потому что у него есть x402-кошелёк и лимит.</p>
+    <p data-i18n="p8">Вы получаете в 9:00 одно письмо: «Вот три вещи, которые изменились за ночь, и вот что с ними можно сделать». Без подписок на десять сервисов. Без вашего участия.</p>
 
-  <p class="muted">Про то, где эта автономия должна упираться в человека — <a href="/blog/autonomy-vs-control.html">отдельный пост</a>.</p>
-  <p class="mt40"><a class="cta" href="/">← На главную</a></p>
+    <h2 data-i18n="h2_4">Где здесь x402</h2>
+    <p data-i18n="p9">Во всех трёх случаях агент <strong>платит сам</strong>. За LLM, за данные, за бенчмарки, за API. Без возможности самостоятельно оплачивать нужные инструменты он остаётся дорогой болтушкой, которой каждый шаг нужно разрешать вручную.</p>
+    <p data-i18n="p10">С x402 он становится сотрудником с корпоративной картой: есть лимит, есть ответственность, нет бюрократии. Именно поэтому протокол и появился — чтобы агенты могли не только думать, но и действовать в реальном мире.</p>
+
+    <div class="note" data-i18n="note2">
+      Про то, где эта автономия должна упираться в человека — <a href="/blog/autonomy-vs-control.html">отдельный пост</a>.
+    </div>
+  </div>
 </article>
 
 <footer class="site">
-  <div class="wrap"><div>© <span id="yr"></span> x402-ai-agent.space</div></div>
+  <div class="wrap">© <span id="yr"></span> x402-ai-agent.space</div>
 </footer>
-<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+
+  const embeddedRu = {
+    title: "Агент, который делает вашу работу пока вы в отпуске — x402-ai-agent.space",
+    metaDescription: "Реальные примеры: агенты, которые пишут код, ищут баги, ведут переписку с клиентами и сами платят за нужные инструменты. Рутина исчезает.",
+    nav: { back: "← Блог", lang: "🇬🇧 EN" },
+    h1: "Агент, который делает вашу работу пока вы в отпуске",
+    meta: "2026-07-20 · 7 мин чтения",
+    p1: "Самое жуткое (и одновременно прекрасное) в современных агентах — они больше не «помогают». Они <em>делают</em>. Не предлагают варианты. Не набрасывают черновик. Берут задачу, разбираются, доводят до результата и отчитываются. И самое интересное — часто делают это лучше, чем если бы вы сидели и контролировали каждый шаг.",
+    p2: "Вот три реальных сценария, от которых у многих дёргает глаз. Не фантазии — рабочие кейсы.",
+    h2_1: "1. Девелопер, который сам себя нанимает",
+    p3: "Инженер кинул агенту тикет: «сделай экспорт в CSV для модуля отчётов». Агент открыл репозиторий, прочитал существующий код, понял структуру, написал функцию, прогнал тесты. Один упал. Он сам нашёл причину, починил, закоммитил, создал pull request и даже написал нормальное описание, а не «fix stuff».",
+    p4: "Человек зашёл через час. PR уже висел с зелёными галочками. Осталось только нажать «Approve». За ночь агент закрыл семь таких тикетов. Без пингов, без «а можно уточнить?», без ожидания.",
+    note1: "Платил агент только за доступ к приватному LLM и бенчмаркам — микросуммами через x402. Ни одного «дай API-ключ» и ни одной корпоративной карточки.",
+    h2_2: "2. Саппорт, который не спит и не врёт",
+    p5: "Агент сидит на входящих тикетах. Он не отвечает шаблонами. Он лезет в базу знаний, в историю переписки клиента, в статус заказа и в биллинг. Формулирует ответ по сути. Если вопрос про деньги — сам сверяет транзакцию через API. Если тема налоговая или юридическая — эскалирует человеку одной чёткой фразой: «тут нужна живая голова, я не лезу».",
+    p6: "Остальные 80% тикетов он закрывает сам. Клиенты часто даже не понимают, что общались с агентом. А когда понимают — обычно пишут «спасибо, что быстро».",
+    h2_3: "3. Аналитик, который читает весь интернет за вас",
+    p7: "Каждое утро агент обходит 40+ источников по вашей нише. Вытягивает инсайды, отсекает шум, склеивает короткий дайджест. И самое смешное — если попадается платный отчёт, который реально нужен, он сам его покупает микроплатежом. Потому что у него есть x402-кошелёк и лимит.",
+    p8: "Вы получаете в 9:00 одно письмо: «Вот три вещи, которые изменились за ночь, и вот что с ними можно сделать». Без подписок на десять сервисов. Без вашего участия.",
+    h2_4: "Где здесь x402",
+    p9: "Во всех трёх случаях агент <strong>платит сам</strong>. За LLM, за данные, за бенчмарки, за API. Без возможности самостоятельно оплачивать нужные инструменты он остаётся дорогой болтушкой, которой каждый шаг нужно разрешать вручную.",
+    p10: "С x402 он становится сотрудником с корпоративной картой: есть лимит, есть ответственность, нет бюрократии. Именно поэтому протокол и появился — чтобы агенты могли не только думать, но и действовать в реальном мире.",
+    note2: "Про то, где эта автономия должна упираться в человека — <a href=\"/blog/autonomy-vs-control.html\">отдельный пост</a>."
+  };
+
+  const embeddedEn = {
+    title: "An agent that does your job while you're on vacation — x402-ai-agent.space",
+    metaDescription: "Real examples: agents that write code, find bugs, handle client communication and pay for the tools they need. Routine disappears.",
+    nav: { back: "← Blog", lang: "🇷🇺 RU" },
+    h1: "An agent that does your job while you're on vacation",
+    meta: "2026-07-20 · 7 min read",
+    p1: "The scariest (and most beautiful) thing about modern agents is that they no longer \"help\". They <em>do</em>. They don't suggest options. They don't draft a sketch. They take the task, figure it out, deliver the result and report back. And the interesting part — they often do it better than if you were sitting there controlling every step.",
+    p2: "Here are three real scenarios that make many people twitch. Not fantasies — working cases.",
+    h2_1: "1. A developer who hires himself",
+    p3: "An engineer threw a ticket at the agent: \"make a CSV export for the reports module\". The agent opened the repository, read the existing code, understood the structure, wrote the function, ran the tests. One failed. It found the cause itself, fixed it, committed, created a pull request and even wrote a proper description instead of \"fix stuff\".",
+    p4: "The human came back an hour later. The PR was already sitting there with green checks. All that was left was to hit \"Approve\". Overnight the agent closed seven such tickets. No pings, no \"can you clarify?\", no waiting.",
+    note1: "The agent only paid for access to a private LLM and benchmarks — in micro-amounts via x402. Not a single \"give me an API key\" and not a single corporate card.",
+    h2_2: "2. Support that doesn't sleep and doesn't lie",
+    p5: "The agent sits on incoming tickets. It doesn't reply with templates. It digs into the knowledge base, the client's conversation history, the order status and the billing system. It formulates a real answer. If the question is about money — it checks the transaction via API itself. If the topic is tax or legal — it escalates to a human with one clear phrase: \"this needs a real brain, I'm not touching it\".",
+    p6: "The remaining 80% of tickets it closes itself. Clients often don't even realize they were talking to an agent. And when they do — they usually write \"thanks for being fast\".",
+    h2_3: "3. An analyst who reads the entire internet for you",
+    p7: "Every morning the agent goes through 40+ sources in your niche. It pulls out insights, filters noise, and builds a short digest. And the funniest part — if it finds a paid report that is actually needed, it buys it itself with a micropayment. Because it has an x402 wallet and a limit.",
+    p8: "You get one email at 9:00: \"Here are three things that changed overnight, and here's what you can do about them\". No subscriptions to ten services. No participation from you.",
+    h2_4: "Where x402 comes in",
+    p9: "In all three cases the agent <strong>pays itself</strong>. For the LLM, for data, for benchmarks, for APIs. Without the ability to independently pay for the tools it needs, it remains an expensive chatterbox that requires manual approval for every step.",
+    p10: "With x402 it becomes an employee with a corporate card: there is a limit, there is responsibility, there is no bureaucracy. That is exactly why the protocol appeared — so agents could not only think, but act in the real world.",
+    note2: "About where this autonomy should hit a human boundary — <a href=\"/blog/autonomy-vs-control.html\">separate post</a>."
+  };
+
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        el.innerHTML = value;
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
 </body>
 </html>

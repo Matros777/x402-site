@@ -3,51 +3,273 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Агенты, которые сами платят за всё — x402-ai-agent.space</title>
-  <meta name="description" content="Реальные сценарии: агент платит за доступ к данным, API, вычисления и сервисы микроплатежами. Без карты, без аккаунтов, без вас.">
+  <title data-i18n="title">Агенты, которые сами платят за всё — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="Реальные сценарии: агент платит за доступ к данным, API, вычисления и сервисы микроплатежами. Без карты, без аккаунтов, без вас.">
   <meta name="theme-color" content="#0a0a0a">
   <link rel="canonical" href="https://x402-ai-agent.space/blog/agents-that-pay-themselves.html">
-  <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
   <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
   <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #f5f5f5;
+      --text-secondary: #a3a3a3;
+      --muted: #737373;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition); }
+    .wrap { width: 100%; max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; max-width: 1100px; margin: 0 auto; padding: 0 24px;
+    }
+    .logo { font-weight: 500; font-size: 1.1rem; color: var(--text-secondary); letter-spacing: -0.02em; }
+    .logo span { color: var(--muted); }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      padding: 8px 14px; border-radius: var(--radius-xs);
+      font-size: 0.875rem; color: var(--text-secondary);
+    }
+    nav .link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch {
+      border: 1px solid var(--border); border-radius: var(--radius-full);
+      padding: 6px 14px !important; font-size: 0.8rem !important;
+    }
+    .lang-switch:hover { border-color: #444; background: rgba(255,255,255,0.06) !important; }
+
+    article { padding: 48px 0 80px; }
+    article img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: 437px;
+      object-fit: cover;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    article p strong { color: var(--text); font-weight: 600; }
+    .note {
+      margin: 28px 0;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .note a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 3px; }
+    .note a:hover { color: var(--text); }
+
+    footer.site {
+      padding: 28px 0;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 32px 0 56px; }
+      article h2 { margin-top: 32px; }
+    }
+  </style>
 </head>
 <body>
 <header class="site">
-  <div class="wrap nav">
-    <div class="logo">x402<span style="color:var(--blue)">.ai</span></div>
-    <nav><a class="link" href="/blog/">← Блог</a></nav>
+  <div class="nav">
+    <div class="logo">x402<span>.ai</span></div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
   </div>
 </header>
 
-<article class="article">
-  <h1>Агенты, которые сами платят за всё</h1>
-  <div class="meta">2026-07-20 · 5 мин чтения</div>
+<article>
+  <div class="wrap">
+    <img src="/assets/img/blog/agents-that-pay-themselves-cover.jpg" alt="Агенты сами платят за всё" loading="lazy">
 
-  <p>Вот что меняет парадигму больше всего: агент больше не просит «дай доступ». Он <strong>платит</strong>. И вот три случая, где это выглядит почти магией.</p>
+    <h1 data-i18n="h1">Агенты, которые сами платят за всё</h1>
+    <div class="meta" data-i18n="meta">2026-07-20 · 6 мин чтения</div>
 
-  <h2>1. Агент-исследователь, который покупает данные на лету</h2>
-  <p>Вы даёте задачу: «найди, как менялась доля рынка у трёх конкурентов за 5 лет». Агент видит, что нужный датасет лежит за платным API — и просто платит за него 0.03$ микроплатежом через x402. Получает данные, строит график, отдаёт вам. Вы даже не узнали, что там был платный источник. Для вас это была «бесплатная» аналитика. Для агента — обычная транзакция.</p>
+    <p data-i18n="p1">Самое радикальное изменение, которое приносит x402 — агент больше не просит «дай доступ» или «оплати подписку». Он просто <strong>платит</strong>. Сам. В момент, когда ему это нужно. Без вашего участия, без корпоративной карты и без ожидания.</p>
 
-  <h2>2. Агент-дизайнер, который арендует GPU</h2>
-  <p>Нужно прогнать тяжёлую модель для генерации картинок? Агент не ждёт вашу локальную видеокарту. Он находит провайдера вычислений, платит за минуту аренды GPU микросуммой, генерит, сохраняет результат и освобождает ресурс. Вы платите не за «подписку на суперкомпьютер», а за те 40 секунд, что он реально работал. Копейки. И никакой карты не нужно вводить — кошелёк агента сам подписал платёж.</p>
+    <p data-i18n="p2">Вот три сценария, где это выглядит почти как магия — хотя на самом деле это просто работающий протокол.</p>
 
-  <h2>3. Агент-посредник, который торгуется за вас</h2>
-  <p>Самое дикое: агенты могут платить друг другу. Один агент продаёт доступ к своей базе знаний, другой — покупает, потому что его задача этого требует. Они договариваются через x402 за доли цента, без владельцев в контуре. Два бота, одна сделка, ноль людей. Вы утром видите: «агент потратил $0.11 на данные, сэкономил вам 2 часа». И идёте пить кофе.</p>
+    <h2 data-i18n="h2_1">1. Агент-исследователь, который покупает данные на лету</h2>
+    <p data-i18n="p3">Вы даёте задачу: «найди, как менялась доля рынка у трёх конкурентов за последние пять лет». Агент начинает собирать информацию и быстро понимает, что нужный датасет лежит за платным API. Вместо того чтобы остановиться и ждать вашего разрешения, он просто платит 0,03 $ микроплатежом через x402, получает данные, строит график и отдаёт вам результат.</p>
+    <p data-i18n="p4">Вы даже не узнаёте, что источник был платным. Для вас это была «бесплатная» аналитика. Для агента — обычная транзакция, которую он решил сам.</p>
 
-  <h2>Почему это «отвисает челюсть»</h2>
-  <p>Потому что раньше любая автономия упиралась в платёжный барьер. «Агент не может заплатить» = «агент не может действовать». x402 этот барьер сносит: есть баланс USDC на кошельке агента — и он полноценный участник экономики. Может покупать, продавать, арендовать. Вы — только спонсор с лимитом, а не бюрократ с печатью.</p>
+    <h2 data-i18n="h2_2">2. Агент-дизайнер, который арендует GPU</h2>
+    <p data-i18n="p5">Нужно прогнать тяжёлую модель для генерации изображений? Агент не ждёт вашу локальную видеокарту и не просит доступ к облачному аккаунту. Он находит провайдера вычислений, платит за минуту аренды GPU микросуммой, генерирует результат, сохраняет файлы и освобождает ресурс.</p>
+    <p data-i18n="p6">Вы платите не за «подписку на суперкомпьютер», а только за те 40 секунд, которые реально работали. Копейки. И никакой карты вводить не нужно — кошелёк агента сам подписал платёж.</p>
 
-  <p class="muted">Хотите такого агента у себя? Начните с <a href="/#install">установки x402-wallet</a> — остальное агент сделает сам.</p>
-  <p class="mt40"><a class="cta" href="/">← На главную</a></p>
+    <h2 data-i18n="h2_3">3. Агент-посредник, который торгуется за вас</h2>
+    <p data-i18n="p7">Самое интересное начинается, когда агенты начинают платить друг другу. Один агент продаёт доступ к своей базе знаний. Другой покупает этот доступ, потому что его текущая задача этого требует. Они договариваются через x402 за доли цента — без владельцев в контуре.</p>
+    <p data-i18n="p8">Два бота. Одна сделка. Ноль людей. Утром вы видите короткий отчёт: «агент потратил $0.11 на данные и сэкономил вам примерно два часа». И спокойно идёте пить кофе.</p>
+
+    <h2 data-i18n="h2_4">Почему от этого отвисает челюсть</h2>
+    <p data-i18n="p9">Раньше любая настоящая автономия упиралась в платёжный барьер. «Агент не может заплатить» означало «агент не может действовать». x402 этот барьер снимает: есть баланс USDC на кошельке агента — и он становится полноценным участником экономики. Может покупать, продавать, арендовать ресурсы.</p>
+    <p data-i18n="p10">Вы больше не бюрократ с печатью. Вы — спонсор с лимитом. Агент сам решает, на что тратить, в рамках заданных границ.</p>
+
+    <div class="note" data-i18n="note">
+      Хотите такого агента у себя? Начните с <a href="/#install">установки x402-wallet</a> — остальное он сделает сам.
+    </div>
+  </div>
 </article>
 
 <footer class="site">
-  <div class="wrap"><div>© <span id="yr"></span> x402-ai-agent.space</div></div>
+  <div class="wrap">© <span id="yr"></span> x402-ai-agent.space</div>
 </footer>
-<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+
+  const embeddedRu = {
+    title: "Агенты, которые сами платят за всё — x402-ai-agent.space",
+    metaDescription: "Реальные сценарии: агент платит за доступ к данным, API, вычисления и сервисы микроплатежами. Без карты, без аккаунтов, без вас.",
+    nav: { back: "← Блог", lang: "🇬🇧 EN" },
+    h1: "Агенты, которые сами платят за всё",
+    meta: "2026-07-20 · 6 мин чтения",
+    p1: "Самое радикальное изменение, которое приносит x402 — агент больше не просит «дай доступ» или «оплати подписку». Он просто <strong>платит</strong>. Сам. В момент, когда ему это нужно. Без вашего участия, без корпоративной карты и без ожидания.",
+    p2: "Вот три сценария, где это выглядит почти как магия — хотя на самом деле это просто работающий протокол.",
+    h2_1: "1. Агент-исследователь, который покупает данные на лету",
+    p3: "Вы даёте задачу: «найди, как менялась доля рынка у трёх конкурентов за последние пять лет». Агент начинает собирать информацию и быстро понимает, что нужный датасет лежит за платным API. Вместо того чтобы остановиться и ждать вашего разрешения, он просто платит 0,03 $ микроплатежом через x402, получает данные, строит график и отдаёт вам результат.",
+    p4: "Вы даже не узнаёте, что источник был платным. Для вас это была «бесплатная» аналитика. Для агента — обычная транзакция, которую он решил сам.",
+    h2_2: "2. Агент-дизайнер, который арендует GPU",
+    p5: "Нужно прогнать тяжёлую модель для генерации изображений? Агент не ждёт вашу локальную видеокарту и не просит доступ к облачному аккаунту. Он находит провайдера вычислений, платит за минуту аренды GPU микросуммой, генерирует результат, сохраняет файлы и освобождает ресурс.",
+    p6: "Вы платите не за «подписку на суперкомпьютер», а только за те 40 секунд, которые реально работали. Копейки. И никакой карты вводить не нужно — кошелёк агента сам подписал платёж.",
+    h2_3: "3. Агент-посредник, который торгуется за вас",
+    p7: "Самое интересное начинается, когда агенты начинают платить друг другу. Один агент продаёт доступ к своей базе знаний. Другой покупает этот доступ, потому что его текущая задача этого требует. Они договариваются через x402 за доли цента — без владельцев в контуре.",
+    p8: "Два бота. Одна сделка. Ноль людей. Утром вы видите короткий отчёт: «агент потратил $0.11 на данные и сэкономил вам примерно два часа». И спокойно идёте пить кофе.",
+    h2_4: "Почему от этого отвисает челюсть",
+    p9: "Раньше любая настоящая автономия упиралась в платёжный барьер. «Агент не может заплатить» означало «агент не может действовать». x402 этот барьер снимает: есть баланс USDC на кошельке агента — и он становится полноценным участником экономики. Может покупать, продавать, арендовать ресурсы.",
+    p10: "Вы больше не бюрократ с печатью. Вы — спонсор с лимитом. Агент сам решает, на что тратить, в рамках заданных границ.",
+    note: "Хотите такого агента у себя? Начните с <a href=\"/#install\">установки x402-wallet</a> — остальное он сделает сам."
+  };
+
+  const embeddedEn = {
+    title: "Agents that pay for everything themselves — x402-ai-agent.space",
+    metaDescription: "Real scenarios: an agent pays for data access, APIs, compute and services with micropayments. No card, no accounts, no you.",
+    nav: { back: "← Blog", lang: "🇷🇺 RU" },
+    h1: "Agents that pay for everything themselves",
+    meta: "2026-07-20 · 6 min read",
+    p1: "The most radical change that x402 brings is that an agent no longer asks \"give me access\" or \"pay for the subscription\". It simply <strong>pays</strong>. Itself. At the moment it needs to. Without your involvement, without a corporate card and without waiting.",
+    p2: "Here are three scenarios where this looks almost like magic — although in reality it is just a working protocol.",
+    h2_1: "1. A research agent that buys data on the fly",
+    p3: "You give the task: \"find how the market share of three competitors has changed over the last five years\". The agent starts collecting information and quickly realizes that the required dataset sits behind a paid API. Instead of stopping and waiting for your permission, it simply pays $0.03 via x402 micropayment, gets the data, builds a chart and delivers the result to you.",
+    p4: "You don't even know the source was paid. For you it was \"free\" analytics. For the agent — an ordinary transaction it decided on its own.",
+    h2_2: "2. A design agent that rents a GPU",
+    p5: "Need to run a heavy model for image generation? The agent doesn't wait for your local graphics card and doesn't ask for access to a cloud account. It finds a compute provider, pays for a minute of GPU rental with a micro-amount, generates the result, saves the files and releases the resource.",
+    p6: "You pay not for a \"supercomputer subscription\", but only for the 40 seconds that actually worked. Pennies. And no card needs to be entered — the agent's wallet signed the payment itself.",
+    h2_3: "3. An intermediary agent that negotiates for you",
+    p7: "The most interesting part begins when agents start paying each other. One agent sells access to its knowledge base. Another buys that access because its current task requires it. They agree via x402 for fractions of a cent — with no owners in the loop.",
+    p8: "Two bots. One deal. Zero humans. In the morning you see a short report: \"the agent spent $0.11 on data and saved you roughly two hours\". And you calmly go drink coffee.",
+    h2_4: "Why this makes jaws drop",
+    p9: "Previously any real autonomy hit a payment barrier. \"The agent cannot pay\" meant \"the agent cannot act\". x402 removes that barrier: there is a USDC balance on the agent's wallet — and it becomes a full participant in the economy. It can buy, sell, rent resources.",
+    p10: "You are no longer a bureaucrat with a stamp. You are a sponsor with a limit. The agent decides what to spend on, within the boundaries you set.",
+    note: "Want such an agent for yourself? Start with <a href=\"/#install\">installing x402-wallet</a> — the rest it will do itself."
+  };
+
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        el.innerHTML = value;
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
 </body>
 </html>

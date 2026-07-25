@@ -39,27 +39,15 @@ header.site{
 .nav a.link{color:var(--muted);font-size:15px;margin-left:28px;transition:color .2s}
 .nav a.link:hover{color:var(--text)}
 
-/* ---- Hero ---- */
-.hero{padding:120px 0 90px;text-align:center}
-.hero .tag{
-  display:inline-block;font-family:var(--mono);font-size:13px;
-  color:var(--muted);border:1px solid var(--line);
-  padding:6px 14px;border-radius:999px;margin-bottom:28px;
-}
-.hero h1{
-  font-size:clamp(40px,7vw,76px);line-height:1.04;
-  letter-spacing:-.03em;font-weight:700;margin-bottom:24px;
-}
-.hero h1 .dim{color:var(--muted)}
-.hero p{max-width:620px;margin:0 auto 36px;font-size:19px;color:var(--muted)}
-.cta{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--text);color:#000;font-weight:600;
-  padding:14px 26px;border-radius:999px;font-size:16px;
-  transition:transform .15s,opacity .2s;
-}
-.cta:hover{transform:translateY(-2px);opacity:.9}
-.cta.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+/* Adjust hero illustration size */
+.hero-illustration{max-width:260px;}
+
+/* Space between hero buttons */
+.hero-text .cta{margin-right:12px;}
+
+/* Full‑width installation section */
+.full-section{width:100%;max-width:none;padding:0 24px;}
+
 
 /* ---- Section ---- */
 section.block{padding:84px 0;border-top:1px solid var(--line)}
@@ -130,6 +118,32 @@ code.inl{font-family:var(--mono);background:var(--bg-elev2);padding:2px 7px;bord
 .article li{margin-bottom:8px}
 .article code{font-family:var(--mono);background:var(--bg-elev2);padding:2px 7px;border-radius:6px;font-size:.9em}
 
+/* ---- Blog post images (uniform size) ---- */
+.article img,
+.article figure img,
+.article img.inline {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  margin: 24px auto;
+  display: block;
+  background: #0f0f0f;
+}
+
+@media (max-width: 768px) {
+  .article img,
+  .article figure img,
+  .article img.inline {
+    max-width: 100%;
+    max-height: 250px;
+    margin: 16px auto;
+  }
+}
+
 /* ---- Footer ---- */
 footer.site{border-top:1px solid var(--line);padding:48px 0;color:var(--muted);font-size:14px}
 footer.site .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
@@ -143,7 +157,7 @@ small.note{color:var(--muted);font-size:13px}
 
 /* Logo image in header */
 .logo{display:flex;align-items:center;gap:10px}
-.logo-img{height:30px;width:30px;border-radius:7px;object-fit:cover;border:1px solid var(--line)}
+.logo-img{height:80px;width:80px;border-radius:12px;object-fit:cover;border:1px solid var(--line)}
 .logo span{font-weight:700;letter-spacing:-.02em;font-size:20px}
 
 /* Hero with logo art */
@@ -153,12 +167,6 @@ small.note{color:var(--muted);font-size:13px}
 .hero-text p{font-size:19px;color:var(--muted);max-width:none;margin-bottom:36px}
 .hero-art{display:flex;justify-content:center;align-items:center}
 .hero-logo{width:100%;max-width:360px;height:auto;border-radius:18px;border:1px solid var(--line);box-shadow:0 0 60px rgba(59,130,246,.15)}
-
-/* Blog post images */
-.article figure{margin:36px 0;padding:0}
-.article figure img{width:100%;height:auto;border-radius:14px;border:1px solid var(--line);display:block;background:#0f0f0f}
-.article figure figcaption{margin-top:12px;font-size:14px;color:var(--muted);text-align:center;line-height:1.4}
-.article img.inline{width:100%;height:auto;border-radius:14px;border:1px solid var(--line);margin:32px 0;display:block}
 
 @media(max-width:860px){
   .hero-grid{grid-template-columns:1fr;text-align:center;gap:32px}
