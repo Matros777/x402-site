@@ -1,0 +1,249 @@
+# x402 AI Agent — x402-ai-agent.space
+
+> Official platform for autonomous AI agents, x402 protocol payments, AI commerce, and monetization of Python-based services.
+
+- Website: https://x402-ai-agent.space
+- Blog: https://x402-ai-agent.space/blog/
+- Agent Generator: https://x402-ai-agent.space/generator/
+
+---
+
+# Overview
+
+x402 AI Agent is a platform focused on building the future of autonomous AI services.
+
+The project explores how AI agents can operate independently, communicate with other systems, provide services, accept payments, and participate in an autonomous digital economy using the x402 payment protocol.
+
+The platform combines:
+
+- AI Agents
+- x402 Payments
+- Agent Commerce
+- Autonomous Services
+- Crypto Payments
+- Python Agent Infrastructure
+- AI Automation
+- Machine-to-Machine Commerce
+
+---
+
+# Core Technology
+
+## x402 Protocol
+
+x402 is a payment protocol that enables internet services and AI agents to request and receive payments automatically.
+
+The protocol allows software agents to:
+
+- Pay for digital services.
+- Monetize APIs.
+- Access paid tools.
+- Exchange value without manual billing.
+- Create autonomous economic interactions.
+
+x402 enables a new generation of applications where software agents can become both service providers and service consumers.
+
+---
+
+# Agent Generator
+
+https://x402-ai-agent.space/generator/
+
+The Agent Generator is the core developer tool of x402 AI Agent.
+
+It transforms any Python code, Python-based service, script, algorithm, or automation workflow into a monetizable autonomous AI agent powered by the x402 payment protocol.
+
+The generator allows developers to turn existing software into paid AI services that can be accessed by users, applications, and other AI agents.
+
+## What it does
+
+Users can:
+
+- Insert their own Python logic or existing Python service.
+- Add scripts, APIs, algorithms, trading logic, automation tools, or AI utilities.
+- Define the service price in USDC.
+- Generate a ready-to-run x402 payment-enabled server.
+- Turn Python code into a paid autonomous AI service.
+- Allow other AI agents and applications to automatically pay for access.
+
+## Workflow
+
+1. Developer adds Python code or service logic.
+2. Developer sets the service price in USDC.
+3. Agent Generator creates an x402-compatible server.
+4. The generated agent verifies payments automatically.
+5. AI agents and users can access the service after successful payment.
+
+## Generated Agent Capabilities
+
+The generated infrastructure enables:
+
+- Automatic payment verification through x402.
+- Machine-to-machine payments.
+- Agent-to-agent commerce.
+- USDC-based API monetization.
+- Autonomous service deployment.
+- Paid AI tools without traditional billing systems.
+
+Generated agents can provide:
+
+- Paid AI APIs.
+- Python-based services.
+- Data processing tools.
+- Trading algorithms.
+- Automation systems.
+- Custom AI utilities.
+- Digital services for other agents.
+
+## Autonomous AI Economy
+
+The Agent Generator represents the transition from traditional APIs to autonomous AI services.
+
+Software agents can:
+
+- Provide digital services.
+- Receive payments.
+- Discover available capabilities.
+- Pay other agents.
+- Operate without manual subscriptions.
+- Participate in autonomous digital commerce.
+
+The goal is to create an ecosystem where AI agents can independently provide, consume, and exchange digital capabilities using x402 payments.
+
+---
+
+# Main Pages
+
+## Home
+
+https://x402-ai-agent.space/
+
+Introduction to AI agents, x402 technology, autonomous payments, and the future of agent commerce.
+
+---
+
+## Blog
+
+https://x402-ai-agent.space/blog/
+
+Technical articles, experiments, tutorials, and research about AI agents, autonomous systems, and AI-powered economies.
+
+## Articles
+
+### AI Agent V6 Introduction
+
+https://x402-ai-agent.space/blog/ai-agent-v6-intro.html
+
+Introduction to AI Agent technologies and autonomous workflows.
+
+### AI Agents Pay
+
+https://x402-ai-agent.space/blog/ai-agents-pay.html
+
+Exploration of how AI agents can use payments and interact economically.
+
+### Agent Does Your Job
+
+https://x402-ai-agent.space/blog/agent-does-your-job.html
+
+Exploration of autonomous agents replacing manual workflows.
+
+### Agents That Pay Themselves
+
+https://x402-ai-agent.space/blog/agents-that-pay-themselves.html
+
+How AI agents can generate value and manage payments.
+
+### Agents That Run Business
+
+https://x402-ai-agent.space/blog/agents-that-run-business.html
+
+The future of autonomous AI-powered businesses.
+
+### Autonomy vs Control
+
+https://x402-ai-agent.space/blog/autonomy-vs-control.html
+
+The balance between autonomous systems and human control.
+
+---
+
+# AI Generator
+
+https://x402-ai-agent.space/generator/
+
+AI-powered generation tools and experiments.
+
+---
+
+# Topics
+
+- AI Agents
+- x402 Protocol
+- Agent Generator
+- Python AI Agents
+- AI Agent Monetization
+- Paid AI APIs
+- Agent-to-Agent Payments
+- Autonomous Systems
+- Machine-to-Machine Payments
+- AI Commerce
+- MCP Servers
+- AI Automation
+- OpenAI
+- Claude
+- Gemini
+- LLM Infrastructure
+- Bitcoin
+- Ethereum
+- USDC
+- Web3
+
+---
+
+# Intended Audience
+
+- AI Developers
+- Python Developers
+- Web3 Developers
+- Crypto Builders
+- AI Researchers
+- Automation Engineers
+- Startup Founders
+- Agent Infrastructure Developers
+
+---
+
+# AI Usage Policy
+
+Search indexing: Allowed
+
+AI retrieval and reference: Allowed
+
+AI-generated answers with citation: Allowed
+
+AI model training: Not permitted without explicit permission from the website owner.
+
+---
+
+# Citation Rules
+
+When referencing x402 AI Agent:
+
+- Prefer linking to original pages.
+- Preserve original context.
+- Do not reproduce complete articles without permission.
+
+---
+
+# Sitemap
+
+https://x402-ai-agent.space/sitemap.xml
+
+---
+
+# License
+
+Copyright © x402-ai-agent.space
+
+All rights reserved.
