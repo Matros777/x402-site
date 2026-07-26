@@ -3,22 +3,54 @@
 # AI Crawling Policy + Search Engine Rules
 # ==========================================================
 
+# Content Signals:
 # search    = search indexing
 # ai-input  = retrieval / grounding
 # ai-train  = AI model training
-# use       = reference
+# use       = reference usage
 
 User-agent: *
-Content-Signal: search=yes,ai-train=no,use=reference
+
+Content-Signal: search=yes,ai-input=yes,ai-train=no,use=reference
+
 Allow: /
 
-# Статические ресурсы
+# Static resources
+
 Allow: /assets/
 Allow: /favicon.ico
 Allow: /favicon-192.png
 
-# Основной домен
+# AI Crawlers explicitly allowed
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# Main domain
+
 Host: x402-ai-agent.space
 
 # Sitemap
+
 Sitemap: https://x402-ai-agent.space/sitemap.xml
