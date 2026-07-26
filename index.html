@@ -439,6 +439,52 @@
     footer a:hover {
       color: var(--text);
     }
+    /* ─── GENERATOR BLOCK (НОВЫЙ) ─── */
+    .generator-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 48px 32px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .generator-block h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .generator-block p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .generator-block .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      font-size: 1.05rem;
+      font-weight: 500;
+      border-radius: var(--radius-sm);
+      background: var(--accent);
+      color: #0a0a0a;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+    .generator-block .btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    }
+    .generator-block .btn svg {
+      width: 20px;
+      height: 20px;
+    }
     /* ─── RESPONSIVE ─── */
     @media (max-width: 800px) {
       .hero-grid {
@@ -463,6 +509,12 @@
       }
       .diagram-wrap {
         padding: 20px 12px 16px;
+      }
+      .generator-block {
+        padding: 32px 20px;
+      }
+      .generator-block h2 {
+        font-size: 1.4rem;
       }
     }
     @media (max-width: 560px) {
@@ -494,6 +546,12 @@
       .hero-logo {
         width: 180px;
       }
+      .generator-block .btn {
+        padding: 12px 24px;
+        font-size: 0.95rem;
+        width: 100%;
+        justify-content: center;
+      }
     }
   </style>
 </head>
@@ -512,6 +570,8 @@
       <a class="link" href="#faq" data-i18n="nav.faq">FAQ</a>
       <a class="link" href="/blog/" data-i18n="nav.blog">Блог</a>
       <a class="link" href="#bot" data-i18n="nav.bot">Агент</a>
+      <!-- НОВЫЙ ПУНКТ МЕНЮ: ГЕНЕРАТОР АГЕНТА -->
+      <a class="link" href="/generator" data-i18n="nav.generator">Генератор агента</a>
       <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
     </nav>
   </div>
@@ -709,6 +769,21 @@ const res = await x402.fetch("https://api.example.com/data"); // платит с
     <p class="note mt24" data-i18n="how.note">Факты по спецификации: сервер отвечает <code class="inl">402 Payment Required</code> с инструкцией в заголовке <code class="inl">PAYMENT-REQUIRED</code>; клиент платит через SDK. Точный тип кошелька (x402-wallet, CDP-managed и др.) зависит от вашей реализации — см. docs.x402.org.</p>
   </div>
 </section>
+
+<!-- НОВЫЙ БЛОК: ГЕНЕРАТОР ПЛАТНОГО АГЕНТА -->
+<section class="block" id="generator">
+  <div class="wrap">
+    <div class="generator-block">
+      <h2 data-i18n="generator.title">Хочешь принимать платежи?</h2>
+      <p data-i18n="generator.desc">Вставь любой Python-код, укажи цену в USDC и получи готовый сервер агента с x402. Монетизируй своего ИИ-агента за минуты.</p>
+      <a href="/generator" class="btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+        <span data-i18n="generator.cta">Создать платного агента →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- INSTALL -->
 <section class="block" id="install">
   <div class="wrap">
@@ -925,6 +1000,7 @@ node agent.js</pre>
       "faq": "FAQ",
       "blog": "Блог",
       "bot": "Агент",
+      "generator": "Генератор агента",
       "lang": "🇬🇧 EN"
     },
     "hero": {
@@ -1005,6 +1081,11 @@ node agent.js</pre>
       "step5": { "title": "Запуск", "text": "Запустите агента. Первый платный запрос пройдёт через <code class=\"inl\">402 → подпись → данные</code>. Готово — агент платит сам.", "code": "python agent.py\n# или\nnode agent.js" },
       "note": "Команды выше — рабочий минимум по официальным SDK (PyPI: x402, CLI: x402-wallet). Точные имена пакетов и флагов уточняйте в документации под вашу версию: docs.x402.org."
     },
+    "generator": {
+      "title": "Хочешь принимать платежи?",
+      "desc": "Вставь любой Python-код, укажи цену в USDC и получи готовый сервер агента с x402. Монетизируй своего ИИ-агента за минуты.",
+      "cta": "Создать платного агента →"
+    },
     "bot": {
       "title": "А если не собирать агента с нуля?",
       "text": "Идея x402 — в том, чтобы агенты были полезными и самодостаточными. Мы собрали одного такого: он круглосуточно сканирует рынок BTC/ETH, ищет дивергенции RSI и объёмные импульсы и присылает сигналы, по которым можно ставить грид-ботов.",
@@ -1052,6 +1133,7 @@ node agent.js</pre>
       "faq": "FAQ",
       "blog": "Blog",
       "bot": "Agent",
+      "generator": "Agent Generator",
       "lang": "🇷🇺 RU"
     },
     "hero": {
@@ -1132,6 +1214,11 @@ node agent.js</pre>
       "step5": { "title": "Run", "text": "Run your agent. The first paid request will go through <code class=\"inl\">402 → signature → data</code>. Done — the agent pays itself.", "code": "python agent.py\n# or\nnode agent.js" },
       "note": "The commands above are the working minimum from the official SDKs (PyPI: x402, CLI: x402-wallet). Exact package names and flags may vary by version — check docs.x402.org."
     },
+    "generator": {
+      "title": "Want to accept payments?",
+      "desc": "Paste any Python code, set a price in USDC, and get a ready-made x402 agent server. Monetize your AI agent in minutes.",
+      "cta": "Create paid agent →"
+    },
     "bot": {
       "title": "Don’t want to build an agent from scratch?",
       "text": "The idea of x402 is that agents are useful and self-sufficient. We’ve built one: it scans BTC/ETH markets 24/7, looks for RSI divergences and volume impulses, and sends signals that can be used to set up grid bots.",
@@ -1178,7 +1265,6 @@ node agent.js</pre>
         if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
           el.placeholder = value;
         } else if (el.namespaceURI === 'http://www.w3.org/2000/svg') {
-          // SVG text / tspan — используем textContent
           el.textContent = value;
         } else {
           el.innerHTML = value;
@@ -1213,7 +1299,6 @@ node agent.js</pre>
   }
 
   function setLanguage(lang) {
-    // Всегда используем встроенные переводы (надёжно)
     const data = (lang === 'en') ? embeddedEn : embeddedRu;
     window.langData = data;
     applyTranslations(data);
@@ -1221,14 +1306,12 @@ node agent.js</pre>
     document.documentElement.lang = lang;
     updateSwitcher(lang);
 
-    // Параллельно пробуем подтянуть внешний файл (если он есть и правильный)
     fetch(`/lang/${lang}.json`)
       .then(r => {
         if (!r.ok) throw new Error('not found');
         return r.json();
       })
       .then(external => {
-        // Если внешний файл успешно загрузился — применяем его
         window.langData = external;
         applyTranslations(external);
         updateSwitcher(lang);
