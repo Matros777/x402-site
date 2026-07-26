@@ -1,0 +1,9 @@
+# x402 AI Agent Security Policy
+
+Contact: mailto:ivanbenks7@gmail.com
+
+Expires: 2027-07-26T00:00:00Z
+
+Preferred-Languages: en, ru
+
+Canonical: https://x402-ai-agent.space/.well-known/security.txt
