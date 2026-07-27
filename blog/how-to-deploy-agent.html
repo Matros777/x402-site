@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Как выложить агента, которому платят — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="Пять шагов от Python-функции до эндпоинта, который отвечает 402 и принимает USDC. Генератор, деплой, проверка — без трёх недель боли.">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/how-to-deploy-agent.html">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    .article img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: 437px !important;
+      max-height: none !important;
+      object-fit: cover;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem) !important;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    .article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    .article ul, .article ol {
+      margin: 16px 0 24px 24px;
+      color: #a3a3a3;
+    }
+    .article ul li, .article ol li {
+      margin-bottom: 8px;
+    }
+    .article pre.code {
+      background: #141414;
+      padding: 20px;
+      border-radius: var(--radius);
+      overflow-x: auto;
+      border: 1px solid #1a1a1a;
+      margin: 24px 0;
+    }
+    .article pre.code code {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: #e5e5e5;
+      line-height: 1.6;
+      white-space: pre;
+    }
+    .cta {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #4a5568;
+      color: #fff !important;
+      border-radius: 9999px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s;
+      margin: 8px 0;
+    }
+    .cta:hover {
+      background: #2d3748;
+    }
+    .article .muted {
+      color: #737373;
+      font-size: 0.95rem;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">x402<span style="color:var(--blue)">.ai</span></div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="article">
+  <div class="wrap">
+    <img src="/assets/img/blog/how-to-deploy-agent-cover.jpg" alt="Схема деплоя агента с x402-платежами" loading="lazy">
+    <h1 data-i18n="h1">Как выложить агента, которому платят. Без религии и без трёх недель боли</h1>
+    <div class="meta" data-i18n="meta">2026-07-28 · 6 мин чтения</div>
+
+    <p data-i18n="p1">Большинство разговоров про «агентную экономику» заканчиваются слайдами. x402 заканчивается рабочим URL и первыми Satoshi на кошельке.</p>
+
+    <p data-i18n="p2">Схема короткая, потому что она должна быть короткой.</p>
+
+    <h2 data-i18n="h2_1">Шаг 1. Логика.</h2>
+
+    <p data-i18n="p3">Любая функция на Python, которая принимает словарь и возвращает словарь. Анализ тикера, скоринг мема, генерация текста, проверка адреса, что угодно. Главное — она делает одну понятную работу и не требует ручного вмешательства.</p>
+
+    <h2 data-i18n="h2_2">Шаг 2. Цена.</h2>
+
+    <p data-i18n="p4">Ты ставишь цену в USDC за вызов. $0.01, $0.05, $1 — рынок потом скажет, угадал ты или нет. Важно другое: цена становится частью протокола. Агент видит её в ответе 402 и решает, платить или уйти. Никаких «тарифных планов» и скрытых лимитов.</p>
+
+    <h2 data-i18n="h2_3">Шаг 3. Кошелёк.</h2>
+
+    <p data-i18n="p5">EVM-адрес в сети Base. Именно туда приходят платежи. Не на Stripe, не на расчётный счёт «когда-нибудь», а напрямую. Агент платит — ты видишь входящий перевод.</p>
+
+    <h2 data-i18n="h2_4">Шаг 4. Сервер.</h2>
+
+    <p data-i18n="p6">Генератор на <a href="/generator">x402-ai-agent.space/generator</a> собирает из твоей логики, цены и адреса готовый FastAPI-сервер с x402. Один файл. Деплой на любой хостинг, который держит Python. После деплоя эндпоинт на незаплаченный запрос отвечает <code>402 Payment Required</code> с машиночитаемыми условиями.</p>
+
+    <h2 data-i18n="h2_5">Шаг 5. Проверка.</h2>
+
+    <pre class="code"><code data-i18n="code1">npx awal x402 pay https://твой-url.com/api/v1/your-function \
+  -X POST \
+  -d '{"symbol":"BTC","price":0.00001}'</code></pre>
+
+    <p data-i18n="p7">Если всё собрано правильно — приходит 200 и результат твоей функции. Деньги уже на пути к тебе.</p>
+
+    <h2 data-i18n="h2_6">Дальше — опции.</h2>
+
+    <p data-i18n="p8">Ты можешь добавить Bazaar-расширение, чтобы агент попал в каталоги вроде agentic.market. Другие агенты начнут находить тебя не по сарафану, а по протоколу. Ты можешь держать и POST, и GET на одном пути — чтобы сканеры и клиенты не ловили 405 вместо 402. Ты можешь поднять цену, когда спрос вырастет, или сделать дешёвый «входной» эндпоинт и дорогой «глубокий».</p>
+
+    <h2 data-i18n="h2_7">Базовая правда</h2>
+
+    <p data-i18n="p9">Пока у тебя нет URL, который отвечает <code>402</code> и принимает USDC, ты только читаешь про агентную экономику. Как только такой URL появляется — ты в ней участвуешь. Даже если логика на тридцать строк. Даже если цена $0.01. Даже если сегодня пришёл один платёж.</p>
+
+    <p data-i18n="p10">Профессиональные трейдеры 20 лет строили карьеру на редких крупных решениях. Агенты строят доход на потоке мелких, точных, оплаченных вызовов. Одни продают редкость. Другие продают повторяемость. x402 сделал повторяемость кассой. Осталось положить в неё то, за что машины готовы платить — и не ждать разрешения от платформ.</p>
+
+    <p class="muted" data-i18n="p11">Читайте также: <a href="/blog/agents-trade-better.html">Они торгуют лучше людей</a> · <a href="/blog/agents-that-pay-people.html">Агенты, которые платят людям</a></p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap"><div>© <span id="yr"></span> x402-ai-agent.space</div></div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Как выложить агента, которому платят. Без религии и без трёх недель боли",
+  "description": "Пять шагов от Python-функции до эндпоинта, который отвечает 402 и принимает USDC. Генератор, деплой, проверка — без трёх недель боли.",
+  "datePublished": "2026-07-28",
+  "author": {
+    "@type": "Organization",
+    "name": "x402-ai-agent.space"
+  },
+  "image": "https://x402-ai-agent.space/assets/img/blog/how-to-deploy-agent-cover.jpg"
+}
+</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+
+  const embeddedRu = {
+    title: "Как выложить агента, которому платят — x402-ai-agent.space",
+    metaDescription: "Пять шагов от Python-функции до эндпоинта, который отвечает 402 и принимает USDC. Генератор, деплой, проверка — без трёх недель боли.",
+    nav: { back: "← Блог", lang: "🇬🇧 EN" },
+    h1: "Как выложить агента, которому платят. Без религии и без трёх недель боли",
+    meta: "2026-07-28 · 6 мин чтения",
+    p1: "Большинство разговоров про «агентную экономику» заканчиваются слайдами. x402 заканчивается рабочим URL и первыми Satoshi на кошельке.",
+    p2: "Схема короткая, потому что она должна быть короткой.",
+    h2_1: "Шаг 1. Логика.",
+    p3: "Любая функция на Python, которая принимает словарь и возвращает словарь. Анализ тикера, скоринг мема, генерация текста, проверка адреса, что угодно. Главное — она делает одну понятную работу и не требует ручного вмешательства.",
+    h2_2: "Шаг 2. Цена.",
+    p4: "Ты ставишь цену в USDC за вызов. $0.01, $0.05, $1 — рынок потом скажет, угадал ты или нет. Важно другое: цена становится частью протокола. Агент видит её в ответе 402 и решает, платить или уйти. Никаких «тарифных планов» и скрытых лимитов.",
+    h2_3: "Шаг 3. Кошелёк.",
+    p5: "EVM-адрес в сети Base. Именно туда приходят платежи. Не на Stripe, не на расчётный счёт «когда-нибудь», а напрямую. Агент платит — ты видишь входящий перевод.",
+    h2_4: "Шаг 4. Сервер.",
+    p6: "Генератор на <a href=\"/generator\">x402-ai-agent.space/generator</a> собирает из твоей логики, цены и адреса готовый FastAPI-сервер с x402. Один файл. Деплой на любой хостинг, который держит Python. После деплоя эндпоинт на незаплаченный запрос отвечает <code>402 Payment Required</code> с машиночитаемыми условиями.",
+    h2_5: "Шаг 5. Проверка.",
+    code1: "npx awal x402 pay https://твой-url.com/api/v1/your-function \\\n  -X POST \\\n  -d '{\"symbol\":\"BTC\",\"price\":0.00001}'",
+    p7: "Если всё собрано правильно — приходит 200 и результат твоей функции. Деньги уже на пути к тебе.",
+    h2_6: "Дальше — опции.",
+    p8: "Ты можешь добавить Bazaar-расширение, чтобы агент попал в каталоги вроде agentic.market. Другие агенты начнут находить тебя не по сарафану, а по протоколу. Ты можешь держать и POST, и GET на одном пути — чтобы сканеры и клиенты не ловили 405 вместо 402. Ты можешь поднять цену, когда спрос вырастет, или сделать дешёвый «входной» эндпоинт и дорогой «глубокий».",
+    h2_7: "Базовая правда",
+    p9: "Пока у тебя нет URL, который отвечает <code>402</code> и принимает USDC, ты только читаешь про агентную экономику. Как только такой URL появляется — ты в ней участвуешь. Даже если логика на тридцать строк. Даже если цена $0.01. Даже если сегодня пришёл один платёж.",
+    p10: "Профессиональные трейдеры 20 лет строили карьеру на редких крупных решениях. Агенты строят доход на потоке мелких, точных, оплаченных вызовов. Одни продают редкость. Другие продают повторяемость. x402 сделал повторяемость кассой. Осталось положить в неё то, за что машины готовы платить — и не ждать разрешения от платформ.",
+    p11: "Читайте также: <a href=\"/blog/agents-trade-better.html\">Они торгуют лучше людей</a> · <a href=\"/blog/agents-that-pay-people.html\">Агенты, которые платят людям</a>"
+  };
+
+  const embeddedEn = {
+    title: "How to deploy an agent that gets paid — x402-ai-agent.space",
+    metaDescription: "Five steps from a Python function to an endpoint that responds 402 and accepts USDC. Generator, deploy, check — no three weeks of pain.",
+    nav: { back: "← Blog", lang: "🇷🇺 RU" },
+    h1: "How to deploy an agent that gets paid. No religion, no three weeks of pain.",
+    meta: "2026-07-28 · 6 min read",
+    p1: "Most conversations about the «agent economy» end with slides. x402 ends with a working URL and the first Satoshi in the wallet.",
+    p2: "The scheme is short because it has to be short.",
+    h2_1: "Step 1. Logic.",
+    p3: "Any Python function that takes a dict and returns a dict. Ticker analysis, meme scoring, text generation, address verification — anything. The key is: it does one clear job and requires no manual intervention.",
+    h2_2: "Step 2. Price.",
+    p4: "You set a price in USDC per call. $0.01, $0.05, $1 — the market will tell you if you guessed right. The important thing is: the price becomes part of the protocol. The agent sees it in the 402 response and decides whether to pay or walk. No «pricing plans», no hidden limits.",
+    h2_3: "Step 3. Wallet.",
+    p5: "An EVM address on the Base network. That's where payments arrive. Not Stripe, not a «someday» bank account — directly. The agent pays, you see the incoming transfer.",
+    h2_4: "Step 4. Server.",
+    p6: "The generator at <a href=\"/generator\">x402-ai-agent.space/generator</a> builds a ready FastAPI server with x402 from your logic, price and address. One file. Deploy to any hosting that runs Python. After deployment, the endpoint responds to unpaid requests with <code>402 Payment Required</code> and machine-readable terms.",
+    h2_5: "Step 5. Check.",
+    code1: "npx awal x402 pay https://your-url.com/api/v1/your-function \\\n  -X POST \\\n  -d '{\"symbol\":\"BTC\",\"price\":0.00001}'",
+    p7: "If everything is wired correctly — you get a 200 with your function's result. Money is already on its way to you.",
+    h2_6: "Beyond — options.",
+    p8: "You can add a Bazaar extension to get listed in directories like agentic.market. Other agents will find you by protocol, not by word of mouth. You can support both POST and GET on the same path — so scanners and clients don't hit 405 instead of 402. You can raise the price when demand grows, or set a cheap «entry» endpoint and an expensive «deep» one.",
+    h2_7: "The basic truth",
+    p9: "Until you have a URL that responds <code>402</code> and accepts USDC, you're just reading about the agent economy. The moment that URL exists — you're in it. Even if the logic is thirty lines. Even if the price is $0.01. Even if only one payment came in today.",
+    p10: "Professional traders spent 20 years building careers on rare big decisions. Agents build income on a stream of small, precise, paid calls. Some sell scarcity. Others sell repeatability. x402 turned repeatability into a cash register. All that's left is to put in it what machines are willing to pay for — and not wait for platform permission.",
+    p11: "Also read: <a href=\"/blog/agents-trade-better.html\">They trade better than humans</a> · <a href=\"/blog/agents-that-pay-people.html\">Agents that pay people</a>"
+  };
+
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        if (el.namespaceURI === 'http://www.w3.org/2000/svg') {
+          el.textContent = value;
+        } else {
+          el.innerHTML = value;
+        }
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+
+  function updateSwitcher(lang) {
+    const switcher = document.querySelector('.lang-switch');
+    if (!switcher) return;
+    if (lang === 'ru') {
+      switcher.textContent = '🇬🇧 EN';
+      switcher.href = '?lang=en';
+    } else {
+      switcher.textContent = '🇷🇺 RU';
+      switcher.href = '?lang=ru';
+    }
+  }
+
+  function setLanguage(lang) {
+    const data = (lang === 'en') ? embeddedEn : embeddedRu;
+    window.langData = data;
+    applyTranslations(data);
+    localStorage.setItem(LANG_KEY, lang);
+    document.documentElement.lang = lang;
+    updateSwitcher(lang);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    const savedLang = localStorage.getItem(LANG_KEY);
+    const lang = (langParam === 'en' || langParam === 'ru') ? langParam : (savedLang || DEFAULT_LANG);
+
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const current = document.documentElement.lang || 'ru';
+        const next = current === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.pushState({}, '', `?lang=${next}`);
+      });
+    }
+
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>

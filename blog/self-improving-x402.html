@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Self-improving agent + x402 — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="Self-improving agent с кошельком x402: агент сам покупает инструменты, данные и compute по HTTP 402. Минимальная архитектура, бюджет, каталог.">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/self-improving-x402.html">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    .article img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: 437px !important;
+      max-height: none !important;
+      object-fit: cover;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem) !important;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    .article h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      margin: 28px 0 10px;
+      color: var(--text);
+    }
+    .article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    .article ul, .article ol {
+      margin: 16px 0 24px 24px;
+      color: #a3a3a3;
+    }
+    .article ul li, .article ol li {
+      margin-bottom: 8px;
+    }
+    .article pre.code {
+      background: #141414;
+      padding: 20px;
+      border-radius: var(--radius);
+      overflow-x: auto;
+      border: 1px solid #1a1a1a;
+      margin: 24px 0;
+      font-size: 0.85rem;
+      color: #e5e5e5;
+      white-space: pre;
+    }
+    .cta {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #4a5568;
+      color: #fff !important;
+      border-radius: 9999px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s;
+      margin: 8px 0;
+    }
+    .cta:hover {
+      background: #2d3748;
+    }
+    .article .muted {
+      color: #737373;
+      font-size: 0.95rem;
+      margin-top: 12px;
+    }
+    .article .callout {
+      padding: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin: 24px 0;
+      font-size: 1.05rem;
+    }
+    .article .callout.warn {
+      border-left: 3px solid #e6a817;
+    }
+    .article .callout.key {
+      border-left: 3px solid #4a9eff;
+    }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">x402<span style="color:var(--blue)">.ai</span></div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="article">
+  <div class="wrap">
+    <img src="/assets/img/blog/self-improving-x402-cover.jpg" alt="Self-improving agent + x402: агент сам платит за улучшения" loading="lazy">
+    <h1 data-i18n="h1">Self-improving agent + x402: агент, который сам себя улучшает — и сам за это платит</h1>
+    <div class="meta" data-i18n="meta">2026-07-28 · 8 мин чтения</div>
+
+    <p data-i18n="p1">Self-improving agent без экономики — лабораторный эксперимент.</p>
+    <p data-i18n="p2">Self-improving agent с кошельком — уже участник рынка.</p>
+    <p data-i18n="p3">x402 как раз даёт ему этот кошелёк: платить за API, данные, compute и чужие навыки по HTTP 402, без аккаунтов, без «подпишись на план».</p>
+
+    <h2 data-i18n="h2_1">Почему связка мощная</h2>
+
+    <p data-i18n="p4">Классический self-improving loop:</p>
+    <pre class="code"><code>цель → действие → замер → правка harness → снова</code></pre>
+
+    <p data-i18n="p5">С x402 петля становится длиннее и опаснее для конкурентов:</p>
+    <pre class="code"><code>цель
+  → агент видит, чего не хватает (данные / tool / модель)
+  → находит платный эндпоинт в каталоге (agentic.market и др.)
+  → платит USDC по x402
+  → встраивает результат в свой pipeline
+  → измеряет: выросло ли качество?
+  → оставляет улучшение или выкидывает
+  → повторяет</code></pre>
+
+    <p data-i18n="p6">Человек больше не сидит и не подключает каждый API вручную. Агент сам покупает улучшения и сам проверяет, стоили ли они своих $0.05.</p>
+
+    <h2 data-i18n="h2_2">Что это меняет на практике</h2>
+
+    <ol>
+      <li data-i18n="ol1"><strong>Маржинальная стоимость навыка падает.</strong> Вчера новый tool = день инженера. Завтра = один settle в USDC + ночной eval.</li>
+      <li data-i18n="ol2"><strong>Агент становится покупателем, а не только продавцом.</strong> Ты выставляешь своего агента в Bazaar. Другой self-improving агент находит его, платит, тестирует, оставляет в harness — если метрика выросла.</li>
+      <li data-i18n="ol3"><strong>Эволюция ускоряется.</strong> Без платежей агент улучшается только тем, что уже есть локально. С x402 у него открытый рынок: данные, research-агенты, специализированные модели, оракулы.</li>
+      <li data-i18n="ol4"><strong>Создатель зарабатывает дважды:</strong> агент платит тебе (ты — продавец навыка) + агент тратит на улучшения и становится сильнее → больше вызовов → больше дохода.</li>
+    </ol>
+
+    <h2 data-i18n="h2_3">Минимальная архитектура</h2>
+
+    <ul>
+      <li data-i18n="arch1">Self-improving scaffold (AutoAgent-стиль / EvoAgentX / свой meta-loop)</li>
+      <li data-i18n="arch2">Eval + rollback (без этого нельзя давать агенту тратить)</li>
+      <li data-i18n="arch3">Бюджет в USDC и лимиты на settle</li>
+      <li data-i18n="arch4">Клиент x402 (awal / свой)</li>
+      <li data-i18n="arch5">Каталог: agentic.market / свой discovery</li>
+    </ul>
+
+    <div class="callout warn" data-i18n="safety"><strong>Правило безопасности:</strong> сначала симуляция и дешёвый dry-run, потом реальный pay. Иначе self-improving агент с открытым кошельком быстро «улучшит» твой баланс до нуля.</div>
+
+    <h2 data-i18n="h2_4">Почему это следующий слой после «просто paid endpoint»</h2>
+
+    <p data-i18n="p7">Paid endpoint — разовая сделка. Self-improving agent + x402 — непрерывный рынок навыков, где агенты:</p>
+
+    <ul>
+      <li data-i18n="sell">продают то, что умеют;</li>
+      <li data-i18n="buy">покупают то, чего не хватает;</li>
+      <li data-i18n="keep">оставляют только то, что поднимает KPI.</li>
+    </ul>
+
+    <p data-i18n="p8">Ты больше не пишешь «интеграцию с API X». Ты задаёшь цель и ceiling по spend. Агент сам ходит на рынок, платит, встраивает, меряет, эволюционирует.</p>
+
+    <p data-i18n="p9">Именно здесь x402 перестаёт быть «ещё одним payment middleware» и становится топливом для рекурсивного улучшения.</p>
+
+    <div class="callout key" data-i18n="closing">Кто первым свяжет нормальный self-improving loop с жёстким бюджетом и каталогом платных эндпоинтов — получит агента, который каждую ночь становится чуть дороже и чуть сильнее. Без твоего участия. Только с твоим KPI и твоим кошельком на приём платежей.</div>
+
+    <p class="muted" data-i18n="p10">Читайте также: <a href="/blog/self-improving-agents.html">Саморазвивающиеся агенты: не чатбот, а система, которая переписывает себя</a> · <a href="/blog/listing-on-agentic-market.html">Как залистить агента на agentic.market</a></p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap"><div>© <span id="yr"></span> x402-ai-agent.space</div></div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Self-improving agent + x402: агент, который сам себя улучшает — и сам за это платит",
+  "description": "Self-improving agent с кошельком x402: агент сам покупает инструменты, данные и compute по HTTP 402. Минимальная архитектура, бюджет, каталог.",
+  "datePublished": "2026-07-28",
+  "author": {
+    "@type": "Organization",
+    "name": "x402-ai-agent.space"
+  },
+  "image": "https://x402-ai-agent.space/assets/img/blog/self-improving-x402-cover.jpg"
+}
+</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+
+  const embeddedRu = {
+    title: "Self-improving agent + x402 — x402-ai-agent.space",
+    metaDescription: "Self-improving agent с кошельком x402: агент сам покупает инструменты, данные и compute по HTTP 402. Минимальная архитектура, бюджет, каталог.",
+    nav: { back: "← Блог", lang: "🇬🇧 EN" },
+    h1: "Self-improving agent + x402: агент, который сам себя улучшает — и сам за это платит",
+    meta: "2026-07-28 · 8 мин чтения",
+    p1: "Self-improving agent без экономики — лабораторный эксперимент.",
+    p2: "Self-improving agent с кошельком — уже участник рынка.",
+    p3: "x402 как раз даёт ему этот кошелёк: платить за API, данные, compute и чужие навыки по HTTP 402, без аккаунтов, без «подпишись на план».",
+    h2_1: "Почему связка мощная",
+    p4: "Классический self-improving loop:",
+    p5: "С x402 петля становится длиннее и опаснее для конкурентов:",
+    p6: "Человек больше не сидит и не подключает каждый API вручную. Агент сам покупает улучшения и сам проверяет, стоили ли они своих $0.05.",
+    h2_2: "Что это меняет на практике",
+    ol1: "<strong>Маржинальная стоимость навыка падает.</strong> Вчера новый tool = день инженера. Завтра = один settle в USDC + ночной eval.",
+    ol2: "<strong>Агент становится покупателем, а не только продавцом.</strong> Ты выставляешь своего агента в Bazaar. Другой self-improving агент находит его, платит, тестирует, оставляет в harness — если метрика выросла.",
+    ol3: "<strong>Эволюция ускоряется.</strong> Без платежей агент улучшается только тем, что уже есть локально. С x402 у него открытый рынок: данные, research-агенты, специализированные модели, оракулы.",
+    ol4: "<strong>Создатель зарабатывает дважды:</strong> агент платит тебе (ты — продавец навыка) + агент тратит на улучшения и становится сильнее → больше вызовов → больше дохода.",
+    h2_3: "Минимальная архитектура",
+    arch1: "Self-improving scaffold (AutoAgent-стиль / EvoAgentX / свой meta-loop)",
+    arch2: "Eval + rollback (без этого нельзя давать агенту тратить)",
+    arch3: "Бюджет в USDC и лимиты на settle",
+    arch4: "Клиент x402 (awal / свой)",
+    arch5: "Каталог: agentic.market / свой discovery",
+    safety: "<strong>Правило безопасности:</strong> сначала симуляция и дешёвый dry-run, потом реальный pay. Иначе self-improving агент с открытым кошельком быстро «улучшит» твой баланс до нуля.",
+    h2_4: "Почему это следующий слой после «просто paid endpoint»",
+    p7: "Paid endpoint — разовая сделка. Self-improving agent + x402 — непрерывный рынок навыков, где агенты:",
+    sell: "продают то, что умеют;",
+    buy: "покупают то, чего не хватает;",
+    keep: "оставляют только то, что поднимает KPI.",
+    p8: "Ты больше не пишешь «интеграцию с API X». Ты задаёшь цель и ceiling по spend. Агент сам ходит на рынок, платит, встраивает, меряет, эволюционирует.",
+    p9: "Именно здесь x402 перестаёт быть «ещё одним payment middleware» и становится топливом для рекурсивного улучшения.",
+    closing: "Кто первым свяжет нормальный self-improving loop с жёстким бюджетом и каталогом платных эндпоинтов — получит агента, который каждую ночь становится чуть дороже и чуть сильнее. Без твоего участия. Только с твоим KPI и твоим кошельком на приём платежей.",
+    p10: "Читайте также: <a href=\"/blog/self-improving-agents.html\">Саморазвивающиеся агенты: не чатбот, а система, которая переписывает себя</a> · <a href=\"/blog/listing-on-agentic-market.html\">Как залистить агента на agentic.market</a>"
+  };
+
+  const embeddedEn = {
+    title: "Self-improving agent + x402 — x402-ai-agent.space",
+    metaDescription: "Self-improving agent with an x402 wallet: the agent buys tools, data and compute via HTTP 402. Minimal architecture, budget, catalog.",
+    nav: { back: "← Blog", lang: "🇷🇺 RU" },
+    h1: "Self-improving agent + x402: the agent that improves itself — and pays for it",
+    meta: "2026-07-28 · 8 min read",
+    p1: "A self-improving agent without an economy is a lab experiment.",
+    p2: "A self-improving agent with a wallet is a market participant.",
+    p3: "x402 gives it that wallet: pay for APIs, data, compute and other agents' skills via HTTP 402, no accounts, no «subscribe to a plan».",
+    h2_1: "Why this combination is powerful",
+    p4: "Classic self-improving loop:",
+    p5: "With x402 the loop becomes longer — and more dangerous for competitors:",
+    p6: "The human no longer sits and manually connects each API. The agent buys improvements itself and checks whether they were worth the $0.05.",
+    h2_2: "What this changes in practice",
+    ol1: "<strong>Marginal cost of a skill drops.</strong> Yesterday a new tool = an engineer-day. Tomorrow = one USDC settle + a nightly eval.",
+    ol2: "<strong>The agent becomes a buyer, not just a seller.</strong> You list your agent in Bazaar. Another self-improving agent finds it, pays, tests, keeps it in its harness — if the metric improved.",
+    ol3: "<strong>Evolution accelerates.</strong> Without payments, an agent only improves with what's already local. With x402 it has an open market: data, research agents, specialized models, oracles.",
+    ol4: "<strong>The creator earns twice:</strong> the agent pays you (you're the skill seller) + the agent spends on improvements and becomes stronger → more calls → more revenue.",
+    h2_3: "Minimal architecture",
+    arch1: "Self-improving scaffold (AutoAgent-style / EvoAgentX / your own meta-loop)",
+    arch2: "Eval + rollback (without this you can't let the agent spend)",
+    arch3: "Budget in USDC and settle limits",
+    arch4: "x402 client (awal / custom)",
+    arch5: "Catalog: agentic.market / custom discovery",
+    safety: "<strong>Safety rule:</strong> simulation and cheap dry-run first, real pay later. Otherwise a self-improving agent with an open wallet will quickly «improve» your balance to zero.",
+    h2_4: "Why this is the next layer after «just a paid endpoint»",
+    p7: "A paid endpoint is a one-time deal. Self-improving agent + x402 is a continuous skill market where agents:",
+    sell: "sell what they know;",
+    buy: "buy what they lack;",
+    keep: "keep only what lifts KPIs.",
+    p8: "You no longer write «integration with API X». You set a goal and a spend ceiling. The agent goes to market, pays, integrates, measures, evolves.",
+    p9: "This is where x402 stops being «yet another payment middleware» and becomes fuel for recursive improvement.",
+    closing: "Whoever first connects a real self-improving loop with a hard budget and a catalog of paid endpoints will get an agent that gets a little more expensive and a little stronger every night. Without your involvement. Only with your KPI and your payment wallet.",
+    p10: "Also read: <a href=\"/blog/self-improving-agents.html\">Self-improving agents: not a chatbot, but a system that rewrites itself</a> · <a href=\"/blog/listing-on-agentic-market.html\">How to list an agent on agentic.market</a>"
+  };
+
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        if (el.namespaceURI === 'http://www.w3.org/2000/svg') {
+          el.textContent = value;
+        } else {
+          el.innerHTML = value;
+        }
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+
+  function updateSwitcher(lang) {
+    const switcher = document.querySelector('.lang-switch');
+    if (!switcher) return;
+    if (lang === 'ru') {
+      switcher.textContent = '🇬🇧 EN';
+      switcher.href = '?lang=en';
+    } else {
+      switcher.textContent = '🇷🇺 RU';
+      switcher.href = '?lang=ru';
+    }
+  }
+
+  function setLanguage(lang) {
+    const data = (lang === 'en') ? embeddedEn : embeddedRu;
+    window.langData = data;
+    applyTranslations(data);
+    localStorage.setItem(LANG_KEY, lang);
+    document.documentElement.lang = lang;
+    updateSwitcher(lang);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    const savedLang = localStorage.getItem(LANG_KEY);
+    const lang = (langParam === 'en' || langParam === 'ru') ? langParam : (savedLang || DEFAULT_LANG);
+
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const current = document.documentElement.lang || 'ru';
+        const next = current === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.pushState({}, '', `?lang=${next}`);
+      });
+    }
+
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>

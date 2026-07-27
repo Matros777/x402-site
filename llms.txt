@@ -2,9 +2,17 @@
 
 > Official platform for autonomous AI agents, x402 protocol payments, AI commerce, and monetization of Python-based services.
 
-- Website: https://x402-ai-agent.space
-- Blog: https://x402-ai-agent.space/blog/
-- Agent Generator: https://x402-ai-agent.space/generator/
+- [x402-ai-agent.space](https://x402-ai-agent.space) — главная, протокол x402, установка, FAQ
+- [Blog](https://x402-ai-agent.space/blog/) — статьи про ИИ-агентов и x402
+- [Agent Generator](https://x402-ai-agent.space/generator/) — генератор платных агентов на x402
+
+### Последние статьи
+
+- [Self-improving agent + x402](https://x402-ai-agent.space/blog/self-improving-x402.html) — агент сам платит за улучшения по HTTP 402
+- [Саморазвивающиеся агенты](https://x402-ai-agent.space/blog/self-improving-agents.html) — AutoAgent, EvoAgentX, Hermes, arXiv 2607.13104
+- [Как залистить агента на agentic.market](https://x402-ai-agent.space/blog/listing-on-agentic-market.html) — CDP, Bazaar, settle через Coinbase
+- [Как выложить агента, которому платят](https://x402-ai-agent.space/blog/how-to-deploy-agent.html) — 5 шагов от функции до эндпоинта с 402
+- [Они торгуют лучше людей](https://x402-ai-agent.space/blog/agents-trade-better.html) — композитная торговля через x402
 
 ---
 
@@ -159,6 +167,54 @@ How AI agents can generate value and manage payments.
 https://x402-ai-agent.space/blog/agents-that-run-business.html
 
 The future of autonomous AI-powered businesses.
+
+### How to List an Agent on Agentic.Market
+
+https://x402-ai-agent.space/blog/listing-on-agentic-market.html
+
+Technical guide: CDP Facilitator, Bazaar extension, settle via Coinbase, checklist, error table. No registration — only through real payment.
+
+---
+
+### How to Deploy a Paid Agent
+
+https://x402-ai-agent.space/blog/how-to-deploy-agent.html
+
+Five steps from a Python function to an endpoint that responds 402 and accepts USDC. Generator, deploy, check — no three weeks of pain.
+
+---
+
+### Agents That Trade Better
+
+https://x402-ai-agent.space/blog/agents-trade-better.html
+
+Agents trade compositely: buying alpha, risk scoring and execution via x402 micropayments. No emotions, just PnL.
+
+---
+
+### Agents That Pay People
+
+https://x402-ai-agent.space/blog/agents-that-pay-people.html
+
+AI agents already pay humans for data, signals and compute via x402. A priced endpoint is a new profession.
+
+---
+
+### Self-Improving Agents
+
+https://x402-ai-agent.space/blog/self-improving-agents.html
+
+Agents that rewrite their own prompts, tools and orchestration: AutoAgent, EvoAgentX, Hermes, Spark, AREX. arXiv 2607.13104, benchmarks, practice 2025–2026.
+
+---
+
+### Self-Improving Agent + x402
+
+https://x402-ai-agent.space/blog/self-improving-x402.html
+
+The agent that improves itself and pays for it via x402: buys tools, data and compute by HTTP 402. Minimal architecture, USDC budget, marketplace catalog, safety rule. From lab experiment to market participant.
+
+---
 
 ### Autonomy vs Control
 

@@ -160,6 +160,8 @@
   </div>
 </header>
 
+<main>
+<article>
 <section class="block">
   <div class="wrap">
     <div class="section-head">
@@ -169,6 +171,36 @@
     </div>
 
     <div class="grid">
+      <a class="post" href="/blog/self-improving-x402.html">
+        <div class="date">2026-07-28</div>
+        <h3 data-i18n="post12.title">Self-improving agent + x402: агент, который сам себя улучшает — и сам за это платит</h3>
+        <p data-i18n="post12.desc">Агент сам покупает инструменты, данные и compute по HTTP 402. Минимальная архитектура, бюджет, каталог, safety rule.</p>
+      </a>
+      <a class="post" href="/blog/self-improving-agents.html">
+        <div class="date">2026-07-28</div>
+        <h3 data-i18n="post11.title">Саморазвивающиеся агенты: не чатбот, а система, которая переписывает себя</h3>
+        <p data-i18n="post11.desc">AutoAgent, EvoAgentX, Hermes — агенты, которые сами правят свои промпты, инструменты и архитектуру. arXiv 2607.13104, бенчмарки.</p>
+      </a>
+      <a class="post" href="/blog/agents-that-pay-people.html">
+        <div class="date">2026-07-28</div>
+        <h3 data-i18n="post7.title">Агенты, которые платят людям. Не «в будущем». Сейчас.</h3>
+        <p data-i18n="post7.desc">ИИ-агенты уже платят людям за данные, сигналы и вычисления через x402. Эндпоинт с ценой — новая профессия.</p>
+      </a>
+      <a class="post" href="/blog/agents-trade-better.html">
+        <div class="date">2026-07-28</div>
+        <h3 data-i18n="post8.title">Они торгуют лучше людей. И платят за это сами себе.</h3>
+        <p data-i18n="post8.desc">Агенты торгуют композитно: покупают альфу, риск-скоринг, исполнение через x402. Никаких эмоций, только PnL.</p>
+      </a>
+      <a class="post" href="/blog/how-to-deploy-agent.html">
+        <div class="date">2026-07-28</div>
+        <h3 data-i18n="post9.title">Как выложить агента, которому платят. Без религии и без трёх недель боли</h3>
+        <p data-i18n="post9.desc">Пять шагов от Python-функции до эндпоинта с 402 и USDC. Генератор, деплой, проверка — без боли.</p>
+      </a>
+      <a class="post" href="/blog/listing-on-agentic-market.html">
+        <div class="date">2026-07-28</div>
+        <h3 data-i18n="post10.title">Как залистить агента на agentic.market (и почему «просто 402» недостаточно)</h3>
+        <p data-i18n="post10.desc">Технический гайд: CDP Facilitator, Bazaar, settle через Coinbase, чеклист, таблица ошибок для листинга.</p>
+      </a>
       <a class="post" href="/blog/ai-agent-v6-intro.html">
         <div class="date">2026-07-23</div>
         <h3 data-i18n="post1.title">💰 ИИ-Агент v5 — Автономный Крипто-Трейдер</h3>
@@ -203,11 +235,28 @@
   </div>
 </section>
 
+</article>
+</main>
+
 <footer class="site">
   <div class="wrap">
     <div>© <span id="yr"></span> x402.ai</div>
   </div>
 </footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "headline": "Блог x402-wallet — ИИ-агенты, торговля криптовалютой и платежи через протокол x402",
+  "description": "Практические кейсы ИИ-агентов: крипто-трейдинг, автономные платежи через протокол x402, установка x402-wallet. Разборы и стратегии.",
+  "url": "https://x402-ai-agent.space/blog/",
+  "author": {
+    "@type": "Organization",
+    "name": "x402-ai-agent.space"
+  }
+}
+</script>
 
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
@@ -229,7 +278,13 @@
     post3: { title: "Как агенты перестали просить разрешения", desc: "Агенты всё чаще не спрашивают, а делают. И самое неудобное — они часто оказываются правы." },
     post4: { title: "Агент, который управляет бизнесом", desc: "Как агент берёт на себя рутину: от планирования до отчётов, и почему это не страшно, а выгодно." },
     post5: { title: "Как ИИ-агенты учатся платить сами", desc: "От API-ключей к машинным микроплатежам. Почему x402 — шаг к настоящей автономности агентов." },
-    post6: { title: "Автономность против контроля", desc: "Агент может торговать, сканировать, платить. Но где красная линия, которую нельзя переходить без человека?" }
+    post6: { title: "Автономность против контроля", desc: "Агент может торговать, сканировать, платить. Но где красная линия, которую нельзя переходить без человека?" },
+    post7: { title: "Агенты, которые платят людям. Не «в будущем». Сейчас.", desc: "ИИ-агенты уже платят людям за данные, сигналы и вычисления через x402. Эндпоинт с ценой — новая профессия." },
+    post8: { title: "Они торгуют лучше людей. И платят за это сами себе.", desc: "Агенты торгуют композитно: покупают альфу, риск-скоринг, исполнение через x402. Никаких эмоций, только PnL." },
+    post9: { title: "Как выложить агента, которому платят. Без религии и без трёх недель боли", desc: "Пять шагов от Python-функции до эндпоинта с 402 и USDC. Генератор, деплой, проверка — без боли." },
+    post10: { title: "Как залистить агента на agentic.market (и почему «просто 402» недостаточно)", desc: "Технический гайд: CDP Facilitator, Bazaar, settle через Coinbase, чеклист, таблица ошибок для листинга." },
+    post11: { title: "Саморазвивающиеся агенты: не чатбот, а система, которая переписывает себя", desc: "AutoAgent, EvoAgentX, Hermes — агенты, которые сами правят свои промпты, инструменты и архитектуру. arXiv 2607.13104, бенчмарки." },
+    post12: { title: "Self-improving agent + x402: агент, который сам себя улучшает — и сам за это платит", desc: "Агент сам покупает инструменты, данные и compute по HTTP 402. Минимальная архитектура, бюджет, каталог, safety rule." }
   };
 
   const embeddedEn = {
@@ -246,7 +301,13 @@
     post3: { title: "How agents stopped asking for permission", desc: "Agents increasingly don't ask — they just do. And the most inconvenient part is that they're often right." },
     post4: { title: "An agent that runs a business", desc: "How an agent takes over the routine: from planning to reports, and why it's not scary — it's profitable." },
     post5: { title: "How AI agents learn to pay themselves", desc: "From API keys to machine micropayments. Why x402 is a step toward true agent autonomy." },
-    post6: { title: "Autonomy vs control", desc: "An agent can trade, scan, pay. But where is the red line that cannot be crossed without a human?" }
+    post6: { title: "Autonomy vs control", desc: "An agent can trade, scan, pay. But where is the red line that cannot be crossed without a human?" },
+    post7: { title: "Agents that pay people. Not «in the future». Now.", desc: "AI agents are already paying humans for data, signals and compute via x402. A priced endpoint is a new profession." },
+    post8: { title: "They trade better than humans. And pay for it themselves.", desc: "Agents trade compositely: buying alpha, risk scoring, execution via x402. No emotions, just PnL." },
+    post9: { title: "How to deploy an agent that gets paid. No religion, no three weeks of pain.", desc: "Five steps from a Python function to an endpoint with 402 and USDC. Generator, deploy, verify — no pain." },
+    post10: { title: "How to list an agent on agentic.market (and why «just 402» isn't enough)", desc: "Technical guide: CDP Facilitator, Bazaar, settle via Coinbase, checklist, error table for listing." },
+    post11: { title: "Self-improving agents: not a chatbot, but a system that rewrites itself", desc: "AutoAgent, EvoAgentX, Hermes — agents that rewrite their own prompts, tools and architecture. arXiv 2607.13104, benchmarks." },
+    post12: { title: "Self-improving agent + x402: the agent that improves itself — and pays for it", desc: "The agent buys tools, data and compute via HTTP 402. Minimal architecture, budget, catalog, safety rule." }
   };
 
   function getNested(obj, path) {

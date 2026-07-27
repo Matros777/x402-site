@@ -55,7 +55,43 @@
   </url>
 
   <url>
+    <loc>https://x402-ai-agent.space/blog/listing-on-agentic-market.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://x402-ai-agent.space/blog/how-to-deploy-agent.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://x402-ai-agent.space/blog/agents-trade-better.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://x402-ai-agent.space/blog/agents-that-pay-people.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://x402-ai-agent.space/blog/autonomy-vs-control.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://x402-ai-agent.space/blog/self-improving-agents.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://x402-ai-agent.space/blog/self-improving-x402.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

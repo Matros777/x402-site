@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Саморазвивающиеся агенты — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="Agents that rewrite their own prompts, tools and orchestration: AutoAgent, EvoAgentX, Hermes. arXiv 2607.13104, бенчмарки, практика 2025–2026.">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/self-improving-agents.html">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    .article img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: 437px !important;
+      max-height: none !important;
+      object-fit: cover;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem) !important;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    .article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    .article ul, .article ol {
+      margin: 16px 0 24px 24px;
+      color: #a3a3a3;
+    }
+    .article ul li, .article ol li {
+      margin-bottom: 8px;
+    }
+    .article pre.code {
+      background: #141414;
+      padding: 20px;
+      border-radius: var(--radius);
+      overflow-x: auto;
+      border: 1px solid #1a1a1a;
+      margin: 24px 0;
+    }
+    .article pre.code code {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: #e5e5e5;
+      line-height: 1.6;
+      white-space: pre;
+    }
+    .cta {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #4a5568;
+      color: #fff !important;
+      border-radius: 9999px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s;
+      margin: 8px 0;
+    }
+    .cta:hover {
+      background: #2d3748;
+    }
+    .article .muted {
+      color: #737373;
+      font-size: 0.95rem;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">x402<span style="color:var(--blue)">.ai</span></div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="article">
+  <div class="wrap">
+    <img src="/assets/img/blog/self-improving-agents-cover.jpg" alt="Саморазвивающийся ИИ-агент: цикл улучшения без человека" loading="lazy">
+    <h1 data-i18n="h1">Саморазвивающиеся агенты: не чатбот, а система, которая переписывает себя</h1>
+    <div class="meta" data-i18n="meta">2026-07-28 · 10 мин чтения</div>
+
+    <p data-i18n="p1">На X давно шумят про «ИИ, который сам себя улучшает». Часть — хайп. Часть — уже рабочие репозитории, бенчмарки и ночные циклы, где агент без человека правит свои промпты, инструменты и даже архитектуру цикла.</p>
+
+    <p data-i18n="p2">Это другой уровень, чем «спросил GPT — получил ответ». Здесь агент не заканчивает работу на ответе. Он измеряет свой результат, находит слабые места, меняет себя и запускает следующий круг.</p>
+
+    <h2 data-i18n="h2_1">Что именно «саморазвивается»</h2>
+
+    <p data-i18n="p3">Важно не путать с фантастикой, где нейросеть сама переобучает свои веса с нуля. В практике 2025–2026 самоулучшение почти всегда идёт по двум путям (это прямо зафиксировано в свежем обзоре <em>Self-Improvements in Modern Agentic Systems</em>, arXiv:2607.13104, который продвигал @SchmidhuberAI):</p>
+
+    <ul>
+      <li data-i18n="li1"><strong>Модель</strong> — дообучение, синтетические данные, reward-сигналы.</li>
+      <li data-i18n="li2"><strong>Scaffold / harness</strong> — промпты, память, инструменты, оркестрация, код агента. Веса модели могут быть зафиксированы; меняется «обвязка».</li>
+    </ul>
+
+    <p data-i18n="p4">Именно второй путь сейчас даёт самые ощутимые результаты на открытых бенчмарках: агент читает свои трейсы ошибок и переписывает собственный harness.</p>
+
+    <h2 data-i18n="h2_2">Кто это уже делает (с именами)</h2>
+
+    <p><strong data-i18n="project1_title">AutoAgent — релиз @kevingu</strong><br>
+    <span data-i18n="project1_text">Мета-агент сутками крутит эксперименты над рабочим агентом: правит промпты, добавляет инструменты, смотрит failure traces, оставляет только то, что поднимает метрики. После 24+ часов автономной оптимизации — #1 на SpreadsheetBench (96.5%) и сильный результат на TerminalBench, обогнав ручные harness'ы. Репозиторий: <a href="https://github.com/kevinrgu/autoagent" target="_blank" rel="noopener">github.com/kevinrgu/autoagent</a></span></p>
+
+    <p><strong data-i18n="project2_title">EvoAgentX — @EvoAgentX</strong><br>
+    <span data-i18n="project2_text">Фреймворк, где мультиагентный граф строится из одной цели, затем сам себя оценивает и мутирует. Не «один раз сгенерировал пайплайн», а цикл: build → eval → evolve. GitHub: <a href="https://github.com/EvoAgentX/EvoAgentX" target="_blank" rel="noopener">github.com/EvoAgentX/EvoAgentX</a>. Рядом — кураторский список Awesome-Self-Evolving-Agents (таксономия, бенчмарки, papers 2023–2026).</span></p>
+
+    <p><strong data-i18n="project3_title">Exo — @AlexKrentsel</strong><br>
+    <span data-i18n="project3_text">Агент, который может переписывать любую свою часть: политики, окружение, даже cost-оптимизацию. Долгоживущий, локальный, без вечного «approve this change».</span></p>
+
+    <p><strong data-i18n="project4_title">Spark — agent.sparkswarm.ai</strong><br>
+    <span data-i18n="project4_text">Персональный агент с ночным «залом»: крутит loops, прогоняет бенчмарки, промоутит удачные tool'ы и паттерны памяти, слабые выкидывает. Утром ты видишь отчёт: что выросло, что убито.</span></p>
+
+    <p><strong data-i18n="project5_title">AREX (китайский research-агент)</strong><br>
+    <span data-i18n="project5_text">Не один ответ, а рекурсия: исследование → аудит каждого утверждения → память отвергнутых путей → новые targeted-запросы → до 300 research-actions и несколько outer-раундов self-improvement. Маленькая версия (~4B) на части deep-research бенчмарков обгоняла куда более крупные модели. Важно: это process-level recursion (улучшение процесса исследования), а не sci-fi «сам переписал нейросеть».</span></p>
+
+    <p><strong data-i18n="project6_title">Hermes (Nous Research)</strong><br>
+    <span data-i18n="project6_text">Self-improving agent с памятью, scheduled jobs, tool use; уже как 1-click на DigitalOcean Marketplace — то есть не только paper, а деплой.</span></p>
+
+    <p data-i18n="p5">Отдельно в X-тусовке всплывали Superior Agents (в т.ч. через @KIPprotocol): агенты, которые сами крутят стратегии роста аудитории в X и торговые петли — analyze → execute → learn from outcome.</p>
+
+    <h2 data-i18n="h2_3">Почему это «новый уровень»</h2>
+
+    <p data-i18n="p6">Обычный LLM — статичный срез. Self-improving agent — петля:</p>
+
+    <p data-i18n="p7" style="text-align:center; font-size:1.05rem; color:var(--text); padding:16px; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-sm);">цель → действие → измерение → диагноз ошибок → правка harness/навыков → снова действие</p>
+
+    <p data-i18n="p8">Человек задаёт цель и критерии успеха. Дальше система сама:</p>
+
+    <ul>
+      <li data-i18n="li3">копает recurring failures;</li>
+      <li data-i18n="li4">предлагает патчи к промптам/инструментам/оркестрации;</li>
+      <li data-i18n="li5">прогоняет регрессию («старые задачи не сломались?»);</li>
+      <li data-i18n="li6">оставляет улучшение или откатывает.</li>
+    </ul>
+
+    <p data-i18n="p9">На практике это уже бьёт ручной harness engineering на TerminalBench, SWE-подобных задачах, spreadsheet-агентах. Не всегда. Не магически. Но систематически — там, где есть eval и трейсы.</p>
+
+    <p data-i18n="p10">Andrew Ng и другие в индустрии прямо говорят: следующий шаг после «агентов» — self-improving loops. Не лучший разовый промпт, а цикл, который крутится ночью, пока ты спишь.</p>
+
+    <h2 data-i18n="h2_4">Где хайп, а где мясо</h2>
+
+    <p data-i18n="hype1"><strong>Хайп:</strong> «ИИ сам себя переписал и стал богом».</p>
+    <p data-i18n="meat1"><strong>Мясо:</strong> мета-агент 24 часа правит harness фиксированной модели и обгоняет команду инженеров на узком бенчмарке.</p>
+    <p data-i18n="hype2"><strong>Хайп:</strong> один твит-бот «живёт своей жизнью».</p>
+    <p data-i18n="meat2"><strong>Мясо:</strong> EvoAgentX / AutoAgent / Spark / Exo — открытый код, метрики, откаты, eval.</p>
+
+    <h2 data-i18n="h2_5">Риск</h2>
+
+    <p data-i18n="risk">Риск тот же, что у любой автономии: дрейф целей, дорогие API-петли, хрупкость без хороших тестов. Поэтому взрослые системы всегда держат измерение + rollback. Без этого «саморазвитие» быстро превращается в саморазрушение.</p>
+
+    <h2 data-i18n="h2_6">Зачем это читателю x402 / агентной экономики</h2>
+
+    <p data-i18n="p11">Агент, который только отвечает, — расход.</p>
+    <p data-i18n="p12">Агент, который улучшает свой pipeline и платит за лучшие tool'ы/данные по x402, — уже бизнес-единица.</p>
+    <p data-i18n="p13">Self-improving loop + платный каталог API (agentic.market и аналоги) = агент сам находит, что купить, сам платит, сам встраивает, сам проверяет, выросло ли качество. Человек задаёт KPI. Машина крутит эволюцию scaffold'а.</p>
+    <p data-i18n="p14">Это не «ещё один чат». Это смена единицы работы: от промпта к непрерывному улучшению системы, которая промпты пишет сама.</p>
+
+    <p data-i18n="p15" style="padding:16px; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-sm);">Следить по делу, а не по мемам: @kevingu (AutoAgent), @EvoAgentX, @SchmidhuberAI (survey RSI), @AlexKrentsel (Exo), репозитории awesome-Self-Improving-Agents / Awesome-Self-Evolving-Agents.</p>
+
+    <p data-i18n="p16" style="font-size:1.05rem; color:var(--text);">Кто крутит loops — накапливает преимущество каждую ночь. Кто всё ещё пишет один промпт за раз — конкурирует с системой, которая за это же время сделала сотню итераций над собой.</p>
+
+    <p class="muted" data-i18n="p17">Читайте также: <a href="/blog/agents-trade-better.html">Они торгуют лучше людей</a> · <a href="/blog/listing-on-agentic-market.html">Как залистить агента на agentic.market</a></p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap"><div>© <span id="yr"></span> x402-ai-agent.space</div></div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Саморазвивающиеся агенты: не чатбот, а система, которая переписывает себя",
+  "description": "Agents that rewrite their own prompts, tools and orchestration: AutoAgent, EvoAgentX, Hermes. arXiv 2607.13104, бенчмарки, практика 2025–2026.",
+  "datePublished": "2026-07-28",
+  "author": {
+    "@type": "Organization",
+    "name": "x402-ai-agent.space"
+  },
+  "image": "https://x402-ai-agent.space/assets/img/blog/self-improving-agents-cover.jpg"
+}
+</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+
+  const embeddedRu = {
+    title: "Саморазвивающиеся агенты — x402-ai-agent.space",
+    metaDescription: "Agents that rewrite their own prompts, tools and orchestration: AutoAgent, EvoAgentX, Hermes. arXiv 2607.13104, бенчмарки, практика 2025–2026.",
+    nav: { back: "← Блог", lang: "🇬🇧 EN" },
+    h1: "Саморазвивающиеся агенты: не чатбот, а система, которая переписывает себя",
+    meta: "2026-07-28 · 10 мин чтения",
+    p1: "На X давно шумят про «ИИ, который сам себя улучшает». Часть — хайп. Часть — уже рабочие репозитории, бенчмарки и ночные циклы, где агент без человека правит свои промпты, инструменты и даже архитектуру цикла.",
+    p2: "Это другой уровень, чем «спросил GPT — получил ответ». Здесь агент не заканчивает работу на ответе. Он измеряет свой результат, находит слабые места, меняет себя и запускает следующий круг.",
+    h2_1: "Что именно «саморазвивается»",
+    p3: "Важно не путать с фантастикой, где нейросеть сама переобучает свои веса с нуля. В практике 2025–2026 самоулучшение почти всегда идёт по двум путям (это прямо зафиксировано в свежем обзоре <em>Self-Improvements in Modern Agentic Systems</em>, arXiv:2607.13104, который продвигал @SchmidhuberAI):",
+    li1: "<strong>Модель</strong> — дообучение, синтетические данные, reward-сигналы.",
+    li2: "<strong>Scaffold / harness</strong> — промпты, память, инструменты, оркестрация, код агента. Веса модели могут быть зафиксированы; меняется «обвязка».",
+    p4: "Именно второй путь сейчас даёт самые ощутимые результаты на открытых бенчмарках: агент читает свои трейсы ошибок и переписывает собственный harness.",
+    h2_2: "Кто это уже делает (с именами)",
+    project1_title: "AutoAgent — релиз @kevingu",
+    project1_text: "Мета-агент сутками крутит эксперименты над рабочим агентом: правит промпты, добавляет инструменты, смотрит failure traces, оставляет только то, что поднимает метрики. После 24+ часов автономной оптимизации — #1 на SpreadsheetBench (96.5%) и сильный результат на TerminalBench, обогнав ручные harness'ы. Репозиторий: <a href=\"https://github.com/kevinrgu/autoagent\" target=\"_blank\" rel=\"noopener\">github.com/kevinrgu/autoagent</a>",
+    project2_title: "EvoAgentX — @EvoAgentX",
+    project2_text: "Фреймворк, где мультиагентный граф строится из одной цели, затем сам себя оценивает и мутирует. Не «один раз сгенерировал пайплайн», а цикл: build → eval → evolve. GitHub: <a href=\"https://github.com/EvoAgentX/EvoAgentX\" target=\"_blank\" rel=\"noopener\">github.com/EvoAgentX/EvoAgentX</a>.",
+    project3_title: "Exo — @AlexKrentsel",
+    project3_text: "Агент, который может переписывать любую свою часть: политики, окружение, даже cost-оптимизацию. Долгоживущий, локальный, без вечного «approve this change».",
+    project4_title: "Spark — agent.sparkswarm.ai",
+    project4_text: "Персональный агент с ночным «залом»: крутит loops, прогоняет бенчмарки, промоутит удачные tool'ы и паттерны памяти, слабые выкидывает. Утром ты видишь отчёт: что выросло, что убито.",
+    project5_title: "AREX (китайский research-агент)",
+    project5_text: "Не один ответ, а рекурсия: исследование → аудит каждого утверждения → память отвергнутых путей → новые targeted-запросы → до 300 research-actions и несколько outer-раундов self-improvement. Маленькая версия (~4B) на части deep-research бенчмарков обгоняла куда более крупные модели.",
+    project6_title: "Hermes (Nous Research)",
+    project6_text: "Self-improving agent с памятью, scheduled jobs, tool use; уже как 1-click на DigitalOcean Marketplace — то есть не только paper, а деплой.",
+    p5: "Отдельно в X-тусовке всплывали Superior Agents (в т.ч. через @KIPprotocol): агенты, которые сами крутят стратегии роста аудитории в X и торговые петли — analyze → execute → learn from outcome.",
+    h2_3: "Почему это «новый уровень»",
+    p6: "Обычный LLM — статичный срез. Self-improving agent — петля:",
+    p7: "цель → действие → измерение → диагноз ошибок → правка harness/навыков → снова действие",
+    li3: "копает recurring failures;",
+    li4: "предлагает патчи к промптам/инструментам/оркестрации;",
+    li5: "прогоняет регрессию («старые задачи не сломались?»);",
+    li6: "оставляет улучшение или откатывает.",
+    p8: "На практике это уже бьёт ручной harness engineering на TerminalBench, SWE-подобных задачах, spreadsheet-агентах. Не всегда. Не магически. Но систематически — там, где есть eval и трейсы.",
+    p9: "Andrew Ng и другие в индустрии прямо говорят: следующий шаг после «агентов» — self-improving loops. Не лучший разовый промпт, а цикл, который крутится ночью, пока ты спишь.",
+    h2_4: "Где хайп, а где мясо",
+    hype1: "<strong>Хайп:</strong> «ИИ сам себя переписал и стал богом».",
+    meat1: "<strong>Мясо:</strong> мета-агент 24 часа правит harness фиксированной модели и обгоняет команду инженеров на узком бенчмарке.",
+    hype2: "<strong>Хайп:</strong> один твит-бот «живёт своей жизнью».",
+    meat2: "<strong>Мясо:</strong> EvoAgentX / AutoAgent / Spark / Exo — открытый код, метрики, откаты, eval.",
+    h2_5: "Риск",
+    risk: "Риск тот же, что у любой автономии: дрейф целей, дорогие API-петли, хрупкость без хороших тестов. Поэтому взрослые системы всегда держат измерение + rollback. Без этого «саморазвитие» быстро превращается в саморазрушение.",
+    h2_6: "Зачем это читателю x402 / агентной экономики",
+    p11: "Агент, который только отвечает, — расход.",
+    p12: "Агент, который улучшает свой pipeline и платит за лучшие tool'ы/данные по x402, — уже бизнес-единица.",
+    p13: "Self-improving loop + платный каталог API (agentic.market и аналоги) = агент сам находит, что купить, сам платит, сам встраивает, сам проверяет, выросло ли качество. Человек задаёт KPI. Машина крутит эволюцию scaffold'а.",
+    p14: "Это не «ещё один чат». Это смена единицы работы: от промпта к непрерывному улучшению системы, которая промпты пишет сама.",
+    p15: "Следить по делу, а не по мемам: @kevingu (AutoAgent), @EvoAgentX, @SchmidhuberAI (survey RSI), @AlexKrentsel (Exo), репозитории awesome-Self-Improving-Agents / Awesome-Self-Evolving-Agents.",
+    p16: "Кто крутит loops — накапливает преимущество каждую ночь. Кто всё ещё пишет один промпт за раз — конкурирует с системой, которая за это же время сделала сотню итераций над собой.",
+    p17: "Читайте также: <a href=\"/blog/agents-trade-better.html\">Они торгуют лучше людей</a> · <a href=\"/blog/listing-on-agentic-market.html\">Как залистить агента на agentic.market</a>"
+  };
+
+  const embeddedEn = {
+    title: "Self-improving agents — x402-ai-agent.space",
+    metaDescription: "Agents that rewrite their own prompts, tools and orchestration: AutoAgent, EvoAgentX, Hermes. arXiv 2607.13104, benchmarks, practice 2025–2026.",
+    nav: { back: "← Blog", lang: "🇷🇺 RU" },
+    h1: "Self-improving agents: not a chatbot, but a system that rewrites itself",
+    meta: "2026-07-28 · 10 min read",
+    p1: "X has been buzzing about «AI that improves itself». Some of it is hype. Some of it is already working repos, benchmarks and nightly cycles where an agent edits its own prompts, tools and even loop architecture without a human.",
+    p2: "This is a different level from «asked GPT — got an answer». The agent doesn't stop at the response. It measures its result, finds weak spots, changes itself, and starts the next round.",
+    h2_1: "What exactly «self-improves»",
+    p3: "Important: this isn't sci-fi where a neural network retrains its weights from scratch. In 2025–2026 practice, self-improvement follows two paths (documented in the recent survey <em>Self-Improvements in Modern Agentic Systems</em>, arXiv:2607.13104, promoted by @SchmidhuberAI):",
+    li1: "<strong>Model</strong> — fine-tuning, synthetic data, reward signals.",
+    li2: "<strong>Scaffold / harness</strong> — prompts, memory, tools, orchestration, agent code. Model weights may be frozen; the «wiring» changes.",
+    p4: "The second path is currently delivering the most tangible results on open benchmarks: the agent reads its own error traces and rewrites its own harness.",
+    h2_2: "Who's already doing this (with names)",
+    project1_title: "AutoAgent — by @kevingu",
+    project1_text: "A meta-agent that runs experiments on the working agent 24/7: edits prompts, adds tools, examines failure traces, keeps only what improves metrics. After 24+ hours of autonomous optimization — #1 on SpreadsheetBench (96.5%) and a strong result on TerminalBench, beating hand-crafted harnesses. Repo: <a href=\"https://github.com/kevinrgu/autoagent\" target=\"_blank\" rel=\"noopener\">github.com/kevinrgu/autoagent</a>",
+    project2_title: "EvoAgentX — @EvoAgentX",
+    project2_text: "A framework where a multi-agent graph is built from a single goal, then evaluates and mutates itself. Not «generate a pipeline once», but a cycle: build → eval → evolve. GitHub: <a href=\"https://github.com/EvoAgentX/EvoAgentX\" target=\"_blank\" rel=\"noopener\">github.com/EvoAgentX/EvoAgentX</a>.",
+    project3_title: "Exo — @AlexKrentsel",
+    project3_text: "An agent that can rewrite any part of itself: policies, environment, even cost optimization. Long-running, local, no endless «approve this change».",
+    project4_title: "Spark — agent.sparkswarm.ai",
+    project4_text: "A personal agent with a nightly «training hall»: runs loops, benchmarks, promotes successful tools and memory patterns, discards weak ones. In the morning you see a report: what grew, what was killed.",
+    project5_title: "AREX (Chinese research agent)",
+    project5_text: "Not a single answer, but recursion: research → audit each claim → memory of rejected paths → new targeted queries → up to 300 research actions and multiple outer rounds of self-improvement. A small version (~4B) on some deep-research benchmarks outperformed much larger models.",
+    project6_title: "Hermes (Nous Research)",
+    project6_text: "Self-improving agent with memory, scheduled jobs, tool use; already available as 1-click on DigitalOcean Marketplace — not just a paper, but a deployable product.",
+    p5: "Separately, Superior Agents have emerged in the X scene (including via @KIPprotocol): agents that run their own audience growth strategies and trading loops — analyze → execute → learn from outcome.",
+    h2_3: "Why this is a «new level»",
+    p6: "A regular LLM is a static snapshot. A self-improving agent is a loop:",
+    p7: "goal → action → measurement → error diagnosis → harness/skill edit → action again",
+    li3: "digs into recurring failures;",
+    li4: "proposes patches to prompts/tools/orchestration;",
+    li5: "runs regression («did old tasks break?»);",
+    li6: "keeps the improvement or rolls back.",
+    p8: "In practice, this already beats manual harness engineering on TerminalBench, SWE-like tasks, and spreadsheet agents. Not always. Not magically. But systematically — where there's an eval and traces.",
+    p9: "Andrew Ng and others in the industry directly say: the next step after «agents» is self-improving loops. Not a better one-shot prompt, but a cycle that runs at night while you sleep.",
+    h2_4: "Hype vs Meat",
+    hype1: "<strong>Hype:</strong> «The AI rewrote itself and became god».",
+    meat1: "<strong>Meat:</strong> a meta-agent spends 24 hours editing the harness of a fixed model and beats a team of engineers on a narrow benchmark.",
+    hype2: "<strong>Hype:</strong> one tweet-bot «lives its own life».",
+    meat2: "<strong>Meat:</strong> EvoAgentX / AutoAgent / Spark / Exo — open source, metrics, rollbacks, eval.",
+    h2_5: "Risk",
+    risk: "The same risk as any autonomy: goal drift, expensive API loops, fragility without good tests. That's why mature systems always have measurement + rollback. Without it, «self-improvement» quickly turns into self-destruction.",
+    h2_6: "Why this matters for x402 / the agent economy",
+    p11: "An agent that only responds is an expense.",
+    p12: "An agent that improves its pipeline and pays for better tools/data via x402 is a business unit.",
+    p13: "Self-improving loop + a paid API catalog (agentic.market and similar) = the agent finds what to buy, pays, integrates, checks if quality improved. Human sets KPIs. Machine evolves the scaffold.",
+    p14: "This isn't «yet another chat». It's a change in the unit of work: from a prompt to continuous improvement of a system that writes prompts itself.",
+    p15: "Follow the signal, not the memes: @kevingu (AutoAgent), @EvoAgentX, @SchmidhuberAI (RSI survey), @AlexKrentsel (Exo), repos awesome-Self-Improving-Agents / Awesome-Self-Evolving-Agents.",
+    p16: "Those who run loops accumulate an advantage every night. Those who still write one prompt at a time compete with a system that made a hundred iterations on itself in the same period.",
+    p17: "Also read: <a href=\"/blog/agents-trade-better.html\">They trade better than humans</a> · <a href=\"/blog/listing-on-agentic-market.html\">How to list an agent on agentic.market</a>"
+  };
+
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        if (el.namespaceURI === 'http://www.w3.org/2000/svg') {
+          el.textContent = value;
+        } else {
+          el.innerHTML = value;
+        }
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+
+  function updateSwitcher(lang) {
+    const switcher = document.querySelector('.lang-switch');
+    if (!switcher) return;
+    if (lang === 'ru') {
+      switcher.textContent = '🇬🇧 EN';
+      switcher.href = '?lang=en';
+    } else {
+      switcher.textContent = '🇷🇺 RU';
+      switcher.href = '?lang=ru';
+    }
+  }
+
+  function setLanguage(lang) {
+    const data = (lang === 'en') ? embeddedEn : embeddedRu;
+    window.langData = data;
+    applyTranslations(data);
+    localStorage.setItem(LANG_KEY, lang);
+    document.documentElement.lang = lang;
+    updateSwitcher(lang);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    const savedLang = localStorage.getItem(LANG_KEY);
+    const lang = (langParam === 'en' || langParam === 'ru') ? langParam : (savedLang || DEFAULT_LANG);
+
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const current = document.documentElement.lang || 'ru';
+        const next = current === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.pushState({}, '', `?lang=${next}`);
+      });
+    }
+
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>

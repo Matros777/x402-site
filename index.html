@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -6,7 +6,7 @@
   <meta name="google-site-verification" content="kEP1_OVsa5NTmWuNILV9m_kpC__2tNtrouRnbHjJGo8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-i18n="title">x402-ai-agent.space — платежи для ИИ-агентов через x402 + x402-wallet</title>
-  <meta name="description" data-i18n="metaDescription" content="Что такое протокол x402, как ИИ-агенты платят за API в одном HTTP-запросе, как установить x402-wallet и запустить собственного агента. Минимализм, факты, без воды.">
+  <meta name="description" data-i18n="metaDescription" content="Протокол x402: ИИ-агенты платят за API в одном HTTP-запросе. Установка x402-wallet и запуск агента. Минимализм, без воды.">
   <meta name="keywords" content="x402, x402-wallet, AI agents, платежи ИИ, микроплатежи, USDC, agentic payments">
   <meta property="og:title" data-i18n="ogTitle" content="x402-ai-agent.space — платежи для ИИ-агентов">
   <meta property="og:description" data-i18n="ogDescription" content="Как ИИ-агенты платят за API через протокол x402 и кошелёк x402-wallet. Гайд без воды.">
@@ -198,27 +198,29 @@
       font-size: 0.95rem;
       font-weight: 500;
       border-radius: var(--radius-sm);
-      background: var(--accent);
-      color: #0a0a0a;
-      border: none;
+      background: #2a2a2a;
+      color: #d4d4d4;
+      border: 1px solid #333;
       cursor: pointer;
       transition: all var(--transition);
       box-shadow: 0 1px 2px rgba(0,0,0,0.2);
     }
     .cta:hover {
-      background: var(--accent-hover);
+      background: #3a3a3a;
+      color: #f5f5f5;
+      border-color: #555;
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
     .cta.ghost {
       background: transparent;
-      color: var(--text-secondary);
-      border: 1px solid var(--border);
+      color: #666;
+      border: 1px solid #2a2a2a;
       box-shadow: none;
     }
     .cta.ghost:hover {
-      background: rgba(255,255,255,0.05);
-      color: var(--text);
+      background: rgba(255,255,255,0.06);
+      color: #aaa;
       border-color: #444;
       transform: translateY(-1px);
     }
@@ -362,6 +364,38 @@
       white-space: pre;
       margin-top: 20px;
     }
+    /* ─── ТЁМНЫЕ СКРОЛЛБАРЫ для блоков кода ─── */
+    pre.code::-webkit-scrollbar,
+    .awal-card pre.code::-webkit-scrollbar,
+    .awal-fullcode::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    pre.code::-webkit-scrollbar-track,
+    .awal-card pre.code::-webkit-scrollbar-track,
+    .awal-fullcode::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    pre.code::-webkit-scrollbar-thumb,
+    .awal-card pre.code::-webkit-scrollbar-thumb,
+    .awal-fullcode::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 3px;
+    }
+    pre.code::-webkit-scrollbar-thumb:hover,
+    .awal-card pre.code::-webkit-scrollbar-thumb:hover,
+    .awal-fullcode::-webkit-scrollbar-thumb:hover {
+      background: #444;
+    }
+    pre.code {
+      scrollbar-color: #333 transparent;
+      scrollbar-width: thin;
+    }
+    .awal-card pre.code,
+    .awal-fullcode {
+      scrollbar-color: #333 transparent;
+      scrollbar-width: thin;
+    }
     /* ─── NOTES ─── */
     .note {
       font-size: 0.875rem;
@@ -469,21 +503,105 @@
       font-size: 1.05rem;
       font-weight: 500;
       border-radius: var(--radius-sm);
-      background: var(--accent);
-      color: #0a0a0a;
-      border: none;
+      background: #2a2a2a;
+      color: #d4d4d4;
+      border: 1px solid #333;
       cursor: pointer;
       transition: all var(--transition);
       box-shadow: 0 1px 2px rgba(0,0,0,0.2);
     }
     .generator-block .btn:hover {
-      background: var(--accent-hover);
+      background: #3a3a3a;
+      color: #f5f5f5;
+      border-color: #555;
       transform: translateY(-2px);
       box-shadow: 0 4px 16px rgba(0,0,0,0.4);
     }
     .generator-block .btn svg {
       width: 20px;
       height: 20px;
+    }
+    /* ─── AWAL (Coinbase Wallet) ─── */
+    .awal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .awal-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .awal-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #00c853, #00e676);
+      opacity: 0.7;
+    }
+    .awal-card:hover {
+      background: var(--bg-card-hover);
+      border-color: #2a2a2a;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+    .awal-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+      color: #00e676;
+    }
+    .awal-card p {
+      font-size: 0.925rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .awal-card pre.code {
+      margin-top: 14px;
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px 18px;
+      font-family: "SF Mono", "Fira Code", Menlo, Consolas, monospace;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      color: #d4d4d4;
+      overflow-x: auto;
+      white-space: pre;
+    }
+    .awal-fullcode {
+      margin-top: 24px;
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 20px 24px;
+      font-family: "SF Mono", "Fira Code", Menlo, Consolas, monospace;
+      font-size: 0.85rem;
+      line-height: 1.55;
+      color: #d4d4d4;
+      overflow-x: auto;
+      white-space: pre;
+    }
+    .awal-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #00e676;
+      background: rgba(0, 230, 118, 0.1);
+      border: 1px solid rgba(0, 230, 118, 0.25);
+      border-radius: var(--radius-full);
+      padding: 2px 10px;
+      margin-bottom: 10px;
     }
     /* ─── RESPONSIVE ─── */
     @media (max-width: 800px) {
@@ -567,6 +685,7 @@
       <a class="link" href="#how" data-i18n="nav.how">Как платить</a>
       <a class="link" href="#install" data-i18n="nav.install">Установка</a>
       <a class="link" href="#commands" data-i18n="nav.commands">Команды</a>
+      <a class="link" href="#awal" data-i18n="nav.awal">awal</a>
       <a class="link" href="#faq" data-i18n="nav.faq">FAQ</a>
       <a class="link" href="/blog/" data-i18n="nav.blog">Блог</a>
       <a class="link" href="#bot" data-i18n="nav.bot">Агент</a>
@@ -576,6 +695,8 @@
     </nav>
   </div>
 </header>
+<main>
+<article>
 <!-- HERO -->
 <section class="hero">
   <div class="wrap hero-grid">
@@ -904,6 +1025,42 @@ node agent.js</pre>
     <p class="note mt24" data-i18n="commands.note">Точные флаги зависят от версии x402-wallet (GitHub 0xKoda/x402-wallet). Команда <code class="inl">x402-wallet --help</code> покажет актуальный список.</p>
   </div>
 </section>
+<!-- AWAL -->
+<section class="block" id="awal">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker" data-i18n="awal.kicker">Официальный</div>
+      <h2 data-i18n="awal.title">Coinbase Wallet CLI (awal)</h2>
+      <p data-i18n="awal.desc">Официальный CLI-кошелёк от Coinbase с поддержкой протокола x402. Расширенный набор команд: статус, баланс, оплата, адрес и работа через CDP. Установка одной командой.</p>
+    </div>
+    <div class="awal-grid">
+      <div class="awal-card">
+        <h3 data-i18n="awal.card1.title">awal status</h3>
+        <p data-i18n="awal.card1.text">Проверить статус сервера кошелька и аутентификацию. Ответит, запущен ли кошелёк и активна ли сессия.</p>
+        <pre class="code" data-i18n="awal.card1.code">npx awal status</pre>
+      </div>
+      <div class="awal-card">
+        <h3 data-i18n="awal.card2.title">npx awal balance</h3>
+        <p data-i18n="awal.card2.text">Показать баланс USDC во всех сетях (Base, EVM, Solana). Если пусто — пополните адрес.</p>
+        <pre class="code" data-i18n="awal.card2.code">npx awal balance</pre>
+      </div>
+      <div class="awal-card">
+        <h3 data-i18n="awal.card3.title">npx awal x402 pay</h3>
+        <p data-i18n="awal.card3.text">Отправить x402-платёж одной командой. Флаг <code class="inl">-X</code> задаёт метод, <code class="inl">-d</code> — тело запроса.</p>
+        <pre class="code" data-i18n="awal.card3.code">npx awal x402 pay https://api.example.com/data \
+  -X POST \
+  -d '{"symbol":"BTC","price":0.00001}'</pre>
+      </div>
+      <div class="awal-card">
+        <h3 data-i18n="awal.card4.title">npx awal address / send</h3>
+        <p data-i18n="awal.card4.text">Показать адрес кошелька (EVM + Solana) и отправить токены. Всё в одном CLI.</p>
+        <pre class="code" data-i18n="awal.card4.code">npx awal address
+npx awal send 10 usdc 0x...</pre>
+      </div>
+    </div>
+    <p class="note mt24" data-i18n="awal.note">Полный список: <code class="inl">npx awal help</code>. Команды <code class="inl">awal x402 pay</code>, <code class="inl">balance</code>, <code class="inl">address</code> — всё, что нужно агенту.</p>
+  </div>
+</section>
 <!-- FAQ -->
 <section class="block" id="faq">
   <div class="wrap">
@@ -955,9 +1112,18 @@ node agent.js</pre>
           <p data-i18n="faq.q6.text">Сервер вернёт <code class="inl">402</code> с той же инструкцией. Агент просто не получит данные, пока вы не пополните USDC. Ничего не ломается.</p>
         </div>
       </div>
+      <div class="step">
+        <div class="idx">?</div>
+        <div class="body">
+          <h3 data-i18n="faq.q7.title">Чем отличается x402-wallet от Coinbase Wallet (awal)?</h3>
+          <p data-i18n="faq.q7.text"><strong>x402-wallet</strong> — лёгкий CLI-кошелёк, заточенный только под x402-платежи агентов. <strong>Coinbase Wallet (awal)</strong> — официальный CLI от Coinbase с полным набором команд: статус, баланс во всех сетях, отправка, swap, auth и поддержка x402. Выбирайте x402-wallet для минимализма, awal — для расширенного функционала.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+</article>
+</main>
 <!-- FOOTER -->
 <footer class="site">
   <div class="wrap">
@@ -975,11 +1141,76 @@ node agent.js</pre>
   "name": "x402-ai-agent.space",
   "url": "https://x402-ai-agent.space/",
   "description": "Протокол x402 и x402-wallet: как ИИ-агенты платят за API и данные сами через микроплатежи в USDC.",
+  "logo": "https://x402-ai-agent.space/assets/img/logo.png",
   "potentialAction": {
     "@type": "SearchAction",
     "target": "https://x402-ai-agent.space/blog/?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Какая сеть нужна?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Базовая сеть — Base (L2 Ethereum). Расчёты в USDC. Комиссии копеечные, подходят для микроплатежей."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Сколько стоит?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Сам протокол бесплатен. Платите только за вызовы API тому сервису, к которому стучится агент. Микросуммы — центы и меньше."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Безопасны ли ключи?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Приватный ключ генерится и хранится локально (x402-wallet init). Не выгружайте сид-фразу в облако."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Нужен ли отдельный сервер?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Нет. Агент и кошелёк работают на той же машине, где запущен ваш скрипт. Достаточно Node.js или Python и баланса USDC."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Где документация?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Официально: x402.org и docs.x402.org. По x402-wallet — репозиторий на GitHub (0xKoda/x402-wallet) и сайт x402-wallet.com."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что если баланс кончится?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Сервер вернёт 402 с той же инструкцией. Агент просто не получит данные, пока вы не пополните USDC. Ничего не ломается."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чем отличается x402-wallet от Coinbase Wallet (awal)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "x402-wallet — лёгкий CLI-кошелёк, заточенный только под x402-платежи агентов. Coinbase Wallet (awal) — официальный CLI от Coinbase с полным набором команд: статус, баланс во всех сетях, отправка, swap, auth и поддержка x402."
+      }
+    }
+  ]
 }
 </script>
 <script>
@@ -989,7 +1220,7 @@ node agent.js</pre>
   // ─── Встроенные переводы (nested) ───
   const embeddedRu = {
     "title": "x402-ai-agent.space — платежи для ИИ-агентов через x402 + x402-wallet",
-    "metaDescription": "Что такое протокол x402, как ИИ-агенты платят за API в одном HTTP-запросе, как установить x402-wallet и запустить собственного агента. Минимализм, факты, без воды.",
+    "metaDescription": "Протокол x402: ИИ-агенты платят за API в одном HTTP-запросе. Установка x402-wallet и запуск агента. Минимализм, без воды.",
     "ogTitle": "x402-ai-agent.space — платежи для ИИ-агентов",
     "ogDescription": "Как ИИ-агенты платят за API через протокол x402 и кошелёк x402-wallet. Гайд без воды.",
     "nav": {
@@ -997,6 +1228,7 @@ node agent.js</pre>
       "how": "Как платить",
       "install": "Установка",
       "commands": "Команды",
+      "awal": "awal",
       "faq": "FAQ",
       "blog": "Блог",
       "bot": "Агент",
@@ -1103,6 +1335,16 @@ node agent.js</pre>
       "card3": { "title": "x402-wallet balance", "text": "Проверить баланс USDC. Если пусто — агент не сможет платить за вызовы.", "code": "x402-wallet balance --token usdc" },
       "card4": { "title": "x402-wallet pay", "text": "Вручную подписать платёж для URL (для тестов). В коде агента это делает SDK автоматически.", "code": "x402-wallet pay --url https://api.example.com/data" }
     },
+    "awal": {
+      "kicker": "Официальный",
+      "title": "Coinbase Wallet CLI (awal)",
+      "desc": "Официальный CLI-кошелёк от Coinbase с поддержкой протокола x402. Расширенный набор команд: статус, баланс, оплата, адрес и работа через CDP. Установка одной командой.",
+      "note": "Полный список: <code class=\"inl\">npx awal help</code>. Команды <code class=\"inl\">awal x402 pay</code>, <code class=\"inl\">balance</code>, <code class=\"inl\">address</code> — всё, что нужно агенту.",
+      "card1": { "title": "npx awal status", "text": "Проверить статус сервера кошелька и аутентификацию. Ответит, запущен ли кошелёк и активна ли сессия.", "code": "npx awal status" },
+      "card2": { "title": "npx awal balance", "text": "Показать баланс USDC во всех сетях (Base, EVM, Solana). Если пусто — пополните адрес.", "code": "npx awal balance" },
+      "card3": { "title": "npx awal x402 pay", "text": "Отправить x402-платёж одной командой. Флаг <code class=\"inl\">-X</code> задаёт метод, <code class=\"inl\">-d</code> — тело запроса.", "code": "npx awal x402 pay https://api.example.com/data \\\n  -X POST \\\n  -d '{\"symbol\":\"BTC\",\"price\":0.00001}'" },
+      "card4": { "title": "npx awal address / send", "text": "Показать адрес кошелька (EVM + Solana) и отправить токены. Всё в одном CLI.", "code": "npx awal address\nnpx awal send 10 usdc 0x..." }
+    },
     "faq": {
       "kicker": "Вопросы",
       "title": "FAQ",
@@ -1112,7 +1354,8 @@ node agent.js</pre>
       "q3": { "title": "Безопасны ли ключи?", "text": "Приватный ключ генерится и хранится локально (x402-wallet init). Не выгружайте сид-фразу в облако. Альтернатива — CDP-managed wallet (ключи у провайдера, но без локального файла)." },
       "q4": { "title": "Нужен ли отдельный сервер?", "text": "Нет. Агент и кошелёк работают на той же машине, где запущен ваш скрипт. Достаточно Node.js или Python и баланса USDC." },
       "q5": { "title": "Где документация?", "text": "Официально: <a href=\"https://x402.org\" target=\"_blank\" rel=\"noopener\">x402.org</a> и <a href=\"https://docs.x402.org\" target=\"_blank\" rel=\"noopener\">docs.x402.org</a>. По x402-wallet — репозиторий на GitHub (0xKoda/x402-wallet) и сайт x402-wallet.com." },
-      "q6": { "title": "Что если баланс кончится?", "text": "Сервер вернёт <code class=\"inl\">402</code> с той же инструкцией. Агент просто не получит данные, пока вы не пополните USDC. Ничего не ломается." }
+      "q6": { "title": "Что если баланс кончится?", "text": "Сервер вернёт <code class=\"inl\">402</code> с той же инструкцией. Агент просто не получит данные, пока вы не пополните USDC. Ничего не ломается." },
+      "q7": { "title": "Чем отличается x402-wallet от Coinbase Wallet (awal)?", "text": "<strong>x402-wallet</strong> — лёгкий CLI-кошелёк, заточенный только под x402-платежи агентов. <strong>Coinbase Wallet (awal)</strong> — официальный CLI от Coinbase с полным набором команд: статус, баланс во всех сетях, отправка, swap, auth и поддержка x402. Выбирайте x402-wallet для минимализма, awal — для расширенного функционала." }
     },
     "footer": {
       "text": "© x402-ai-agent.space — про платежи для ИИ-агентов.",
@@ -1122,7 +1365,7 @@ node agent.js</pre>
 
   const embeddedEn = {
     "title": "x402-ai-agent.space — payments for AI agents via x402 + x402-wallet",
-    "metaDescription": "What is the x402 protocol, how AI agents pay for APIs in a single HTTP request, how to install x402-wallet and run your own agent. Minimal, factual, no fluff.",
+    "metaDescription": "x402 protocol: how AI agents pay for APIs in a single HTTP request. Install x402-wallet and run your own agent. Minimal, factual, no fluff.",
     "ogTitle": "x402-ai-agent.space — payments for AI agents",
     "ogDescription": "How AI agents pay for APIs via the x402 protocol and x402-wallet. A no-fluff guide.",
     "nav": {
@@ -1130,6 +1373,7 @@ node agent.js</pre>
       "how": "How to pay",
       "install": "Install",
       "commands": "Commands",
+      "awal": "awal",
       "faq": "FAQ",
       "blog": "Blog",
       "bot": "Agent",
@@ -1233,8 +1477,18 @@ node agent.js</pre>
       "note": "Exact flags depend on the x402-wallet version (GitHub 0xKoda/x402-wallet). Run <code class=\"inl\">x402-wallet --help</code> for the current list.",
       "card1": { "title": "x402-wallet init", "text": "Create a new agent wallet (or import a seed phrase). Generates a private key locally — it never leaves your machine.", "code": "x402-wallet init --network base" },
       "card2": { "title": "x402-wallet address", "text": "Show the wallet address on the Base network. Send USDC here.", "code": "x402-wallet address" },
-      "card3": { "title": "x402-wallet balance", "text": "Check the USDC balance. If empty — the agent can’t pay for calls.", "code": "x402-wallet balance --token usdc" },
+      "card3": { "title": "x402-wallet balance", "text": "Check the USDC balance. If empty — the agent can\u2019t pay for calls.", "code": "x402-wallet balance --token usdc" },
       "card4": { "title": "x402-wallet pay", "text": "Manually sign a payment for a URL (for testing). In agent code the SDK does this automatically.", "code": "x402-wallet pay --url https://api.example.com/data" }
+    },
+    "awal": {
+      "kicker": "Official",
+      "title": "Coinbase Wallet CLI (awal)",
+      "desc": "The official CLI wallet from Coinbase with x402 protocol support. Extended command set: status, balance, payment, address, and CDP integration. Install with one command.",
+      "note": "Full list: <code class=\"inl\">npx awal help</code>. Commands <code class=\"inl\">awal x402 pay</code>, <code class=\"inl\">balance</code>, <code class=\"inl\">address</code> — everything an agent needs.",
+      "card1": { "title": "npx awal status", "text": "Check the wallet server health and authentication status. Tells you if the wallet is running and the session is active.", "code": "npx awal status" },
+      "card2": { "title": "npx awal balance", "text": "Get wallet balances across all chains (Base, EVM, Solana). Top up if empty.", "code": "npx awal balance" },
+      "card3": { "title": "npx awal x402 pay", "text": "Send an x402 payment in one command. The <code class=\"inl\">-X</code> flag sets the method, <code class=\"inl\">-d</code> the request body.", "code": "npx awal x402 pay https://api.example.com/data \\\n  -X POST \\\n  -d '{\"symbol\":\"BTC\",\"price\":0.00001}'" },
+      "card4": { "title": "npx awal address / send", "text": "Show the wallet address (EVM + Solana) and send tokens. All in one CLI.", "code": "npx awal address\nnpx awal send 10 usdc 0x..." }
     },
     "faq": {
       "kicker": "Questions",
@@ -1245,7 +1499,8 @@ node agent.js</pre>
       "q3": { "title": "Are the keys secure?", "text": "The private key is generated and stored locally (x402-wallet init). Don’t upload the seed phrase to the cloud. Alternative — CDP-managed wallet (keys held by the provider, no local file)." },
       "q4": { "title": "Is a separate server needed?", "text": "No. The agent and wallet run on the same machine as your script. Node.js or Python and a USDC balance is enough." },
       "q5": { "title": "Where is the documentation?", "text": "Official: <a href=\"https://x402.org\" target=\"_blank\" rel=\"noopener\">x402.org</a> and <a href=\"https://docs.x402.org\" target=\"_blank\" rel=\"noopener\">docs.x402.org</a>. For x402-wallet — GitHub repo (0xKoda/x402-wallet) and x402-wallet.com." },
-      "q6": { "title": "What if the balance runs out?", "text": "The server returns <code class=\"inl\">402</code> with the same instruction. The agent simply won’t get the data until you top up USDC. Nothing breaks." }
+      "q6": { "title": "What if the balance runs out?", "text": "The server returns <code class=\"inl\">402</code> with the same instruction. The agent simply won’t get the data until you top up USDC. Nothing breaks." },
+      "q7": { "title": "What\u2019s the difference between x402-wallet and Coinbase Wallet (awal)?", "text": "<strong>x402-wallet</strong> is a lightweight CLI wallet designed specifically for agent x402 payments. <strong>Coinbase Wallet (awal)</strong> is the official Coinbase CLI with a full command set: status, multi-chain balance, send, swap, auth, and x402 support. Choose x402-wallet for minimalism, awal for extended features." }
     },
     "footer": {
       "text": "© x402-ai-agent.space — payments for AI agents.",
@@ -1344,3 +1599,6 @@ node agent.js</pre>
 </script>
 </body>
 </html>
+
+
+

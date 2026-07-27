@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Как залистить агента на agentic.market — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="Технический гайд: CDP Facilitator, Bazaar extension, settle через Coinbase, чеклист, таблица ошибок. Без регистрации — только через реальный платёж.">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/listing-on-agentic-market.html">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    .article img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: 437px !important;
+      max-height: none !important;
+      object-fit: cover;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem) !important;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    .article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    .article ul, .article ol {
+      margin: 16px 0 24px 24px;
+      color: #a3a3a3;
+    }
+    .article ul li, .article ol li {
+      margin-bottom: 8px;
+    }
+    .article table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 0.9rem;
+    }
+    .article table th,
+    .article table td {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+      color: var(--text-secondary);
+    }
+    .article table th {
+      background: var(--bg-card);
+      color: var(--text);
+      font-weight: 600;
+    }
+    .article table td:first-child {
+      color: var(--text);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .article pre.code {
+      background: #141414;
+      padding: 20px;
+      border-radius: var(--radius);
+      overflow-x: auto;
+      border: 1px solid #1a1a1a;
+      margin: 24px 0;
+    }
+    .article pre.code code {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: #e5e5e5;
+      line-height: 1.6;
+      white-space: pre;
+    }
+    .cta {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #4a5568;
+      color: #fff !important;
+      border-radius: 9999px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s;
+      margin: 8px 0;
+    }
+    .cta:hover {
+      background: #2d3748;
+    }
+    .article .muted {
+      color: #737373;
+      font-size: 0.95rem;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">x402<span style="color:var(--blue)">.ai</span></div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="article">
+  <div class="wrap">
+    <img src="/assets/img/blog/listing-on-agentic-market-cover.jpg" alt="Листинг агента на agentic.market через CDP Facilitator" loading="lazy">
+    <h1 data-i18n="h1">Как залистить агента на agentic.market (и почему «просто 402» недостаточно)</h1>
+    <div class="meta" data-i18n="meta">2026-07-28 · 12 мин чтения</div>
+
+    <p data-i18n="p1">Agentic.Market — не форма «заполни и жди модерацию». Это витрина поверх CDP Bazaar: каталог Coinbase, который индексирует эндпоинты автоматически, когда через их фасилитатор проходит реальный settle.</p>
+
+    <p data-i18n="p2">Отсюда жёсткое правило, которое ломает половину попыток: <strong>пока платёж не прошёл settle через CDP Facilitator, тебя в каталоге нет</strong>. Открытый фасилитатор вроде facilitator.xpay.sh может принимать оплату у живых клиентов — но в agentic.market он тебя не занесёт. Это не баг. Так устроен discovery-слой Coinbase.</p>
+
+    <h2 data-i18n="h2_1">Как устроен листинг на самом деле</h2>
+
+    <p data-i18n="p3">Ты отдаёшь HTTP 402 с x402 v2 и блоком <code>extensions.bazaar</code> (описание, input/output, schema). Клиент (awal, агент, твой тестовый кошелёк) присылает <code>PAYMENT-SIGNATURE</code>. Твой сервер гонит payload на verify → settle фасилитатора.</p>
+
+    <p data-i18n="p4">Если settle прошёл через <strong>CDP</strong> (<code>https://api.cdp.coinbase.com/platform/v2/x402</code>) и в payload есть <code>paymentPayload.resource</code>, CDP вытаскивает bazaar-метаданные и кладёт ресурс в индекс. Agentic.Market читает этот индекс. Отдельной регистрации нет.</p>
+
+    <p data-i18n="p5">Официально: indexing runs after settle completes; verify alone is not enough. И ещё: ресурсы без активности 30 дней выпадают из выдачи. Один «пробный» settle — это вход. Дальше нужна живая активность.</p>
+
+    <h2 data-i18n="h2_2">Чеклист до первого settle</h2>
+
+    <p><strong data-i18n="check1_title">Транспорт</strong></p>
+    <ul>
+      <li data-i18n="check1_l1">Публичный HTTPS URL (не localhost, не http).</li>
+      <li data-i18n="check1_l2">Эндпоинт отвечает на незаплаченный запрос именно 402, не 200 и не 405.</li>
+      <li data-i18n="check1_l3">Лучше сразу POST + GET на один путь: сканеры Bazaar и разные клиенты ходят разными методами. Один метод → часто 405 → «No x402 Setup Detected».</li>
+    </ul>
+
+    <p><strong data-i18n="check2_title">Платёжный конфиг</strong></p>
+    <ul>
+      <li data-i18n="check2_l1"><code>x402Version: 2</code></li>
+      <li data-i18n="check2_l2"><code>scheme: exact</code>, сеть <code>eip155:8453</code> (Base) или testnet</li>
+      <li data-i18n="check2_l3">USDC asset, <code>payTo</code> — твой кошелёк</li>
+      <li data-i18n="check2_l4">Цена ≥ $0.001 USDC</li>
+      <li data-i18n="check2_l5"><code>maxTimeoutSeconds</code> задан</li>
+      <li data-i18n="check2_l6">В <code>accepts</code> есть корректный extra (name/version для USDC)</li>
+    </ul>
+
+    <p><strong data-i18n="check3_title">Bazaar extension</strong></p>
+    <ul>
+      <li data-i18n="check3_l1">Блок <code>extensions.bazaar</code> с <code>info.input / info.output / schema</code></li>
+      <li data-i18n="check3_l2">Input проходит JSON Schema validation</li>
+      <li data-i18n="check3_l3">В settle-запросе обязательно <code>paymentPayload.resource</code> (URL ресурса) — без него CDP не знает, что индексировать</li>
+    </ul>
+
+    <p><strong data-i18n="check4_title">Фасилитатор</strong></p>
+    <p data-i18n="p6">Для листинга на agentic.market — только CDP:</p>
+    <ul>
+      <li data-i18n="check4_l1">URL: <code>https://api.cdp.coinbase.com/platform/v2/x402</code></li>
+      <li data-i18n="check4_l2">Нужны CDP API Key ID + Secret (JWT-авторизация на verify/settle)</li>
+      <li data-i18n="check4_l3">Free tier: 1000 транзакций/мес, дальше ~$0.001 за tx</li>
+    </ul>
+    <p data-i18n="p7"><code>facilitator.xpay.sh</code> и другие open-фасилитаторы: оплата у клиентов может работать, каталог Coinbase их не видит.</p>
+    <p data-i18n="p8">Перед живыми деньгами имеет смысл прогнать официальный validate: <code>POST https://api.cdp.coinbase.com/platform/v2/x402/validate</code> — проверка 402 и bazaar-блока без реального платежа.</p>
+
+    <h2 data-i18n="h2_3">Пошагово: от кода до появления в каталоге</h2>
+
+    <p><strong data-i18n="step1_title">1. Собери агента</strong><br>
+    <span data-i18n="step1_text">Логика → цена → кошелёк → генератор (с включённым Bazaar и, желательно, POST+GET). Resource URL = тот HTTPS, который будет в проде.</span></p>
+
+    <p><strong data-i18n="step2_title">2. Задеплой</strong><br>
+    <span data-i18n="step2_text">Render, Fly, VPS, Cloudflare Tunnel — не важно. Важно: снаружи стабильный HTTPS и 402 без авторизации «до» x402.</span></p>
+
+    <p><strong data-i18n="step3_title">3. Подключи CDP Facilitator</strong><br>
+    <span data-i18n="step3_text">В портале Coinbase Developer Platform создай API key. В сервере укажи CDP URL и подпись запросов к /verify и /settle через CDP credentials. Пока settle идёт на xpay.sh — agentic.market тебя не увидит, даже если 402 идеальный.</span></p>
+
+    <p><strong data-i18n="step4_title">4. Сделай первый реальный settle</strong></p>
+    <pre class="code"><code data-i18n="code1">npx awal x402 pay https://твой-https-url/ \
+  -X POST \
+  -d '{"symbol":"BTC"}' \
+  -q '{"symbol":"BTC"}'</code></pre>
+    <p data-i18n="p9">Должен быть 200 и ончейн-перевод USDC на твой payTo. Именно этот settle CDP использует для индексации.</p>
+
+    <p><strong data-i18n="step5_title">5. Проверь индекс</strong></p>
+    <pre class="code"><code data-i18n="code2"># Discovery API
+GET https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources
+# или search по твоему домену/описанию</code></pre>
+    <p data-i18n="p10">Витрина: agentic.market. Индексация асинхронная: не всегда «через 10 секунд». Если settle успешен, а в каталоге пусто — проверь paymentPayload.resource, bazaar schema и что settle точно ушёл в CDP, а не в другой фасилитатор.</p>
+
+    <p><strong data-i18n="step6_title">6. Не дай себе умереть в 30-дневном окне</strong><br>
+    <span data-i18n="step6_text">После первого settle нужны повторные оплаты. Иначе ресурс выпадет из выдачи. Для старта достаточно редких своих же тестовых вызовов; для роста — реальный спрос агентов.</span></p>
+
+    <h2 data-i18n="h2_4">Типичные причины «No x402 Setup Detected»</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th data-i18n="tbl_h1">Симптом</th>
+          <th data-i18n="tbl_h2">Что обычно не так</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-i18n="tbl_r1c1">405 вместо 402</td>
+          <td data-i18n="tbl_r1c2">Зарегистрирован только POST, сканер бьёт GET (или наоборот)</td>
+        </tr>
+        <tr>
+          <td data-i18n="tbl_r2c1">200 без оплаты</td>
+          <td data-i18n="tbl_r2c2">x402 middleware не стоит / стоит после другой логики</td>
+        </tr>
+        <tr>
+          <td data-i18n="tbl_r3c1">402 есть, в каталоге нет</td>
+          <td data-i18n="tbl_r3c2">Settle через xpay/другой фасилитатор, не CDP</td>
+        </tr>
+        <tr>
+          <td data-i18n="tbl_r4c1">Settle ок, всё равно нет</td>
+          <td data-i18n="tbl_r4c2">Нет paymentPayload.resource или сломан extensions.bazaar</td>
+        </tr>
+        <tr>
+          <td data-i18n="tbl_r5c1">Был в каталоге, пропал</td>
+          <td data-i18n="tbl_r5c2">Нет активности 30+ дней</td>
+        </tr>
+        <tr>
+          <td data-i18n="tbl_r6c1">Не проходит оплата на CDP</td>
+          <td data-i18n="tbl_r6c2">Нет/неверные CDP API keys, не тот network/asset</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 data-i18n="h2_5">Два режима одной кассы</h2>
+
+    <p><strong data-i18n="mode_a_title">Режим A — жить и принимать деньги</strong><br>
+    <span data-i18n="mode_a_text">Можно на open-фасилитаторе (xpay и др.): клиенты платят, USDC приходит, API работает. Листинга в agentic.market нет.</span></p>
+
+    <p><strong data-i18n="mode_b_title">Режим B — быть в agentic.market</strong><br>
+    <span data-i18n="mode_b_text">Нужен CDP Facilitator + ключи + хотя бы один успешный settle через CDP + bazaar extension. После этого агенты находят тебя через каталог Coinbase / agentic.market / awal bazaar search.</span></p>
+
+    <p data-i18n="p11">Многие делают гибрид: сначала поднимают кассу на open-фасилитаторе, проверяют логику и оплату, потом переключают verify/settle на CDP, когда готовы к листингу. Главное — не ждать, что «раз 402 красивый — значит я уже в маркете». Маркет смотрит не на красоту заголовка, а на settle в своём фасилитаторе.</p>
+
+    <h2 data-i18n="h2_6">Короткий итог</h2>
+
+    <ul>
+      <li data-i18n="summary1">Сделай честный 402 + bazaar metadata + HTTPS + оба метода.</li>
+      <li data-i18n="summary2">Для agentic.market переведи settle на CDP Facilitator (нужны API keys Coinbase).</li>
+      <li data-i18n="summary3">Проведи один успешный settle с paymentPayload.resource.</li>
+      <li data-i18n="summary4">Проверь discovery API и витрину.</li>
+      <li data-i18n="summary5">Не бросай эндпоинт: 30 дней тишины = вылет из индекса.</li>
+    </ul>
+
+    <p data-i18n="p12">Agentic.Market не «одобряет» тебя руками. Он подхватывает тех, через кого уже прошли реальные платежи в инфраструктуре Coinbase. Если платежи идут мимо CDP — ты продаёшь втихую. Если settle идёт через CDP — ты в витрине, где агенты ищут, что купить следующим вызовом.</p>
+
+    <p class="muted" data-i18n="p13">Читайте также: <a href="/blog/how-to-deploy-agent.html">Как выложить агента, которому платят</a> · <a href="/blog/agents-trade-better.html">Они торгуют лучше людей</a></p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap"><div>© <span id="yr"></span> x402-ai-agent.space</div></div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Как залистить агента на agentic.market (и почему «просто 402» недостаточно)",
+  "description": "Технический гайд: CDP Facilitator, Bazaar extension, settle через Coinbase, чеклист, таблица ошибок. Без регистрации — только через реальный платёж.",
+  "datePublished": "2026-07-28",
+  "author": {
+    "@type": "Organization",
+    "name": "x402-ai-agent.space"
+  },
+  "image": "https://x402-ai-agent.space/assets/img/blog/listing-on-agentic-market-cover.jpg"
+}
+</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+
+  const embeddedRu = {
+    title: "Как залистить агента на agentic.market — x402-ai-agent.space",
+    metaDescription: "Технический гайд: CDP Facilitator, Bazaar extension, settle через Coinbase, чеклист, таблица ошибок. Без регистрации — только через реальный платёж.",
+    nav: { back: "← Блог", lang: "🇬🇧 EN" },
+    h1: "Как залистить агента на agentic.market (и почему «просто 402» недостаточно)",
+    meta: "2026-07-28 · 12 мин чтения",
+    p1: "Agentic.Market — не форма «заполни и жди модерацию». Это витрина поверх CDP Bazaar: каталог Coinbase, который индексирует эндпоинты автоматически, когда через их фасилитатор проходит реальный settle.",
+    p2: "Отсюда жёсткое правило, которое ломает половину попыток: <strong>пока платёж не прошёл settle через CDP Facilitator, тебя в каталоге нет</strong>. Открытый фасилитатор вроде facilitator.xpay.sh может принимать оплату у живых клиентов — но в agentic.market он тебя не занесёт. Это не баг. Так устроен discovery-слой Coinbase.",
+    h2_1: "Как устроен листинг на самом деле",
+    p3: "Ты отдаёшь HTTP 402 с x402 v2 и блоком <code>extensions.bazaar</code> (описание, input/output, schema). Клиент (awal, агент, твой тестовый кошелёк) присылает <code>PAYMENT-SIGNATURE</code>. Твой сервер гонит payload на verify → settle фасилитатора.",
+    p4: "Если settle прошёл через <strong>CDP</strong> (<code>https://api.cdp.coinbase.com/platform/v2/x402</code>) и в payload есть <code>paymentPayload.resource</code>, CDP вытаскивает bazaar-метаданные и кладёт ресурс в индекс. Agentic.Market читает этот индекс. Отдельной регистрации нет.",
+    p5: "Официально: indexing runs after settle completes; verify alone is not enough. И ещё: ресурсы без активности 30 дней выпадают из выдачи. Один «пробный» settle — это вход. Дальше нужна живая активность.",
+    h2_2: "Чеклист до первого settle",
+    check1_title: "Транспорт",
+    check1_l1: "Публичный HTTPS URL (не localhost, не http).",
+    check1_l2: "Эндпоинт отвечает на незаплаченный запрос именно 402, не 200 и не 405.",
+    check1_l3: "Лучше сразу POST + GET на один путь: сканеры Bazaar и разные клиенты ходят разными методами. Один метод → часто 405 → «No x402 Setup Detected».",
+    check2_title: "Платёжный конфиг",
+    check2_l1: "<code>x402Version: 2</code>",
+    check2_l2: "<code>scheme: exact</code>, сеть <code>eip155:8453</code> (Base) или testnet",
+    check2_l3: "USDC asset, <code>payTo</code> — твой кошелёк",
+    check2_l4: "Цена ≥ $0.001 USDC",
+    check2_l5: "<code>maxTimeoutSeconds</code> задан",
+    check2_l6: "В <code>accepts</code> есть корректный extra (name/version для USDC)",
+    check3_title: "Bazaar extension",
+    check3_l1: "Блок <code>extensions.bazaar</code> с <code>info.input / info.output / schema</code>",
+    check3_l2: "Input проходит JSON Schema validation",
+    check3_l3: "В settle-запросе обязательно <code>paymentPayload.resource</code> (URL ресурса) — без него CDP не знает, что индексировать",
+    check4_title: "Фасилитатор",
+    p6: "Для листинга на agentic.market — только CDP:",
+    check4_l1: "URL: <code>https://api.cdp.coinbase.com/platform/v2/x402</code>",
+    check4_l2: "Нужны CDP API Key ID + Secret (JWT-авторизация на verify/settle)",
+    check4_l3: "Free tier: 1000 транзакций/мес, дальше ~$0.001 за tx",
+    p7: "<code>facilitator.xpay.sh</code> и другие open-фасилитаторы: оплата у клиентов может работать, каталог Coinbase их не видит.",
+    p8: "Перед живыми деньгами имеет смысл прогнать официальный validate: <code>POST https://api.cdp.coinbase.com/platform/v2/x402/validate</code> — проверка 402 и bazaar-блока без реального платежа.",
+    h2_3: "Пошагово: от кода до появления в каталоге",
+    step1_title: "1. Собери агента",
+    step1_text: "Логика → цена → кошелёк → генератор (с включённым Bazaar и, желательно, POST+GET). Resource URL = тот HTTPS, который будет в проде.",
+    step2_title: "2. Задеплой",
+    step2_text: "Render, Fly, VPS, Cloudflare Tunnel — не важно. Важно: снаружи стабильный HTTPS и 402 без авторизации «до» x402.",
+    step3_title: "3. Подключи CDP Facilitator",
+    step3_text: "В портале Coinbase Developer Platform создай API key. В сервере укажи CDP URL и подпись запросов к /verify и /settle через CDP credentials. Пока settle идёт на xpay.sh — agentic.market тебя не увидит, даже если 402 идеальный.",
+    step4_title: "4. Сделай первый реальный settle",
+    code1: "npx awal x402 pay https://твой-https-url/ \\\n  -X POST \\\n  -d '{\"symbol\":\"BTC\"}' \\\n  -q '{\"symbol\":\"BTC\"}'",
+    p9: "Должен быть 200 и ончейн-перевод USDC на твой payTo. Именно этот settle CDP использует для индексации.",
+    step5_title: "5. Проверь индекс",
+    code2: "# Discovery API\nGET https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources\n# или search по твоему домену/описанию",
+    p10: "Витрина: agentic.market. Индексация асинхронная: не всегда «через 10 секунд». Если settle успешен, а в каталоге пусто — проверь paymentPayload.resource, bazaar schema и что settle точно ушёл в CDP, а не в другой фасилитатор.",
+    step6_title: "6. Не дай себе умереть в 30-дневном окне",
+    step6_text: "После первого settle нужны повторные оплаты. Иначе ресурс выпадет из выдачи. Для старта достаточно редких своих же тестовых вызовов; для роста — реальный спрос агентов.",
+    h2_4: "Типичные причины «No x402 Setup Detected»",
+    tbl_h1: "Симптом",
+    tbl_h2: "Что обычно не так",
+    tbl_r1c1: "405 вместо 402",
+    tbl_r1c2: "Зарегистрирован только POST, сканер бьёт GET (или наоборот)",
+    tbl_r2c1: "200 без оплаты",
+    tbl_r2c2: "x402 middleware не стоит / стоит после другой логики",
+    tbl_r3c1: "402 есть, в каталоге нет",
+    tbl_r3c2: "Settle через xpay/другой фасилитатор, не CDP",
+    tbl_r4c1: "Settle ок, всё равно нет",
+    tbl_r4c2: "Нет paymentPayload.resource или сломан extensions.bazaar",
+    tbl_r5c1: "Был в каталоге, пропал",
+    tbl_r5c2: "Нет активности 30+ дней",
+    tbl_r6c1: "Не проходит оплата на CDP",
+    tbl_r6c2: "Нет/неверные CDP API keys, не тот network/asset",
+    h2_5: "Два режима одной кассы (важно понимать)",
+    mode_a_title: "Режим A — жить и принимать деньги",
+    mode_a_text: "Можно на open-фасилитаторе (xpay и др.): клиенты платят, USDC приходит, API работает. Листинга в agentic.market нет.",
+    mode_b_title: "Режим B — быть в agentic.market",
+    mode_b_text: "Нужен CDP Facilitator + ключи + хотя бы один успешный settle через CDP + bazaar extension. После этого агенты находят тебя через каталог Coinbase / agentic.market / awal bazaar search.",
+    p11: "Многие делают гибрид: сначала поднимают кассу на open-фасилитаторе, проверяют логику и оплату, потом переключают verify/settle на CDP, когда готовы к листингу. Главное — не ждать, что «раз 402 красивый — значит я уже в маркете». Маркет смотрит не на красоту заголовка, а на settle в своём фасилитаторе.",
+    h2_6: "Короткий итог",
+    summary1: "Сделай честный 402 + bazaar metadata + HTTPS + оба метода.",
+    summary2: "Для agentic.market переведи settle на CDP Facilitator (нужны API keys Coinbase).",
+    summary3: "Проведи один успешный settle с paymentPayload.resource.",
+    summary4: "Проверь discovery API и витрину.",
+    summary5: "Не бросай эндпоинт: 30 дней тишины = вылет из индекса.",
+    p12: "Agentic.Market не «одобряет» тебя руками. Он подхватывает тех, через кого уже прошли реальные платежи в инфраструктуре Coinbase. Если платежи идут мимо CDP — ты продаёшь втихую. Если settle идёт через CDP — ты в витрине, где агенты ищут, что купить следующим вызовом.",
+    p13: "Читайте также: <a href=\"/blog/how-to-deploy-agent.html\">Как выложить агента, которому платят</a> · <a href=\"/blog/agents-trade-better.html\">Они торгуют лучше людей</a>"
+  };
+
+  const embeddedEn = {
+    title: "How to list an agent on agentic.market — x402-ai-agent.space",
+    metaDescription: "Technical guide: CDP Facilitator, Bazaar extension, settle via Coinbase, checklist, error table. No registration — only through real payments.",
+    nav: { back: "← Blog", lang: "🇷🇺 RU" },
+    h1: "How to list an agent on agentic.market (and why «just 402» isn't enough)",
+    meta: "2026-07-28 · 12 min read",
+    p1: "Agentic.Market is not a «fill out a form and wait for moderation» portal. It's a storefront on top of CDP Bazaar: a Coinbase catalog that automatically indexes endpoints when real settlement goes through their facilitator.",
+    p2: "Hence the hard rule that breaks half the attempts: <strong>until a payment settles through the CDP Facilitator, you're not in the catalog</strong>. An open facilitator like facilitator.xpay.sh can accept payments from real clients — but it won't get you into agentic.market. That's not a bug. That's how the Coinbase discovery layer works.",
+    h2_1: "How listing actually works",
+    p3: "You serve HTTP 402 with x402 v2 and an <code>extensions.bazaar</code> block (description, input/output, schema). The client (awal, agent, your test wallet) sends <code>PAYMENT-SIGNATURE</code>. Your server pushes the payload to verify → settle on the facilitator.",
+    p4: "If the settlement goes through <strong>CDP</strong> (<code>https://api.cdp.coinbase.com/platform/v2/x402</code>) and the payload contains <code>paymentPayload.resource</code>, CDP extracts the bazaar metadata and places the resource in the index. Agentic.Market reads this index. No separate registration.",
+    p5: "Official: indexing runs after settle completes; verify alone is not enough. Also: resources with no activity for 30 days drop from the listing. One «trial» settle gets you in. After that, you need live activity.",
+    h2_2: "Checklist before your first settle",
+    check1_title: "Transport",
+    check1_l1: "Public HTTPS URL (no localhost, no http).",
+    check1_l2: "The endpoint responds to unpaid requests with exactly 402, not 200 or 405.",
+    check1_l3: "Better to support POST + GET on the same path: Bazaar scanners and different clients use different methods. One method → often 405 → «No x402 Setup Detected».",
+    check2_title: "Payment config",
+    check2_l1: "<code>x402Version: 2</code>",
+    check2_l2: "<code>scheme: exact</code>, network <code>eip155:8453</code> (Base) or testnet",
+    check2_l3: "USDC asset, <code>payTo</code> — your wallet",
+    check2_l4: "Price ≥ $0.001 USDC",
+    check2_l5: "<code>maxTimeoutSeconds</code> set",
+    check2_l6: "<code>accepts</code> has correct extra (name/version for USDC)",
+    check3_title: "Bazaar extension",
+    check3_l1: "<code>extensions.bazaar</code> block with <code>info.input / info.output / schema</code>",
+    check3_l2: "Input passes JSON Schema validation",
+    check3_l3: "Settle request must include <code>paymentPayload.resource</code> (resource URL) — without it CDP doesn't know what to index",
+    check4_title: "Facilitator",
+    p6: "For listing on agentic.market — only CDP:",
+    check4_l1: "URL: <code>https://api.cdp.coinbase.com/platform/v2/x402</code>",
+    check4_l2: "CDP API Key ID + Secret required (JWT auth for verify/settle)",
+    check4_l3: "Free tier: 1000 tx/month, then ~$0.001 per tx",
+    p7: "<code>facilitator.xpay.sh</code> and other open facilitators: client payments may work, but the Coinbase catalog won't see them.",
+    p8: "Before using real money, run the official validate: <code>POST https://api.cdp.coinbase.com/platform/v2/x402/validate</code> — checks 402 and bazaar block without actual payment.",
+    h2_3: "Step by step: from code to catalog",
+    step1_title: "1. Build the agent",
+    step1_text: "Logic → price → wallet → generator (with Bazaar enabled and, ideally, POST+GET). Resource URL = the production HTTPS endpoint.",
+    step2_title: "2. Deploy",
+    step2_text: "Render, Fly, VPS, Cloudflare Tunnel — doesn't matter. What matters: stable public HTTPS and 402 without auth «before» x402.",
+    step3_title: "3. Connect CDP Facilitator",
+    step3_text: "Create an API key in the Coinbase Developer Platform. Configure your server with the CDP URL and sign /verify and /settle requests with CDP credentials. As long as settlement goes through xpay.sh — agentic.market won't see you, even with a perfect 402.",
+    step4_title: "4. Make your first real settle",
+    code1: "npx awal x402 pay https://your-https-url/ \\\n  -X POST \\\n  -d '{\"symbol\":\"BTC\"}' \\\n  -q '{\"symbol\":\"BTC\"}'",
+    p9: "Expect a 200 and an on-chain USDC transfer to your payTo. This is the settlement CDP uses for indexing.",
+    step5_title: "5. Check the index",
+    code2: "# Discovery API\nGET https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources\n# or search by your domain/description",
+    p10: "Storefront: agentic.market. Indexing is async — not always «10 seconds». If settle succeeded but the catalog is empty — check paymentPayload.resource, bazaar schema, and that settlement went to CDP, not another facilitator.",
+    step6_title: "6. Don't die in the 30-day window",
+    step6_text: "After the first settle, you need repeated payments. Otherwise the resource drops from the listing. For starters, occasional test calls are enough; for growth, you need real agent demand.",
+    h2_4: "Common «No x402 Setup Detected» causes",
+    tbl_h1: "Symptom",
+    tbl_h2: "What's usually wrong",
+    tbl_r1c1: "405 instead of 402",
+    tbl_r1c2: "Only POST registered, scanner hits GET (or vice versa)",
+    tbl_r2c1: "200 without payment",
+    tbl_r2c2: "x402 middleware not installed / placed after other logic",
+    tbl_r3c1: "402 works, not in catalog",
+    tbl_r3c2: "Settle via xpay/other facilitator, not CDP",
+    tbl_r4c1: "Settle ok, still not listed",
+    tbl_r4c2: "Missing paymentPayload.resource or broken extensions.bazaar",
+    tbl_r5c1: "Was in catalog, disappeared",
+    tbl_r5c2: "No activity for 30+ days",
+    tbl_r6c1: "Payment fails on CDP",
+    tbl_r6c2: "Missing/incorrect CDP API keys, wrong network/asset",
+    h2_5: "Two modes of one cash register (important)",
+    mode_a_title: "Mode A — live and accept money",
+    mode_a_text: "Works on open facilitators (xpay, etc.): clients pay, USDC arrives, API works. No agentic.market listing.",
+    mode_b_title: "Mode B — be on agentic.market",
+    mode_b_text: "Requires CDP Facilitator + keys + at least one successful CDP settle + bazaar extension. After that, agents find you through Coinbase catalog / agentic.market / awal bazaar search.",
+    p11: "Many go hybrid: first run the cash register on an open facilitator, verify logic and payments, then switch verify/settle to CDP when ready for listing. Key point: don't assume «pretty 402 = I'm in the market». The market doesn't look at the header's beauty — it looks at the settle in its own facilitator.",
+    h2_6: "Short summary",
+    summary1: "Build a proper 402 + bazaar metadata + HTTPS + both methods.",
+    summary2: "For agentic.market, switch settle to CDP Facilitator (needs Coinbase API keys).",
+    summary3: "Execute one successful settle with paymentPayload.resource.",
+    summary4: "Check the discovery API and storefront.",
+    summary5: "Don't abandon your endpoint: 30 days of silence = delisting.",
+    p12: "Agentic.Market doesn't «approve» you manually. It picks up those who already have real payments flowing through Coinbase infrastructure. If payments go outside CDP — you're selling under the radar. If settlement goes through CDP — you're in the storefront where agents look for what to buy next.",
+    p13: "Also read: <a href=\"/blog/how-to-deploy-agent.html\">How to deploy an agent that gets paid</a> · <a href=\"/blog/agents-trade-better.html\">They trade better than humans</a>"
+  };
+
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        if (el.namespaceURI === 'http://www.w3.org/2000/svg') {
+          el.textContent = value;
+        } else {
+          el.innerHTML = value;
+        }
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+
+  function updateSwitcher(lang) {
+    const switcher = document.querySelector('.lang-switch');
+    if (!switcher) return;
+    if (lang === 'ru') {
+      switcher.textContent = '🇬🇧 EN';
+      switcher.href = '?lang=en';
+    } else {
+      switcher.textContent = '🇷🇺 RU';
+      switcher.href = '?lang=ru';
+    }
+  }
+
+  function setLanguage(lang) {
+    const data = (lang === 'en') ? embeddedEn : embeddedRu;
+    window.langData = data;
+    applyTranslations(data);
+    localStorage.setItem(LANG_KEY, lang);
+    document.documentElement.lang = lang;
+    updateSwitcher(lang);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    const savedLang = localStorage.getItem(LANG_KEY);
+    const lang = (langParam === 'en' || langParam === 'ru') ? langParam : (savedLang || DEFAULT_LANG);
+
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const current = document.documentElement.lang || 'ru';
+        const next = current === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.pushState({}, '', `?lang=${next}`);
+      });
+    }
+
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>

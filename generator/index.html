@@ -446,6 +446,24 @@
       padding: 0.1em 0.35em;
       border-radius: 4px;
     }
+    .hint-xs {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+      line-height: 1.4;
+      opacity: 0.9;
+    }
+    .hint-xs a { color: var(--accent); text-decoration: none; }
+    .hint-xs a:hover { text-decoration: underline; }
+    .cdp-fields {
+      display: none;
+      margin-top: 0.85rem;
+      padding: 0.9rem 1rem;
+      background: rgba(34, 211, 238, 0.04);
+      border: 1px solid rgba(34, 211, 238, 0.15);
+      border-radius: 10px;
+    }
+    .cdp-fields.visible { display: block; }
   </style>
 </head>
 <body>
@@ -511,6 +529,28 @@
         <label for="wallet" data-i18n="wallet_label">Адрес кошелька (куда приходят USDC)</label>
         <input type="text" id="wallet" placeholder="0x..." />
         <p class="hint" data-i18n="wallet_hint">EVM-адрес в сети Base. Именно на него будут приходить платежи от агентов.</p>
+      </div>
+      <div style="margin-top: 1.15rem;">
+        <label for="facilitator" data-i18n="facilitator_label">Фасилитатор</label>
+        <select id="facilitator">
+          <option value="xpay" selected>xpay (по умолчанию) — без API-ключа</option>
+          <option value="cdp">CDP Coinbase — для листинга на agentic.market</option>
+        </select>
+        <p class="hint-xs" data-i18n="facilitator_hint">По умолчанию: facilitator.xpay.sh (оплата работает сразу). CDP нужен только если хочешь попасть в каталог agentic.market — для этого потребуется официальный API-ключ Coinbase Developer Platform. Без успешного settle через CDP листинга не будет.</p>
+      </div>
+      <div class="cdp-fields" id="cdpFields">
+        <p class="hint-xs" style="margin-bottom:0.7rem" data-i18n="cdp_note">Ключи берутся из env при деплое (<code>CDP_API_KEY_ID</code>, <code>CDP_API_KEY_SECRET</code>). Создать: <a href="https://portal.cdp.coinbase.com/" target="_blank">portal.cdp.coinbase.com</a>. В коде ниже можно оставить плейсхолдеры.</p>
+        <div class="grid-2">
+          <div>
+            <label for="cdpKeyId" style="font-size:0.8rem">CDP API Key ID</label>
+            <input type="text" id="cdpKeyId" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" />
+          </div>
+          <div>
+            <label for="cdpKeySecret" style="font-size:0.8rem">CDP API Key Secret</label>
+            <input type="password" id="cdpKeySecret" placeholder="secret (или оставь пустым → env)" />
+          </div>
+        </div>
+        <p class="hint-xs" data-i18n="cdp_listing_hint">Для agentic.market: Bazaar extension + CDP + один реальный settle после деплоя. Verify alone недостаточно — индексируется только после settle.</p>
       </div>
     </div>
     <!-- 3. Endpoint -->
@@ -595,7 +635,7 @@
         <div style="margin-top: 1.35rem;">
           <div class="card-title" data-i18n="req_title">requirements.txt</div>
           <div class="code-block">
-            <pre>x402[fastapi]
+            <pre id="reqCode">x402[fastapi]
 uvicorn
 python-dotenv
 pydantic
@@ -736,6 +776,14 @@ httpx</pre>
       bazaarChecks.classList.toggle("visible", on);
       bazaarFields.style.display = on ? "block" : "none";
     });
+    // ===== Facilitator toggle =====
+    const facSelect = document.getElementById("facilitator");
+    const cdpFields = document.getElementById("cdpFields");
+    function syncFacilitatorUI() {
+      cdpFields.classList.toggle("visible", facSelect.value === "cdp");
+    }
+    facSelect.addEventListener("change", syncFacilitatorUI);
+    syncFacilitatorUI();
     // ===== Helpers =====
     function priceToAtomic(priceStr) {
       let p = priceStr.replace("$", "").trim();
@@ -764,6 +812,10 @@ httpx</pre>
       // для Bazaar info указываем основной метод; при BOTH — POST (тело JSON)
       const methodForMeta = isBoth ? "POST" : method;
       const withBazaar = document.getElementById("bazaar").checked;
+      const facilitator = document.getElementById("facilitator").value; // xpay | cdp
+      const useCdp = facilitator === "cdp";
+      const cdpKeyId = document.getElementById("cdpKeyId").value.trim() || "";
+      const cdpKeySecret = document.getElementById("cdpKeySecret").value.trim() || "";
       const resourceUrl = document.getElementById("resourceUrl").value.trim() || "https://your-agent.onrender.com/";
       const description = document.getElementById("description").value.trim() ||
         "Paid AI Agent endpoint powered by x402. Accepts JSON input and returns JSON output.";
@@ -791,15 +843,37 @@ async def paid_endpoint_get(request: Request):
 async def paid_endpoint_route(request: Request):
     return await paid_endpoint(request)`;
 
-      // Shared helpers for both modes — same payment format that works with facilitator.xpay.sh
-      // and clients (awal / oval / scripts). resource as object + extra in accepts.
+      const facUrl = useCdp
+        ? "https://api.cdp.coinbase.com/platform/v2/x402"
+        : "https://facilitator.xpay.sh";
+
+      const cdpImports = useCdp
+        ? `\n# CDP auth (нужен для agentic.market / CDP Bazaar)
+try:
+    from cdp.auth.utils.jwt import generate_jwt, JwtOptions
+except ImportError:
+    generate_jwt = None
+    JwtOptions = None
+`
+        : "";
+
+      const cdpEnvBlock = useCdp
+        ? `FACILITATOR_URL = "${facUrl}"
+FACILITATOR_KIND = "cdp"
+CDP_API_KEY_ID = os.getenv("CDP_API_KEY_ID", "${cdpKeyId.replace(/"/g, '\\"')}")
+CDP_API_KEY_SECRET = os.getenv("CDP_API_KEY_SECRET", """${cdpKeySecret.replace(/"/g, '\\"')}""")
+`
+        : `FACILITATOR_URL = "${facUrl}"
+FACILITATOR_KIND = "xpay"
+`;
+
       const commonTop = `import os
 import json
 import base64
 import httpx
 from fastapi import FastAPI, Request, Response
 from fastapi.responses import JSONResponse
-
+${cdpImports}
 # ====================== НАСТРОЙКИ ======================
 PRICE_USD = "${price.replace("$","")}"
 AMOUNT_ATOMIC = "${amountAtomic}"
@@ -807,20 +881,93 @@ PAY_TO = "${wallet}"
 NETWORK = "${network}"
 RESOURCE_URL = "${resourceUrl}"
 USDC_ASSET = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
-FACILITATOR_URL = "https://facilitator.xpay.sh"
-# =======================================================
+${cdpEnvBlock}# =======================================================
 
 # ---------- ТВОЯ ЛОГИКА АГЕНТА ----------
 ${code}
 # ----------------------------------------
 `;
 
-      const verifySettleFn = `
+      // verify/settle: xpay без auth; CDP — JWT + обязательный paymentPayload.resource
+      const verifySettleFn = useCdp ? `
+def _cdp_auth_headers(method: str, path: str) -> dict:
+    """JWT Bearer для CDP Facilitator. Ключи: CDP_API_KEY_ID / CDP_API_KEY_SECRET."""
+    headers = {"Content-Type": "application/json"}
+    if not CDP_API_KEY_ID or not CDP_API_KEY_SECRET or generate_jwt is None:
+        return headers
+    try:
+        token = generate_jwt(JwtOptions(
+            api_key_id=CDP_API_KEY_ID,
+            api_key_secret=CDP_API_KEY_SECRET,
+            request_method=method,
+            request_host="api.cdp.coinbase.com",
+            request_path=path,
+            expires_in=120,
+        ))
+        headers["Authorization"] = f"Bearer {token}"
+    except Exception:
+        pass
+    return headers
+
 async def verify_and_settle_with_facilitator(payment_payload: str) -> bool:
     try:
         payment_data = json.loads(base64.b64decode(payment_payload).decode("utf-8"))
     except Exception:
         return False
+    # CDP Bazaar индексирует только если в settle есть resource
+    if not payment_data.get("resource"):
+        payment_data["resource"] = {"url": RESOURCE_URL, "mimeType": "application/json"}
+    requirements = {
+        "scheme": "exact",
+        "network": NETWORK,
+        "amount": AMOUNT_ATOMIC,
+        "asset": USDC_ASSET,
+        "payTo": PAY_TO,
+        "maxTimeoutSeconds": 300,
+        "extra": {
+            "name": "USD Coin",
+            "version": "2"
+        }
+    }
+    try:
+        async with httpx.AsyncClient(timeout=30) as client:
+            verify_path = "/platform/v2/x402/verify"
+            verify_response = await client.post(
+                f"{FACILITATOR_URL}/verify",
+                json={
+                    "paymentPayload": payment_data,
+                    "paymentRequirements": requirements
+                },
+                headers=_cdp_auth_headers("POST", verify_path)
+            )
+            if verify_response.status_code != 200:
+                return False
+            verify_data = verify_response.json()
+            if not verify_data.get("isValid", False):
+                return False
+            settle_path = "/platform/v2/x402/settle"
+            settle_response = await client.post(
+                f"{FACILITATOR_URL}/settle",
+                json={
+                    "paymentPayload": payment_data,
+                    "paymentRequirements": requirements
+                },
+                headers=_cdp_auth_headers("POST", settle_path)
+            )
+            if settle_response.status_code != 200:
+                return False
+            return True
+    except Exception:
+        return False
+` : `
+async def verify_and_settle_with_facilitator(payment_payload: str) -> bool:
+    try:
+        payment_data = json.loads(base64.b64decode(payment_payload).decode("utf-8"))
+    except Exception:
+        return False
+    # resource помогает клиентам/индексаторам (на xpay листинг agentic.market не появится)
+    if not payment_data.get("resource"):
+        payment_data["resource"] = {"url": RESOURCE_URL, "mimeType": "application/json"}
     requirements = {
         "scheme": "exact",
         "network": NETWORK,
@@ -1083,7 +1230,7 @@ ${routeDecorators}
 
 @app.get("/health")
 async def health():
-    return {"status": "ok", "price": PRICE_USD, "bazaar": True}
+    return {"status": "ok", "price": PRICE_USD, "bazaar": True, "facilitator": FACILITATOR_KIND}
 
 if __name__ == "__main__":
     import uvicorn
@@ -1196,7 +1343,7 @@ ${routeDecorators}
 
 @app.get("/health")
 async def health():
-    return {"status": "ok", "price": PRICE_USD}
+    return {"status": "ok", "price": PRICE_USD, "facilitator": FACILITATOR_KIND}
 
 if __name__ == "__main__":
     import uvicorn
@@ -1205,12 +1352,18 @@ if __name__ == "__main__":
       }
 
       document.getElementById("outputCode").textContent = fullCode;
+      let reqTxt = "x402[fastapi]\nuvicorn\npython-dotenv\npydantic\nhttpx";
+      if (useCdp) reqTxt += "\ncdp-sdk";
+      document.getElementById("reqCode").textContent = reqTxt;
       // -q обязателен: awal часто теряет POST body на retry после оплаты
       const testBody = (method === "POST" || method === "BOTH")
         ? ` -X POST -d '{"symbol":"BTC"}' -q '{"symbol":"BTC"}'`
         : ` -q '{"symbol":"BTC"}'`;
+      let testExtra = useCdp
+        ? "\n# CDP: после деплоя задай CDP_API_KEY_ID / CDP_API_KEY_SECRET и сделай один settle — иначе agentic.market не увидит эндпоинт"
+        : "";
       document.getElementById("testCmd").textContent =
-        `npx awal x402 pay https://твой-домен.onrender.com${path}${testBody}`;
+        `npx awal x402 pay https://твой-домен.onrender.com${path}${testBody}${testExtra}`;
       document.getElementById("result").style.display = "block";
       document.getElementById("result").scrollIntoView({ behavior: "smooth", block: "start" });
     }

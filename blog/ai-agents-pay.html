@@ -87,6 +87,7 @@
     </nav>
   </div>
 </header>
+<main>
 <article class="article">
   <div class="wrap">
     <img src="/assets/img/blog/fetch1.jpg" alt="ИИ-агент совершает микроплатёж по протоколу x402" loading="lazy">
@@ -122,9 +123,26 @@
     <p class="muted" data-i18n="p17">Дальше — практика: <a href="/#install">установка x402-wallet</a> и пример живого агента, который сканирует рынок и присылает сигналы.</p>
   </div>
 </article>
+</main>
 <footer class="site">
   <div class="wrap"><div>© <span id="yr"></span> x402-ai-agent.space</div></div>
 </footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Как ИИ-агенты учатся платить сами",
+  "description": "От API-ключей к машинным микроплатежам: почему протокол x402 делает ИИ-агентов по-настоящему автономными.",
+  "datePublished": "2026-07-20",
+  "author": {
+    "@type": "Organization",
+    "name": "x402-ai-agent.space"
+  },
+  "image": "https://x402-ai-agent.space/assets/img/blog/fetch1.jpg"
+}
+</script>
+
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
   const DEFAULT_LANG = 'ru';
