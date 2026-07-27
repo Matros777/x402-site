@@ -164,6 +164,13 @@
       margin: 0 auto;
       padding: 0 1.5rem 5rem;
     }
+    .container h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin: 0 0 1.25rem 0;
+    }
     .card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -484,6 +491,7 @@
     <p data-i18n="subtitle">Вставь логику → укажи цену в USDC → получи готовый сервер с x402. Агенты будут платить тебе автоматически.</p>
   </section>
   <div class="container">
+    <h2 data-i18n="section_h2">Настройка и генерация x402 агента</h2>
     <!-- 1. Code -->
     <div class="card">
       <div class="card-title" data-i18n="step1">1. Логика агента</div>
@@ -660,6 +668,7 @@ httpx</pre>
         badge: "Генератор продавца",
         title: "Сделай любой Python-код<br><span class=\"gradient\">платным агентом</span>",
         subtitle: "Вставь логику → укажи цену в USDC → получи готовый сервер с x402. Агенты будут платить тебе автоматически.",
+        section_h2: "Настройка и генерация x402 агента",
         step1: "1. Логика агента",
         code_label: "Python-функция (принимает dict, возвращает dict)",
         code_hint: "Можно вставить любой рабочий код. Главное — функция должна называться <code>agent_logic</code> и принимать/возвращать словарь.",
@@ -702,6 +711,7 @@ httpx</pre>
         badge: "Seller Generator",
         title: "Turn any Python code<br><span class=\"gradient\">into a paid agent</span>",
         subtitle: "Paste your logic → set USDC price → get a ready x402 server. Agents will pay you automatically.",
+        section_h2: "Configure and generate x402 agent",
         step1: "1. Agent logic",
         code_label: "Python function (accepts dict, returns dict)",
         code_hint: "You can paste any working code. The function must be named <code>agent_logic</code> and accept/return a dictionary.",

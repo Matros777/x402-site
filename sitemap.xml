@@ -4,6 +4,7 @@
   <!-- Главная -->
   <url>
     <loc>https://x402-ai-agent.space/</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -11,6 +12,7 @@
   <!-- Блог -->
   <url>
     <loc>https://x402-ai-agent.space/blog/</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
@@ -18,6 +20,7 @@
   <!-- AI Generator -->
   <url>
     <loc>https://x402-ai-agent.space/generator/</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -26,72 +29,84 @@
 
   <url>
     <loc>https://x402-ai-agent.space/blog/ai-agent-v6-intro.html</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://x402-ai-agent.space/blog/ai-agents-pay.html</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://x402-ai-agent.space/blog/agent-does-your-job.html</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://x402-ai-agent.space/blog/agents-that-pay-themselves.html</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://x402-ai-agent.space/blog/agents-that-run-business.html</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://x402-ai-agent.space/blog/listing-on-agentic-market.html</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://x402-ai-agent.space/blog/how-to-deploy-agent.html</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://x402-ai-agent.space/blog/agents-trade-better.html</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://x402-ai-agent.space/blog/agents-that-pay-people.html</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://x402-ai-agent.space/blog/autonomy-vs-control.html</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://x402-ai-agent.space/blog/self-improving-agents.html</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://x402-ai-agent.space/blog/self-improving-x402.html</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
