@@ -522,6 +522,7 @@
           <select id="method">
             <option value="POST">POST</option>
             <option value="GET">GET</option>
+            <option value="BOTH">POST + GET</option>
           </select>
         </div>
         <div>
@@ -758,7 +759,10 @@ httpx</pre>
       const network = document.getElementById("network").value;
       const method = document.getElementById("method").value;
       const path = document.getElementById("path").value.trim() || "/";
-      const methodLower = method.toLowerCase();
+      const isBoth = method === "BOTH";
+      const methodLower = isBoth ? "post" : method.toLowerCase();
+      // для Bazaar info указываем основной метод; при BOTH — POST (тело JSON)
+      const methodForMeta = isBoth ? "POST" : method;
       const withBazaar = document.getElementById("bazaar").checked;
       const resourceUrl = document.getElementById("resourceUrl").value.trim() || "https://your-agent.onrender.com/";
       const description = document.getElementById("description").value.trim() ||
@@ -773,6 +777,19 @@ httpx</pre>
         outputExamplePy = outputExampleRaw;
       }
       const descEsc = description.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+
+      // Роуты: при BOTH регистрируем и POST и GET (чтобы Bazaar не получал 405)
+      const routeDecorators = isBoth
+        ? `@app.post("${path}")
+async def paid_endpoint_post(request: Request):
+    return await paid_endpoint(request)
+
+@app.get("${path}")
+async def paid_endpoint_get(request: Request):
+    return await paid_endpoint(request)`
+        : `@app.${methodLower}("${path}")
+async def paid_endpoint_route(request: Request):
+    return await paid_endpoint(request)`;
 
       // Shared helpers for both modes — same payment format that works with facilitator.xpay.sh
       // and clients (awal / oval / scripts). resource as object + extra in accepts.
@@ -846,23 +863,68 @@ async def verify_and_settle_with_facilitator(payment_payload: str) -> bool:
         return False
 `;
 
-      // Robust payload extraction: body JSON + query params (so symbol=BTC works)
+      // Robust payload extraction:
+      // awal / many x402 CLI clients often drop POST body on the paid retry.
+      // Critical fields should also be passed via query (-q). Body is read once only.
       const payloadHelper = `
 async def extract_payload(request: Request) -> dict:
-    """Читаем body (JSON) и query — чтобы symbol из запроса всегда доходил до agent_logic."""
+    """
+    Собираем входные данные из query + body (JSON или form).
+    Важно: клиенты вроде awal при retry после 402 часто НЕ пересылают body —
+    поэтому критичные поля (symbol и т.п.) дублируй в query: -q '{"symbol":"PEPE"}'
+    """
     payload = {}
-    # query params first
+
+    # 1) query params — самый надёжный канал для awal CLI
     for k, v in request.query_params.items():
-        payload[k] = v
-    # then body (overrides query if present)
+        if v is None:
+            continue
+        s = str(v).strip()
+        if s.lower() in ("true", "false"):
+            payload[k] = s.lower() == "true"
+        else:
+            try:
+                payload[k] = float(s) if "." in s else int(s)
+            except ValueError:
+                payload[k] = v
+
+    # 2) body читаем ОДИН раз (stream)
     try:
-        body = await request.body()
-        if body:
-            data = json.loads(body.decode("utf-8"))
-            if isinstance(data, dict):
-                payload.update(data)
+        body_bytes = await request.body()
+        if body_bytes:
+            text = body_bytes.decode("utf-8").strip()
+            if not text:
+                return payload
+            # JSON object?
+            if text.startswith("{") or text.startswith("["):
+                try:
+                    data = json.loads(text)
+                    if isinstance(data, dict):
+                        payload.update(data)
+                        return payload
+                except Exception:
+                    pass
+            # form-urlencoded: a=1&b=2  или  key={"nested":1}
+            try:
+                from urllib.parse import parse_qs
+                parsed = parse_qs(text, keep_blank_values=True)
+                for k, vals in parsed.items():
+                    val = vals[0] if vals else ""
+                    # если значение само по себе JSON-объект
+                    if isinstance(val, str) and val.strip().startswith("{"):
+                        try:
+                            nested = json.loads(val)
+                            if isinstance(nested, dict):
+                                payload.update(nested)
+                                continue
+                        except Exception:
+                            pass
+                    payload[k] = val
+            except Exception:
+                pass
     except Exception:
         pass
+
     return payload
 `;
 
@@ -895,7 +957,7 @@ PAYMENT_CONFIG_OVAL = {
             "info": {
                 "input": {
                     "type": "http",
-                    "method": "${method}",
+                    "method": "${methodForMeta}",
                     "body": {
                         "symbol": {
                             "type": "string",
@@ -943,7 +1005,7 @@ PAYMENT_CONFIG_SCRIPT = {
             "info": {
                 "input": {
                     "type": "http",
-                    "method": "${method}",
+                    "method": "${methodForMeta}",
                     "body": {
                         "symbol": {
                             "type": "string",
@@ -995,7 +1057,6 @@ def create_402_response_script():
 ` + verifySettleFn + payloadHelper + `
 app = FastAPI(title="x402 Paid Agent (Bazaar-ready)")
 
-@app.${methodLower}("${path}")
 async def paid_endpoint(request: Request):
     payment_header = (
         request.headers.get("PAYMENT-SIGNATURE")
@@ -1017,6 +1078,8 @@ async def paid_endpoint(request: Request):
 
     payload = await extract_payload(request)
     return agent_logic(payload)
+
+${routeDecorators}
 
 @app.get("/health")
 async def health():
@@ -1107,7 +1170,6 @@ def create_402_response_oval():
 ` + verifySettleFn + payloadHelper + `
 app = FastAPI(title="x402 Paid Agent")
 
-@app.${methodLower}("${path}")
 async def paid_endpoint(request: Request):
     payment_header = (
         request.headers.get("PAYMENT-SIGNATURE")
@@ -1130,6 +1192,8 @@ async def paid_endpoint(request: Request):
     payload = await extract_payload(request)
     return agent_logic(payload)
 
+${routeDecorators}
+
 @app.get("/health")
 async def health():
     return {"status": "ok", "price": PRICE_USD}
@@ -1141,9 +1205,10 @@ if __name__ == "__main__":
       }
 
       document.getElementById("outputCode").textContent = fullCode;
-      const testBody = method === "POST"
-        ? ` -X POST -H "Content-Type: application/json" -d '{"symbol":"BTC"}'`
-        : `?symbol=BTC`;
+      // -q обязателен: awal часто теряет POST body на retry после оплаты
+      const testBody = (method === "POST" || method === "BOTH")
+        ? ` -X POST -d '{"symbol":"BTC"}' -q '{"symbol":"BTC"}'`
+        : ` -q '{"symbol":"BTC"}'`;
       document.getElementById("testCmd").textContent =
         `npx awal x402 pay https://твой-домен.onrender.com${path}${testBody}`;
       document.getElementById("result").style.display = "block";
