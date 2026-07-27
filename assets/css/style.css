@@ -38,6 +38,10 @@ header.site{
 .logo b{color:var(--blue)}
 .nav a.link{color:var(--muted);font-size:15px;margin-left:28px;transition:color .2s}
 .nav a.link:hover{color:var(--text)}
+.nav .link{padding:8px 12px;border-radius:8px;font-size:0.875rem;color:var(--muted);transition:color .2s,background .2s}
+.nav .link:hover{color:var(--text);background:rgba(255,255,255,0.05)}
+.lang-switch{margin-left:8px;border:1px solid var(--line);border-radius:9999px;padding:6px 14px !important;font-size:0.8rem !important}
+.lang-switch:hover{border-color:#444;background:rgba(255,255,255,0.06) !important}
 
 /* Adjust hero illustration size */
 .hero-illustration{max-width:260px;}
@@ -156,9 +160,10 @@ footer.site a:hover{color:var(--text)}
 small.note{color:var(--muted);font-size:13px}
 
 /* Logo image in header */
-.logo{display:flex;align-items:center;gap:10px}
-.logo-img{height:80px;width:80px;border-radius:12px;object-fit:cover;border:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo-img{height:28px;width:auto;border-radius:6px;object-fit:contain}
 .logo span{font-weight:700;letter-spacing:-.02em;font-size:20px}
+.logo span span{color:var(--muted)}
 
 /* Hero with logo art */
 .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;text-align:left}
