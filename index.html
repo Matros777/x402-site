@@ -982,13 +982,13 @@ node agent.js</pre>
 <section class="block" id="bot">
   <div class="wrap">
     <div class="pitch">
-      <h2 data-i18n="bot.title">А если не собирать агента с нуля?</h2>
-      <p data-i18n="bot.text">Идея x402 — в том, чтобы агенты были полезными и самодостаточными. Мы собрали одного такого: он круглосуточно сканирует рынок BTC/ETH, ищет дивергенции RSI и объёмные импульсы и присылает сигналы, по которым можно ставить грид-ботов.</p>
-      <p class="muted" style="font-size:15px" data-i18n="bot.note">Это не «гарантия прибыли» и не финсовет — просто рабочий пример агента, который делает рутину за вас. Решать, торговать или нет, всё равно вам.</p>
+      <h2 data-i18n="bot.title">Агент, который уже принимает USDC</h2>
+      <p data-i18n="bot.text">Не демо «на картинке», а рабочий эндпоинт: сканирует до 500 пар, считает индикаторы, ищет дивергенции RSI и объёмные импульсы и отдаёт сигналы под грид-ботов.</p>
+      <p class="muted" style="font-size:15px" data-i18n="bot.note">Доступ только после оплаты по x402. Без USDC сервер отвечает 402 Payment Required и сигнал не отдаёт — так и должен работать навык для агентов, а не для «посмотреть бесплатно».</p>
       <div class="mt24">
         <a class="cta" href="https://crypto-snapshot-pro.onrender.com/app" target="_blank" rel="noopener" data-i18n="bot.cta">Посмотреть агента сигналов →</a>
       </div>
-      <p class="note mt24" data-i18n="bot.footnote">Ссылка ведёт на внешний сервис. Относитесь к торговле ответственно.</p>
+      <p class="note mt24" data-i18n="bot.footnote">Это не гарантия прибыли и не финсовет. Просто живой пример: агент сам принимает микроплатежи и закрывает рутину. Решение торговать — за вами.</p>
     </div>
   </div>
 </section>
@@ -1319,11 +1319,11 @@ npx awal send 10 usdc 0x...</pre>
       "cta": "Создать платного агента →"
     },
     "bot": {
-      "title": "А если не собирать агента с нуля?",
-      "text": "Идея x402 — в том, чтобы агенты были полезными и самодостаточными. Мы собрали одного такого: он круглосуточно сканирует рынок BTC/ETH, ищет дивергенции RSI и объёмные импульсы и присылает сигналы, по которым можно ставить грид-ботов.",
-      "note": "Это не «гарантия прибыли» и не финсовет — просто рабочий пример агента, который делает рутину за вас. Решать, торговать или нет, всё равно вам.",
+      "title": "Агент, который уже принимает USDC",
+      "text": "Не демо «на картинке», а рабочий эндпоинт: сканирует до 500 пар, считает индикаторы, ищет дивергенции RSI и объёмные импульсы и отдаёт сигналы под грид-ботов.",
+      "note": "Доступ только после оплаты по x402. Без USDC сервер отвечает 402 Payment Required и сигнал не отдаёт — так и должен работать навык для агентов, а не для «посмотреть бесплатно».",
       "cta": "Посмотреть агента сигналов →",
-      "footnote": "Ссылка ведёт на внешний сервис. Относитесь к торговле ответственно."
+      "footnote": "Это не гарантия прибыли и не финсовет. Просто живой пример: агент сам принимает микроплатежи и закрывает рутину. Решение торговать — за вами."
     },
     "commands": {
       "kicker": "Справочник",
@@ -1463,12 +1463,12 @@ npx awal send 10 usdc 0x...</pre>
       "desc": "Paste any Python code, set a price in USDC, and get a ready-made x402 agent server. Monetize your AI agent in minutes.",
       "cta": "Create paid agent →"
     },
-    "bot": {
-      "title": "Don’t want to build an agent from scratch?",
-      "text": "The idea of x402 is that agents are useful and self-sufficient. We’ve built one: it scans BTC/ETH markets 24/7, looks for RSI divergences and volume impulses, and sends signals that can be used to set up grid bots.",
-      "note": "This is not a “profit guarantee” or financial advice — just a working example of an agent that does routine work for you. The decision to trade or not is still yours.",
+"bot": {
+      "title": "An agent that already accepts USDC",
+      "text": "Not a \"picture demo\", but a working endpoint: scans up to 500 pairs, calculates indicators, looks for RSI divergences and volume impulses, and gives signals for grid bots.",
+      "note": "Access only after x402 payment. Without USDC the server responds 402 Payment Required and won't give the signal — this is how an agent skill should work, not \"view for free\".",
       "cta": "View signal agent →",
-      "footnote": "The link leads to an external service. Trade responsibly."
+      "footnote": "This is not a profit guarantee or financial advice. Just a live example: an agent that accepts micropayments and handles the routine. The decision to trade is yours."
     },
     "commands": {
       "kicker": "Reference",
