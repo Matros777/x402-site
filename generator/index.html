@@ -29,6 +29,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
   <style>
     :root {
       --bg: #050505;
@@ -596,7 +597,8 @@
             <pre>x402[fastapi]
 uvicorn
 python-dotenv
-pydantic</pre>
+pydantic
+httpx</pre>
           </div>
         </div>
         <div style="margin-top: 1.35rem;">
@@ -611,6 +613,8 @@ pydantic</pre>
       <a href="https://docs.x402.org" target="_blank">docs.x402.org</a> · <a href="https://x402-ai-agent.space/" target="_blank">x402-ai-agent.space</a>
     </p>
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
   <script>
     // ===== i18n =====
     const i18n = {
@@ -733,10 +737,9 @@ pydantic</pre>
     });
     // ===== Helpers =====
     function priceToAtomic(priceStr) {
-      // "0.05" or "$0.05" → "50000" (USDC has 6 decimals)
       let p = priceStr.replace("$", "").trim();
       const num = parseFloat(p);
-      if (isNaN(num) || num < 0.001) return "1000"; // min $0.001
+      if (isNaN(num) || num < 0.001) return "1000";
       return String(Math.round(num * 1_000_000));
     }
     function escapePy(str) {
@@ -755,55 +758,170 @@ pydantic</pre>
       const network = document.getElementById("network").value;
       const method = document.getElementById("method").value;
       const path = document.getElementById("path").value.trim() || "/";
-      const routeKey = `${method} ${path}`;
       const methodLower = method.toLowerCase();
       const withBazaar = document.getElementById("bazaar").checked;
       const resourceUrl = document.getElementById("resourceUrl").value.trim() || "https://your-agent.onrender.com/";
       const description = document.getElementById("description").value.trim() ||
         "Paid AI Agent endpoint powered by x402. Accepts JSON input and returns JSON output.";
       let outputExampleRaw = document.getElementById("outputExample").value.trim() ||
-        '{\\n  "symbol": "BTC",\\n  "message": "Hello from x402 agent"\\n}';
-      // try to parse example for pretty embedding
+        '{\n  "symbol": "BTC",\n  "message": "Hello from x402 agent"\n}';
       let outputExamplePy = outputExampleRaw;
       try {
         const parsed = JSON.parse(outputExampleRaw);
-        outputExamplePy = JSON.stringify(parsed, null, 8).replace(/^/gm, "        ").trim();
+        outputExamplePy = JSON.stringify(parsed, null, 8).replace(/^/gm, " ").trim();
       } catch(e) {
         outputExamplePy = outputExampleRaw;
       }
+      const descEsc = description.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
 
-      let fullCode;
-      if (withBazaar) {
-        // Mode with explicit 402 + Bazaar extension (passes agentic.market checks)
-        fullCode = `import os
+      // Shared helpers for both modes — same payment format that works with facilitator.xpay.sh
+      // and clients (awal / oval / scripts). resource as object + extra in accepts.
+      const commonTop = `import os
 import json
 import base64
+import httpx
 from fastapi import FastAPI, Request, Response
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel
 
 # ====================== НАСТРОЙКИ ======================
 PRICE_USD = "${price.replace("$","")}"
-AMOUNT_ATOMIC = "${amountAtomic}"  # USDC 6 decimals ($0.001 = 1000)
+AMOUNT_ATOMIC = "${amountAtomic}"
 PAY_TO = "${wallet}"
 NETWORK = "${network}"
 RESOURCE_URL = "${resourceUrl}"
+USDC_ASSET = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
 FACILITATOR_URL = "https://facilitator.xpay.sh"
-USDC_ASSET = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"  # USDC on Base
 # =======================================================
 
 # ---------- ТВОЯ ЛОГИКА АГЕНТА ----------
 ${code}
 # ----------------------------------------
+`;
 
-# ============================================================
-# PAYMENT CONFIG (проходит все проверки Bazaar / agentic.market)
-# ============================================================
-PAYMENT_CONFIG = {
+      const verifySettleFn = `
+async def verify_and_settle_with_facilitator(payment_payload: str) -> bool:
+    try:
+        payment_data = json.loads(base64.b64decode(payment_payload).decode("utf-8"))
+    except Exception:
+        return False
+    requirements = {
+        "scheme": "exact",
+        "network": NETWORK,
+        "amount": AMOUNT_ATOMIC,
+        "asset": USDC_ASSET,
+        "payTo": PAY_TO,
+        "maxTimeoutSeconds": 300,
+        "extra": {
+            "name": "USD Coin",
+            "version": "2"
+        }
+    }
+    try:
+        async with httpx.AsyncClient(timeout=20) as client:
+            verify_response = await client.post(
+                f"{FACILITATOR_URL}/verify",
+                json={
+                    "paymentPayload": payment_data,
+                    "paymentRequirements": requirements
+                },
+                headers={"Content-Type": "application/json"}
+            )
+            if verify_response.status_code != 200:
+                return False
+            verify_data = verify_response.json()
+            if not verify_data.get("isValid", False):
+                return False
+            settle_response = await client.post(
+                f"{FACILITATOR_URL}/settle",
+                json={
+                    "paymentPayload": payment_data,
+                    "paymentRequirements": requirements
+                },
+                headers={"Content-Type": "application/json"}
+            )
+            if settle_response.status_code != 200:
+                return False
+            return True
+    except Exception:
+        return False
+`;
+
+      // Robust payload extraction: body JSON + query params (so symbol=BTC works)
+      const payloadHelper = `
+async def extract_payload(request: Request) -> dict:
+    """Читаем body (JSON) и query — чтобы symbol из запроса всегда доходил до agent_logic."""
+    payload = {}
+    # query params first
+    for k, v in request.query_params.items():
+        payload[k] = v
+    # then body (overrides query if present)
+    try:
+        body = await request.body()
+        if body:
+            data = json.loads(body.decode("utf-8"))
+            if isinstance(data, dict):
+                payload.update(data)
+    except Exception:
+        pass
+    return payload
+`;
+
+      let fullCode;
+      if (withBazaar) {
+        fullCode = commonTop + `
+PAYMENT_CONFIG_OVAL = {
+    "x402Version": 2,
+    "resource": RESOURCE_URL,
+    "description": """${descEsc}""",
+    "mimeType": "application/json",
+    "accepts": [
+        {
+            "scheme": "exact",
+            "network": NETWORK,
+            "amount": AMOUNT_ATOMIC,
+            "asset": USDC_ASSET,
+            "payTo": PAY_TO,
+            "maxTimeoutSeconds": 300
+        }
+    ],
+    "domain": {
+        "name": "USD Coin",
+        "version": "2",
+        "chainId": 8453,
+        "verifyingContract": USDC_ASSET
+    },
+    "extensions": {
+        "bazaar": {
+            "info": {
+                "input": {
+                    "type": "http",
+                    "method": "${method}",
+                    "body": {
+                        "symbol": {
+                            "type": "string",
+                            "description": "Input parameter (example: symbol)"
+                        }
+                    },
+                    "bodyType": "json"
+                },
+                "output": {
+                    "type": "json",
+                    "example": ${outputExamplePy}
+                }
+            },
+            "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object"
+            }
+        }
+    }
+}
+
+PAYMENT_CONFIG_SCRIPT = {
     "x402Version": 2,
     "resource": {
         "url": RESOURCE_URL,
-        "description": """${description.replace(/"/g, '\\"')}""",
+        "description": """${descEsc}""",
         "mimeType": "application/json"
     },
     "accepts": [
@@ -847,10 +965,10 @@ PAYMENT_CONFIG = {
     }
 }
 
-def create_402_response():
-    """HTTP 402 Payment Required — с Bazaar extension"""
+def create_402_response_oval():
+    config = PAYMENT_CONFIG_OVAL.copy()
     encoded = base64.b64encode(
-        json.dumps(PAYMENT_CONFIG, separators=(",", ":")).encode()
+        json.dumps(config, separators=(",", ":")).encode()
     ).decode()
     return Response(
         status_code=402,
@@ -858,33 +976,46 @@ def create_402_response():
             "PAYMENT-REQUIRED": encoded,
             "Content-Type": "application/json"
         },
-        content=json.dumps(PAYMENT_CONFIG, separators=(",", ":"))
+        content=json.dumps(config, separators=(",", ":"))
     )
 
+def create_402_response_script():
+    config = PAYMENT_CONFIG_SCRIPT.copy()
+    encoded = base64.b64encode(
+        json.dumps(config, separators=(",", ":")).encode()
+    ).decode()
+    return Response(
+        status_code=402,
+        headers={
+            "PAYMENT-REQUIRED": encoded,
+            "Content-Type": "application/json"
+        },
+        content=json.dumps(config, separators=(",", ":"))
+    )
+` + verifySettleFn + payloadHelper + `
 app = FastAPI(title="x402 Paid Agent (Bazaar-ready)")
 
-class RequestBody(BaseModel):
-    data: dict = {}
-
 @app.${methodLower}("${path}")
-async def paid_endpoint(request: Request, body: RequestBody = None):
-    # Проверяем наличие платежа (упрощённо: наличие заголовка PAYMENT-SIGNATURE / X-PAYMENT)
-    # В продакшене используй официальный x402 middleware / facilitator verify
+async def paid_endpoint(request: Request):
     payment_header = (
         request.headers.get("PAYMENT-SIGNATURE")
         or request.headers.get("X-PAYMENT")
         or request.headers.get("payment-signature")
     )
     if not payment_header:
-        return create_402_response()
+        user_agent = request.headers.get("user-agent", "").lower()
+        if "awal" in user_agent or "oval" in user_agent:
+            return create_402_response_oval()
+        return create_402_response_script()
 
-    # ИСПРАВЛЕНО: Правильная обработка входных данных
-    if body and body.data:
-        payload = body.data
-    elif body:
-        payload = body.dict()
-    else:
-        payload = {}
+    valid = await verify_and_settle_with_facilitator(payment_header)
+    if not valid:
+        return Response(
+            content="Payment verification failed",
+            status_code=402
+        )
+
+    payload = await extract_payload(request)
     return agent_logic(payload)
 
 @app.get("/health")
@@ -896,58 +1027,113 @@ if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=int(os.getenv("PORT", 8000)))
 `;
       } else {
-        // Standard x402 SDK middleware mode
-        fullCode = `import os
-from fastapi import FastAPI
-from pydantic import BaseModel
-from x402.http import FacilitatorConfig, HTTPFacilitatorClient, PaymentOption
-from x402.http.middleware.fastapi import PaymentMiddlewareASGI
-from x402.http.types import RouteConfig
-from x402.mechanisms.evm.exact import ExactEvmServerScheme
-from x402.server import x402ResourceServer
-# ====================== НАСТРОЙКИ ======================
-PRICE = "${price}"
-PAY_TO = "${wallet}"
-NETWORK = "${network}"
-FACILITATOR_URL = "https://facilitator.xpay.sh"
-# =======================================================
-# ---------- ТВОЯ ЛОГИКА АГЕНТА ----------
-${code}
-# ----------------------------------------
-app = FastAPI(title="x402 Paid Agent")
-facilitator = HTTPFacilitatorClient(FacilitatorConfig(url=FACILITATOR_URL))
-server = x402ResourceServer(facilitator)
-server.register(NETWORK, ExactEvmServerScheme())
-routes = {
-    "${routeKey}": RouteConfig(
-        accepts=[
-            PaymentOption(
-                scheme="exact",
-                price=PRICE,
-                network=NETWORK,
-                pay_to=PAY_TO,
-            )
-        ],
-        description="Paid AI Agent endpoint",
-        mime_type="application/json",
-    )
+        // Без Bazaar — тот же рабочий формат payment config (resource object + extra),
+        // чтобы оплата проходила у клиентов/фасилитатора
+        fullCode = commonTop + `
+PAYMENT_CONFIG = {
+    "x402Version": 2,
+    "resource": {
+        "url": RESOURCE_URL,
+        "description": """${descEsc}""",
+        "mimeType": "application/json"
+    },
+    "accepts": [
+        {
+            "scheme": "exact",
+            "network": NETWORK,
+            "amount": AMOUNT_ATOMIC,
+            "asset": USDC_ASSET,
+            "payTo": PAY_TO,
+            "maxTimeoutSeconds": 300,
+            "extra": {
+                "name": "USD Coin",
+                "version": "2"
+            }
+        }
+    ]
 }
-app.add_middleware(PaymentMiddlewareASGI, routes=routes, server=server)
-class RequestBody(BaseModel):
-    data: dict = {}
+
+# Вариант для клиентов awal/oval (resource строкой + domain)
+PAYMENT_CONFIG_OVAL = {
+    "x402Version": 2,
+    "resource": RESOURCE_URL,
+    "description": """${descEsc}""",
+    "mimeType": "application/json",
+    "accepts": [
+        {
+            "scheme": "exact",
+            "network": NETWORK,
+            "amount": AMOUNT_ATOMIC,
+            "asset": USDC_ASSET,
+            "payTo": PAY_TO,
+            "maxTimeoutSeconds": 300
+        }
+    ],
+    "domain": {
+        "name": "USD Coin",
+        "version": "2",
+        "chainId": 8453,
+        "verifyingContract": USDC_ASSET
+    }
+}
+
+def create_402_response():
+    config = PAYMENT_CONFIG.copy()
+    encoded = base64.b64encode(
+        json.dumps(config, separators=(",", ":")).encode()
+    ).decode()
+    return Response(
+        status_code=402,
+        headers={
+            "PAYMENT-REQUIRED": encoded,
+            "Content-Type": "application/json"
+        },
+        content=json.dumps(config, separators=(",", ":"))
+    )
+
+def create_402_response_oval():
+    config = PAYMENT_CONFIG_OVAL.copy()
+    encoded = base64.b64encode(
+        json.dumps(config, separators=(",", ":")).encode()
+    ).decode()
+    return Response(
+        status_code=402,
+        headers={
+            "PAYMENT-REQUIRED": encoded,
+            "Content-Type": "application/json"
+        },
+        content=json.dumps(config, separators=(",", ":"))
+    )
+` + verifySettleFn + payloadHelper + `
+app = FastAPI(title="x402 Paid Agent")
+
 @app.${methodLower}("${path}")
-async def paid_endpoint(body: RequestBody = None):
-    # ИСПРАВЛЕНО: Правильная обработка входных данных
-    if body and body.data:
-        payload = body.data
-    elif body:
-        payload = body.dict()
-    else:
-        payload = {}
+async def paid_endpoint(request: Request):
+    payment_header = (
+        request.headers.get("PAYMENT-SIGNATURE")
+        or request.headers.get("X-PAYMENT")
+        or request.headers.get("payment-signature")
+    )
+    if not payment_header:
+        user_agent = request.headers.get("user-agent", "").lower()
+        if "awal" in user_agent or "oval" in user_agent:
+            return create_402_response_oval()
+        return create_402_response()
+
+    valid = await verify_and_settle_with_facilitator(payment_header)
+    if not valid:
+        return Response(
+            content="Payment verification failed",
+            status_code=402
+        )
+
+    payload = await extract_payload(request)
     return agent_logic(payload)
+
 @app.get("/health")
 async def health():
-    return {"status": "ok", "price": PRICE}
+    return {"status": "ok", "price": PRICE_USD}
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=int(os.getenv("PORT", 8000)))
@@ -955,7 +1141,9 @@ if __name__ == "__main__":
       }
 
       document.getElementById("outputCode").textContent = fullCode;
-      const testBody = method === "POST" ? ` -X POST -d '{"symbol":"DOGE"}'` : "";
+      const testBody = method === "POST"
+        ? ` -X POST -H "Content-Type: application/json" -d '{"symbol":"BTC"}'`
+        : `?symbol=BTC`;
       document.getElementById("testCmd").textContent =
         `npx awal x402 pay https://твой-домен.onrender.com${path}${testBody}`;
       document.getElementById("result").style.display = "block";
