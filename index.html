@@ -137,6 +137,8 @@
       border-radius: var(--radius-full);
       padding: 6px 14px !important;
       font-size: 0.8rem !important;
+      cursor: pointer;
+      user-select: none;
     }
     .lang-switch:hover {
       border-color: #444;
@@ -787,7 +789,7 @@
       <a class="link" href="#bot" data-i18n="nav.bot">Агент</a>
       <!-- НОВЫЙ ПУНКТ МЕНЮ: ГЕНЕРАТОР АГЕНТА -->
       <a class="link" href="/generator" data-i18n="nav.generator">Генератор агента</a>
-      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+      <span class="link lang-switch" role="button" tabindex="0" data-i18n="nav.lang">🇬🇧 EN</span>
     </nav>
   </div>
 </header>
@@ -1957,13 +1959,7 @@ npx awal send 10 usdc 0x...</pre>
   function updateSwitcher(lang) {
     const switcher = document.querySelector('.lang-switch');
     if (!switcher) return;
-    if (lang === 'ru') {
-      switcher.textContent = '🇬🇧 EN';
-      switcher.href = '?lang=en';
-    } else {
-      switcher.textContent = '🇷🇺 RU';
-      switcher.href = '?lang=ru';
-    }
+    switcher.textContent = (lang === 'ru') ? '🇬🇧 EN' : '🇷🇺 RU';
   }
 
   function setLanguage(lang) {
