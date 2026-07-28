@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Агенты уже работают 12 часов без человека. И это только начало — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="Горизонт автономной работы ИИ-агентов вырос с 40 минут до 12 часов за полтора года. Данные METR, кривая роста и что это меняет на практике.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0a0a">
+  <!-- Open Graph -->
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/agents-12-hours.html">
+  <meta property="og:title" data-i18n="title" content="Агенты уже работают 12 часов без человека. И это только начало — x402-ai-agent.space">
+  <meta property="og:description" data-i18n="metaDescription" content="Горизонт автономной работы ИИ-агентов вырос с 40 минут до 12 часов за полтора года. Данные METR, кривая роста и что это меняет на практике.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/agents-12-hours-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ru_RU">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="Агенты уже работают 12 часов без человека. И это только начало — x402-ai-agent.space">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Горизонт автономной работы ИИ-агентов вырос с 40 минут до 12 часов за полтора года. Данные METR, кривая роста и что это меняет на практике.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/agents-12-hours-cover.jpg">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/agents-12-hours.html">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #f5f5f5;
+      --text-secondary: #a3a3a3;
+      --muted: #737373;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition); }
+    .wrap { width: 100%; max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; gap: 24px;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 500; font-size: 1.1rem; letter-spacing: -0.02em;
+      color: var(--text-secondary); flex-shrink: 0;
+    }
+    .logo-img { height: 28px; width: auto; border-radius: 6px; }
+    .logo span span { color: var(--muted); }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      padding: 8px 14px; border-radius: var(--radius-xs);
+      font-size: 0.875rem; color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    nav .link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch {
+      border: 1px solid var(--border); border-radius: var(--radius-full);
+      padding: 6px 14px !important; font-size: 0.8rem !important;
+    }
+    .lang-switch:hover { border-color: #444; background: rgba(255,255,255,0.06) !important; }
+
+    article { padding: 48px 0 64px; }
+    article img {
+      width: 100%;
+      border-radius: var(--radius-sm);
+      margin-bottom: 32px;
+      border: 1px solid var(--border-subtle);
+    }
+    article h1 {
+      font-size: clamp(1.5rem, 3vw, 1.85rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    article h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      margin: 32px 0 12px;
+      color: var(--text);
+    }
+    article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    article p strong { color: var(--text); font-weight: 600; }
+    .highlight {
+      margin: 28px 0;
+      padding: 20px 22px;
+      background: linear-gradient(135deg, rgba(139,92,246,0.08), rgba(34,211,238,0.06));
+      border: 1px solid rgba(139,92,246,0.15);
+      border-radius: var(--radius-sm);
+      font-size: 1.05rem;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .note {
+      margin: 28px 0;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .note a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 3px; }
+    .note a:hover { color: var(--text); }
+
+    footer.site {
+      padding: 28px 0;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 32px 0 56px; }
+      article h2 { margin-top: 32px; }
+    }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article>
+  <div class="wrap">
+    <img src="/assets/img/blog/agents-12-hours-cover.jpg" alt="ИИ-агент работает 12 часов автономно" loading="lazy">
+
+    <h1 data-i18n="h1">Агенты уже работают 12 часов без человека. И это только начало</h1>
+    <div class="meta" data-i18n="meta">2026-07-29 · 3 мин чтения</div>
+
+    <p data-i18n="p1">Ещё совсем недавно, в конце 2024 года, лучший агент мог автономно продержаться около <strong>40 минут</strong>. Потом он начинал терять контекст, зацикливаться или просто сдавался.</p>
+
+    <p data-i18n="p2">Сейчас, в середине 2026-го, ситуация изменилась радикально. По данным <a href="https://metr.org" target="_blank" rel="noopener" style="color:var(--text-secondary);text-decoration:underline;text-underline-offset:3px;">METR</a>, которые отслеживают «горизонт автономной работы», лучшие системы уже закрывают задачи, на которые у человека-эксперта уходит около <strong>12 часов</strong>. Причём речь идёт не о простых запросах, а о сложных, многошаговых работах: исследование, написание кода, тестирование, исправление ошибок, деплой и финальный отчёт.</p>
+
+    <div class="highlight" data-i18n="highlight">
+      Горизонт удваивается примерно каждые 4–7 месяцев. Если тренд сохранится, к концу 2027 года мы можем увидеть агентов, которые уверенно тянут задачи на несколько рабочих дней.
+    </div>
+
+    <h2 data-i18n="h2_1">Что это меняет на практике?</h2>
+
+    <p data-i18n="p3">Раньше агент был удобным помощником. Ты давал задачу, контролировал каждый шаг, поправлял, возвращал. Теперь появляется другой режим: ты ставишь цель, задаёшь ограничения и <strong>уходишь</strong>. Агент сам планирует, сам ищет информацию, сам вызывает инструменты, сам исправляет свои ошибки и в конце приносит результат.</p>
+
+    <p data-i18n="p4">Это уже не «чат с моделью». Это <strong>делегирование</strong>.</p>
+
+    <p data-i18n="p5">Конечно, 12 часов — это ещё не магия. Агенты по-прежнему ошибаются, иногда уверенно и красиво. Они могут уйти в сторону, потратить бюджет на ненужные действия или пропустить важный контекст. Но разница с тем, что было полтора года назад, колоссальная. Тогда автономность измерялась минутами. Сейчас — рабочим днём.</p>
+
+    <h2 data-i18n="h2_2">Самое интересное — на практике</h2>
+
+    <p data-i18n="p6">Самое интересное происходит не в лабораториях, а на практике. Уже есть команды, которые оставляют агентов на ночь: «разбери этот репозиторий, найди узкие места, предложи рефакторинг и подготовь pull request». Утром человек только проверяет и мержит. Или не мержит.</p>
+
+    <p data-i18n="p7">Возникает новый тип вопроса. Не «может ли агент это сделать?», а <strong>«готов ли я отдать ему 8–12 часов своей ответственности?»</strong>. Потому что когда агент работает долго, цена ошибки тоже растёт.</p>
+
+    <h2 data-i18n="h2_3">Автономность перестаёт быть демонстрацией</h2>
+
+    <p data-i18n="p8">Мы входим в период, когда автономность перестаёт быть демонстрацией и становится рабочим инструментом. Кто научится правильно ставить задачи, ограничивать полномочия и проверять результат — получит кратный рост производительности. Кто будет относиться к агентам как к «умному чату» — останется с красивыми, но бесполезными экспериментами.</p>
+
+    <h3 data-i18n="h3_1">График продолжает идти вверх</h3>
+
+    <p data-i18n="p9">12 часов — это уже не будущее. Это текущая точка на графике. И график продолжает идти вверх. Следующая остановка — несколько дней автономной работы. А затем — недели.</p>
+
+    <p data-i18n="p10">Вопрос не в том, догонят ли агенты человека. Они уже догоняют. Вопрос в том, как быстро мы научимся с этим работать.</p>
+
+    <div class="note" data-i18n="note">
+      Хотите, чтобы ваш агент работал автономно и платил за инструменты сам? Начните с <a href="/#install">x402-wallet</a> — дайте агенту кошелёк, и он перестанет просить разрешения.
+    </div>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap">© <span id="yr"></span> x402-ai-agent.space</div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Агенты уже работают 12 часов без человека. И это только начало",
+  "description": "Горизонт автономной работы ИИ-агентов вырос с 40 минут до 12 часов за полтора года. Данные METR, кривая роста и что это меняет на практике.",
+  "datePublished": "2026-07-29",
+  "author": {
+    "@type": "Organization",
+    "name": "x402-ai-agent.space"
+  },
+  "image": "https://x402-ai-agent.space/assets/img/blog/agents-12-hours-cover.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Блог x402",
+      "item": "https://x402-ai-agent.space/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Агенты уже работают 12 часов без человека",
+      "item": "https://x402-ai-agent.space/blog/agents-12-hours.html"
+    }
+  ]
+}
+</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+
+  const embeddedRu = {
+    title: "Агенты уже работают 12 часов без человека. И это только начало — x402-ai-agent.space",
+    metaDescription: "Горизонт автономной работы ИИ-агентов вырос с 40 минут до 12 часов за полтора года. Данные METR, кривая роста и что это меняет на практике.",
+    nav: { back: "← Блог", lang: "🇬🇧 EN" },
+    h1: "Агенты уже работают 12 часов без человека. И это только начало",
+    meta: "2026-07-29 · 3 мин чтения",
+    p1: "Ещё совсем недавно, в конце 2024 года, лучший агент мог автономно продержаться около <strong>40 минут</strong>. Потом он начинал терять контекст, зацикливаться или просто сдавался.",
+    p2: "Сейчас, в середине 2026-го, ситуация изменилась радикально. По данным <a href=\"https://metr.org\" target=\"_blank\" rel=\"noopener\" style=\"color:var(--text-secondary);text-decoration:underline;text-underline-offset:3px;\">METR</a>, которые отслеживают \"горизонт автономной работы\", лучшие системы уже закрывают задачи, на которые у человека-эксперта уходит около <strong>12 часов</strong>. Причём речь идёт не о простых запросах, а о сложных, многошаговых работах: исследование, написание кода, тестирование, исправление ошибок, деплой и финальный отчёт.",
+    highlight: "Горизонт удваивается примерно каждые 4–7 месяцев. Если тренд сохранится, к концу 2027 года мы можем увидеть агентов, которые уверенно тянут задачи на несколько рабочих дней.",
+    h2_1: "Что это меняет на практике?",
+    p3: "Раньше агент был удобным помощником. Ты давал задачу, контролировал каждый шаг, поправлял, возвращал. Теперь появляется другой режим: ты ставишь цель, задаёшь ограничения и <strong>уходишь</strong>. Агент сам планирует, сам ищет информацию, сам вызывает инструменты, сам исправляет свои ошибки и в конце приносит результат.",
+    p4: "Это уже не \"чат с моделью\". Это <strong>делегирование</strong>.",
+    p5: "Конечно, 12 часов — это ещё не магия. Агенты по-прежнему ошибаются, иногда уверенно и красиво. Они могут уйти в сторону, потратить бюджет на ненужные действия или пропустить важный контекст. Но разница с тем, что было полтора года назад, колоссальная. Тогда автономность измерялась минутами. Сейчас — рабочим днём.",
+    h2_2: "Самое интересное — на практике",
+    p6: "Самое интересное происходит не в лабораториях, а на практике. Уже есть команды, которые оставляют агентов на ночь: \"разбери этот репозиторий, найди узкие места, предложи рефакторинг и подготовь pull request\". Утром человек только проверяет и мержит. Или не мержит.",
+    p7: "Возникает новый тип вопроса. Не \"может ли агент это сделать?\", а <strong>\"готов ли я отдать ему 8–12 часов своей ответственности?\"</strong>. Потому что когда агент работает долго, цена ошибки тоже растёт.",
+    h2_3: "Автономность перестаёт быть демонстрацией",
+    p8: "Мы входим в период, когда автономность перестаёт быть демонстрацией и становится рабочим инструментом. Кто научится правильно ставить задачи, ограничивать полномочия и проверять результат — получит кратный рост производительности. Кто будет относиться к агентам как к \"умному чату\" — останется с красивыми, но бесполезными экспериментами.",
+    h3_1: "График продолжает идти вверх",
+    p9: "12 часов — это уже не будущее. Это текущая точка на графике. И график продолжает идти вверх. Следующая остановка — несколько дней автономной работы. А затем — недели.",
+    p10: "Вопрос не в том, догонят ли агенты человека. Они уже догоняют. Вопрос в том, как быстро мы научимся с этим работать.",
+    note: "Хотите, чтобы ваш агент работал автономно и платил за инструменты сам? Начните с <a href=\"/#install\">x402-wallet</a> — дайте агенту кошелёк, и он перестанет просить разрешения."
+  };
+
+  const embeddedEn = {
+    title: "Agents already work 12 hours without humans. And this is just the beginning — x402-ai-agent.space",
+    metaDescription: "AI agent autonomy horizon grew from 40 minutes to 12 hours in a year and a half. METR data, growth curve and what this changes in practice.",
+    nav: { back: "← Blog", lang: "🇷🇺 RU" },
+    h1: "Agents already work 12 hours without humans. And this is just the beginning",
+    meta: "2026-07-29 · 3 min read",
+    p1: "Not long ago, at the end of 2024, the best agent could hold on autonomously for about <strong>40 minutes</strong>. Then it would start losing context, looping, or simply giving up.",
+    p2: "Now, in mid-2026, the situation has changed radically. According to <a href=\"https://metr.org\" target=\"_blank\" rel=\"noopener\" style=\"color:var(--text-secondary);text-decoration:underline;text-underline-offset:3px;\">METR</a>, who track the \"autonomy horizon\", the best systems already complete tasks that take a human expert about <strong>12 hours</strong>. And we are not talking about simple queries, but complex multi-step work: research, coding, testing, debugging, deployment and final reporting.",
+    highlight: "The horizon doubles approximately every 4–7 months. If the trend holds, by the end of 2027 we may see agents confidently handling multi-day tasks.",
+    h2_1: "What does this change in practice?",
+    p3: "Before, an agent was a convenient assistant. You gave a task, controlled every step, corrected, returned. Now another mode appears: you set a goal, define constraints and <strong>leave</strong>. The agent plans, searches for information, calls tools, fixes its own mistakes and brings the result at the end.",
+    p4: "This is no longer a \"chat with a model.\" This is <strong>delegation</strong>.",
+    p5: "Of course, 12 hours is not magic yet. Agents still make mistakes, sometimes confidently and beautifully. They can go sideways, waste budget on unnecessary actions or miss important context. But the difference from a year and a half ago is colossal. Back then, autonomy was measured in minutes. Now — in working days.",
+    h2_2: "The most interesting part — in practice",
+    p6: "The most interesting things happen not in labs, but in practice. There are already teams that leave agents overnight: \"analyze this repo, find bottlenecks, suggest refactoring and prepare a pull request.\" In the morning, the human only reviews and merges. Or doesn't merge.",
+    p7: "A new type of question emerges. Not \"can the agent do this?\", but <strong>\"am I ready to give it 8–12 hours of my responsibility?\"</strong>. Because when an agent works for a long time, the cost of mistakes also grows.",
+    h2_3: "Autonomy stops being a demo",
+    p8: "We are entering a period when autonomy stops being a demonstration and becomes a working tool. Those who learn to set tasks properly, limit authority and verify results will get multiplicative productivity growth. Those who treat agents as a \"smart chat\" will stay with beautiful but useless experiments.",
+    h3_1: "The graph keeps going up",
+    p9: "12 hours is no longer the future. It's the current point on the graph. And the graph keeps going up. The next stop — several days of autonomous work. And then — weeks.",
+    p10: "The question is not whether agents will catch up with humans. They are already catching up. The question is how quickly we learn to work with this.",
+    note: "Want your agent to work autonomously and pay for tools itself? Start with <a href=\"/#install\">x402-wallet</a> — give the agent a wallet, and it will stop asking for permission."
+  };
+
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        el.innerHTML = value;
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>
