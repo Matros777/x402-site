@@ -467,6 +467,45 @@
       border-radius: 10px;
     }
     .cdp-fields.visible { display: block; }
+    /* ─── ТЁМНЫЕ ТОНКИЕ СКРОЛЛБАРЫ ─── */
+    pre.code::-webkit-scrollbar,
+    textarea::-webkit-scrollbar,
+    .bazaar-checks::-webkit-scrollbar,
+    .cdp-fields::-webkit-scrollbar,
+    #result::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    pre.code::-webkit-scrollbar-track,
+    textarea::-webkit-scrollbar-track,
+    .bazaar-checks::-webkit-scrollbar-track,
+    .cdp-fields::-webkit-scrollbar-track,
+    #result::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    pre.code::-webkit-scrollbar-thumb,
+    textarea::-webkit-scrollbar-thumb,
+    .bazaar-checks::-webkit-scrollbar-thumb,
+    .cdp-fields::-webkit-scrollbar-thumb,
+    #result::-webkit-scrollbar-thumb {
+      background: #2a2a2a;
+      border-radius: 3px;
+    }
+    pre.code::-webkit-scrollbar-thumb:hover,
+    textarea::-webkit-scrollbar-thumb:hover,
+    .bazaar-checks::-webkit-scrollbar-thumb:hover,
+    .cdp-fields::-webkit-scrollbar-thumb:hover,
+    #result::-webkit-scrollbar-thumb:hover {
+      background: #3a3a3a;
+    }
+    pre.code,
+    textarea,
+    .bazaar-checks,
+    .cdp-fields,
+    #result {
+      scrollbar-color: #2a2a2a transparent;
+      scrollbar-width: thin;
+    }
   </style>
 </head>
 <body>
