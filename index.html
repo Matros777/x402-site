@@ -614,68 +614,6 @@
       color: #7dd3fc;
       text-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
     }
-    /* ─── DEMO AGENTS ─── */
-    .free-badge {
-      display: inline-block;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      background: #22c55e;
-      color: #000;
-      padding: 2px 8px;
-      border-radius: 4px;
-      margin-bottom: 6px;
-    }
-    .card-head h3 {
-      margin: 0 0 8px 0;
-    }
-    .demo-controls {
-      display: flex;
-      gap: 8px;
-      margin-top: 12px;
-    }
-    .demo-input {
-      flex: 1;
-      background: var(--code-bg, #111);
-      border: 1px solid var(--border, #222);
-      border-radius: 8px;
-      padding: 8px 12px;
-      color: #d4d4d4;
-      font-size: 0.875rem;
-      font-family: inherit;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .demo-input:focus {
-      border-color: #38bdf8;
-    }
-    .demo-btn {
-      background: #38bdf8;
-      color: #000;
-      border: none;
-      border-radius: 8px;
-      padding: 8px 16px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
-      white-space: nowrap;
-    }
-    .demo-btn:hover {
-      background: #7dd3fc;
-      transform: translateY(-1px);
-    }
-    .demo-btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      transform: none;
-    }
-    .demo-result {
-      font-size: 0.8rem;
-      max-height: 240px;
-      overflow: auto;
-    }
     /* ─── STEP BADGE ─── */
     .step-badge {
       display: inline-flex;
@@ -1088,124 +1026,6 @@ node agent.js</pre>
     </div>
   </div>
 </section>
-<!-- FREE DEMO AGENTS -->
-<section class="block" id="demos">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="kicker" style="display:flex;align-items:center;gap:8px;">
-        <span style="background:#22c55e;color:#000;font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:4px;">free</span>
-        <span data-i18n="demos.kicker">amount: 0 · demo</span>
-      </div>
-      <h2 data-i18n="demos.title">Бесплатные демо-агенты</h2>
-      <p data-i18n="demos.desc">Попробуй x402-агентов без пополнения кошелька. Все запросы проходят через протокол с <code class="inl">amount: "0"</code> — реальный 402 handshake, списания нет.</p>
-    </div>
-
-    <div class="grid" style="grid-template-columns:1fr 1fr;">
-
-      <div class="card" data-agent="free-signal">
-        <div class="card-head">
-          <span class="free-badge">free · amount: 0</span>
-          <h3 data-i18n="demos.signal_title">📊 Free Signal</h3>
-        </div>
-        <p data-i18n="demos.signal_desc">Индикаторы → <code>long</code> / <code>short</code>. Без ИИ. Без оплаты.</p>
-        <div class="demo-controls">
-          <input type="text" class="demo-input" data-i18n="demos.signal_ph" placeholder="BTC">
-          <button class="demo-btn" onclick="callDemo('free-signal')" data-i18n="demos.try">Попробовать →</button>
-        </div>
-        <pre class="code demo-result" id="res-free-signal" style="display:none;margin-top:12px;"></pre>
-      </div>
-
-      <div class="card" data-agent="crypto-news">
-        <div class="card-head">
-          <span class="free-badge">free · amount: 0</span>
-          <h3 data-i18n="demos.news_title">📰 Crypto News Pulse</h3>
-        </div>
-        <p data-i18n="demos.news_desc">Краткий дайджест и сентимент по монете.</p>
-        <div class="demo-controls">
-          <input type="text" class="demo-input" data-i18n="demos.news_ph" placeholder="ETH">
-          <button class="demo-btn" onclick="callDemo('crypto-news')" data-i18n="demos.try">Попробовать →</button>
-        </div>
-        <pre class="code demo-result" id="res-crypto-news" style="display:none;margin-top:12px;"></pre>
-      </div>
-
-      <div class="card" data-agent="seo-audit">
-        <div class="card-head">
-          <span class="free-badge">free · amount: 0</span>
-          <h3 data-i18n="demos.seo_title">🔍 SEO Snapshot</h3>
-        </div>
-        <p data-i18n="demos.seo_desc">Мета, заголовки, базовая оценка URL.</p>
-        <div class="demo-controls">
-          <input type="text" class="demo-input" data-i18n="demos.seo_ph" placeholder="https://example.com">
-          <button class="demo-btn" onclick="callDemo('seo-audit')" data-i18n="demos.try">Попробовать →</button>
-        </div>
-        <pre class="code demo-result" id="res-seo-audit" style="display:none;margin-top:12px;"></pre>
-      </div>
-
-      <div class="card" data-agent="content-ideas">
-        <div class="card-head">
-          <span class="free-badge">free · amount: 0</span>
-          <h3 data-i18n="demos.ideas_title">💡 Content Ideas</h3>
-        </div>
-        <p data-i18n="demos.ideas_desc">5 идей постов по теме.</p>
-        <div class="demo-controls">
-          <input type="text" class="demo-input" data-i18n="demos.ideas_ph" placeholder="x402 agents">
-          <button class="demo-btn" onclick="callDemo('content-ideas')" data-i18n="demos.try">Попробовать →</button>
-        </div>
-        <pre class="code demo-result" id="res-content-ideas" style="display:none;margin-top:12px;"></pre>
-      </div>
-
-    </div>
-
-    <p class="note mt24" data-i18n="demos.note">
-      ⚡ Цена <strong>0 USDC</strong> на Base Mainnet. Oval / awal проходят 402 без списания — так проверяют протокол без пополнения кошелька.<br>
-      После деплоя подставь ссылки в <code class="inl">AGENT_URLS</code> ниже.
-    </p>
-  </div>
-</section>
-
-<script>
-// ⚠️ ЗАМЕНИТЬ НА РЕАЛЬНЫЕ RENDER-ССЫЛКИ ПОСЛЕ ДЕПЛОЯ
-const AGENT_URLS = {
-  'free-signal':    'https://free-signal.onrender.com/',
-  'crypto-news':    'https://crypto-news.onrender.com/',
-  'seo-audit':      'https://seo-audit.onrender.com/',
-  'content-ideas':  'https://content-ideas.onrender.com/'
-};
-
-async function callDemo(agent) {
-  const card = document.querySelector(`[data-agent="${agent}"]`);
-  const input = card.querySelector('.demo-input');
-  const resultEl = card.querySelector('.demo-result');
-  const btn = card.querySelector('.demo-btn');
-
-  const symbol = input.value.trim();
-  if (!symbol) { input.style.borderColor = '#ef4444'; setTimeout(() => input.style.borderColor = '', 800); return; }
-
-  btn.disabled = true; btn.textContent = '⏳';
-  resultEl.style.display = 'block';
-  resultEl.textContent = '⏳ запрос...';
-
-  const body = {};
-  if (agent === 'free-signal' || agent === 'crypto-news') body.symbol = symbol;
-  else if (agent === 'seo-audit') body.url = symbol;
-  else if (agent === 'content-ideas') body.topic = symbol;
-
-  try {
-    const res = await fetch(AGENT_URLS[agent], {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    });
-    const data = await res.json();
-    resultEl.textContent = JSON.stringify(data, null, 2);
-  } catch (e) {
-    resultEl.textContent = `❌ Ошибка: ${e.message}`;
-    resultEl.style.color = '#ef4444';
-  }
-
-  btn.disabled = false; btn.textContent = 'Попробовать →';
-}
-</script>
 <!-- COMMANDS -->
 <section class="block" id="commands">
   <div class="wrap">
@@ -1694,26 +1514,7 @@ npx awal send 10 usdc 0x...</pre>
       "text": "с x402-ai-agent.space — всё для ИИ-агентов.",
       "links": "<a href=\"#what\">x402</a> · <a href=\"#install\">Установка</a> · <a href=\"/blog/\">Блог</a>"
     }
-  
-    "demos": {
-      "kicker": "amount: 0 · demo",
-      "title": "Бесплатные демо-агенты",
-      "desc": "Попробуй x402-агентов без пополнения кошелька. Все запросы проходят через протокол с <code class=\"inl\">amount: \"0\"</code> — реальный 402 handshake, списания нет.",
-      "signal_title": "📊 Free Signal",
-      "signal_desc": "Индикаторы → <code>long</code> / <code>short</code>. Без ИИ. Без оплаты.",
-      "signal_ph": "BTC",
-      "news_title": "📰 Crypto News Pulse",
-      "news_desc": "Краткий дайджест и сентимент по монете.",
-      "news_ph": "ETH",
-      "seo_title": "🔍 SEO Snapshot",
-      "seo_desc": "Мета, заголовки, базовая оценка URL.",
-      "seo_ph": "https://example.com",
-      "ideas_title": "💡 Content Ideas",
-      "ideas_desc": "5 идей постов по теме.",
-      "ideas_ph": "x402 agents",
-      "try": "Попробовать →",
-      "note": "⚡ Цена <strong>0 USDC</strong> на Base Mainnet. Oval / awal проходят 402 без списания — так проверяют протокол без пополнения кошелька.<br>После деплоя подставь ссылки в <code class=\"inl\">AGENT_URLS</code> ниже."
-    },};
+  };
 
   const embeddedEn = {
     "title": "x402-ai-agent.space — payments for AI agents via x402 + x402-wallet",
@@ -1901,26 +1702,7 @@ npx awal send 10 usdc 0x...</pre>
       "text": "c x402-ai-agent.space - payments for AI agents.",
       "links": "<a href=\"#what\">x402</a> · <a href=\"#install\">Install</a> · <a href=\"/blog/\">Blog</a>"
     }
-  
-    "demos": {
-      "kicker": "amount: 0 · demo",
-      "title": "Free Demo Agents",
-      "desc": "Try x402 agents without funding your wallet. All requests go through the protocol with <code class=\"inl\">amount: \"0\"</code> — real 402 handshake, no charge.",
-      "signal_title": "📊 Free Signal",
-      "signal_desc": "Indicators → <code>long</code> / <code>short</code>. No AI. No payment.",
-      "signal_ph": "BTC",
-      "news_title": "📰 Crypto News Pulse",
-      "news_desc": "Brief digest and sentiment for a coin.",
-      "news_ph": "ETH",
-      "seo_title": "🔍 SEO Snapshot",
-      "seo_desc": "Meta, headings, basic URL assessment.",
-      "seo_ph": "https://example.com",
-      "ideas_title": "💡 Content Ideas",
-      "ideas_desc": "5 post ideas on a topic.",
-      "ideas_ph": "x402 agents",
-      "try": "Try it →",
-      "note": "⚡ Price <strong>0 USDC</strong> on Base Mainnet. Oval / awal pass 402 without deduction — this is how you test the protocol without funding.<br>After deploy replace URLs in <code class=\"inl\">AGENT_URLS</code> below."
-    },};
+  };
 
   function getNested(obj, path) {
     return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
