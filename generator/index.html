@@ -467,6 +467,89 @@
       border-radius: 10px;
     }
     .cdp-fields.visible { display: block; }
+    .ai-help {
+      margin-top: 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg-card);
+      overflow: hidden;
+    }
+    .ai-help-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.15s;
+    }
+    .ai-help-toggle:hover { background: rgba(255,255,255,0.03); }
+    .ai-help-toggle .chevron {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      color: var(--text-muted);
+      transition: transform 0.2s;
+    }
+    .ai-help.open .ai-help-toggle .chevron { transform: rotate(180deg); }
+    .ai-help-body {
+      display: none;
+      padding: 0 1.2rem 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+    .ai-help.open .ai-help-body { display: block; }
+    .ai-help-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin: 1rem 0 0.55rem;
+    }
+    .ai-prompt-box {
+      position: relative;
+      background: #080808;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.05rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      line-height: 1.55;
+      color: #c8c8c8;
+      white-space: pre-wrap;
+      max-height: 280px;
+      overflow-y: auto;
+    }
+    .btn-copy-prompt {
+      margin-top: 0.55rem;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.4rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.15s;
+    }
+    .btn-copy-prompt:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .btn-copy-prompt.copied {
+      border-color: var(--success);
+      color: var(--success);
+    }
     /* ─── ТЁМНЫЕ ТОНКИЕ СКРОЛЛБАРЫ ─── */
     pre.code::-webkit-scrollbar,
     textarea::-webkit-scrollbar,
@@ -542,7 +625,7 @@
         "symbol": symbol,
         "message": "Hello from x402 agent"
     }</textarea>
-      <p class="hint" data-i18n="code_hint">Можно вставить любой рабочий код. Главное — функция должна называться <code>agent_logic</code> и принимать/возвращать словарь.</p>
+      <p class="hint" data-i18n="code_hint">Можно вставить любой рабочий код. Функция — <code>agent_logic(data: dict) -&gt; dict</code>. Импорты пиши <strong>над</strong> функцией. Доп. pip-пакеты — в раскрывающемся блоке под кнопкой генерации.</p>
     </div>
     <!-- 2. Payment settings -->
     <div class="card">
@@ -657,6 +740,58 @@
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
       <span data-i18n="btn_generate">Сгенерировать готовый агент</span>
     </button>
+
+    <!-- AI prompt + extra libs -->
+    <div class="ai-help" id="aiHelp">
+      <button type="button" class="ai-help-toggle" onclick="document.getElementById('aiHelp').classList.toggle('open')" data-i18n="ai_help_toggle">
+        <span>Вставьте этот промпт в чат со своим ИИ-агентом</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="ai-help-body">
+        <p class="hint" style="margin-top:0.9rem" data-i18n="ai_help_intro">Скопируй промпт ниже и отправь ChatGPT / Claude / Cursor — модель напишет <code>agent_logic</code> в формате, который понимает этот генератор. Импорты — над функцией. Ответ — только dict.</p>
+        <div class="ai-help-label" data-i18n="ai_prompt_label">Промпт для ИИ</div>
+        <div class="ai-prompt-box" id="aiPromptText">Ты пишешь логику для генератора x402-агентов (сайт x402-ai-agent.space/generator).
+
+ЖЁСТКИЕ ПРАВИЛА:
+1) Верни ОДИН фрагмент Python-кода — без markdown-ограждений, без пояснений вокруг.
+2) Обязательна функция: def agent_logic(data: dict) -> dict
+3) Вход: только dict (поля из JSON body и/или query). Используй data.get("key", default).
+4) Выход: только dict (JSON-сериализуемый: str, int, float, bool, list, dict). Никаких Response, print, файлов на диск.
+5) Нужные библиотеки: import ПИШИ НАД def agent_logic. Стандартная библиотека и уже есть в сервере: os, json, httpx. Остальное пользователь укажет в «доп. библиотеки».
+6) Не ставь веб-сервер, FastAPI, x402, verify/settle — это генерирует сайт сам.
+7) Ошибки обрабатывай внутри и возвращай dict с полем "error", не бросай наружу необработанные исключения без нужды.
+8) Сеть: если ходишь в API — httpx или requests, timeout обязателен.
+9) Не хардкодь секреты; бери из os.getenv("NAME", "").
+
+МИНИ-ШАБЛОН:
+import httpx
+
+def agent_logic(data: dict) -> dict:
+    symbol = str(data.get("symbol", "BTC")).upper()
+    # ... твоя логика ...
+    return {"symbol": symbol, "result": "..."}
+
+ПРИМЕР (сигнал long/short):
+def agent_logic(data: dict) -> dict:
+    symbol = str(data.get("symbol", "BTC")).upper()
+    # демо-логика без внешних API
+    signal = "long" if symbol in ("BTC", "ETH") else "short"
+    return {"symbol": symbol, "signal": signal, "note": "demo"}
+
+Задача пользователя (вставь сюда): 
+</div>
+        <button type="button" class="btn-copy-prompt" id="copyPromptBtn" onclick="copyAiPrompt()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          <span data-i18n="btn_copy_prompt">Копировать промпт</span>
+        </button>
+
+        <div class="ai-help-label" style="margin-top:1.35rem" data-i18n="extra_deps_label">Доп. библиотеки (pip)</div>
+        <p class="hint" data-i18n="extra_deps_hint">Если вам нужны доп. библиотеки — вставляйте их сюда (через запятую или с новой строки). Они попадут в <code>requirements.txt</code> при генерации. Импорты всё равно пишите в коде над <code>agent_logic</code>.</p>
+        <input type="text" id="extraDeps" placeholder="requests, beautifulsoup4, pandas" style="margin-top:0.45rem" />
+        <p class="hint-xs" data-i18n="extra_deps_note">Пример: пакет <code>beautifulsoup4</code>, в коде — <code>from bs4 import BeautifulSoup</code>. Имя pip ≠ всегда имя import.</p>
+      </div>
+    </div>
+
     <!-- Result -->
     <div id="result">
       <div class="card" style="margin-top: 2.25rem;">
@@ -710,7 +845,7 @@ httpx</pre>
         section_h2: "Настройка и генерация x402 агента",
         step1: "1. Логика агента",
         code_label: "Python-функция (принимает dict, возвращает dict)",
-        code_hint: "Можно вставить любой рабочий код. Главное — функция должна называться <code>agent_logic</code> и принимать/возвращать словарь.",
+        code_hint: "Можно вставить любой рабочий код. Функция — <code>agent_logic(data: dict) -&gt; dict</code>. Импорты пиши <strong>над</strong> функцией. Доп. pip-пакеты — в раскрывающемся блоке под кнопкой генерации.",
         step2: "2. Платёжные настройки",
         price_label: "Цена за вызов (USDC)",
         network_label: "Сеть",
@@ -742,7 +877,14 @@ httpx</pre>
         req_title: "requirements.txt",
         test_title: "Как протестировать",
         test_hint: "После деплоя выполни:",
-        note: "Генератор использует официальный Python SDK x402 + рабочий фасилитатор."
+        note: "Генератор использует официальный Python SDK x402 + рабочий фасилитатор.",
+        ai_help_toggle: "Вставьте этот промпт в чат со своим ИИ-агентом",
+        ai_help_intro: "Скопируй промпт ниже и отправь ChatGPT / Claude / Cursor — модель напишет <code>agent_logic</code> в формате, который понимает этот генератор. Импорты — над функцией. Ответ — только dict.",
+        ai_prompt_label: "Промпт для ИИ",
+        btn_copy_prompt: "Копировать промпт",
+        extra_deps_label: "Доп. библиотеки (pip)",
+        extra_deps_hint: "Если вам нужны доп. библиотеки — вставляйте их сюда (через запятую или с новой строки). Они попадут в <code>requirements.txt</code> при генерации. Импорты всё равно пишите в коде над <code>agent_logic</code>.",
+        extra_deps_note: "Пример: пакет <code>beautifulsoup4</code>, в коде — <code>from bs4 import BeautifulSoup</code>. Имя pip ≠ всегда имя import."
       },
       en: {
         nav_home: "← Back to home",
@@ -753,7 +895,7 @@ httpx</pre>
         section_h2: "Configure and generate x402 agent",
         step1: "1. Agent logic",
         code_label: "Python function (accepts dict, returns dict)",
-        code_hint: "You can paste any working code. The function must be named <code>agent_logic</code> and accept/return a dictionary.",
+        code_hint: "Paste any working code. Function must be <code>agent_logic(data: dict) -&gt; dict</code>. Put imports <strong>above</strong> the function. Extra pip packages — in the expandable block under the generate button.",
         step2: "2. Payment settings",
         price_label: "Price per call (USDC)",
         network_label: "Network",
@@ -785,7 +927,14 @@ httpx</pre>
         req_title: "requirements.txt",
         test_title: "How to test",
         test_hint: "After deploy run:",
-        note: "Generator uses the official Python x402 SDK + working facilitator."
+        note: "Generator uses the official Python x402 SDK + working facilitator.",
+        ai_help_toggle: "Paste this prompt into chat with your AI agent",
+        ai_help_intro: "Copy the prompt below into ChatGPT / Claude / Cursor — the model will write <code>agent_logic</code> in the format this generator expects. Imports go above the function. Return value must be a dict only.",
+        ai_prompt_label: "Prompt for AI",
+        btn_copy_prompt: "Copy prompt",
+        extra_deps_label: "Extra libraries (pip)",
+        extra_deps_hint: "If you need extra libraries — paste them here (comma or newline separated). They will be added to <code>requirements.txt</code> on generate. Still write imports in code above <code>agent_logic</code>.",
+        extra_deps_note: "Example: package <code>beautifulsoup4</code>, in code — <code>from bs4 import BeautifulSoup</code>. Pip name ≠ always import name."
       }
     };
     let currentLang = "ru";
@@ -1414,8 +1563,18 @@ if __name__ == "__main__":
       }
 
       document.getElementById("outputCode").textContent = fullCode;
-      let reqTxt = "x402[fastapi]\nuvicorn\npython-dotenv\npydantic\nhttpx";
-      if (useCdp) reqTxt += "\ncdp-sdk";
+      const extraDepsRaw = (document.getElementById("extraDeps") && document.getElementById("extraDeps").value || "").trim();
+      const extraDeps = extraDepsRaw
+        .split(/[\s,]+/)
+        .map(s => s.trim())
+        .filter(Boolean)
+        // убрать дубликаты и уже базовые
+        .filter((v, i, a) => a.indexOf(v) === i);
+      const baseReq = ["x402[fastapi]", "uvicorn", "python-dotenv", "pydantic", "httpx"];
+      if (useCdp) baseReq.push("cdp-sdk");
+      const baseNames = new Set(baseReq.map(x => x.split("[")[0].toLowerCase()));
+      const extraFiltered = extraDeps.filter(d => !baseNames.has(d.split("[")[0].toLowerCase()));
+      let reqTxt = baseReq.concat(extraFiltered).join("\n");
       document.getElementById("reqCode").textContent = reqTxt;
       // -q обязателен: awal часто теряет POST body на retry после оплаты
       const testBody = (method === "POST" || method === "BOTH")
@@ -1439,6 +1598,20 @@ if __name__ == "__main__":
         setTimeout(() => {
           btn.classList.remove("copied");
           span.textContent = i18n[currentLang].btn_copy;
+        }, 2000);
+      });
+    }
+    function copyAiPrompt() {
+      const text = document.getElementById("aiPromptText").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById("copyPromptBtn");
+        btn.classList.add("copied");
+        const span = btn.querySelector("span");
+        const prev = span.textContent;
+        span.textContent = i18n[currentLang].btn_copied || "Скопировано";
+        setTimeout(() => {
+          btn.classList.remove("copied");
+          span.textContent = i18n[currentLang].btn_copy_prompt || prev;
         }, 2000);
       });
     }

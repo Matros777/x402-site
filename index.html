@@ -705,6 +705,180 @@
         justify-content: center;
       }
     }
+    /* ─── DEMO AGENTS ─── */
+    .demo-controls {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .demo-input {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color var(--transition);
+    }
+    .demo-input:focus {
+      border-color: var(--accent, #4f8cff);
+    }
+    .demo-input::placeholder {
+      color: var(--muted);
+    }
+    .demo-btn {
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: #2a2a2a;
+      color: var(--text);
+      font-size: 0.9rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all var(--transition);
+    }
+    .demo-btn:hover {
+      background: #3a3a3a;
+      border-color: var(--accent, #4f8cff);
+      color: #f5f5f5;
+    }
+    /* ─── TERMINAL ─── */
+    .terminal {
+      margin-top: 24px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: #0d0d0d;
+      font-family: 'SF Mono', 'Monaco', 'Menlo', 'Consolas', 'Roboto Mono', monospace;
+    }
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      background: #1a1a1a;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    .terminal-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .terminal-title {
+      flex: 1;
+      text-align: center;
+      font-size: 0.75rem;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: inherit;
+    }
+    .terminal-clear {
+      font-size: 0.75rem;
+      color: #555;
+      cursor: pointer;
+      transition: color var(--transition);
+      font-family: inherit;
+    }
+    .terminal-clear:hover {
+      color: #ccc;
+    }
+    .terminal-body {
+      padding: 14px;
+      height: 480px;
+      overflow-y: auto;
+      background: #0d0d0d;
+      color: #d4d4d4;
+      font-size: 0.8rem;
+      line-height: 1.55;
+      font-family: inherit;
+    }
+    .terminal-body::-webkit-scrollbar {
+      width: 6px;
+    }
+    .terminal-body::-webkit-scrollbar-track {
+      background: #1a1a1a;
+    }
+    .terminal-body::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 3px;
+    }
+    .terminal-body::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+    .terminal-line {
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin-bottom: 4px;
+      font-family: inherit;
+    }
+    .terminal-line.welcome {
+      color: #22c55e;
+    }
+    .terminal-prompt {
+      color: #22c55e;
+      margin-right: 8px;
+      user-select: none;
+    }
+    .terminal-line.agent-name {
+      color: #4f8cff;
+      font-weight: 600;
+      margin-top: 12px;
+      margin-bottom: 6px;
+    }
+    .terminal-line.agent-done {
+      color: #888;
+      font-style: italic;
+    }
+    .terminal-line.agent-error {
+      color: #ef4444;
+    }
+    .terminal-line.agent-result {
+      color: #d4d4d4;
+      line-height: 1.4;
+    }
+    .terminal-pre {
+      display: table;
+      margin: 4px auto 0 auto;
+      padding: 0;
+      font-family: inherit;
+      font-size: inherit;
+      line-height: 1.4;
+      white-space: pre;
+      background: transparent;
+      border: none;
+      color: inherit;
+    }
+    .terminal-line.agent-result .box-art {
+      color: #22c55e;
+    }
+    .demo-output {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .free-badge {
+      display: inline-block;
+      background: #22c55e;
+      color: #000;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+    }
   </style>
 </head>
 <body>
@@ -1024,6 +1198,91 @@ node agent.js</pre>
       </div>
       <p class="note mt24" data-i18n="bot.footnote">Это не гарантия прибыли и не финсовет. Просто живой пример: агент сам принимает микроплатежи и закрывает рутину. Решение торговать — за вами.</p>
     </div>
+  </div>
+</section>
+
+<!-- FREE DEMO AGENTS (STEP 2: with data-i18n + i18n keys, no JS) -->
+<section class="block" id="demos">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker" style="display:flex;align-items:center;gap:8px;">
+        <span style="background:#22c55e;color:#000;font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:4px;">free</span>
+        <span data-i18n="demos.kicker">amount: 0 · demo</span>
+      </div>
+      <h2 data-i18n="demos.title">Бесплатные демо-агенты</h2>
+      <p data-i18n="demos.desc">Попробуй x402-агентов без пополнения кошелька. Все запросы проходят через протокол с <code class="inl">amount: "0"</code> — реальный 402 handshake, списания нет.</p>
+    </div>
+
+    <div class="grid" style="grid-template-columns:1fr 1fr;">
+
+      <div class="card" data-agent="free-signal">
+        <div class="card-head">
+          <span class="free-badge">free · amount: 0</span>
+          <h3 data-i18n="demos.signal_title">📊 Free Signal</h3>
+        </div>
+        <p data-i18n="demos.signal_desc">Индикаторы → <code>long</code> / <code>short</code>. Без ИИ. Без оплаты.</p>
+        <div class="demo-controls">
+          <input type="text" class="demo-input" data-i18n="demos.signal_ph" placeholder="BTC">
+          <button class="demo-btn" data-i18n="demos.try">Попробовать →</button>
+        </div>
+      </div>
+
+      <div class="card" data-agent="gas-tracker">
+        <div class="card-head">
+          <span class="free-badge">free · amount: 0</span>
+          <h3 data-i18n="demos.gas_title">⛽ Free Gas Tracker</h3>
+        </div>
+        <p data-i18n="demos.gas_desc">Актуальный gas price Ethereum + L2. Команда: <code class="inl">gas</code></p>
+        <div class="demo-controls">
+          <input type="text" class="demo-input" data-i18n="demos.gas_ph" placeholder="gas">
+          <button class="demo-btn" data-i18n="demos.try">Попробовать →</button>
+        </div>
+      </div>
+
+      <div class="card" data-agent="seo-audit">
+        <div class="card-head">
+          <span class="free-badge">free · amount: 0</span>
+          <h3 data-i18n="demos.seo_title">🔍 SEO Snapshot</h3>
+        </div>
+        <p data-i18n="demos.seo_desc">Мета, заголовки, базовая оценка URL.</p>
+        <div class="demo-controls">
+          <input type="text" class="demo-input" data-i18n="demos.seo_ph" placeholder="https://example.com">
+          <button class="demo-btn" data-i18n="demos.try">Попробовать →</button>
+        </div>
+      </div>
+
+      <div class="card" data-agent="free-models">
+        <div class="card-head">
+          <span class="free-badge">free · amount: 0</span>
+          <h3 data-i18n="demos.models_title">🤖 Free Models</h3>
+        </div>
+        <p data-i18n="demos.models_desc">Бесплатные ИИ-модели через OpenRouter. Команда: <code class="inl">free_models</code></p>
+        <div class="demo-controls">
+          <input type="text" class="demo-input" data-i18n="demos.models_ph" placeholder="free_models">
+          <button class="demo-btn" data-i18n="demos.try">Попробовать →</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TERMINAL: общий вывод для всех агентов -->
+    <div id="demo-terminal" class="terminal">
+      <div class="terminal-bar">
+        <span class="terminal-dot" style="background:#ff5f57;"></span>
+        <span class="terminal-dot" style="background:#ffbd2e;"></span>
+        <span class="terminal-dot" style="background:#28c840;"></span>
+        <span class="terminal-title" data-i18n="demos.terminal_title">терминал</span>
+        <span class="terminal-clear" id="terminal-clear" title="Очистить">⌘ ⎚</span>
+      </div>
+      <div class="terminal-body" id="terminal-body">
+        <div class="terminal-line welcome"><span class="terminal-prompt">$</span> x402 demo agents ready · amount: 0</div>
+        <div class="terminal-line"><span class="terminal-prompt">$</span> выбери агента, введи запрос и нажми «Попробовать →»</div>
+      </div>
+    </div>
+
+    <p class="note mt24" data-i18n="demos.note">
+      ⚡ Цена <strong>0 USDC</strong> на Base Mainnet. Oval / awal проходят 402 без списания — так проверяют протокол без пополнения кошелька.
+    </p>
   </div>
 </section>
 <!-- COMMANDS -->
@@ -1513,9 +1772,35 @@ npx awal send 10 usdc 0x...</pre>
     "footer": {
       "text": "с x402-ai-agent.space — всё для ИИ-агентов.",
       "links": "<a href=\"#what\">x402</a> · <a href=\"#install\">Установка</a> · <a href=\"/blog/\">Блог</a>"
-    }
-  };
+    },
 
+    "demos": {
+      "kicker": "amount: 0 · demo",
+      "title": "Бесплатные демо-агенты",
+      "desc": "Попробуй x402-агентов без пополнения кошелька. Все запросы проходят через протокол с <code class=\"inl\">amount: \"0\"</code> — реальный 402 handshake, списания нет.",
+      "signal_title": "📊 Free Signal",
+      "signal_desc": "Индикаторы → <code>long</code> / <code>short</code>. Без ИИ. Без оплаты.",
+      "signal_ph": "BTC",
+      "seo_title": "🔍 SEO Snapshot",
+      "seo_desc": "Мета, заголовки, базовая оценка URL.",
+      "seo_ph": "https://example.com",
+      "gas_title": "⛽ Free Gas Tracker",
+      "gas_desc": "Актуальный gas price Ethereum + L2. Команда: <code class=\"inl\">gas</code>",
+      "gas_ph": "gas",
+      "models_title": "🤖 Free Models",
+      "models_desc": "Бесплатные ИИ-модели через OpenRouter. Команда: <code class=\"inl\">free_models</code>",
+      "models_ph": "free_models",
+      "try": "Попробовать →",
+      "note": "⚡ Цена <strong>0 USDC</strong> на Base Mainnet. Oval / awal проходят 402 без списания — так проверяют протокол без пополнения кошелька.",
+      "empty_msg": "Введите запрос",
+      "loading": "Запрос к агенту…",
+      "error": "Ошибка запроса",
+      "http_error": "Ошибка HTTP",
+      "terminal_title": "терминал",
+      "busy_msg": "Подождите, сейчас работает другой агент"
+    },
+  };
+ 
   const embeddedEn = {
     "title": "x402-ai-agent.space — payments for AI agents via x402 + x402-wallet",
     "metaDescription": "x402 protocol: how AI agents pay for APIs in a single HTTP request. Install x402-wallet and run your own agent. Minimal, factual, no fluff.",
@@ -1701,7 +1986,33 @@ npx awal send 10 usdc 0x...</pre>
     "footer": {
       "text": "c x402-ai-agent.space - payments for AI agents.",
       "links": "<a href=\"#what\">x402</a> · <a href=\"#install\">Install</a> · <a href=\"/blog/\">Blog</a>"
-    }
+    },
+
+    "demos": {
+      "kicker": "amount: 0 · demo",
+      "title": "Free Demo Agents",
+      "desc": "Try x402 agents without funding your wallet. All requests go through the protocol with <code class=\"inl\">amount: \"0\"</code> — real 402 handshake, no charge.",
+      "signal_title": "📊 Free Signal",
+      "signal_desc": "Indicators → <code>long</code> / <code>short</code>. No AI. No payment.",
+      "signal_ph": "BTC",
+      "seo_title": "🔍 SEO Snapshot",
+      "seo_desc": "Meta, headings, basic URL assessment.",
+      "seo_ph": "https://example.com",
+      "gas_title": "⛽ Free Gas Tracker",
+      "gas_desc": "Current gas price Ethereum + L2. Command: <code class=\"inl\">gas</code>",
+      "gas_ph": "gas",
+      "models_title": "🤖 Free Models",
+      "models_desc": "Free AI models via OpenRouter. Command: <code class=\"inl\">free_models</code>",
+      "models_ph": "free_models",
+      "try": "Try it →",
+      "note": "⚡ Price <strong>0 USDC</strong> on Base Mainnet. Oval / awal pass 402 without deduction — this is how you test the protocol without funding.",
+      "empty_msg": "Enter a query",
+      "loading": "Calling agent…",
+      "error": "Request error",
+      "http_error": "HTTP error",
+      "terminal_title": "terminal",
+      "busy_msg": "Please wait, another agent is running"
+    },
   };
 
   function getNested(obj, path) {
@@ -1792,6 +2103,147 @@ npx awal send 10 usdc 0x...</pre>
 
     setLanguage(lang);
   });
+
+  // ─── DEMO AGENTS ───
+  const DEMO_URLS = {
+    'free-signal':   'https://91.149.187.50.nip.io:444/signal',
+    'seo-audit':     'https://91.149.187.50.nip.io:444/seo',
+    'gas-tracker':   'https://91.149.187.50.nip.io:444/gas',
+    'free-models':   'https://91.149.187.50.nip.io:444/models',
+  };
+
+  const AGENT_BODY = {
+    'free-signal':   { symbol: '' },
+    'seo-audit':     { url: '' },
+    'gas-tracker':   { command: '' },
+    'free-models':   { command: '' },
+  };
+
+  const AGENT_NAMES = {
+    'free-signal':   '📊 Free Signal',
+    'seo-audit':     '🔍 SEO Snapshot',
+    'gas-tracker':   '⛽ Free Gas Tracker',
+    'free-models':   '🤖 Free Models',
+  };
+
+  let isRunning = false;
+
+  // Helper: get current language from URL or default
+  function getDemoLang() {
+    const m = location.search.match(/[?&]lang=(\w+)/);
+    return m ? m[1] : 'ru';
+  }
+
+  // Helper: get nested i18n key (same as setLanguage's applyI18n)
+  function demoI18n(key) {
+    const lang = getDemoLang();
+    const obj = lang === 'en' ? embeddedEn : embeddedRu;
+    return key.split('.').reduce((o, k) => (o && o[k] !== undefined ? o[k] : key), obj);
+  }
+
+  // ─── TERMINAL ───
+  function terminalEl() { return document.getElementById('terminal-body'); }
+
+  function terminalLog(html, className) {
+    const body = terminalEl();
+    if (!body) return;
+    const line = document.createElement('div');
+    line.className = 'terminal-line' + (className ? ' ' + className : '');
+    line.innerHTML = html;
+    body.appendChild(line);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function terminalClear() {
+    const body = terminalEl();
+    if (!body) return;
+    body.innerHTML = '<div class="terminal-line welcome"><span class="terminal-prompt">$</span> terminal cleared</div>';
+  }
+
+  function setButtonsDisabled(disabled) {
+    document.querySelectorAll('.card[data-agent] .demo-btn').forEach(b => { b.disabled = disabled; });
+  }
+
+  // ─── CALL DEMO AGENT ───
+  function callDemo(agentKey) {
+    if (isRunning) {
+      terminalLog('<span style="color:#f59e0b;">⚠ ' + demoI18n('demos.busy_msg') + '</span>', 'agent-error');
+      return;
+    }
+    const btn = document.querySelector(`.card[data-agent="${agentKey}"] .demo-btn`);
+    const input = document.querySelector(`.card[data-agent="${agentKey}"] .demo-input`);
+    if (!input || !btn) return;
+    const query = input.value.trim();
+    if (!query) {
+      terminalLog('<span style="color:#f59e0b;">⚠ ' + demoI18n('demos.empty_msg') + '</span>', 'agent-error');
+      return;
+    }
+    const url = DEMO_URLS[agentKey];
+    if (!url) { terminalLog('<span style="color:#ef4444;">❌ URL not configured for ' + agentKey + '</span>', 'agent-error'); return; }
+
+    // ── start ──
+    isRunning = true;
+    setButtonsDisabled(true);
+
+    const agentName = AGENT_NAMES[agentKey] || agentKey;
+    const t0 = performance.now();
+    terminalLog('<span class="terminal-prompt">▶</span> <strong>' + agentName + '</strong> … <span class="terminal-prompt">' + query + '</span>', 'agent-name');
+    terminalLog('<span class="terminal-prompt">$</span> ' + demoI18n('demos.loading'), '');
+
+    // Build body dynamically per agent
+    const bodyTemplate = AGENT_BODY[agentKey] || { q: query };
+    const bodyKey = Object.keys(bodyTemplate)[0];
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ [bodyKey]: query })
+    })
+      .then(r => {
+        if (!r.ok) throw new Error(demoI18n('demos.http_error') + ' ' + r.status);
+        return r.json();
+      })
+      .then(data => {
+        const elapsed = ((performance.now() - t0) / 1000).toFixed(1);
+        // Show the formatted analysis
+        if (data.analysis) {
+          terminalLog('<span class="terminal-prompt">$</span> response:', '');
+          const escaped = data.analysis.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          terminalLog('<pre class="terminal-pre">' + escaped + '</pre>', 'agent-result');
+        } else {
+          terminalLog('<span class="terminal-prompt">$</span> <pre class="terminal-pre" style="margin:0;">' + JSON.stringify(data, null, 2).replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</pre>', 'agent-result');
+        }
+        terminalLog('<span class="terminal-prompt">$</span> done <span style="color:#888;">(' + elapsed + 's)</span>', 'agent-done');
+        terminalLog('<span class="terminal-prompt">$</span> <span style="color:#555;">─────────────────────────────</span>', '');
+      })
+      .catch(err => {
+        const elapsed = ((performance.now() - t0) / 1000).toFixed(1);
+        terminalLog('<span style="color:#ef4444;">❌ ' + (err.message || demoI18n('demos.error')) + ' (' + elapsed + 's)</span>', 'agent-error');
+      })
+      .finally(() => {
+        isRunning = false;
+        setButtonsDisabled(false);
+      });
+  }
+
+  // ─── WIRE UP ───
+  document.querySelectorAll('.card[data-agent] .demo-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      const card = this.closest('.card');
+      if (!card) return;
+      callDemo(card.getAttribute('data-agent'));
+    });
+  });
+  document.querySelectorAll('.card[data-agent] .demo-input').forEach(inp => {
+    inp.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        const card = this.closest('.card');
+        if (!card) return;
+        callDemo(card.getAttribute('data-agent'));
+      }
+    });
+  });
+  const clearBtn = document.getElementById('terminal-clear');
+  if (clearBtn) clearBtn.addEventListener('click', terminalClear);
 </script>
 </body>
 </html>
