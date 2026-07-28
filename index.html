@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -1088,72 +1088,72 @@ npx awal send 10 usdc 0x...</pre>
 <section class="block" id="bankr" style="border-top:1px solid var(--border);padding-top:0;">
   <div class="wrap">
     <div class="section-head" style="margin-bottom:32px;">
-      <div class="kicker" style="color:var(--accent);">Без кошелька</div>
-      <h2>Как получить USDC на Base и оплатить любого агента без установки кошелька</h2>
-      <p>x402 принимает оплату в <strong>USDC на сети Base</strong>.<br>Кошелёк ставить не обязательно: пополнение через биржу → Bankr → оплата агента из чата.</p>
+      <div class="kicker" style="color:var(--accent);" data-i18n="bankr.kicker">Без кошелька</div>
+      <h2 data-i18n="bankr.title">Как получить USDC на Base и оплатить любого агента без установки кошелька</h2>
+      <p data-i18n="bankr.desc">x402 принимает оплату в <strong>USDC на сети Base</strong>.<br>Кошелёк ставить не обязательно: пополнение через биржу → Bankr → оплата агента из чата.</p>
     </div>
 
     <div class="grid" style="grid-template-columns:1fr 1fr;">
 
       <div class="card">
-        <h3><span class="step-badge">1</span> На Pionex обменяй что угодно на ETH</h3>
-        <p>Зайди на <a href="https://www.pionex.com/ru/signUp?r=0UjCVZ425EG" target="_blank" rel="noopener" style="color:var(--accent);font-weight:500;">Pionex</a> (или приложение). Обменяй любую монету на <strong>ETH</strong> (спот / convert — как удобнее). Дождись, пока ETH появится на балансе.</p>
+        <h3><span class="step-badge">1</span> <span data-i18n="bankr.step1.title">На Pionex обменяй что угодно на ETH</span></h3>
+        <p data-i18n="bankr.step1.text">Зайди на <a href="https://www.pionex.com/ru/signUp?r=0UjCVZ425EG" target="_blank" rel="noopener" style="color:var(--accent);font-weight:500;">Pionex</a> (или приложение). Обменяй любую монету на <strong>ETH</strong> (спот / convert — как удобнее). Дождись, пока ETH появится на балансе.</p>
       </div>
 
       <div class="card">
-        <h3><span class="step-badge">2</span> Выведи ETH с Pionex <strong>в сети Base</strong></h3>
-        <p>Вывод → <strong>ETH</strong>. В поле сети выбери <strong>Base</strong> (не Ethereum ERC-20). Адрес получателя — твой адрес в Bankr (см. шаг 3). Сумма: для тестов хватит на $5–20 в ETH.</p>
-        <p class="note" style="margin-top:10px;">Важно: сеть должна быть <strong>Base</strong>. Если выбрать Ethereum mainnet — ETH придёт не туда, и понадобится bridge.</p>
+        <h3><span class="step-badge">2</span> <span data-i18n="bankr.step2.title">Выведи ETH с Pionex <strong>в сети Base</strong></span></h3>
+        <p data-i18n="bankr.step2.text">Вывод → <strong>ETH</strong>. В поле сети выбери <strong>Base</strong> (не Ethereum ERC-20). Адрес получателя — твой адрес в Bankr (см. шаг 3). Сумма: для тестов хватит на $5–20 в ETH.</p>
+        <p class="note" style="margin-top:10px;" data-i18n="bankr.step2.note">Важно: сеть должна быть <strong>Base</strong>. Если выбрать Ethereum mainnet — ETH придёт не туда, и понадобится bridge.</p>
       </div>
 
       <div class="card">
-        <h3><span class="step-badge">3</span> Открой Bankr и узнай адрес</h3>
-        <p>Без MetaMask и без <code>awal</code>:</p>
-        <p style="font-size:14px;">
+        <h3><span class="step-badge">3</span> <span data-i18n="bankr.step3.title">Открой Bankr и узнай адрес</span></h3>
+        <p data-i18n="bankr.step3.text">Без MetaMask и без <code>awal</code>:</p>
+        <p style="font-size:14px;" data-i18n="bankr.step3.links">
           Web: <a href="https://bankr.bot" target="_blank" rel="noopener" style="color:var(--accent);">bankr.bot</a><br>
           Telegram: <a href="https://t.me/bankr_ai_bot" target="_blank" rel="noopener" style="color:var(--accent);">@bankr_ai_bot</a><br>
           X: <a href="https://x.com/bankrbot" target="_blank" rel="noopener" style="color:var(--accent);">@bankrbot</a>
         </p>
-        <p style="margin-top:10px;">В чат:</p>
+        <p style="margin-top:10px;" data-i18n="bankr.step3.cmd_label">В чат:</p>
         <pre class="code">what is my wallet address?</pre>
-        <p style="margin-top:8px;">Скопируй <strong>trading wallet address</strong> и вставь в вывод на Pionex (шаг 2).</p>
+        <p style="margin-top:8px;" data-i18n="bankr.step3.text2">Скопируй <strong>trading wallet address</strong> и вставь в вывод на Pionex (шаг 2).</p>
       </div>
 
       <div class="card">
-        <h3><span class="step-badge">4</span> Когда ETH на Base дошёл — обменяй на USDC</h3>
-        <p>В чат Bankr:</p>
+        <h3><span class="step-badge">4</span> <span data-i18n="bankr.step4.title">Когда ETH на Base дошёл — обменяй на USDC</span></h3>
+        <p data-i18n="bankr.step4.text">В чат Bankr:</p>
         <pre class="code">swap $5 of ETH to USDC on base</pre>
-        <p style="margin-top:6px;">или</p>
+        <p style="margin-top:6px;" data-i18n="bankr.step4.or">или</p>
         <pre class="code">swap 0.01 ETH to USDC on base</pre>
-        <p style="margin-top:6px;">Проверка:</p>
+        <p style="margin-top:6px;" data-i18n="bankr.step4.check">Проверка:</p>
         <pre class="code">how much USDC do I have?</pre>
       </div>
 
     </div>
 
     <div class="card" style="margin-top:16px;">
-      <h3><span class="step-badge">5</span> Оплати любого x402-агента прямо из чата</h3>
-      <p>Кошелёк и CLI не нужны. Вставь в Bankr команду целиком:</p>
+      <h3><span class="step-badge">5</span> <span data-i18n="bankr.step5.title">Оплати любого x402-агента прямо из чата</span></h3>
+      <p data-i18n="bankr.step5.text">Кошелёк и CLI не нужны. Вставь в Bankr команду целиком:</p>
       <pre class="code">npx awal x402 pay https://bbs-current-mechanical-bidding.trycloudflare.com/ \
   -X POST \
   -d '{"symbol":"BTC","price":0.00001,"volume":10000000}'</pre>
-      <p>Bankr подпишет платёж USDC на Base и выполнит запрос. Так можно оплачивать <strong>любого</strong> агента с x402 — не только «свой».</p>
+      <p data-i18n="bankr.step5.text2">Bankr подпишет платёж USDC на Base и выполнит запрос. Так можно оплачивать <strong>любого</strong> агента с x402 — не только «свой».</p>
     </div>
 
     <div class="card" style="margin-top:20px;background:var(--bg-card);border:1px solid var(--accent);">
-      <h3 style="font-size:0.95rem;">Схема одной строкой</h3>
-      <p style="font-size:15px;font-weight:500;color:var(--text);line-height:1.6;">Любая крипта на Pionex → ETH → вывод в сети Base на адрес Bankr → <code class="inl">swap ETH to USDC on base</code> → команда <code class="inl">npx awal x402 pay …</code> в чат Bankr</p>
-      <p style="margin-top:8px;color:var(--text-muted);font-size:14px;">Без локального кошелька. Без <code class="inl">npm install</code>. Без ручного DEX.</p>
+      <h3 style="font-size:0.95rem;" data-i18n="bankr.summary.title">Схема одной строкой</h3>
+      <p style="font-size:15px;font-weight:500;color:var(--text);line-height:1.6;" data-i18n="bankr.summary.text">Любая крипта на Pionex → ETH → вывод в сети Base на адрес Bankr → <code class="inl">swap ETH to USDC on base</code> → команда <code class="inl">npx awal x402 pay …</code> в чат Bankr</p>
+      <p style="margin-top:8px;color:var(--text-muted);font-size:14px;" data-i18n="bankr.summary.note">Без локального кошелька. Без <code class="inl">npm install</code>. Без ручного DEX.</p>
     </div>
 
     <div class="card" style="margin-top:16px;">
-      <h3>Если ETH ушёл в Ethereum (mainnet) по ошибке</h3>
-      <p>В Bankr:</p>
+      <h3 data-i18n="bankr.error.title">Если ETH ушёл в Ethereum (mainnet) по ошибке</h3>
+      <p data-i18n="bankr.error.text">В Bankr:</p>
       <pre class="code">bridge 0.01 ETH from ethereum to base</pre>
-      <p>Потом снова <code class="inl">swap … to USDC on base</code>.</p>
+      <p data-i18n="bankr.error.text2">Потом снова <code class="inl">swap … to USDC on base</code>.</p>
     </div>
 
-    <p class="note mt24">
+    <p class="note mt24" data-i18n="bankr.footnote">
       На Pionex при выводе ETH всегда проверяй сеть: <strong>Base</strong>.<br>
       Bankr — сторонний сервис; для постоянной работы агента можно позже завести свой <code class="inl">awal</code> / <code class="inl">x402-wallet</code>.<br>
       Без USDC на Base агент ответит <code class="inl">402</code> и данные не отдаст — так устроен протокол.
@@ -1456,8 +1456,51 @@ npx awal send 10 usdc 0x...</pre>
       "q6": { "title": "Что если баланс кончится?", "text": "Сервер вернёт <code class=\"inl\">402</code> с той же инструкцией. Агент просто не получит данные, пока вы не пополните USDC. Ничего не ломается." },
       "q7": { "title": "Чем отличается x402-wallet от Coinbase Wallet (awal)?", "text": "<strong>x402-wallet</strong> — лёгкий CLI-кошелёк, заточенный только под x402-платежи агентов. <strong>Coinbase Wallet (awal)</strong> — официальный CLI от Coinbase с полным набором команд: статус, баланс во всех сетях, отправка, swap, auth и поддержка x402. Выбирайте x402-wallet для минимализма, awal — для расширенного функционала." }
     },
+    "bankr": {
+      "kicker": "Без кошелька",
+      "title": "Как получить USDC на Base и оплатить любого агента без установки кошелька",
+      "desc": "x402 принимает оплату в <strong>USDC на сети Base</strong>.<br>Кошелёк ставить не обязательно: пополнение через биржу → Bankr → оплата агента из чата.",
+      "step1": {
+        "title": "На Pionex обменяй что угодно на ETH",
+        "text": "Зайди на <a href=\"https://www.pionex.com/ru/signUp?r=0UjCVZ425EG\" target=\"_blank\" rel=\"noopener\" style=\"color:var(--accent);font-weight:500;\">Pionex</a> (или приложение). Обменяй любую монету на <strong>ETH</strong> (спот / convert — как удобнее). Дождись, пока ETH появится на балансе."
+      },
+      "step2": {
+        "title": "Выведи ETH с Pionex <strong>в сети Base</strong>",
+        "text": "Вывод → <strong>ETH</strong>. В поле сети выбери <strong>Base</strong> (не Ethereum ERC-20). Адрес получателя — твой адрес в Bankr (см. шаг 3). Сумма: для тестов хватит на $5–20 в ETH.",
+        "note": "Важно: сеть должна быть <strong>Base</strong>. Если выбрать Ethereum mainnet — ETH придёт не туда, и понадобится bridge."
+      },
+      "step3": {
+        "title": "Открой Bankr и узнай адрес",
+        "text": "Без MetaMask и без <code>awal</code>:",
+        "links": "Web: <a href=\"https://bankr.bot\" target=\"_blank\" rel=\"noopener\" style=\"color:var(--accent);\">bankr.bot</a><br>Telegram: <a href=\"https://t.me/bankr_ai_bot\" target=\"_blank\" rel=\"noopener\" style=\"color:var(--accent);\">@bankr_ai_bot</a><br>X: <a href=\"https://x.com/bankrbot\" target=\"_blank\" rel=\"noopener\" style=\"color:var(--accent);\">@bankrbot</a>",
+        "cmd_label": "В чат:",
+        "text2": "Скопируй <strong>trading wallet address</strong> и вставь в вывод на Pionex (шаг 2)."
+      },
+      "step4": {
+        "title": "Когда ETH на Base дошёл — обменяй на USDC",
+        "text": "В чат Bankr:",
+        "or": "или",
+        "check": "Проверка:"
+      },
+      "step5": {
+        "title": "Оплати любого x402-агента прямо из чата",
+        "text": "Кошелёк и CLI не нужны. Вставь в Bankr команду целиком:",
+        "text2": "Bankr подпишет платёж USDC на Base и выполнит запрос. Так можно оплачивать <strong>любого</strong> агента с x402 — не только «свой»."
+      },
+      "summary": {
+        "title": "Схема одной строкой",
+        "text": "Любая крипта на Pionex → ETH → вывод в сети Base на адрес Bankr → <code class=\"inl\">swap ETH to USDC on base</code> → команда <code class=\"inl\">npx awal x402 pay …</code> в чат Bankr",
+        "note": "Без локального кошелька. Без <code class=\"inl\">npm install</code>. Без ручного DEX."
+      },
+      "error": {
+        "title": "Если ETH ушёл в Ethereum (mainnet) по ошибке",
+        "text": "В Bankr:",
+        "text2": "Потом снова <code class=\"inl\">swap … to USDC on base</code>."
+      },
+      "footnote": "На Pionex при выводе ETH всегда проверяй сеть: <strong>Base</strong>.<br>Bankr — сторонний сервис; для постоянной работы агента можно позже завести свой <code class=\"inl\">awal</code> / <code class=\"inl\">x402-wallet</code>.<br>Без USDC на Base агент ответит <code class=\"inl\">402</code> и данные не отдаст — так устроен протокол."
+    },
     "footer": {
-      "text": "© x402-ai-agent.space — про платежи для ИИ-агентов.",
+      "text": "с x402-ai-agent.space — всё для ИИ-агентов.",
       "links": "<a href=\"#what\">x402</a> · <a href=\"#install\">Установка</a> · <a href=\"/blog/\">Блог</a>"
     }
   };
@@ -1601,8 +1644,51 @@ npx awal send 10 usdc 0x...</pre>
       "q6": { "title": "What if the balance runs out?", "text": "The server returns <code class=\"inl\">402</code> with the same instruction. The agent simply won’t get the data until you top up USDC. Nothing breaks." },
       "q7": { "title": "What\u2019s the difference between x402-wallet and Coinbase Wallet (awal)?", "text": "<strong>x402-wallet</strong> is a lightweight CLI wallet designed specifically for agent x402 payments. <strong>Coinbase Wallet (awal)</strong> is the official Coinbase CLI with a full command set: status, multi-chain balance, send, swap, auth, and x402 support. Choose x402-wallet for minimalism, awal for extended features." }
     },
+    "bankr": {
+      "kicker": "No wallet needed",
+      "title": "How to get USDC on Base and pay any agent without installing a wallet",
+      "desc": "x402 accepts payments in <strong>USDC on Base network</strong>.<br>No wallet installation needed: top up via exchange → Bankr → pay agent from chat.",
+      "step1": {
+        "title": "Swap anything for ETH on Pionex",
+        "text": "Go to <a href=\"https://www.pionex.com/ru/signUp?r=0UjCVZ425EG\" target=\"_blank\" rel=\"noopener\" style=\"color:var(--accent);font-weight:500;\">Pionex</a> (or app). Swap any coin for <strong>ETH</strong> (spot / convert). Wait for ETH to appear in your balance."
+      },
+      "step2": {
+        "title": "Withdraw ETH from Pionex <strong>on Base network</strong>",
+        "text": "Withdraw → <strong>ETH</strong>. Select <strong>Base</strong> network (not Ethereum ERC-20). Recipient address — your Bankr address (see step 3). Amount: $5–20 in ETH is enough for testing.",
+        "note": "Important: the network must be <strong>Base</strong>. If you choose Ethereum mainnet, ETH will arrive on the wrong network and you'll need a bridge."
+      },
+      "step3": {
+        "title": "Open Bankr and get your address",
+        "text": "No MetaMask, no <code>awal</code>:",
+        "links": "Web: <a href=\"https://bankr.bot\" target=\"_blank\" rel=\"noopener\" style=\"color:var(--accent);\">bankr.bot</a><br>Telegram: <a href=\"https://t.me/bankr_ai_bot\" target=\"_blank\" rel=\"noopener\" style=\"color:var(--accent);\">@bankr_ai_bot</a><br>X: <a href=\"https://x.com/bankrbot\" target=\"_blank\" rel=\"noopener\" style=\"color:var(--accent);\">@bankrbot</a>",
+        "cmd_label": "In chat:",
+        "text2": "Copy the <strong>trading wallet address</strong> and paste it into the Pionex withdrawal (step 2)."
+      },
+      "step4": {
+        "title": "When ETH arrives on Base — swap to USDC",
+        "text": "In Bankr chat:",
+        "or": "or",
+        "check": "Check:"
+      },
+      "step5": {
+        "title": "Pay any x402 agent right from chat",
+        "text": "No wallet or CLI needed. Paste the full command into Bankr:",
+        "text2": "Bankr signs the USDC payment on Base and executes the request. You can pay <strong>any</strong> x402 agent — not just your own."
+      },
+      "summary": {
+        "title": "One-line summary",
+        "text": "Any crypto on Pionex → ETH → withdraw on Base network to Bankr address → <code class=\"inl\">swap ETH to USDC on base</code> → <code class=\"inl\">npx awal x402 pay …</code> in Bankr chat",
+        "note": "No local wallet. No <code class=\"inl\">npm install</code>. No manual DEX."
+      },
+      "error": {
+        "title": "If ETH went to Ethereum (mainnet) by mistake",
+        "text": "In Bankr:",
+        "text2": "Then <code class=\"inl\">swap … to USDC on base</code> again."
+      },
+      "footnote": "Always check the network when withdrawing ETH from Pionex: <strong>Base</strong>.<br>Bankr is a third-party service; for permanent agent operation you can set up your own <code class=\"inl\">awal</code> / <code class=\"inl\">x402-wallet</code> later.<br>Without USDC on Base the agent will respond <code class=\"inl\">402</code> and won't return data — that's how the protocol works."
+    },
     "footer": {
-      "text": "© x402-ai-agent.space — payments for AI agents.",
+      "text": "c x402-ai-agent.space - payments for AI agents.",
       "links": "<a href=\"#what\">x402</a> · <a href=\"#install\">Install</a> · <a href=\"/blog/\">Blog</a>"
     }
   };
