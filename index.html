@@ -2015,6 +2015,93 @@ npx awal send 10 usdc 0x...</pre>
     },
   };
 
+  // ─── TERMINAL TRANSLATOR ───
+  const TERMINAL_TR = {
+    // SEO agent
+    'Общая оценка:': 'Overall score:',
+    'SEO-анализ сайта:': 'SEO analysis:',
+    'Отлично': 'Excellent',
+    'Мета-теги:': 'Meta tags:',
+    'Техническая информация:': 'Technical info:',
+    'Заголовки:': 'Headings:',
+    'Изображения:': 'Images:',
+    'Ссылки:': 'Links:',
+    'Технический анализ:': 'Technical analysis:',
+    'Что хорошо:': 'What\'s good:',
+    'Что можно улучшить:': 'What can be improved:',
+    'Рекомендации:': 'Recommendations:',
+    'Всего:': 'Total:',
+    'Внутренние:': 'Internal:',
+    'Внешние:': 'External:',
+    'С alt-атрибутами:': 'With alt:',
+    'Без alt:': 'Without alt:',
+    'Статус:': 'Status:',
+    'Время загрузки:': 'Load time:',
+    'Размер страницы:': 'Page size:',
+    'Длина:': 'Length:',
+    'Есть': 'Yes',
+    'Нет': 'No',
+    'Название страницы (Title)': 'Page title (Title)',
+    'Описание (Description)': 'Description',
+    'Заголовок H1': 'H1 heading',
+    'Используются H2-заголовки': 'H2 headings used',
+    'изображений с alt-атрибутами': 'images with alt attributes',
+    'внутренних ссылок': 'internal links',
+    'внешних ссылок': 'external links',
+    'Укоротите Title': 'Shorten Title',
+    // Gas agent
+    'FREE GAS TRACKER': 'FREE GAS TRACKER',
+    'Обновлено:': 'Updated:',
+    'Не удалось получить данные': 'Failed to fetch data',
+    'очень дёшево': 'very cheap',
+    'дёшево': 'cheap',
+    'средне': 'average',
+    'дорого': 'expensive',
+    'Рекомендация:': 'Recommendation:',
+    'нет данных': 'no data',
+    'Примечание:': 'Note:',
+    'L2 gas почти всегда низкий': 'L2 gas is almost always low',
+    'На Ethereum смотри Standard / Fast': 'On Ethereum check Standard / Fast',
+    'Данные приблизительные (публичные RPC)': 'Approximate data (public RPC)',
+    // Free Models
+    'Бесплатный демо-агент': 'Free demo agent',
+    'попробуй x402 без оплаты': 'try x402 for free',
+    // Terminal UI
+    'выбери агента, введи запрос и нажми «Попробовать →»': 'choose an agent, enter a query and click "Try it \u2192"',
+    'x402 demo agents ready': 'x402 demo agents ready',
+    'terminal cleared': 'terminal cleared',
+    // Done / common
+    'всё начинается заново': 'starting fresh',
+  };
+
+  function translateTerminal(text, lang) {
+    if (lang !== 'en') return text;
+    let result = text;
+    // Sort by length descending to avoid partial overlap
+    const keys = Object.keys(TERMINAL_TR).sort((a, b) => b.length - a.length);
+    for (const ru of keys) {
+      result = result.split(ru).join(TERMINAL_TR[ru]);
+    }
+    return result;
+  }
+
+  function retranslateTerminal() {
+    const lang = getDemoLang();
+    // Lines that already have data-original — re-translate
+    document.querySelectorAll('#terminal-body .terminal-line[data-original]').forEach(el => {
+      const original = el.getAttribute('data-original');
+      if (original !== null) {
+        el.innerHTML = translateTerminal(original, lang);
+      }
+    });
+    // Static lines (no data-original yet) — capture and translate
+    document.querySelectorAll('#terminal-body .terminal-line:not([data-original])').forEach(el => {
+      const txt = el.innerHTML;
+      el.setAttribute('data-original', txt);
+      el.innerHTML = translateTerminal(txt, lang);
+    });
+  }
+
   function getNested(obj, path) {
     return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
   }
@@ -2067,6 +2154,7 @@ npx awal send 10 usdc 0x...</pre>
     localStorage.setItem(LANG_KEY, lang);
     document.documentElement.lang = lang;
     updateSwitcher(lang);
+    retranslateTerminal();
 
     fetch(`/lang/${lang}.json`)
       .then(r => {
@@ -2144,12 +2232,13 @@ npx awal send 10 usdc 0x...</pre>
   // ─── TERMINAL ───
   function terminalEl() { return document.getElementById('terminal-body'); }
 
-  function terminalLog(html, className) {
+  function terminalLog(html, className, originalText) {
     const body = terminalEl();
     if (!body) return;
     const line = document.createElement('div');
     line.className = 'terminal-line' + (className ? ' ' + className : '');
     line.innerHTML = html;
+    line.setAttribute('data-original', originalText || html);
     body.appendChild(line);
     body.scrollTop = body.scrollHeight;
   }
@@ -2205,12 +2294,17 @@ npx awal send 10 usdc 0x...</pre>
       .then(data => {
         const elapsed = ((performance.now() - t0) / 1000).toFixed(1);
         // Show the formatted analysis
+        const lang = getDemoLang();
         if (data.analysis) {
           terminalLog('<span class="terminal-prompt">$</span> response:', '');
-          const escaped = data.analysis.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-          terminalLog('<pre class="terminal-pre">' + escaped + '</pre>', 'agent-result');
+          const rawText = data.analysis;
+          const displayText = translateTerminal(rawText, lang);
+          const escaped = displayText.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          terminalLog('<pre class="terminal-pre">' + escaped + '</pre>', 'agent-result', rawText);
         } else {
-          terminalLog('<span class="terminal-prompt">$</span> <pre class="terminal-pre" style="margin:0;">' + JSON.stringify(data, null, 2).replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</pre>', 'agent-result');
+          const rawText = JSON.stringify(data, null, 2);
+          const displayText = translateTerminal(rawText, lang);
+          terminalLog('<span class="terminal-prompt">$</span> <pre class="terminal-pre" style="margin:0;">' + displayText.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</pre>', 'agent-result', rawText);
         }
         terminalLog('<span class="terminal-prompt">$</span> done <span style="color:#888;">(' + elapsed + 's)</span>', 'agent-done');
         terminalLog('<span class="terminal-prompt">$</span> <span style="color:#555;">─────────────────────────────</span>', '');
