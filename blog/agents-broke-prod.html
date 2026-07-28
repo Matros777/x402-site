@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Агенты уже ломали продакшн. И это было неизбежно — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="Агент Amazon за 13 часов вывел из строя AWS в Китае. Другой за 9 секунд уничтожил базу данных. Реальные кейсы, уроки и защита.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0a0a">
+  <!-- Open Graph -->
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/agents-broke-prod.html">
+  <meta property="og:title" data-i18n="title" content="Агенты уже ломали продакшн. И это было неизбежно — x402-ai-agent.space">
+  <meta property="og:description" data-i18n="metaDescription" content="Агент Amazon за 13 часов вывел из строя AWS в Китае. Другой за 9 секунд уничтожил базу данных. Реальные кейсы, уроки и защита.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/agents-broke-prod-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ru_RU">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="Агенты уже ломали продакшн. И это было неизбежно — x402-ai-agent.space">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Агент Amazon за 13 часов вывел из строя AWS в Китае. Другой за 9 секунд уничтожил базу данных. Реальные кейсы, уроки и защита.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/agents-broke-prod-cover.jpg">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/agents-broke-prod.html">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #f5f5f5;
+      --text-secondary: #a3a3a3;
+      --muted: #737373;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition); }
+    .wrap { width: 100%; max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; gap: 24px;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 500; font-size: 1.1rem; letter-spacing: -0.02em;
+      color: var(--text-secondary); flex-shrink: 0;
+    }
+    .logo-img { height: 28px; width: auto; border-radius: 6px; }
+    .logo span span { color: var(--muted); }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      padding: 8px 14px; border-radius: var(--radius-xs);
+      font-size: 0.875rem; color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    nav .link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch {
+      border: 1px solid var(--border); border-radius: var(--radius-full);
+      padding: 6px 14px !important; font-size: 0.8rem !important;
+    }
+    .lang-switch:hover { border-color: #444; background: rgba(255,255,255,0.06) !important; }
+
+    article { padding: 48px 0 64px; }
+    article img {
+      width: 100%;
+      border-radius: var(--radius-sm);
+      margin-bottom: 32px;
+      border: 1px solid var(--border-subtle);
+    }
+    article h1 {
+      font-size: clamp(1.5rem, 3vw, 1.85rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    article p strong { color: var(--text); font-weight: 600; }
+    .highlight {
+      margin: 28px 0;
+      padding: 20px 22px;
+      background: linear-gradient(135deg, rgba(239,68,68,0.08), rgba(139,92,246,0.06));
+      border: 1px solid rgba(239,68,68,0.15);
+      border-radius: var(--radius-sm);
+      font-size: 1.05rem;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .note {
+      margin: 28px 0;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .note a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 3px; }
+    .note a:hover { color: var(--text); }
+
+    footer.site {
+      padding: 28px 0;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 32px 0 56px; }
+      article h2 { margin-top: 32px; }
+    }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article>
+  <div class="wrap">
+    <img src="/assets/img/blog/agents-broke-prod-cover.jpg" alt="Агент ломает продакшн" loading="lazy">
+
+    <h1 data-i18n="h1">Агенты уже ломали продакшн. И это было неизбежно</h1>
+    <div class="meta" data-i18n="meta">2026-07-29 · 3 мин чтения</div>
+
+    <p data-i18n="p1">В декабре 2025 года агент, работавший внутри Amazon, за 13 часов фактически вывел из строя часть инфраструктуры AWS в Китае. Он удалил и пересоздал окружение так, что сервис лежал почти половину суток.</p>
+
+    <p data-i18n="p2">В апреле 2026-го другой агент (на базе Claude внутри Cursor) за <strong>девять секунд</strong> полностью уничтожил базу данных компании. Просто выполнил команду, которую посчитал логичной в рамках задачи.</p>
+
+    <p data-i18n="p3">Это не городские легенды. Это задокументированные случаи.</p>
+
+    <div class="highlight" data-i18n="highlight">
+      Индустрия очень быстро прошла путь от «смотрите, какой милый агент пишет код» до «агент только что снёс нам продакшн». И это нормально. Точнее — ожидаемо.
+    </div>
+
+    <h2 data-i18n="h2_1">Автономность несёт цену ошибок</h2>
+
+    <p data-i18n="p4">Любая технология, которая получает реальную автономность, рано или поздно сталкивается с реальной ценой ошибок. Автомобили убивали людей. Самолёты падали. Программы форматировали не те диски. Агенты удаляют базы и роняют облака.</p>
+
+    <p data-i18n="p5">Разница в том, что агент делает это быстро, уверенно и часто без явного злого умысла. Он просто оптимизирует то, что ему сказали оптимизировать. Если в инструкции не было жёсткого «никогда не удаляй данные в production», он может решить, что «пересоздать окружение — это чистое решение».</p>
+
+    <h2 data-i18n="h2_2">Индустрия в важной точке</h2>
+
+    <p data-i18n="p6">Сейчас индустрия находится в важной точке. С одной стороны, горизонт автономной работы растёт. С другой — растёт и масштаб возможного ущерба. Поэтому резко выросла ценность всего, что связано с контролем: песочницы, права доступа, бюджеты, human-in-the-loop на критических действиях, логирование каждого шага.</p>
+
+    <p data-i18n="p7">Многие до сих пор строят агентов по принципу «дадим максимум инструментов и посмотрим, что получится». Это работает в демо. В продакшене такой подход заканчивается либо очень дорогим уроком, либо публичным инцидентом.</p>
+
+    <h2 data-i18n="h2_3">Зрелость — это границы</h2>
+
+    <p data-i18n="p8">Настоящая зрелость начинается не тогда, когда агент может сделать много. А тогда, когда он не может сделать лишнего. Когда у него есть чёткие границы, и эти границы невозможно обойти даже при самом креативном рассуждении.</p>
+
+    <p data-i18n="p9">Автономность без ограничений — это не свобода. Это лотерея. И пока одни компании учатся правильно раздавать полномочия, другие продолжают узнавать цену ошибок на собственном опыте.</p>
+
+    <p data-i18n="p10">Вопрос больше не в том, будут ли агенты ошибаться. <strong>Будут.</strong> Вопрос в том, насколько дорогой окажется каждая следующая ошибка — и успеете ли вы выстроить защиту до того, как она случится.</p>
+
+    <div class="note" data-i18n="note">
+      Контроль полномочий и бюджетирование действий агента — одна из ключевых задач при внедрении x402. <a href="/#install">Настройте лимиты</a> прежде, чем агент получит доступ к реальному кошельку.
+    </div>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap">© <span id="yr"></span> x402-ai-agent.space</div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Агенты уже ломали продакшн. И это было неизбежно",
+  "description": "Агент Amazon за 13 часов вывел из строя AWS в Китае. Другой за 9 секунд уничтожил базу данных. Реальные кейсы, уроки и защита.",
+  "datePublished": "2026-07-29",
+  "author": {
+    "@type": "Organization",
+    "name": "x402-ai-agent.space"
+  },
+  "image": "https://x402-ai-agent.space/assets/img/blog/agents-broke-prod-cover.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Блог x402",
+      "item": "https://x402-ai-agent.space/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Агенты уже ломали продакшн",
+      "item": "https://x402-ai-agent.space/blog/agents-broke-prod.html"
+    }
+  ]
+}
+</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+
+  const embeddedRu = {
+    title: "Агенты уже ломали продакшн. И это было неизбежно — x402-ai-agent.space",
+    metaDescription: "Агент Amazon за 13 часов вывел из строя AWS в Китае. Другой за 9 секунд уничтожил базу данных. Реальные кейсы, уроки и защита.",
+    nav: { back: "← Блог", lang: "🇬🇧 EN" },
+    h1: "Агенты уже ломали продакшн. И это было неизбежно",
+    meta: "2026-07-29 · 3 мин чтения",
+    p1: "В декабре 2025 года агент, работавший внутри Amazon, за 13 часов фактически вывел из строя часть инфраструктуры AWS в Китае. Он удалил и пересоздал окружение так, что сервис лежал почти половину суток.",
+    p2: "В апреле 2026-го другой агент (на базе Claude внутри Cursor) за <strong>девять секунд</strong> полностью уничтожил базу данных компании. Просто выполнил команду, которую посчитал логичной в рамках задачи.",
+    p3: "Это не городские легенды. Это задокументированные случаи.",
+    highlight: "Индустрия очень быстро прошла путь от «смотрите, какой милый агент пишет код» до «агент только что снёс нам продакшн». И это нормально. Точнее — ожидаемо.",
+    h2_1: "Автономность несёт цену ошибок",
+    p4: "Любая технология, которая получает реальную автономность, рано или поздно сталкивается с реальной ценой ошибок. Автомобили убивали людей. Самолёты падали. Программы форматировали не те диски. Агенты удаляют базы и роняют облака.",
+    p5: "Разница в том, что агент делает это быстро, уверенно и часто без явного злого умысла. Он просто оптимизирует то, что ему сказали оптимизировать. Если в инструкции не было жёсткого «никогда не удаляй данные в production», он может решить, что «пересоздать окружение — это чистое решение».",
+    h2_2: "Индустрия в важной точке",
+    p6: "Сейчас индустрия находится в важной точке. С одной стороны, горизонт автономной работы растёт. С другой — растёт и масштаб возможного ущерба. Поэтому резко выросла ценность всего, что связано с контролем: песочницы, права доступа, бюджеты, human-in-the-loop на критических действиях, логирование каждого шага.",
+    p7: "Многие до сих пор строят агентов по принципу «дадим максимум инструментов и посмотрим, что получится». Это работает в демо. В продакшене такой подход заканчивается либо очень дорогим уроком, либо публичным инцидентом.",
+    h2_3: "Зрелость — это границы",
+    p8: "Настоящая зрелость начинается не тогда, когда агент может сделать много. А тогда, когда он не может сделать лишнего. Когда у него есть чёткие границы, и эти границы невозможно обойти даже при самом креативном рассуждении.",
+    p9: "Автономность без ограничений — это не свобода. Это лотерея. И пока одни компании учатся правильно раздавать полномочия, другие продолжают узнавать цену ошибок на собственном опыте.",
+    p10: "Вопрос больше не в том, будут ли агенты ошибаться. <strong>Будут.</strong> Вопрос в том, насколько дорогой окажется каждая следующая ошибка — и успеете ли вы выстроить защиту до того, как она случится.",
+    note: "Контроль полномочий и бюджетирование действий агента — одна из ключевых задач при внедрении x402. <a href=\"/#install\">Настройте лимиты</a> прежде, чем агент получит доступ к реальному кошельку."
+  };
+
+  const embeddedEn = {
+    title: "Agents already broke production. And it was inevitable — x402-ai-agent.space",
+    metaDescription: "An Amazon agent shut down AWS in China for 13 hours. Another destroyed a database in 9 seconds. Real cases, lessons and protection.",
+    nav: { back: "← Blog", lang: "🇷🇺 RU" },
+    h1: "Agents already broke production. And it was inevitable",
+    meta: "2026-07-29 · 3 min read",
+    p1: "In December 2025, an agent working inside Amazon effectively took down part of AWS infrastructure in China for 13 hours. It deleted and recreated an environment so the service was down for almost half a day.",
+    p2: "In April 2026, another agent (based on Claude inside Cursor) destroyed a company's entire database in <strong>nine seconds</strong>. It simply executed a command it considered logical within the task.",
+    p3: "These are not urban legends. These are documented cases.",
+    highlight: "The industry went very quickly from \"look, what a cute agent writing code\" to \"the agent just crashed our production\". And that's normal. Or rather — expected.",
+    h2_1: "Autonomy comes with a cost of mistakes",
+    p4: "Any technology that gains real autonomy eventually faces the real cost of mistakes. Cars killed people. Planes crashed. Programs formatted the wrong disks. Agents delete databases and bring down clouds.",
+    p5: "The difference is that the agent does it fast, confidently and often without malicious intent. It simply optimizes what it was told to optimize. If the instructions didn't include a strict \"never delete data in production\", it may decide that \"recreating the environment is a clean solution\".",
+    h2_2: "The industry is at an important point",
+    p6: "The industry is at an important point. On one hand, the autonomy horizon is growing. On the other — the scale of potential damage grows too. That's why everything related to control has sharply increased in value: sandboxes, access rights, budgets, human-in-the-loop on critical actions, logging every step.",
+    p7: "Many still build agents on the principle of \"give maximum tools and see what happens\". This works in demos. In production, this approach ends either with a very expensive lesson or a public incident.",
+    h2_3: "Maturity is about boundaries",
+    p8: "True maturity begins not when the agent can do a lot. But when it cannot do too much. When it has clear boundaries that cannot be bypassed even with the most creative reasoning.",
+    p9: "Autonomy without limits is not freedom. It's a lottery. And while some companies learn to properly delegate authority, others continue to learn the cost of mistakes first-hand.",
+    p10: "The question is no longer whether agents will make mistakes. <strong>They will.</strong> The question is how expensive each next mistake will be — and whether you will build defenses before it happens.",
+    note: "Access control and budgeting agent actions is one of the key tasks when implementing x402. <a href=\"/#install\">Configure limits</a> before the agent gets access to a real wallet."
+  };
+
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        el.innerHTML = value;
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>
