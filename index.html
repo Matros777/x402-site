@@ -2085,8 +2085,8 @@ npx awal send 10 usdc 0x...</pre>
     return result;
   }
 
-  function retranslateTerminal() {
-    const lang = getDemoLang();
+  function retranslateTerminal(lang) {
+    if (!lang) lang = getDemoLang();
     // Lines that already have data-original — re-translate
     document.querySelectorAll('#terminal-body .terminal-line[data-original]').forEach(el => {
       const original = el.getAttribute('data-original');
@@ -2154,7 +2154,7 @@ npx awal send 10 usdc 0x...</pre>
     localStorage.setItem(LANG_KEY, lang);
     document.documentElement.lang = lang;
     updateSwitcher(lang);
-    retranslateTerminal();
+    retranslateTerminal(lang);
 
     fetch(`/lang/${lang}.json`)
       .then(r => {
@@ -2184,8 +2184,8 @@ npx awal send 10 usdc 0x...</pre>
         e.stopPropagation();
         const current = document.documentElement.lang || 'ru';
         const next = current === 'ru' ? 'en' : 'ru';
-        setLanguage(next);
         history.pushState({}, '', `?lang=${next}`);
+        setLanguage(next);
       });
     }
 
