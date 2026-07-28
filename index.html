@@ -603,6 +603,29 @@
       padding: 2px 10px;
       margin-bottom: 10px;
     }
+    /* ─── STEP BADGE ─── */
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #000;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
+    .card h3 {
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
     /* ─── RESPONSIVE ─── */
     @media (max-width: 800px) {
       .hero-grid {
@@ -1059,6 +1082,82 @@ npx awal send 10 usdc 0x...</pre>
       </div>
     </div>
     <p class="note mt24" data-i18n="awal.note">Полный список: <code class="inl">npx awal help</code>. Команды <code class="inl">awal x402 pay</code>, <code class="inl">balance</code>, <code class="inl">address</code> — всё, что нужно агенту.</p>
+  </div>
+</section>
+<!-- BANKR + PIONEX -->
+<section class="block" id="bankr" style="border-top:1px solid var(--border);padding-top:0;">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:32px;">
+      <div class="kicker" style="color:var(--accent);">Без кошелька</div>
+      <h2>Как получить USDC на Base и оплатить любого агента без установки кошелька</h2>
+      <p>x402 принимает оплату в <strong>USDC на сети Base</strong>.<br>Кошелёк ставить не обязательно: пополнение через биржу → Bankr → оплата агента из чата.</p>
+    </div>
+
+    <div class="grid" style="grid-template-columns:1fr 1fr;">
+
+      <div class="card">
+        <h3><span class="step-badge">1</span> На Pionex обменяй что угодно на ETH</h3>
+        <p>Зайди на <a href="https://www.pionex.com/ru/signUp?r=0UjCVZ425EG" target="_blank" rel="noopener" style="color:var(--accent);font-weight:500;">Pionex</a> (или приложение). Обменяй любую монету на <strong>ETH</strong> (спот / convert — как удобнее). Дождись, пока ETH появится на балансе.</p>
+      </div>
+
+      <div class="card">
+        <h3><span class="step-badge">2</span> Выведи ETH с Pionex <strong>в сети Base</strong></h3>
+        <p>Вывод → <strong>ETH</strong>. В поле сети выбери <strong>Base</strong> (не Ethereum ERC-20). Адрес получателя — твой адрес в Bankr (см. шаг 3). Сумма: для тестов хватит на $5–20 в ETH.</p>
+        <p class="note" style="margin-top:10px;">Важно: сеть должна быть <strong>Base</strong>. Если выбрать Ethereum mainnet — ETH придёт не туда, и понадобится bridge.</p>
+      </div>
+
+      <div class="card">
+        <h3><span class="step-badge">3</span> Открой Bankr и узнай адрес</h3>
+        <p>Без MetaMask и без <code>awal</code>:</p>
+        <p style="font-size:14px;">
+          Web: <a href="https://bankr.bot" target="_blank" rel="noopener" style="color:var(--accent);">bankr.bot</a><br>
+          Telegram: <a href="https://t.me/bankr_ai_bot" target="_blank" rel="noopener" style="color:var(--accent);">@bankr_ai_bot</a><br>
+          X: <a href="https://x.com/bankrbot" target="_blank" rel="noopener" style="color:var(--accent);">@bankrbot</a>
+        </p>
+        <p style="margin-top:10px;">В чат:</p>
+        <pre class="code">what is my wallet address?</pre>
+        <p style="margin-top:8px;">Скопируй <strong>trading wallet address</strong> и вставь в вывод на Pionex (шаг 2).</p>
+      </div>
+
+      <div class="card">
+        <h3><span class="step-badge">4</span> Когда ETH на Base дошёл — обменяй на USDC</h3>
+        <p>В чат Bankr:</p>
+        <pre class="code">swap $5 of ETH to USDC on base</pre>
+        <p style="margin-top:6px;">или</p>
+        <pre class="code">swap 0.01 ETH to USDC on base</pre>
+        <p style="margin-top:6px;">Проверка:</p>
+        <pre class="code">how much USDC do I have?</pre>
+      </div>
+
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <h3><span class="step-badge">5</span> Оплати любого x402-агента прямо из чата</h3>
+      <p>Кошелёк и CLI не нужны. Вставь в Bankr команду целиком:</p>
+      <pre class="code">npx awal x402 pay https://bbs-current-mechanical-bidding.trycloudflare.com/ \
+  -X POST \
+  -d '{"symbol":"BTC","price":0.00001,"volume":10000000}'</pre>
+      <p>Bankr подпишет платёж USDC на Base и выполнит запрос. Так можно оплачивать <strong>любого</strong> агента с x402 — не только «свой».</p>
+    </div>
+
+    <div class="card" style="margin-top:20px;background:var(--bg-card);border:1px solid var(--accent);">
+      <h3 style="font-size:0.95rem;">Схема одной строкой</h3>
+      <p style="font-size:15px;font-weight:500;color:var(--text);line-height:1.6;">Любая крипта на Pionex → ETH → вывод в сети Base на адрес Bankr → <code class="inl">swap ETH to USDC on base</code> → команда <code class="inl">npx awal x402 pay …</code> в чат Bankr</p>
+      <p style="margin-top:8px;color:var(--text-muted);font-size:14px;">Без локального кошелька. Без <code class="inl">npm install</code>. Без ручного DEX.</p>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <h3>Если ETH ушёл в Ethereum (mainnet) по ошибке</h3>
+      <p>В Bankr:</p>
+      <pre class="code">bridge 0.01 ETH from ethereum to base</pre>
+      <p>Потом снова <code class="inl">swap … to USDC on base</code>.</p>
+    </div>
+
+    <p class="note mt24">
+      На Pionex при выводе ETH всегда проверяй сеть: <strong>Base</strong>.<br>
+      Bankr — сторонний сервис; для постоянной работы агента можно позже завести свой <code class="inl">awal</code> / <code class="inl">x402-wallet</code>.<br>
+      Без USDC на Base агент ответит <code class="inl">402</code> и данные не отдаст — так устроен протокол.
+    </p>
   </div>
 </section>
 <!-- FAQ -->
