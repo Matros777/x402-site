@@ -1206,9 +1206,6 @@ async def verify_and_settle_with_facilitator(payment_payload: str) -> bool:
         payment_data = json.loads(base64.b64decode(payment_payload).decode("utf-8"))
     except Exception:
         return False
-    # resource помогает клиентам/индексаторам (на xpay листинг agentic.market не появится)
-    if not payment_data.get("resource"):
-        payment_data["resource"] = {"url": RESOURCE_URL, "mimeType": "application/json"}
     requirements = {
         "scheme": "exact",
         "network": NETWORK,
