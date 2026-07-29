@@ -869,6 +869,61 @@
       max-height: 200px;
       overflow-y: auto;
     }
+    .terminal-chat {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      background: #0a0a0a;
+      border-top: 1px solid #1a1a1a;
+    }
+    .terminal-chat-prompt {
+      color: #22c55e;
+      font-family: inherit;
+      font-size: 0.78rem;
+      user-select: none;
+      flex-shrink: 0;
+    }
+    .terminal-chat-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #d4d4d4;
+      font-family: inherit;
+      font-size: 0.78rem;
+      padding: 4px 0;
+      min-width: 0;
+    }
+    .terminal-chat-input::placeholder {
+      color: #444;
+      font-size: 0.75rem;
+    }
+    .terminal-chat-send {
+      background: transparent;
+      border: 1px solid #2a2a2a;
+      color: #666;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .terminal-chat-send:hover {
+      border-color: #22c55e;
+      color: #22c55e;
+    }
+    .terminal-chat-input:focus + .terminal-chat-send,
+    .terminal-chat-send:focus {
+      border-color: #22c55e;
+      color: #22c55e;
+    }
     .free-badge {
       display: inline-block;
       background: #22c55e;
@@ -1278,8 +1333,13 @@ node agent.js</pre>
         <div class="terminal-line welcome"><span class="terminal-prompt">$</span> x402 demo agents ready · amount: 0</div>
         <div class="terminal-line"><span class="terminal-prompt">$</span> выбери агента, введи запрос и нажми «Попробовать →»</div>
       </div>
-    </div>
+      <div class="terminal-chat" id="terminalChat">
+        <span class="terminal-chat-prompt">chat&gt;</span>
+        <input type="text" class="terminal-chat-input" id="chatInput" placeholder="спроси у ИИ..." autocomplete="off">
+        <button class="terminal-chat-send" id="chatSend" title="Отправить">↵</button>
+      </div>
 
+    </div>
     <p class="note mt24" data-i18n="demos.note">
       ⚡ Цена <strong>0 USDC</strong> на Base Mainnet. Oval / awal проходят 402 без списания — так проверяют протокол без пополнения кошелька.
     </p>
@@ -2220,6 +2280,10 @@ npx awal send 10 usdc 0x...</pre>
     'free-models':   'https://91.149.187.50.nip.io:444/models',
   };
 
+  const CHAT_URL = 'https://91.149.187.50.nip.io:444/chat';
+  let chatHistory = [];
+  let chatRunning = false;
+
   const AGENT_BODY = {
     'free-signal':   { symbol: '' },
     'seo-audit':     { url: '' },
@@ -2339,6 +2403,61 @@ npx awal send 10 usdc 0x...</pre>
       });
   }
 
+  // ─── CHAT ───
+  function sendChat() {
+    const input = document.getElementById('chatInput');
+    if (!input) return;
+    const msg = input.value.trim();
+    if (!msg || chatRunning) return;
+
+    chatRunning = true;
+    input.disabled = true;
+
+    // Показываем сообщение пользователя в терминале
+    const lang = getDemoLang();
+    terminalLog('<span style="color:#22c55e;">chat&gt;</span> ' + msg.replace(/</g, '&lt;'), '');
+    
+    // Добавляем в историю
+    chatHistory.push({ role: 'user', text: msg });
+    
+    const t0 = performance.now();
+    terminalLog('<span class="terminal-prompt">$</span> ' + demoI18n('demos.loading'), '');
+
+    fetch(CHAT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: msg, history: chatHistory.slice(-20) })
+    })
+      .then(r => {
+        if (!r.ok) throw new Error(demoI18n('demos.http_error') + ' ' + r.status);
+        return r.json();
+      })
+      .then(data => {
+        const elapsed = ((performance.now() - t0) / 1000).toFixed(1);
+        if (data.reply) {
+          const reply = data.reply;
+          chatHistory.push({ role: 'assistant', text: reply });
+          const displayText = translateTerminal(reply, lang);
+          const escaped = displayText.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          terminalLog('<span style="color:#4f8cff;">ai&gt;</span> ' + escaped, 'agent-result', reply);
+        } else {
+          terminalLog('<span style="color:#ef4444;">❌ no reply</span>', 'agent-error');
+        }
+        terminalLog('<span class="terminal-prompt">$</span> done <span style="color:#888;">(' + elapsed + 's)</span>', 'agent-done');
+        terminalLog('<span class="terminal-prompt">$</span> <span style="color:#555;">─────────────────────────────</span>', '');
+      })
+      .catch(err => {
+        const elapsed = ((performance.now() - t0) / 1000).toFixed(1);
+        terminalLog('<span style="color:#ef4444;">❌ ' + (err.message || demoI18n('demos.error')) + ' (' + elapsed + 's)</span>', 'agent-error');
+      })
+      .finally(() => {
+        chatRunning = false;
+        input.disabled = false;
+        input.value = '';
+        input.focus();
+      });
+  }
+
   // ─── WIRE UP ───
   document.querySelectorAll('.card[data-agent] .demo-btn').forEach(btn => {
     btn.addEventListener('click', function(e) {
@@ -2358,6 +2477,18 @@ npx awal send 10 usdc 0x...</pre>
   });
   const clearBtn = document.getElementById('terminal-clear');
   if (clearBtn) clearBtn.addEventListener('click', terminalClear);
+
+  // ─── CHAT WIRE ───
+  const chatInput = document.getElementById('chatInput');
+  const chatSend = document.getElementById('chatSend');
+  if (chatInput) {
+    chatInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { e.preventDefault(); sendChat(); }
+    });
+  }
+  if (chatSend) {
+    chatSend.addEventListener('click', function(e) { sendChat(); });
+  }
 </script>
 </body>
 </html>
