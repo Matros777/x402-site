@@ -180,6 +180,21 @@
     </div>
 
     <div class="grid">
+      <a class="post" href="/blog/agents-write-code.html">
+        <div class="date">2026-07-29</div>
+        <h3 data-i18n="post16.title">Сколько кода уже пишут агенты (и почему это важнее, чем кажется)</h3>
+        <p data-i18n="post16.desc">Claude Code генерирует заметный процент коммитов на GitHub. Внутри компаний 30–40% нового кода пишется агентами. Навык постановки задачи становится главным.</p>
+      </a>
+      <a class="post" href="/blog/why-not-production.html">
+        <div class="date">2026-07-29</div>
+        <h3 data-i18n="post17.title">Почему большинство компаний до сих пор не запустили агентов в продакшн</h3>
+        <p data-i18n="post17.desc">Меньше 10% компаний вывели агентов на значимый уровень. Демо vs продакшен, контроль, экономика и организационные барьеры.</p>
+      </a>
+      <a class="post" href="/blog/agent-real-cost.html">
+        <div class="date">2026-07-29</div>
+        <h3 data-i18n="post18.title">Сколько на самом деле стоит держать агента (и почему многие ошибаются в расчётах)</h3>
+        <p data-i18n="post18.desc">Реальная стоимость агента — не только токены. Инструменты, ошибки, контроль, риски. Считать нужно не запросы, а результат.</p>
+      </a>
       <a class="post" href="/blog/multi-agent-327.html">
         <div class="date">2026-07-29</div>
         <h3 data-i18n="post15.title">Multi-agent системы выросли на 327% за четыре месяца. Что это значит на самом деле</h3>
@@ -311,7 +326,10 @@
     post12: { title: "Self-improving agent + x402: агент, который сам себя улучшает — и сам за это платит", desc: "Агент сам покупает инструменты, данные и compute по HTTP 402. Минимальная архитектура, бюджет, каталог, safety rule." },
     post13: { title: "Агенты уже работают 12 часов без человека. И это только начало", desc: "Горизонт автономной работы ИИ-агентов вырос с 40 минут до 12 часов за полтора года. Данные METR, кривая роста и что это меняет на практике." },
     post14: { title: "Агенты уже ломали продакшн. И это было неизбежно", desc: "Агент Amazon за 13 часов вывел из строя AWS в Китае. Другой за 9 секунд уничтожил базу данных. Реальные кейсы, уроки и защита." },
-    post15: { title: "Multi-agent системы выросли на 327% за четыре месяца. Что это значит на самом деле", desc: "Databricks: multi-agent системы выросли на 327% за 4 месяца. 78% компаний используют модели из 2+ семейств. 97% dev-окружений создаются агентами." }
+    post15: { title: "Multi-agent системы выросли на 327% за четыре месяца. Что это значит на самом деле", desc: "Databricks: multi-agent системы выросли на 327% за 4 месяца. 78% компаний используют модели из 2+ семейств. 97% dev-окружений создаются агентами." },
+    post16: { title: "Сколько кода уже пишут агенты (и почему это важнее, чем кажется)", desc: "Claude Code генерирует заметный процент коммитов на GitHub. Внутри компаний 30–40% нового кода пишется агентами. Навык постановки задачи становится главным." },
+    post17: { title: "Почему большинство компаний до сих пор не запустили агентов в продакшн", desc: "Меньше 10% компаний вывели агентов на значимый уровень. Демо vs продакшен, контроль, экономика и организационные барьеры." },
+    post18: { title: "Сколько на самом деле стоит держать агента (и почему многие ошибаются в расчётах)", desc: "Реальная стоимость агента — не только токены. Инструменты, ошибки, контроль, риски. Считать нужно не запросы, а результат." }
   };
 
   const embeddedEn = {
@@ -337,7 +355,10 @@
     post12: { title: "Self-improving agent + x402: the agent that improves itself — and pays for it", desc: "The agent buys tools, data and compute via HTTP 402. Minimal architecture, budget, catalog, safety rule." },
     post13: { title: "Agents already work 12 hours without humans. And this is just the beginning", desc: "AI agent autonomy horizon grew from 40 minutes to 12 hours in a year and a half. METR data, growth curve and what this changes in practice." },
     post14: { title: "Agents already broke production. And it was inevitable", desc: "An Amazon agent shut down AWS in China for 13 hours. Another destroyed a database in 9 seconds. Real cases, lessons and protection." },
-    post15: { title: "Multi-agent systems grew 327% in four months. What this actually means", desc: "Databricks: multi-agent systems grew 327% in 4 months. 78% of companies use models from 2+ families. 97% of test and dev DB environments are created by agents." }
+    post15: { title: "Multi-agent systems grew 327% in four months. What this actually means", desc: "Databricks: multi-agent systems grew 327% in 4 months. 78% of companies use models from 2+ families. 97% of test and dev DB environments are created by agents." },
+    post16: { title: "How much code agents already write (and why it matters more than it seems)", desc: "Claude Code generates a noticeable share of GitHub commits. Inside companies, 30-40% of new code is written by agents. Task formulation becomes the key skill." },
+    post17: { title: "Why most companies haven't launched agents in production yet", desc: "Fewer than 10% of companies reached meaningful agent usage. Demo vs production, control, economics, and organizational barriers." },
+    post18: { title: "What it actually costs to run an agent (and why most calculations are wrong)", desc: "The real cost of an agent isn't just tokens. Tools, errors, oversight, risks. Measure cost per outcome, not cost per request." }
   };
 
   function getNested(obj, path) {

@@ -132,4 +132,25 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>https://x402-ai-agent.space/blog/agents-write-code.html</loc>
+    <lastmod>2026-07-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://x402-ai-agent.space/blog/why-not-production.html</loc>
+    <lastmod>2026-07-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://x402-ai-agent.space/blog/agent-real-cost.html</loc>
+    <lastmod>2026-07-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>

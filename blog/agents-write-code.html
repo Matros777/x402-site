@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Сколько кода уже пишут агенты (и почему это важнее, чем кажется) — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="К 2026 году Claude Code генерирует заметный процент коммитов на GitHub. Внутри компаний 30–40% нового кода пишется агентами. Что это меняет в разработке и почему навык постановки задачи становится главным.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/agents-write-code.html">
+  <meta property="og:title" data-i18n="title" content="Сколько кода уже пишут агенты (и почему это важнее, чем кажется) — x402-ai-agent.space">
+  <meta property="og:description" data-i18n="metaDescription" content="К 2026 году Claude Code генерирует заметный процент коммитов на GitHub. Внутри компаний 30–40% нового кода пишется агентами. Что это меняет в разработке и почему навык постановки задачи становится главным.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/agents-write-code-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="Сколько кода уже пишут агенты (и почему это важнее, чем кажется) — x402-ai-agent.space">
+  <meta name="twitter:description" data-i18n="metaDescription" content="К 2026 году Claude Code генерирует заметный процент коммитов на GitHub. Внутри компаний 30–40% нового кода пишется агентами. Что это меняет в разработке и почему навык постановки задачи становится главным.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/agents-write-code-cover.jpg">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/agents-write-code.html">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #f5f5f5;
+      --text-secondary: #a3a3a3;
+      --muted: #737373;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition); }
+    .wrap { width: 100%; max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; max-width: 1100px; margin: 0 auto; padding: 0 24px;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 500; font-size: 1.1rem; letter-spacing: -0.02em;
+      color: var(--text-secondary); flex-shrink: 0;
+    }
+    .logo-img { height: 28px; width: auto; border-radius: 6px; }
+    .logo span span { color: var(--muted); }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      padding: 8px 14px; border-radius: var(--radius-xs);
+      font-size: 0.875rem; color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    nav .link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch {
+      border: 1px solid var(--border); border-radius: var(--radius-full);
+      padding: 6px 14px !important; font-size: 0.8rem !important;
+    }
+    .lang-switch:hover { border-color: #444; background: rgba(255,255,255,0.06) !important; }
+
+    article { padding: 48px 0 64px; }
+    article .wrap { max-width: 740px; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--text-secondary); font-size: 0.9rem;
+      margin-bottom: 32px; transition: color var(--transition);
+    }
+    .back-link:hover { color: var(--text); }
+    .post-date { color: var(--muted); font-size: 0.85rem; margin-bottom: 12px; }
+    h1 {
+      font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em;
+      line-height: 1.3; margin-bottom: 24px;
+    }
+    .cover-img {
+      width: 100%; max-width: 640px; height: auto;
+      border-radius: var(--radius); margin: 24px 0 32px;
+      border: 1px solid var(--border);
+    }
+    h2 {
+      font-size: 1.5rem; font-weight: 600; margin: 40px 0 16px;
+      letter-spacing: -0.01em;
+    }
+    h3 {
+      font-size: 1.2rem; font-weight: 600; margin: 32px 0 12px;
+    }
+    p { margin-bottom: 20px; color: var(--text-secondary); }
+    p strong { color: var(--text); }
+    ul, ol { margin: 0 0 20px 24px; color: var(--text-secondary); }
+    li { margin-bottom: 8px; }
+    li strong { color: var(--text); }
+    hr {
+      border: none; border-top: 1px solid var(--border);
+      margin: 40px 0; opacity: 0.5;
+    }
+    .highlight {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 24px;
+      margin: 24px 0; font-size: 0.95rem;
+    }
+    .highlight strong { color: var(--text); }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.6rem; }
+      h2 { font-size: 1.25rem; }
+      article { padding: 24px 0 40px; }
+    }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link" href="/" data-i18n="nav.home">На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article>
+  <div class="wrap">
+    <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+    <div class="post-date" data-i18n="postDate">29 июля 2026</div>
+    <h1 data-i18n="title">Сколько кода уже пишут агенты (и почему это важнее, чем кажется)</h1>
+
+    <img class="cover-img" src="/assets/img/blog/agents-write-code-cover.jpg" alt="" loading="lazy">
+
+    <p data-i18n="p1">В начале 2025 года агенты, которые умеют писать код, были скорее игрушкой. Красивые демо, несколько успешных pull request'ов, много шума. К середине 2026 года картина стала другой.</p>
+
+    <p data-i18n="p2">Claude Code генерирует уже заметный процент всех публичных коммитов на GitHub. По разным оценкам речь идёт о нескольких процентах всего нового кода, который появляется в открытых репозиториях. А внутри компаний цифры часто ещё выше. Некоторые команды openly говорят, что 30–40% нового кода в их продуктах пишется или существенно дорабатывается агентами.</p>
+
+    <p data-i18n="p3">Это уже не «агент помог написать функцию». Это агент:</p>
+
+    <ul>
+      <li><strong>читает существующий репозиторий</strong> — понимает код, структуру, стайлгайд;</li>
+      <li><strong>понимает архитектуру</strong> — видит связи между модулями;</li>
+      <li><strong>вносит изменения в несколько файлов</strong> — одной задачей;</li>
+      <li><strong>запускает тесты</strong> — и исправляет то, что упало;</li>
+      <li><strong>готовит описание изменений</strong> — сам пишет commit message и PR.</li>
+    </ul>
+
+    <p data-i18n="p4">Самое интересное происходит не в количестве строк, а в изменении процесса. Раньше разработчик думал, писал, проверял. Теперь всё чаще схема выглядит так: человек формулирует задачу на более высоком уровне, агент делает первую (а иногда и третью) версию, человек проверяет и направляет.</p>
+
+    <p data-i18n="p5">Появился даже новый навык — уметь правильно ставить задачу агенту. Те, кто освоил его быстро, получают кратный рост скорости. Те, кто продолжает относиться к агенту как к «чуть более умному автодополнению», почти не чувствуют разницы.</p>
+
+    <h2 data-i18n="h2_1">Качество всё ещё нестабильное</h2>
+
+    <p data-i18n="p6">Агент может написать элегантное решение и через десять минут предложить что-то ужасное. Именно поэтому лучшие команды не убирают человека из цикла, а меняют его роль: из основного исполнителя он превращается в архитектора и ревьюера.</p>
+
+    <div class="highlight">
+      <p data-i18n="highlight1"><strong>Мы находимся в моменте</strong>, когда агенты уже перестали быть экспериментом и стали частью повседневной разработки. Вопрос больше не в том, будут ли они писать код. Вопрос в том, кто научится работать с ними так, чтобы это давало реальное преимущество, а не просто красивые скриншоты.</p>
+    </div>
+
+    <h2 data-i18n="h2_2">Что это значит для x402</h2>
+
+    <p data-i18n="p7">Агенты, которые пишут код, рано или поздно упираются в платёжную инфраструктуру. Им нужны API, данные, compute — и всё это стоит денег. Именно здесь x402 становится не просто удобным протоколом, а необходимым слоем: агент сам оплачивает запросы, без карт, без аккаунтов, без человека в цикле.</p>
+
+    <p data-i18n="p8">Когда агент пишет 30% кода в вашем репозитории — пора задуматься не только о code review, но и о том, как этот агент платит за инструменты, которыми пользуется.</p>
+
+    <hr>
+
+    <p data-i18n="footer"><em>Если ваш агент уже пишет код — дайте ему возможность платить за себя самому. <a href="/generator" style="color:#4f8cff;text-decoration:underline;">Создать платного агента →</a></em></p>
+  </div>
+</article>
+</main>
+
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+
+  const embeddedRu = {
+    title: "Сколько кода уже пишут агенты (и почему это важнее, чем кажется) — x402-ai-agent.space",
+    metaDescription: "К 2026 году Claude Code генерирует заметный процент коммитов на GitHub. Внутри компаний 30–40% нового кода пишется агентами. Что это меняет в разработке и почему навык постановки задачи становится главным.",
+    nav: { back: "← Блог", home: "На сайт", lang: "🇬🇧 EN" },
+    backLink: "← Назад к блогу",
+    postDate: "29 июля 2026",
+    p1: "В начале 2025 года агенты, которые умеют писать код, были скорее игрушкой. Красивые демо, несколько успешных pull request'ов, много шума. К середине 2026 года картина стала другой.",
+    p2: "Claude Code генерирует уже заметный процент всех публичных коммитов на GitHub. По разным оценкам речь идёт о нескольких процентах всего нового кода, который появляется в открытых репозиториях. А внутри компаний цифры часто ещё выше. Некоторые команды openly говорят, что 30–40% нового кода в их продуктах пишется или существенно дорабатывается агентами.",
+    p3: "Это уже не «агент помог написать функцию». Это агент:",
+    p4: "Самое интересное происходит не в количестве строк, а в изменении процесса. Раньше разработчик думал, писал, проверял. Теперь всё чаще схема выглядит так: человек формулирует задачу на более высоком уровне, агент делает первую (а иногда и третью) версию, человек проверяет и направляет.",
+    p5: "Появился даже новый навык — уметь правильно ставить задачу агенту. Те, кто освоил его быстро, получают кратный рост скорости. Те, кто продолжает относиться к агенту как к «чуть более умному автодополнению», почти не чувствуют разницы.",
+    h2_1: "Качество всё ещё нестабильное",
+    p6: "Агент может написать элегантное решение и через десять минут предложить что-то ужасное. Именно поэтому лучшие команды не убирают человека из цикла, а меняют его роль: из основного исполнителя он превращается в архитектора и ревьюера.",
+    highlight1: "Мы находимся в моменте, когда агенты уже перестали быть экспериментом и стали частью повседневной разработки. Вопрос больше не в том, будут ли они писать код. Вопрос в том, кто научится работать с ними так, чтобы это давало реальное преимущество, а не просто красивые скриншоты.",
+    h2_2: "Что это значит для x402",
+    p7: "Агенты, которые пишут код, рано или поздно упираются в платёжную инфраструктуру. Им нужны API, данные, compute — и всё это стоит денег. Именно здесь x402 становится не просто удобным протоколом, а необходимым слоем: агент сам оплачивает запросы, без карт, без аккаунтов, без человека в цикле.",
+    p8: "Когда агент пишет 30% кода в вашем репозитории — пора задуматься не только о code review, но и о том, как этот агент платит за инструменты, которыми пользуется.",
+    footer: "Если ваш агент уже пишет код — дайте ему возможность платить за себя самому. Создать платного агента →"
+  };
+
+  const embeddedEn = {
+    title: "How much code agents already write (and why it matters more than it seems) — x402-ai-agent.space",
+    metaDescription: "By 2026, Claude Code generates a noticeable share of GitHub commits. Inside companies, 30–40% of new code is written by agents. What this changes in development and why task formulation becomes the key skill.",
+    nav: { back: "← Blog", home: "Home", lang: "🇷🇺 RU" },
+    backLink: "← Back to blog",
+    postDate: "July 29, 2026",
+    p1: "In early 2025, code-writing agents were still a toy. Nice demos, a few successful pull requests, lots of hype. By mid-2026, the picture has changed.",
+    p2: "Claude Code now generates a noticeable share of all public commits on GitHub. Estimates range around a few percent of all new code in open repositories. Inside companies, the numbers are often higher. Some teams openly say that 30–40% of new code in their products is written or substantially refined by agents.",
+    p3: "This is no longer 'the agent helped write a function'. This is an agent that:",
+    p4: "The most interesting shift isn't in line count — it's in the process. Before, a developer would think, write, review. Now the pattern is: a person formulates a high-level task, the agent produces the first (and sometimes third) version, the person reviews and directs.",
+    p5: "A new skill has emerged — writing good prompts for agents. Those who master it get multiplicative speed gains. Those who treat the agent as 'slightly smarter autocomplete' feel almost no difference.",
+    h2_1: "Quality is still unstable",
+    p6: "An agent can write an elegant solution and ten minutes later suggest something terrible. That's why the best teams don't remove humans from the loop — they change the human's role from primary executor to architect and reviewer.",
+    highlight1: "We are at a moment when agents have stopped being an experiment and become part of everyday development. The question is no longer whether they will write code. The question is who will learn to work with them in a way that provides a real advantage — not just nice screenshots.",
+    h2_2: "What this means for x402",
+    p7: "Agents that write code eventually hit a payment wall. They need APIs, data, compute — all of which costs money. This is where x402 becomes not just convenient but essential: the agent pays for requests itself, without cards, accounts, or a human in the loop.",
+    p8: "When an agent writes 30% of the code in your repository — it's time to think not just about code review, but about how that agent pays for the tools it uses.",
+    footer: "If your agent already writes code — let it pay for itself. Create a paid agent →"
+  };
+
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        if (el.tagName === 'A' && el.classList.contains('lang-switch')) {
+          el.textContent = value;
+        } else {
+          el.innerHTML = value;
+        }
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          document.querySelectorAll('meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]').forEach(m => m.setAttribute('content', value));
+        }
+      }
+    });
+  }
+
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>

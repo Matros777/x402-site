@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Сколько на самом деле стоит держать агента (и почему многие ошибаются в расчётах) — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="Реальная стоимость ИИ-агента складывается не только из цены токенов. Инструменты, ошибки, контроль, риски — полная картина затрат и почему считать нужно не стоимость запроса, а стоимость результата.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/agent-real-cost.html">
+  <meta property="og:title" data-i18n="title" content="Сколько на самом деле стоит держать агента (и почему многие ошибаются в расчётах) — x402-ai-agent.space">
+  <meta property="og:description" data-i18n="metaDescription" content="Реальная стоимость ИИ-агента складывается не только из цены токенов. Инструменты, ошибки, контроль, риски — полная картина затрат и почему считать нужно не стоимость запроса, а стоимость результата.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/agent-real-cost-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="Сколько на самом деле стоит держать агента (и почему многие ошибаются в расчётах) — x402-ai-agent.space">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Реальная стоимость ИИ-агента складывается не только из цены токенов. Инструменты, ошибки, контроль, риски — полная картина затрат и почему считать нужно не стоимость запроса, а стоимость результата.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/agent-real-cost-cover.jpg">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/agent-real-cost.html">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #f5f5f5;
+      --text-secondary: #a3a3a3;
+      --muted: #737373;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition); }
+    .wrap { width: 100%; max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; max-width: 1100px; margin: 0 auto; padding: 0 24px;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 500; font-size: 1.1rem; letter-spacing: -0.02em;
+      color: var(--text-secondary); flex-shrink: 0;
+    }
+    .logo-img { height: 28px; width: auto; border-radius: 6px; }
+    .logo span span { color: var(--muted); }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      padding: 8px 14px; border-radius: var(--radius-xs);
+      font-size: 0.875rem; color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    nav .link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch {
+      border: 1px solid var(--border); border-radius: var(--radius-full);
+      padding: 6px 14px !important; font-size: 0.8rem !important;
+    }
+    .lang-switch:hover { border-color: #444; background: rgba(255,255,255,0.06) !important; }
+
+    article { padding: 48px 0 64px; }
+    article .wrap { max-width: 740px; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--text-secondary); font-size: 0.9rem;
+      margin-bottom: 32px; transition: color var(--transition);
+    }
+    .back-link:hover { color: var(--text); }
+    .post-date { color: var(--muted); font-size: 0.85rem; margin-bottom: 12px; }
+    h1 {
+      font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em;
+      line-height: 1.3; margin-bottom: 24px;
+    }
+    .cover-img {
+      width: 100%; max-width: 640px; height: auto;
+      border-radius: var(--radius); margin: 24px 0 32px;
+      border: 1px solid var(--border);
+    }
+    h2 {
+      font-size: 1.5rem; font-weight: 600; margin: 40px 0 16px;
+      letter-spacing: -0.01em;
+    }
+    p { margin-bottom: 20px; color: var(--text-secondary); }
+    p strong { color: var(--text); }
+    ul { margin: 0 0 20px 24px; color: var(--text-secondary); }
+    li { margin-bottom: 10px; }
+    li strong { color: var(--text); }
+    .highlight {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 24px;
+      margin: 24px 0; font-size: 0.95rem;
+    }
+    .highlight strong { color: var(--text); }
+    hr {
+      border: none; border-top: 1px solid var(--border);
+      margin: 40px 0; opacity: 0.5;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.6rem; }
+      h2 { font-size: 1.25rem; }
+      article { padding: 24px 0 40px; }
+    }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link" href="/" data-i18n="nav.home">На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article>
+  <div class="wrap">
+    <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+    <div class="post-date" data-i18n="postDate">29 июля 2026</div>
+    <h1 data-i18n="title">Сколько на самом деле стоит держать агента (и почему многие ошибаются в расчётах)</h1>
+
+    <img class="cover-img" src="/assets/img/blog/agent-real-cost-cover.jpg" alt="" loading="lazy">
+
+    <p data-i18n="p1">Когда люди впервые запускают агента, им кажется, что главное — цена модели. Сколько стоит 1 миллион токенов, какой провайдер дешевле, можно ли взять бесплатную модель.</p>
+
+    <p data-i18n="p2">На практике это только верхушка.</p>
+
+    <p data-i18n="p3">Реальная стоимость агента складывается из нескольких слоёв:</p>
+
+    <ul>
+      <li><strong>Токены</strong> — самый заметный расход. Особенно если агент думает долго, перебирает варианты и делает много шагов.</li>
+      <li><strong>Инструменты и API</strong> — поиск, браузер, базы данных, внешние сервисы. Каждый вызов может стоить денег.</li>
+      <li><strong>Ошибки</strong> — агент может потратить бюджет впустую, уйти в цикл или сделать лишние запросы.</li>
+      <li><strong>Контроль</strong> — логирование, мониторинг, проверка результатов человеком. Это уже время сотрудников.</li>
+      <li><strong>Риски</strong> — один неправильный шаг в продакшене может стоить больше, чем месяцы работы агента.</li>
+    </ul>
+
+    <p data-i18n="p4">Именно поэтому компании, которые считают только «стоимость токенов», часто разочаровываются. Агент вроде бы дешёвый, а общая цена владения получается заметной.</p>
+
+    <h2 data-i18n="h2_1">Обратная сторона</h2>
+
+    <p data-i18n="p5">С другой стороны, есть и обратный эффект. Хорошо настроенный агент может закрывать работу, на которую раньше уходил целый сотрудник или несколько часов квалифицированного специалиста в день. В таких случаях даже относительно дорогой агент оказывается выгодным.</p>
+
+    <p data-i18n="p6">Самые зрелые команды уже считают не «сколько стоит один запрос», а «сколько стоит результат». Сколько времени сэкономили, сколько ошибок предотвратили, сколько задач закрыли без участия человека.</p>
+
+    <div class="highlight">
+      <p data-i18n="highlight1"><strong>Пока индустрия в переходном периоде.</strong> Кто-то до сих пор запускает агентов «на глаз». Кто-то уже строит нормальный учёт затрат и ограничители. Разница между этими подходами через год будет очень заметной.</p>
+    </div>
+
+    <h2 data-i18n="h2_2">При чём здесь x402</h2>
+
+    <p data-i18n="p7">Одна из главных статей неучтённых расходов — оплата внешних сервисов. Агенту нужен поиск, база данных, AI-модель, данные для анализа. Каждый такой запрос — либо интеграция с очередным API-ключом, либо платёж через x402.</p>
+
+    <p data-i18n="p8">x402 позволяет агенту платить за каждый вызов по факту, без подписок, без предоплат, без риска «забыл отключить и ушёл в минус». Протокол сам себя останавливает, если баланс кончился. А учёт затрат становится прозрачным: каждый платёж — это строка в истории.</p>
+
+    <p data-i18n="p9">Агенты дешевеют. Но умение правильно считать их стоимость и отдачу становится всё более важным навыком.</p>
+
+    <hr>
+
+    <p data-i18n="footer"><em>Хотите прозрачный учёт затрат агента? <a href="/" style="color:#4f8cff;text-decoration:underline;">x402 — протокол для машинных микроплатежей →</a></em></p>
+  </div>
+</article>
+</main>
+
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+
+  const embeddedRu = {
+    title: "Сколько на самом деле стоит держать агента (и почему многие ошибаются в расчётах) — x402-ai-agent.space",
+    metaDescription: "Реальная стоимость ИИ-агента складывается не только из цены токенов. Инструменты, ошибки, контроль, риски — полная картина затрат и почему считать нужно не стоимость запроса, а стоимость результата.",
+    nav: { back: "← Блог", home: "На сайт", lang: "🇬🇧 EN" },
+    backLink: "← Назад к блогу",
+    postDate: "29 июля 2026",
+    p1: "Когда люди впервые запускают агента, им кажется, что главное — цена модели. Сколько стоит 1 миллион токенов, какой провайдер дешевле, можно ли взять бесплатную модель.",
+    p2: "На практике это только верхушка.",
+    p3: "Реальная стоимость агента складывается из нескольких слоёв:",
+    p4: "Именно поэтому компании, которые считают только «стоимость токенов», часто разочаровываются. Агент вроде бы дешёвый, а общая цена владения получается заметной.",
+    h2_1: "Обратная сторона",
+    p5: "С другой стороны, есть и обратный эффект. Хорошо настроенный агент может закрывать работу, на которую раньше уходил целый сотрудник или несколько часов квалифицированного специалиста в день. В таких случаях даже относительно дорогой агент оказывается выгодным.",
+    p6: "Самые зрелые команды уже считают не «сколько стоит один запрос», а «сколько стоит результат». Сколько времени сэкономили, сколько ошибок предотвратили, сколько задач закрыли без участия человека.",
+    highlight1: "Пока индустрия в переходном периоде. Кто-то до сих пор запускает агентов «на глаз». Кто-то уже строит нормальный учёт затрат и ограничители. Разница между этими подходами через год будет очень заметной.",
+    h2_2: "При чём здесь x402",
+    p7: "Одна из главных статей неучтённых расходов — оплата внешних сервисов. Агенту нужен поиск, база данных, AI-модель, данные для анализа. Каждый такой запрос — либо интеграция с очередным API-ключом, либо платёж через x402.",
+    p8: "x402 позволяет агенту платить за каждый вызов по факту, без подписок, без предоплат, без риска «забыл отключить и ушёл в минус». Протокол сам себя останавливает, если баланс кончился. А учёт затрат становится прозрачным: каждый платёж — это строка в истории.",
+    p9: "Агенты дешевеют. Но умение правильно считать их стоимость и отдачу становится всё более важным навыком.",
+    footer: "Хотите прозрачный учёт затрат агента? x402 — протокол для машинных микроплатежей →"
+  };
+
+  const embeddedEn = {
+    title: "What it actually costs to run an agent (and why most calculations are wrong) — x402-ai-agent.space",
+    metaDescription: "The real cost of an AI agent isn't just token prices. Tools, errors, oversight, risks — the full cost picture and why you should measure cost per outcome, not cost per request.",
+    nav: { back: "← Blog", home: "Home", lang: "🇷🇺 RU" },
+    backLink: "← Back to blog",
+    postDate: "July 29, 2026",
+    p1: "When people first run an agent, they think the main cost is the model. How much per million tokens, which provider is cheaper, can we use a free model.",
+    p2: "In practice, that's just the tip of the iceberg.",
+    p3: "The real cost of running an agent has several layers:",
+    p4: "That's why companies that only count token costs are often disappointed. The agent looks cheap, but the total cost of ownership adds up.",
+    h2_1: "The flip side",
+    p5: "A well-tuned agent can replace entire roles or hours of skilled specialist time per day. In those cases, even an expensive agent is profitable.",
+    p6: "Mature teams measure cost per outcome, not cost per request. Time saved, errors prevented, tasks closed without human intervention.",
+    highlight1: "The industry is in transition. Some still run agents by gut feel. Others already build proper cost accounting and guardrails. The gap between these approaches will be dramatic within a year.",
+    h2_2: "Where x402 fits in",
+    p7: "One of the biggest hidden cost categories is paying for external services. Search, databases, AI models, data feeds. Each is either an API key integration or an x402 payment.",
+    p8: "x402 lets agents pay per call — no subscriptions, no prepayment, no risk of runaway spending. The protocol stops itself when the balance runs out. And every payment is a transparent line item in the ledger.",
+    p9: "Agents are getting cheaper. But knowing how to properly calculate their cost and ROI is becoming an increasingly important skill.",
+    footer: "Want transparent agent cost accounting? x402 — the protocol for machine micropayments →"
+  };
+
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        if (el.tagName === 'A' && el.classList.contains('lang-switch')) {
+          el.textContent = value;
+        } else {
+          el.innerHTML = value;
+        }
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          document.querySelectorAll('meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]').forEach(m => m.setAttribute('content', value));
+        }
+      }
+    });
+  }
+
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>
