@@ -111,4 +111,25 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>https://x402-ai-agent.space/blog/agents-12-hours.html</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://x402-ai-agent.space/blog/agents-broke-prod.html</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://x402-ai-agent.space/blog/multi-agent-327.html</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
