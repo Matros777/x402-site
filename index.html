@@ -2441,15 +2441,12 @@ npx awal send 10 usdc 0x...</pre>
     input.disabled = true;
     input.value = ''; // очищаем сразу при отправке, не ждём ответа
 
-    // Показываем сообщение пользователя в терминале
+    // Показываем сообщение пользователя + статус одной строкой
     const lang = getDemoLang();
-    terminalLog('<span style="color:#22c55e;">chat&gt;</span> ' + msg.replace(/</g, '&lt;'), '');
-    
-    // Добавляем в историю
+    terminalLog('<span style="color:#22c55e;">chat&gt;</span> ' + msg.replace(/</g, '&lt;') + ' <span style="color:#888;">…</span>', '');
     chatHistory.push({ role: 'user', text: msg });
     
     const t0 = performance.now();
-    terminalLog('<span class="terminal-prompt">$</span> ' + demoI18n('demos.loading'), '');
 
     fetch(CHAT_URL, {
       method: 'POST',
