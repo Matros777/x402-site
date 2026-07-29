@@ -934,7 +934,34 @@
       border-radius: 4px;
       letter-spacing: 0.02em;
     }
+    .chat-markdown pre {
+      background: #1a1a2e;
+      border: 1px solid #333;
+      border-radius: 6px;
+      padding: 12px;
+      overflow-x: auto;
+      margin: 8px 0;
+      font-size: 13px;
+    }
+    .chat-markdown code {
+      background: #1a1a2e;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+    .chat-markdown pre code {
+      background: none;
+      padding: 0;
+    }
+    .chat-markdown a {
+      color: #4f8cff;
+      text-decoration: underline;
+    }
+    .chat-markdown p {
+      margin: 6px 0;
+    }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
 <header class="site">
@@ -2438,8 +2465,8 @@ npx awal send 10 usdc 0x...</pre>
           const reply = data.reply;
           chatHistory.push({ role: 'assistant', text: reply });
           const displayText = translateTerminal(reply, lang);
-          const escaped = displayText.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-          terminalLog('<span style="color:#4f8cff;">ai&gt;</span> ' + escaped, 'agent-result', reply);
+          const html = marked.parse(displayText);
+          terminalLog('<span style="color:#4f8cff;">ai&gt;</span> <span class="chat-markdown">' + html + '</span>', 'agent-result', reply);
         } else {
           terminalLog('<span style="color:#ef4444;">❌ no reply</span>', 'agent-error');
         }
