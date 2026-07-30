@@ -955,6 +955,22 @@
       margin: 10px 0;
       font-size: 13px;
       position: relative;
+      scrollbar-color: #444 #1a1a2e;
+      scrollbar-width: thin;
+    }
+    .chat-markdown pre::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .chat-markdown pre::-webkit-scrollbar-track {
+      background: #1a1a2e;
+    }
+    .chat-markdown pre::-webkit-scrollbar-thumb {
+      background: #444;
+      border-radius: 3px;
+    }
+    .chat-markdown pre::-webkit-scrollbar-thumb:hover {
+      background: #555;
     }
     .chat-markdown code {
       background: #1a1a2e;
