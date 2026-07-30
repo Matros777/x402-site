@@ -2299,6 +2299,7 @@ npx awal send 10 usdc 0x...</pre>
     if (!lang) lang = getDemoLang();
     // Lines that already have data-original — re-translate
     document.querySelectorAll('#terminal-body .terminal-line[data-original]').forEach(el => {
+      if (el.querySelector('.chat-markdown')) return;
       const original = el.getAttribute('data-original');
       if (original !== null) {
         el.innerHTML = translateTerminal(original, lang);
@@ -2306,6 +2307,7 @@ npx awal send 10 usdc 0x...</pre>
     });
     // Static lines (no data-original yet) — capture and translate
     document.querySelectorAll('#terminal-body .terminal-line:not([data-original])').forEach(el => {
+      if (el.querySelector('.chat-markdown')) return;
       const txt = el.innerHTML;
       el.setAttribute('data-original', txt);
       el.innerHTML = translateTerminal(txt, lang);
