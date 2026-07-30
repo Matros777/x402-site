@@ -871,7 +871,7 @@
     }
     .terminal-chat {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 6px;
       padding: 6px 10px;
       background: #0a0a0a;
@@ -883,6 +883,8 @@
       font-size: 0.78rem;
       user-select: none;
       flex-shrink: 0;
+      line-height: 1.4;
+      padding-top: 5px;
     }
     .terminal-chat-input {
       flex: 1;
@@ -892,8 +894,14 @@
       color: #d4d4d4;
       font-family: inherit;
       font-size: 0.78rem;
-      padding: 4px 0;
+      padding: 5px 0;
       min-width: 0;
+      resize: none;
+      overflow: hidden;
+      min-height: calc(1.2em * 3);
+      max-height: calc(1.2em * 8);
+      line-height: 1.4;
+      box-sizing: border-box;
     }
     .terminal-chat-input::placeholder {
       color: #444;
@@ -1437,7 +1445,7 @@ node agent.js</pre>
       </div>
       <div class="terminal-chat" id="terminalChat">
         <span class="terminal-chat-prompt">chat&gt;</span>
-        <input type="text" class="terminal-chat-input" id="chatInput" placeholder="спроси у ИИ..." autocomplete="off">
+        <textarea class="terminal-chat-input" id="chatInput" placeholder="спроси у ИИ..." rows="1" autocomplete="off"></textarea>
         <button class="terminal-chat-send" id="chatSend" title="Отправить">↵</button>
       </div>
 
@@ -2537,6 +2545,7 @@ npx awal send 10 usdc 0x...</pre>
     chatRunning = true;
     input.disabled = true;
     input.value = ''; // очищаем сразу при отправке, не ждём ответа
+    input.style.height = 'auto';
 
     // Показываем сообщение пользователя + статус одной строкой
     const lang = getDemoLang();
@@ -2607,6 +2616,10 @@ npx awal send 10 usdc 0x...</pre>
   if (chatInput) {
     chatInput.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') { e.preventDefault(); sendChat(); }
+    });
+    chatInput.addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = Math.min(this.scrollHeight, parseFloat(getComputedStyle(this).maxHeight)) + 'px';
     });
   }
   if (chatSend) {
