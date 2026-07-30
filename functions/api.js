@@ -1,3 +1,4 @@
+// Proxy /api/* → backend
 export async function onRequest(context) {
   const url = new URL(context.request.url);
   const path = url.pathname.replace('/api', '');
