@@ -187,6 +187,21 @@
     </div>
 
     <div class="grid">
+      <a class="post" href="/blog/human-not-executor.html">
+        <div class="date">2026-07-30</div>
+        <h3 data-i18n="post21.title">Человек больше не должен быть исполнителем</h3>
+        <p data-i18n="post21.desc">Пока агенты были слабыми, человек оставался главным исполнителем. С ростом автономности роль меняется — от выполнения работы к оркестрации: цели, ограничения, точки проверки.</p>
+      </a>
+      <a class="post" href="/blog/agent-reliability.html">
+        <div class="date">2026-07-30</div>
+        <h3 data-i18n="post20.title">Главная проблема агентов — не интеллект, а надёжность</h3>
+        <p data-i18n="post20.desc">Модели стали умнее, но главная причина, почему агенты не в продакшене — не IQ. Это надёжность. Пошаговые сбои, доверие и что на самом деле тормозит агентов.</p>
+      </a>
+      <a class="post" href="/blog/agent-vs-chatbot.html">
+        <div class="date">2026-07-30</div>
+        <h3 data-i18n="post19.title">Чем агент на самом деле отличается от чат-бота</h3>
+        <p data-i18n="post19.desc">Большинство людей до сих пор путают агентов с продвинутыми чат-ботами. Разница не в качестве ответов — а в том, как они работают. Планирование, инструменты, память, обратная связь.</p>
+      </a>
       <a class="post" href="/blog/agents-write-code.html">
         <div class="date">2026-07-29</div>
         <h3 data-i18n="post16.title">Сколько кода уже пишут агенты (и почему это важнее, чем кажется)</h3>
@@ -336,7 +351,10 @@
     post15: { title: "Multi-agent системы выросли на 327% за четыре месяца. Что это значит на самом деле", desc: "Databricks: multi-agent системы выросли на 327% за 4 месяца. 78% компаний используют модели из 2+ семейств. 97% dev-окружений создаются агентами." },
     post16: { title: "Сколько кода уже пишут агенты (и почему это важнее, чем кажется)", desc: "Claude Code генерирует заметный процент коммитов на GitHub. Внутри компаний 30–40% нового кода пишется агентами. Навык постановки задачи становится главным." },
     post17: { title: "Почему большинство компаний до сих пор не запустили агентов в продакшн", desc: "Меньше 10% компаний вывели агентов на значимый уровень. Демо vs продакшен, контроль, экономика и организационные барьеры." },
-    post18: { title: "Сколько на самом деле стоит держать агента (и почему многие ошибаются в расчётах)", desc: "Реальная стоимость агента — не только токены. Инструменты, ошибки, контроль, риски. Считать нужно не запросы, а результат." }
+    post18: { title: "Сколько на самом деле стоит держать агента (и почему многие ошибаются в расчётах)", desc: "Реальная стоимость агента — не только токены. Инструменты, ошибки, контроль, риски. Считать нужно не запросы, а результат." },
+    post19: { title: "Чем агент на самом деле отличается от чат-бота", desc: "Большинство людей до сих пор путают агентов с продвинутыми чат-ботами. Разница не в качестве ответов — а в том, как они работают. Планирование, инструменты, память, обратная связь." },
+    post20: { title: "Главная проблема агентов — не интеллект, а надёжность", desc: "Модели стали умнее, но главная причина, почему агенты не в продакшене — не IQ. Это надёжность. Пошаговые сбои, доверие и что на самом деле тормозит агентов." },
+    post21: { title: "Человек больше не должен быть исполнителем", desc: "Пока агенты были слабыми, человек оставался главным исполнителем. С ростом автономности роль меняется — от выполнения работы к оркестрации: цели, ограничения, точки проверки." }
   };
 
   const embeddedEn = {
@@ -365,7 +383,10 @@
     post15: { title: "Multi-agent systems grew 327% in four months. What this actually means", desc: "Databricks: multi-agent systems grew 327% in 4 months. 78% of companies use models from 2+ families. 97% of test and dev DB environments are created by agents." },
     post16: { title: "How much code agents already write (and why it matters more than it seems)", desc: "Claude Code generates a noticeable share of GitHub commits. Inside companies, 30-40% of new code is written by agents. Task formulation becomes the key skill." },
     post17: { title: "Why most companies haven't launched agents in production yet", desc: "Fewer than 10% of companies reached meaningful agent usage. Demo vs production, control, economics, and organizational barriers." },
-    post18: { title: "What it actually costs to run an agent (and why most calculations are wrong)", desc: "The real cost of an agent isn't just tokens. Tools, errors, oversight, risks. Measure cost per outcome, not cost per request." }
+    post18: { title: "What it actually costs to run an agent (and why most calculations are wrong)", desc: "The real cost of an agent isn't just tokens. Tools, errors, oversight, risks. Measure cost per outcome, not cost per request." },
+    post19: { title: "What actually makes an agent different from a chatbot", desc: "Most people still confuse AI agents with advanced chatbots. The difference is not in the quality of answers — it's in how they work. Planning, tools, memory, feedback loops." },
+    post20: { title: "The main problem with agents is not intelligence — it's reliability", desc: "Models have gotten smarter, but the main reason agents aren't in production isn't about IQ. It's about reliability. Step-by-step failures, trust, and what really holds agents back." },
+    post21: { title: "Humans should no longer be the executor", desc: "While agents were weak, humans stayed as the main executors. With growing autonomy, the role shifts — from doing the work to orchestrating: goals, constraints, verification points." }
   };
 
   function getNested(obj, path) {

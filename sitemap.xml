@@ -17,6 +17,30 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- Blog: human-not-executor -->
+  <url>
+    <loc>https://x402-ai-agent.space/blog/human-not-executor.html</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog: agent-reliability -->
+  <url>
+    <loc>https://x402-ai-agent.space/blog/agent-reliability.html</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog: agent-vs-chatbot -->
+  <url>
+    <loc>https://x402-ai-agent.space/blog/agent-vs-chatbot.html</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- AI Generator -->
   <url>
     <loc>https://x402-ai-agent.space/generator/</loc>

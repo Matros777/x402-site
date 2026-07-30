@@ -8,6 +8,27 @@
     <lastBuildDate>Thu, 30 Jul 2026 00:47:50 +0000</lastBuildDate>
     <atom:link href="https://x402-ai-agent.space/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>Humans should no longer be the executor</title>
+      <link>https://x402-ai-agent.space/blog/human-not-executor.html</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/human-not-executor.html</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
+      <description>While agents were weak, humans stayed as the main executors. With growing autonomy, the role shifts — from doing the work to orchestrating: goals, constraints, verification points.</description>
+    </item>
+    <item>
+      <title>The main problem with agents is not intelligence — it's reliability</title>
+      <link>https://x402-ai-agent.space/blog/agent-reliability.html</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agent-reliability.html</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
+      <description>Models have gotten smarter, but the main reason agents aren't in production isn't about IQ. It's about reliability. Step-by-step failures, trust, and what really holds agents back.</description>
+    </item>
+    <item>
+      <title>What actually makes an agent different from a chatbot</title>
+      <link>https://x402-ai-agent.space/blog/agent-vs-chatbot.html</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agent-vs-chatbot.html</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
+      <description>Most people still confuse AI agents with advanced chatbots. The difference is not in the quality of answers — it's in how they work. Planning, tools, memory, feedback loops.</description>
+    </item>
+    <item>
       <title>Why most companies haven't launched agents in production yet</title>
       <link>https://x402-ai-agent.space/blog/why-not-production.html</link>
       <guid isPermaLink="true">https://x402-ai-agent.space/blog/why-not-production.html</guid>

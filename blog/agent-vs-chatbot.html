@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Чем агент на самом деле отличается от чат-бота</title>
+  <meta name="description" data-i18n="metaDescription" content="Большинство людей до сих пор путают агентов с продвинутыми чат-ботами. Разница не в качестве ответов — а в том, как они работают. Планирование, инструменты, память, обратная связь.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/agent-vs-chatbot.html">
+  <meta property="og:title" data-i18n="title" content="Чем агент на самом деле отличается от чат-бота">
+  <meta property="og:description" data-i18n="metaDescription" content="Большинство людей до сих пор путают агентов с продвинутыми чат-ботами. Разница не в качестве ответов — а в том, как они работают. Планирование, инструменты, память, обратная связь.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/agent-vs-chatbot-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="Чем агент на самом деле отличается от чат-бота">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Большинство людей до сих пор путают агентов с продвинутыми чат-ботами. Разница не в качестве ответов — а в том, как они работают. Планирование, инструменты, память, обратная связь.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/agent-vs-chatbot-cover.jpg">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/agent-vs-chatbot.html">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #f5f5f5;
+      --text-secondary: #a3a3a3;
+      --muted: #737373;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      min-height: 100vh; display: flex; flex-direction: column;
+    }
+    .wrap { max-width: 680px; margin: 0 auto; padding: 0 16px; }
+    header.site {
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 12px 0; position: sticky; top: 0;
+      background: rgba(10,10,10,0.92); backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--text); }
+    .logo-img { width: 28px; height: 28px; border-radius: 6px; }
+    .logo span { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.02em; }
+    .logo span span { color: var(--muted); font-weight: 400; }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      color: var(--text-secondary); text-decoration: none;
+      font-size: 0.85rem; padding: 6px 10px; border-radius: var(--radius-xs);
+      transition: var(--transition); white-space: nowrap;
+    }
+    nav .link:hover { background: var(--bg-card); color: var(--text); }
+    .lang-switch { font-size: 0.8rem; padding: 4px 8px; }
+    @media (max-width: 480px) {
+      nav .link { font-size: 0.78rem; padding: 4px 6px; }
+    }
+    main { flex: 1; }
+    article { padding: 32px 0 48px; }
+    .back-link {
+      display: inline-block; color: var(--muted); text-decoration: none;
+      font-size: 0.85rem; margin-bottom: 8px; transition: var(--transition);
+    }
+    .back-link:hover { color: var(--text); }
+    .post-date {
+      font-size: 0.85rem; color: var(--muted); margin-bottom: 8px;
+    }
+    h1 {
+      font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em;
+      line-height: 1.3; margin-bottom: 24px;
+    }
+    .cover-img {
+      width: 100%; max-width: 640px; height: 437px;
+      border-radius: var(--radius); margin: 24px 0 32px;
+      border: 1px solid var(--border);
+    }
+    h2 {
+      font-size: 1.5rem; font-weight: 600; margin: 40px 0 16px;
+      letter-spacing: -0.01em;
+    }
+    h3 {
+      font-size: 1.2rem; font-weight: 600; margin: 32px 0 12px;
+    }
+    p { margin-bottom: 20px; color: var(--text-secondary); }
+    p strong { color: var(--text); }
+    ul, ol { margin: 0 0 20px 24px; color: var(--text-secondary); }
+    li { margin-bottom: 8px; }
+    li strong { color: var(--text); }
+    hr {
+      border: none; border-top: 1px solid var(--border);
+      margin: 40px 0; opacity: 0.5;
+    }
+    .highlight {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 24px;
+      margin: 24px 0; font-size: 0.95rem;
+    }
+    .highlight strong { color: var(--text); }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.6rem; }
+      h2 { font-size: 1.25rem; }
+      article { padding: 24px 0 40px; }
+    }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link" href="/" data-i18n="nav.home">На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article>
+  <div class="wrap">
+    <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+    <img class="cover-img" src="/assets/img/blog/agent-vs-chatbot-cover.jpg" alt="" loading="lazy">
+    <div class="post-date" data-i18n="postDate">30 июля 2026</div>
+    <h1 data-i18n="title">Чем агент на самом деле отличается от чат-бота</h1>
+
+    <p data-i18n="p1">Большинство людей до сих пор путают агентов с продвинутыми чат-ботами. Это понятно: снаружи оба отвечают текстом. Но внутри разница принципиальная.</p>
+
+    <p data-i18n="p2">Чат-бот работает в режиме «вопрос → ответ». Он получает сообщение, генерирует текст и на этом заканчивает. Даже если у него есть доступ к поиску или документам, он всё равно остаётся в рамках одного ответа.</p>
+
+    <p data-i18n="p3">Агент работает иначе. У него есть цель. Он может разбить её на шаги, выбрать инструменты, выполнить действия, посмотреть на результат, скорректировать план и продолжить. Он существует не в одном сообщении, а в последовательности шагов во времени.</p>
+
+    <h2 data-i18n="h2_1">Ключевые отличия</h2>
+
+    <ul>
+      <li data-i18n="li1"><strong>Планирование.</strong> Агент пытается понять, что нужно сделать дальше, а не просто красиво ответить.</li>
+      <li data-i18n="li2"><strong>Инструменты.</strong> Он может вызывать API, писать и запускать код, читать файлы, работать с браузером.</li>
+      <li data-i18n="li3"><strong>Память и состояние.</strong> Хороший агент сохраняет промежуточные результаты и учитывает их в следующих шагах.</li>
+      <li data-i18n="li4"><strong>Обратная связь.</strong> Он смотрит, что получилось после действия, и решает, нужно ли что-то исправить.</li>
+    </ul>
+
+    <p data-i18n="p4">Именно поэтому агент может взять задачу вроде «разбери этот репозиторий, найди узкие места и предложи улучшения» и реально пройти по файлам, а не просто написать общие слова.</p>
+
+    <p data-i18n="p5">Но здесь же кроется и главная сложность. Чем больше свободы у агента, тем выше шанс, что он уйдёт в сторону, зациклится или сделает лишнее. Чат-бот ошибается в тексте. Агент может ошибиться в действиях.</p>
+
+    <p data-i18n="p6">Поэтому настоящий прогресс сейчас происходит не только в моделях, а в обвязке вокруг них: как ограничивать инструменты, как давать агенту обратную связь, как останавливать его вовремя и как проверять результат.</p>
+
+    <div class="highlight">
+      <p data-i18n="highlight1">Агент — это не «очень умный чат». Это система, которая пытается действовать в мире. И пока большинство людей оценивают агентов по качеству ответов, настоящая ценность измеряется тем, сколько реальных шагов они могут пройти без поломки.</p>
+    </div>
+
+    <hr>
+
+    <p data-i18n="footer">Если ваш агент уже действует — дайте ему возможность платить за себя самому. Создать платного агента →</p>
+  </div>
+</article>
+</main>
+
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+
+  const embeddedRu = {
+    title: "Чем агент на самом деле отличается от чат-бота",
+    metaDescription: "Большинство людей до сих пор путают агентов с продвинутыми чат-ботами. Разница не в качестве ответов — а в том, как они работают. Планирование, инструменты, память, обратная связь.",
+    nav: { back: "← Блог", home: "На сайт", lang: "🇬🇧 EN" },
+    backLink: "← Назад к блогу",
+    postDate: "30 июля 2026",
+    p1: "Большинство людей до сих пор путают агентов с продвинутыми чат-ботами. Это понятно: снаружи оба отвечают текстом. Но внутри разница принципиальная.",
+    p2: "Чат-бот работает в режиме «вопрос → ответ». Он получает сообщение, генерирует текст и на этом заканчивает. Даже если у него есть доступ к поиску или документам, он всё равно остаётся в рамках одного ответа.",
+    p3: "Агент работает иначе. У него есть цель. Он может разбить её на шаги, выбрать инструменты, выполнить действия, посмотреть на результат, скорректировать план и продолжить. Он существует не в одном сообщении, а в последовательности шагов во времени.",
+    h2_1: "Ключевые отличия",
+    li1: "Планирование. Агент пытается понять, что нужно сделать дальше, а не просто красиво ответить.",
+    li2: "Инструменты. Он может вызывать API, писать и запускать код, читать файлы, работать с браузером.",
+    li3: "Память и состояние. Хороший агент сохраняет промежуточные результаты и учитывает их в следующих шагах.",
+    li4: "Обратная связь. Он смотрит, что получилось после действия, и решает, нужно ли что-то исправить.",
+    p4: "Именно поэтому агент может взять задачу вроде «разбери этот репозиторий, найди узкие места и предложи улучшения» и реально пройти по файлам, а не просто написать общие слова.",
+    p5: "Но здесь же кроется и главная сложность. Чем больше свободы у агента, тем выше шанс, что он уйдёт в сторону, зациклится или сделает лишнее. Чат-бот ошибается в тексте. Агент может ошибиться в действиях.",
+    p6: "Поэтому настоящий прогресс сейчас происходит не только в моделях, а в обвязке вокруг них: как ограничивать инструменты, как давать агенту обратную связь, как останавливать его вовремя и как проверять результат.",
+    highlight1: "Агент — это не «очень умный чат». Это система, которая пытается действовать в мире. И пока большинство людей оценивают агентов по качеству ответов, настоящая ценность измеряется тем, сколько реальных шагов они могут пройти без поломки.",
+    footer: "Если ваш агент уже действует — дайте ему возможность платить за себя самому. Создать платного агента →"
+  };
+
+  const embeddedEn = {
+    title: "What actually makes an agent different from a chatbot",
+    metaDescription: "Most people still confuse AI agents with advanced chatbots. The difference is not in the quality of answers — it's in how they work. Planning, tools, memory, feedback loops.",
+    nav: { back: "← Blog", home: "Home", lang: "🇷🇺 RU" },
+    backLink: "← Back to blog",
+    postDate: "July 30, 2026",
+    p1: "Most people still confuse agents with advanced chatbots. It's understandable: from the outside, both answer with text. But inside, the difference is fundamental.",
+    p2: "A chatbot operates in 'question → answer' mode. It receives a message, generates text, and stops there. Even if it has access to search or documents, it still stays within the scope of a single response.",
+    p3: "An agent works differently. It has a goal. It can break that goal into steps, choose tools, execute actions, look at the result, adjust the plan, and continue. It exists not in a single message, but in a sequence of steps over time.",
+    h2_1: "Key differences",
+    li1: "Planning. An agent tries to figure out what to do next, not just give a good answer.",
+    li2: "Tools. It can call APIs, write and run code, read files, work with a browser.",
+    li3: "Memory and state. A good agent keeps intermediate results and uses them in subsequent steps.",
+    li4: "Feedback. It looks at what happened after an action and decides whether to course-correct.",
+    p4: "This is why an agent can take a task like 'analyze this repository, find bottlenecks, and suggest improvements' and actually walk through the files — not just write generic advice.",
+    p5: "But this is also where the main difficulty lies. The more freedom an agent has, the higher the chance it will go off track, loop, or do something unnecessary. A chatbot makes mistakes in text. An agent can make mistakes in actions.",
+    p6: "That's why real progress now happens not just in models, but in the infrastructure around them: how to constrain tools, how to give the agent feedback, how to stop it in time, and how to verify results.",
+    highlight1: "An agent is not a 'very smart chat'. It's a system that tries to act in the world. And while most people judge agents by the quality of their responses, the real value is measured by how many real steps they can complete without breaking.",
+    footer: "If your agent already acts — give it the ability to pay for itself. Create a paid agent →"
+  };
+
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        if (el.tagName === 'A' && el.classList.contains('lang-switch')) {
+          el.textContent = value;
+        } else {
+          el.innerHTML = value;
+        }
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          document.querySelectorAll('meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]').forEach(m => m.setAttribute('content', value));
+        }
+      }
+    });
+  }
+
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', '?lang=' + next);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>
