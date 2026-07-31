@@ -469,6 +469,35 @@
       .container { padding: 0 1.1rem 3rem; }
       .card { padding: 1.2rem; }
     }
+    /* ─── ТЁМНЫЕ ТОНКИЕ СКРОЛЛБАРЫ (как на генераторе) ─── */
+    textarea::-webkit-scrollbar,
+    pre::-webkit-scrollbar,
+    .ai-help-body::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    textarea::-webkit-scrollbar-track,
+    pre::-webkit-scrollbar-track,
+    .ai-help-body::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    textarea::-webkit-scrollbar-thumb,
+    pre::-webkit-scrollbar-thumb,
+    .ai-help-body::-webkit-scrollbar-thumb {
+      background: #2a2a2a;
+      border-radius: 3px;
+    }
+    textarea::-webkit-scrollbar-thumb:hover,
+    pre::-webkit-scrollbar-thumb:hover,
+    .ai-help-body::-webkit-scrollbar-thumb:hover {
+      background: #3a3a3a;
+    }
+    textarea,
+    pre,
+    .ai-help-body {
+      scrollbar-color: #2a2a2a transparent;
+      scrollbar-width: thin;
+    }
   </style>
 </head>
 <body>
