@@ -498,26 +498,10 @@
       scrollbar-color: #2a2a2a transparent;
       scrollbar-width: thin;
     }
-    /* ─── Тост «Скопировано» (без alert-окна) ─── */
-    #copyTip {
-      position: fixed;
-      left: 50%;
-      bottom: 2rem;
-      transform: translateX(-50%) translateY(20px);
-      background: #1a1a2e;
-      color: #dbe4ff;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 0.55rem 1.2rem;
-      font-size: 0.85rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s, transform 0.2s;
-      z-index: 999;
-    }
-    #copyTip.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
+    /* Состояние «Скопировано» на кнопке (как на генераторе) */
+    .copy-btn.copied {
+      border-color: #34d399;
+      color: #34d399;
     }
   </style>
 </head>
@@ -596,12 +580,12 @@
       <p class="hint" style="margin-bottom: 0.9rem;" data-i18n="commandsHint">Команды строятся из полей выше автоматически. Нажми «Проверить x402» — и они обновятся под твой URL, метод и тело запроса.</p>
       <p class="block-label" data-i18n="awalLabel">Команда оплаты (awal)</p>
       <div class="command-box">
-        <button class="copy-btn" onclick="copyText('awalCommand')" data-i18n="copy">Копировать</button>
+        <button class="copy-btn" onclick="copyText('awalCommand', this)" data-i18n="copy">Копировать</button>
         <pre id="awalCommand"></pre>
       </div>
       <p class="block-label" data-i18n="curlLabel">Проверка без оплаты (curl)</p>
       <div class="command-box">
-        <button class="copy-btn" onclick="copyText('curlCommand')" data-i18n="copy">Копировать</button>
+        <button class="copy-btn" onclick="copyText('curlCommand', this)" data-i18n="copy">Копировать</button>
         <pre id="curlCommand"></pre>
       </div>
     </section>
@@ -965,7 +949,7 @@ npm install -g cloudflared</pre>
       $("checkBtn").textContent = i18n[currentLang].btnCheck;
     }
 
-    function copyText(id) {
+    function copyText(id, btn) {
       // Только тихий execCommand: Clipboard API (navigator.clipboard) в ряде
       // браузеров показывает окно запроса разрешения — здесь его нет вовсе.
       const text = $(id).textContent;
@@ -983,20 +967,16 @@ npm install -g cloudflared</pre>
         console.warn("copy failed", e);
       }
       document.body.removeChild(ta);
-      showCopied();
-    }
-
-    function showCopied() {
-      let tip = document.getElementById("copyTip");
-      if (!tip) {
-        tip = document.createElement("div");
-        tip.id = "copyTip";
-        tip.textContent = i18n[currentLang].copied;
-        document.body.appendChild(tip);
+      // Обратная связь на самой кнопке (как на генераторе) — без всплывающих окон
+      if (btn) {
+        btn.classList.add("copied");
+        btn.textContent = i18n[currentLang].copied + " ✓";
+        clearTimeout(copyText._t);
+        copyText._t = setTimeout(() => {
+          btn.classList.remove("copied");
+          btn.textContent = i18n[currentLang].copy;
+        }, 2000);
       }
-      tip.classList.add("show");
-      clearTimeout(showCopied._t);
-      showCopied._t = setTimeout(() => tip.classList.remove("show"), 1500);
     }
 
     // Команды видимы сразу: автогенерация при загрузке и при изменении полей
