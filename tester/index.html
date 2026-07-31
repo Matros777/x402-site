@@ -529,7 +529,7 @@
 
   <div class="container">
     <section class="card">
-      <div class="card-title" data-i18n="section1">1. Данные для проверки</div>
+      <h2 class="card-title" data-i18n="section1">1. Данные для проверки</h2>
       <div class="row">
         <label data-i18n="labelUrl">URL агента *</label>
         <input id="agentUrl" type="text" placeholder="https://your-agent.onrender.com/" />
@@ -565,18 +565,18 @@
     </section>
 
     <section class="card" id="resultCard">
-      <div class="card-title" data-i18n="section2">2. Результат проверки</div>
+      <h2 class="card-title" data-i18n="section2">2. Результат проверки</h2>
       <div class="status-line" id="statusLine">...</div>
       <ul class="checklist" id="checklist"></ul>
     </section>
 
     <section class="card" id="decodedCard">
-      <div class="card-title" data-i18n="section3">3. PAYMENT-REQUIRED</div>
+      <h2 class="card-title" data-i18n="section3">3. PAYMENT-REQUIRED</h2>
       <pre id="decodedJson">{}</pre>
     </section>
 
     <section class="card" id="commandsCard">
-      <div class="card-title" data-i18n="section4">4. Готовые команды</div>
+      <h2 class="card-title" data-i18n="section4">4. Готовые команды</h2>
       <p class="hint" style="margin-bottom: 0.9rem;" data-i18n="commandsHint">Команды строятся из полей выше автоматически. Нажми «Проверить x402» — и они обновятся под твой URL, метод и тело запроса.</p>
       <p class="block-label" data-i18n="awalLabel">Команда оплаты (awal)</p>
       <div class="command-box">
@@ -997,6 +997,27 @@ npm install -g cloudflared</pre>
 
     setLang(currentLang);
     refreshCommands();
+  </script>
+  <!-- SEO: structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "x402 Agent Tester",
+    "url": "https://x402-ai-agent.space/tester/",
+    "description": "Verify x402 Payment Required responses, decode PAYMENT-REQUIRED headers and generate ready awal payment commands for your AI agent endpoints.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "x402-ai-agent.space"
+    }
+  }
   </script>
 </body>
 </html>
