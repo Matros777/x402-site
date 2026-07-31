@@ -945,7 +945,32 @@ npm install -g cloudflared</pre>
     }
 
     function copyText(id) {
-      navigator.clipboard.writeText($(id).textContent).then(() => alert(i18n[currentLang].copied));
+      const text = $(id).textContent;
+      // Clipboard API требует HTTPS и может открывать окно разрешения —
+      // используем тихий fallback через execCommand, он работает везде.
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => alert(i18n[currentLang].copied)).catch(() => legacyCopy(text));
+      } else {
+        legacyCopy(text);
+      }
+    }
+
+    function legacyCopy(text) {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.top = "-9999px";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try {
+        document.execCommand("copy");
+      } catch (e) {
+        console.warn("copy failed", e);
+      }
+      document.body.removeChild(ta);
+      alert(i18n[currentLang].copied);
     }
 
     // Команды видимы сразу: автогенерация при загрузке и при изменении полей
