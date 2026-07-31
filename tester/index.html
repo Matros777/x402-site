@@ -498,6 +498,27 @@
       scrollbar-color: #2a2a2a transparent;
       scrollbar-width: thin;
     }
+    /* ─── Тост «Скопировано» (без alert-окна) ─── */
+    #copyTip {
+      position: fixed;
+      left: 50%;
+      bottom: 2rem;
+      transform: translateX(-50%) translateY(20px);
+      background: #1a1a2e;
+      color: #dbe4ff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.55rem 1.2rem;
+      font-size: 0.85rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 999;
+    }
+    #copyTip.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
   </style>
 </head>
 <body>
@@ -949,7 +970,7 @@ npm install -g cloudflared</pre>
       // Clipboard API требует HTTPS и может открывать окно разрешения —
       // используем тихий fallback через execCommand, он работает везде.
       if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(text).then(() => alert(i18n[currentLang].copied)).catch(() => legacyCopy(text));
+        navigator.clipboard.writeText(text).then(() => showCopied()).catch(() => legacyCopy(text));
       } else {
         legacyCopy(text);
       }
@@ -970,7 +991,20 @@ npm install -g cloudflared</pre>
         console.warn("copy failed", e);
       }
       document.body.removeChild(ta);
-      alert(i18n[currentLang].copied);
+      showCopied();
+    }
+
+    function showCopied() {
+      let tip = document.getElementById("copyTip");
+      if (!tip) {
+        tip = document.createElement("div");
+        tip.id = "copyTip";
+        tip.textContent = i18n[currentLang].copied;
+        document.body.appendChild(tip);
+      }
+      tip.classList.add("show");
+      clearTimeout(showCopied._t);
+      showCopied._t = setTimeout(() => tip.classList.remove("show"), 1500);
     }
 
     // Команды видимы сразу: автогенерация при загрузке и при изменении полей
