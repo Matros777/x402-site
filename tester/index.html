@@ -856,8 +856,11 @@ npm install -g cloudflared</pre>
       const method = ($("httpMethod").value || "POST").toUpperCase();
       let body = $("requestBody").value.trim();
       if (!url) { alert(i18n[currentLang].alertUrl); return; }
-      if (!body) {
-        const fields = extractFieldsFromCode($("agentCode").value || "");
+      // Тело всегда пересчитываем из вставленного кода, если он есть —
+      // чтобы команды не собирались из устаревших значений.
+      const code = $("agentCode").value || "";
+      if (code.trim()) {
+        const fields = extractFieldsFromCode(code);
         body = Object.keys(fields).length ? JSON.stringify(fields) : "{}";
         $("requestBody").value = body;
       }
@@ -993,6 +996,12 @@ npm install -g cloudflared</pre>
     }
     ["agentUrl", "httpMethod", "requestBody"].forEach(id => {
       $("id".replace("id", id)).addEventListener("input", refreshCommands);
+    });
+    // При вставке кода сразу подставляем поля в тело и обновляем команды
+    $("agentCode").addEventListener("input", () => {
+      const fields = extractFieldsFromCode($("agentCode").value || "");
+      $("requestBody").value = Object.keys(fields).length ? JSON.stringify(fields) : "{}";
+      refreshCommands();
     });
 
     setLang(currentLang);
