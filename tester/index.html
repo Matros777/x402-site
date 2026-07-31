@@ -966,17 +966,9 @@ npm install -g cloudflared</pre>
     }
 
     function copyText(id) {
+      // Только тихий execCommand: Clipboard API (navigator.clipboard) в ряде
+      // браузеров показывает окно запроса разрешения — здесь его нет вовсе.
       const text = $(id).textContent;
-      // Clipboard API требует HTTPS и может открывать окно разрешения —
-      // используем тихий fallback через execCommand, он работает везде.
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(text).then(() => showCopied()).catch(() => legacyCopy(text));
-      } else {
-        legacyCopy(text);
-      }
-    }
-
-    function legacyCopy(text) {
       const ta = document.createElement("textarea");
       ta.value = text;
       ta.style.position = "fixed";
