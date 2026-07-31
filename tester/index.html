@@ -600,8 +600,13 @@
         <p class="hint" data-i18n="help_intro">Инструкция для кода, который выдал генератор. Код запускаем локально, наружу открываем через Cloudflare Tunnel и проверяем здесь — без реальной оплаты.</p>
 
         <div class="ai-help-label" data-i18n="help_step1">1. Запусти код локально</div>
-        <p class="hint" data-i18n="help_step1_hint">Сохрани код из генератора как <code>app.py</code>, рядом положи <code>requirements.txt</code>, затем:</p>
+        <p class="hint" data-i18n="help_step1_hint">Сохрани код из генератора как <code>agent.py</code>, рядом положи <code>requirements.txt</code>, затем:</p>
         <pre class="help-code">pip install -r requirements.txt
+
+# запусти сервер (в папке с кодом)
+python3 agent.py
+
+# или через uvicorn:
 uvicorn app:app --host 0.0.0.0 --port 8000</pre>
 
         <div class="ai-help-label" data-i18n="help_step2">2. Установи Cloudflare Tunnel</div>
@@ -683,7 +688,7 @@ npm install -g cloudflared</pre>
         help_toggle: "🚀 Запустить сгенерированный код локально и проверить через туннель",
         help_intro: "Инструкция для кода, который выдал генератор. Код запускаем локально, наружу открываем через Cloudflare Tunnel и проверяем здесь — без реальной оплаты.",
         help_step1: "1. Запусти код локально",
-        help_step1_hint: "Сохрани код из генератора как <code>app.py</code>, рядом положи <code>requirements.txt</code>, затем:",
+        help_step1_hint: "Сохрани код из генератора как <code>agent.py</code>, рядом положи <code>requirements.txt</code>, затем:",
         help_step2: "2. Установи Cloudflare Tunnel",
         help_step2_hint: "Любой из способов (выбери под свою ОС):",
         help_step3: "3. Открой туннель к твоему агенту",
@@ -733,7 +738,7 @@ npm install -g cloudflared</pre>
         help_toggle: "🚀 Run generated code locally and verify via tunnel",
         help_intro: "Instructions for the code produced by the generator. Run it locally, expose it through a Cloudflare Tunnel, and verify it here — no real payment is made.",
         help_step1: "1. Run the code locally",
-        help_step1_hint: "Save the generated code as <code>app.py</code>, put <code>requirements.txt</code> next to it, then:",
+        help_step1_hint: "Save the generated code as <code>agent.py</code>, put <code>requirements.txt</code> next to it, then:",
         help_step2: "2. Install Cloudflare Tunnel",
         help_step2_hint: "Pick any method for your OS:",
         help_step3: "3. Open a tunnel to your agent",
