@@ -603,10 +603,10 @@
         <p class="hint" data-i18n="help_step1_hint">Сохрани код из генератора как <code>agent.py</code>, рядом положи <code>requirements.txt</code>, затем:</p>
         <pre class="help-code">pip install -r requirements.txt
 
-# запусти сервер (в папке с кодом)
+# run the server (in the folder with the code)
 python3 agent.py
 
-# или через uvicorn:
+# or via uvicorn:
 uvicorn app:app --host 0.0.0.0 --port 8000</pre>
 
         <div class="ai-help-label" data-i18n="help_step2">2. Установи Cloudflare Tunnel</div>
@@ -620,7 +620,7 @@ sudo apt install cloudflared
 # Windows (winget)
 winget install cloudflare.cloudflared
 
-# или любой ОС через npm
+# or any OS via npm
 npm install -g cloudflared</pre>
 
         <div class="ai-help-label" data-i18n="help_step3">3. Открой туннель к твоему агенту</div>
