@@ -2575,7 +2575,9 @@ npx awal send 10 usdc 0x...</pre>
     // Показываем сообщение пользователя + статус одной строкой
     const lang = getDemoLang();
     terminalLog('<span style="color:#22c55e;">chat&gt;</span> ' + msg.replace(/</g, '&lt;') + ' <span style="color:#888;">…</span>', '');
-    chatHistory.push({ role: 'user', text: msg });
+    chatHistory.push({ role: 'user', content: msg });
+    // Браузер хранит только последние 12 пар сообщений (быстрая память сессии)
+    if (chatHistory.length > 24) chatHistory = chatHistory.slice(-24);
     
     const t0 = performance.now();
 
@@ -2592,7 +2594,7 @@ npx awal send 10 usdc 0x...</pre>
         const elapsed = ((performance.now() - t0) / 1000).toFixed(1);
         if (data.reply) {
           const reply = data.reply;
-          chatHistory.push({ role: 'assistant', text: reply });
+          chatHistory.push({ role: 'assistant', content: reply });
           const displayText = translateTerminal(reply, lang);
           const html = marked.parse(displayText);
           terminalLog('<span style="color:#4f8cff;">ai&gt;</span> <span class="chat-markdown">' + html + '</span>', 'agent-result', reply);
