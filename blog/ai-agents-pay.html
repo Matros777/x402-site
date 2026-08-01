@@ -142,8 +142,10 @@
   </div>
 </article>
 </main>
-<footer class="site">
-  <div class="wrap"><div>© <span id="yr"></span> x402-ai-agent.space</div></div>
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
 </footer>
 
 <script type="application/ld+json">
@@ -216,7 +218,7 @@
     p14: "Агент, который платит сам, перестаёт быть «настроенным once and forever». Он может переключаться между источниками, оптимизировать расходы и работать 24/7 без вашего участия. Именно к этому и ведёт эволюция агентных систем.",
     p15: "Мы движемся к миру, где агенты — это полноценные участники экономики. Они покупают данные, арендуют вычислительные ресурсы, торгуются друг с другом. И делают всё это без человеческого контроля — только в рамках заданных правил и лимитов.",
     p16: "x402 — это не просто протокол оплаты. Это фундамент для новой экономической реальности, где машины взаимодействуют с машинами, а люди только задают правила и получают результаты. Когда агент может платить сам, он становится не просто инструментом, а самостоятельным агентом — в самом прямом смысле этого слова.",
-    p17: "Дальше — практика: <a href=\\"/#install\\">установка x402-wallet</a> и пример живого агента, который сканирует рынок и присылает сигналы."
+    p17: "Дальше — практика: <a href=\"/#install\">установка x402-wallet</a> и пример живого агента, который сканирует рынок и присылает сигналы."
   };
   const embeddedEn = {
     title: "How AI agents learn to pay for themselves — x402-ai-agent.space",
@@ -249,7 +251,7 @@
     p14: "An agent that pays for itself is no longer 'configured once and forever'. It can switch between sources, optimize expenses, and work 24/7 without your involvement. This is exactly where the evolution of agentic systems is heading.",
     p15: "We are moving toward a world where agents are full-fledged economic participants. They buy data, rent computing resources, trade with each other. And they do all of this without human oversight — only within set rules and limits.",
     p16: "x402 is not just a payment protocol. It is the foundation for a new economic reality where machines interact with machines, and humans only set the rules and receive the results. When an agent can pay for itself, it becomes not just a tool, but an independent agent — in the most literal sense.",
-    p17: "Next — practice: <a href=\\"/#install\\">installing x402-wallet</a> and an example of a live agent that scans the market and sends signals."
+    p17: "Next — practice: <a href=\"/#install\">installing x402-wallet</a> and an example of a live agent that scans the market and sends signals."
   };
   function getNested(obj, path) {
     return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
