@@ -119,7 +119,9 @@
       gap: 16px;
     }
     a.post {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      min-height: 320px;
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -133,10 +135,12 @@
       box-shadow: var(--shadow);
     }
     a.post .date {
+      flex-shrink: 0;
       font-size: 0.8rem; color: var(--muted); margin-bottom: 12px;
       letter-spacing: 0.02em;
     }
     a.post h3 {
+      flex-shrink: 0;
       font-size: 1.1rem; font-weight: 600; letter-spacing: -0.015em;
       margin-bottom: 10px; line-height: 1.35;
     }
