@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Агент, который обогнал людей: как автономные системы уже зарабатывают шестизначные суммы</title>
+  <meta name="description" data-i18n="metaDescription" content="Xbow, Cursor, Clay и соло-фаундеры: автономные агенты уже приносят шестизначные суммы. Разбираем, какой денежный цикл замыкает агент без участия человека.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/agents-outperformed-humans.html">
+  <meta property="og:title" data-i18n="title" content="Агент, который обогнал людей: как автономные системы уже зарабатывают шестизначные суммы">
+  <meta property="og:description" data-i18n="metaDescription" content="Xbow, Cursor, Clay и соло-фаундеры: автономные агенты уже приносят шестизначные суммы. Разбираем, какой денежный цикл замыкает агент без участия человека.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/agents-outperformed-humans-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="Агент, который обогнал людей: как автономные системы уже зарабатывают шестизначные суммы">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Xbow, Cursor, Clay и соло-фаундеры: автономные агенты уже приносят шестизначные суммы. Разбираем, какой денежный цикл замыкает агент без участия человека.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/agents-outperformed-humans-cover.jpg">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/agents-outperformed-humans.html">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #f5f5f5;
+      --text-secondary: #a3a3a3;
+      --muted: #737373;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      min-height: 100vh; display: flex; flex-direction: column;
+    }
+    .wrap { max-width: 680px; margin: 0 auto; padding: 0 16px; }
+    header.site {
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 12px 0; position: sticky; top: 0;
+      background: rgba(10,10,10,0.92); backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--text); }
+    .logo-img { width: 28px; height: 28px; border-radius: 6px; }
+    .logo span { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.02em; }
+    .logo span span { color: var(--muted); font-weight: 400; }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      color: var(--text-secondary); text-decoration: none;
+      font-size: 0.85rem; padding: 6px 10px; border-radius: var(--radius-xs);
+      transition: var(--transition); white-space: nowrap;
+    }
+    nav .link:hover { background: var(--bg-card); color: var(--text); }
+    .lang-switch { font-size: 0.8rem; padding: 4px 8px; }
+    @media (max-width: 480px) {
+      nav .link { font-size: 0.78rem; padding: 4px 6px; }
+    }
+    main { flex: 1; }
+    article { padding: 32px 0 48px; }
+    .back-link {
+      display: inline-block; color: var(--muted); text-decoration: none;
+      font-size: 0.85rem; margin-bottom: 8px; transition: var(--transition);
+    }
+    .back-link:hover { color: var(--text); }
+    .post-date {
+      font-size: 0.85rem; color: var(--muted); margin-bottom: 8px;
+    }
+    h1 {
+      font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em;
+      line-height: 1.3; margin-bottom: 24px;
+    }
+    .cover-img {
+      width: 100%; max-width: 640px; height: 437px;
+      border-radius: var(--radius); margin: 24px 0 32px;
+      border: 1px solid var(--border);
+    }
+    h2 {
+      font-size: 1.5rem; font-weight: 600; margin: 40px 0 16px;
+      letter-spacing: -0.01em;
+    }
+    h3 {
+      font-size: 1.2rem; font-weight: 600; margin: 32px 0 12px;
+    }
+    p { margin-bottom: 20px; color: var(--text-secondary); }
+    p strong { color: var(--text); }
+    ul, ol { margin: 0 0 20px 24px; color: var(--text-secondary); }
+    li { margin-bottom: 8px; }
+    li strong { color: var(--text); }
+    hr {
+      border: none; border-top: 1px solid var(--border);
+      margin: 40px 0; opacity: 0.5;
+    }
+    .highlight {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 24px;
+      margin: 24px 0; font-size: 0.95rem;
+    }
+    .highlight strong { color: var(--text); }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.6rem; }
+      h2 { font-size: 1.25rem; }
+      article { padding: 24px 0 40px; }
+    }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link" href="/" data-i18n="nav.home">На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article>
+  <div class="wrap">
+    <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+    <img class="cover-img" src="/assets/img/blog/agents-outperformed-humans-cover.jpg" alt="" loading="lazy">
+    <div class="post-date" data-i18n="postDate">1 августа 2026</div>
+    <h1 data-i18n="title">Агент, который обогнал людей: как автономные системы уже зарабатывают шестизначные суммы</h1>
+
+    <p data-i18n="p1">Пока одни спорят, «готовы ли агенты», другие уже смотрят на выписки. В 2025–2026 годах появилось несколько кейсов, которые сложно списать на маркетинг. Один из самых жёстких — Xbow: автономный агент для поиска уязвимостей. Он поднялся на первое место HackerOne, нашёл больше тысячи zero-day и работал на порядки быстрее ручных команд. Это не «помог аналитику». Это система, которая сама проходит цикл: разведка → эксплуатация → отчёт → награда.</p>
+
+    <p data-i18n="p2">Другой слой — не баунти, а бизнес на агентах как продукте. Cursor вырос в сотни миллионов ARR, продавая не «чат в редакторе», а агента, который реально правит кодовую базу. Clay перешёл отчёт $100M ARR, построив агентную машину для продаж и обогащения лидов. Это уже не пилоты в песочнице — это выручка, которую считают инвесторы.</p>
+
+    <p data-i18n="p3">Есть и более «дикие» истории. Соло-фаундеры запускают продукты, где почти нет сотрудников: агенты обрабатывают онбординг, поддержку, генерацию страниц, outreach. В публичных разборах мелькают цифры вроде десятков и сотен тысяч долларов выручки при команде из одного человека и нескольких агентов. Где-то это $700K+ в год на контент-сетке, где-то — семизначный ARR на узком SaaS.</p>
+
+    <h2 data-i18n="h2_1">Важно не путать шум и деньги</h2>
+
+    <p data-i18n="p4">Токеномика агентов на Base и «рыночная капитализация агента» — отдельная игра. Реальный P&L выглядит проще:</p>
+
+    <ul>
+      <li data-i18n="li1">агент закрывает работу, за которую раньше платили людям;</li>
+      <li data-i18n="li2">или продаёт результат по подписке / за вызов;</li>
+      <li data-i18n="li3">или забирает баунти и комиссии быстрее конкурентов.</li>
+    </ul>
+
+    <p data-i18n="p5">Именно поэтому разговор смещается. Вопрос больше не «может ли агент ответить умно». Вопрос — какой денежный цикл он замыкает без постоянного участия человека. Те, кто нашёл такой цикл раньше, уже считают не демо, а маржу.</p>
+
+    <div class="highlight">
+      <p data-i18n="highlight1">Агент ценен не интеллектом, а способностью замыкать денежный цикл без человека. Xbow, Cursor, Clay и соло-фаундеры — это разные формы одного и того же: система, которая делает работу и получает за неё деньги.</p>
+    </div>
+
+    <hr>
+
+    <p data-i18n="footer">Если ваш агент уже действует — дайте ему возможность платить за себя самому. Создать платного агента →</p>
+  </div>
+</article>
+</main>
+
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+
+  const embeddedRu = {
+    title: "Агент, который обогнал людей: как автономные системы уже зарабатывают шестизначные суммы",
+    metaDescription: "Xbow, Cursor, Clay и соло-фаундеры: автономные агенты уже приносят шестизначные суммы. Разбираем, какой денежный цикл замыкает агент без участия человека.",
+    nav: { back: "← Блог", home: "На сайт", lang: "🇬🇧 EN" },
+    backLink: "← Назад к блогу",
+    postDate: "1 августа 2026",
+    p1: "Пока одни спорят, «готовы ли агенты», другие уже смотрят на выписки. В 2025–2026 годах появилось несколько кейсов, которые сложно списать на маркетинг. Один из самых жёстких — Xbow: автономный агент для поиска уязвимостей. Он поднялся на первое место HackerOne, нашёл больше тысячи zero-day и работал на порядки быстрее ручных команд. Это не «помог аналитику». Это система, которая сама проходит цикл: разведка → эксплуатация → отчёт → награда.",
+    p2: "Другой слой — не баунти, а бизнес на агентах как продукте. Cursor вырос в сотни миллионов ARR, продавая не «чат в редакторе», а агента, который реально правит кодовую базу. Clay перешёл отчёт $100M ARR, построив агентную машину для продаж и обогащения лидов. Это уже не пилоты в песочнице — это выручка, которую считают инвесторы.",
+    p3: "Есть и более «дикие» истории. Соло-фаундеры запускают продукты, где почти нет сотрудников: агенты обрабатывают онбординг, поддержку, генерацию страниц, outreach. В публичных разборах мелькают цифры вроде десятков и сотен тысяч долларов выручки при команде из одного человека и нескольких агентов. Где-то это $700K+ в год на контент-сетке, где-то — семизначный ARR на узком SaaS.",
+    h2_1: "Важно не путать шум и деньги",
+    p4: "Токеномика агентов на Base и «рыночная капитализация агента» — отдельная игра. Реальный P&L выглядит проще:",
+    li1: "агент закрывает работу, за которую раньше платили людям;",
+    li2: "или продаёт результат по подписке / за вызов;",
+    li3: "или забирает баунти и комиссии быстрее конкурентов.",
+    p5: "Именно поэтому разговор смещается. Вопрос больше не «может ли агент ответить умно». Вопрос — какой денежный цикл он замыкает без постоянного участия человека. Те, кто нашёл такой цикл раньше, уже считают не демо, а маржу.",
+    highlight1: "Агент ценен не интеллектом, а способностью замыкать денежный цикл без человека. Xbow, Cursor, Clay и соло-фаундеры — это разные формы одного и того же: система, которая делает работу и получает за неё деньги.",
+    footer: "Если ваш агент уже действует — дайте ему возможность платить за себя самому. Создать платного агента →"
+  };
+
+  const embeddedEn = {
+    title: "The agent that beat humans: how autonomous systems are already earning six figures",
+    metaDescription: "Xbow, Cursor, Clay and solo founders: autonomous agents are already generating six-figure revenue. Breaking down the money loop an agent closes without human involvement.",
+    nav: { back: "← Blog", home: "Home", lang: "🇷🇺 RU" },
+    backLink: "← Back to blog",
+    postDate: "August 1, 2026",
+    p1: "While some argue about whether agents are 'ready', others are already looking at their bank statements. In 2025–2026, several cases emerged that are hard to dismiss as marketing. One of the toughest is Xbow: an autonomous vulnerability-hunting agent. It reached the top of HackerOne, found more than a thousand zero-days, and worked orders of magnitude faster than manual teams. This isn't 'helped an analyst'. This is a system that runs the full cycle on its own: reconnaissance → exploitation → report → bounty.",
+    p2: "Another layer is not bounties but building a business on agents as a product. Cursor grew to hundreds of millions in ARR by selling not a 'chat in the editor' but an agent that actually modifies the codebase. Clay crossed the $100M ARR mark by building an agentic machine for sales and lead enrichment. These are no longer sandbox pilots — this is revenue that investors count.",
+    p3: "There are also 'wilder' stories. Solo founders launch products with almost no employees: agents handle onboarding, support, page generation, outreach. Public breakdowns show figures in the tens and hundreds of thousands of dollars in revenue with a team of one person and a few agents. Somewhere it's $700K+ a year on a content network, somewhere — seven-figure ARR on a narrow SaaS.",
+    h2_1: "Don't confuse noise with money",
+    p4: "Agent tokenomics on Base and 'agent market capitalization' are a separate game. The real P&L looks simpler:",
+    li1: "the agent does work people used to be paid for;",
+    li2: "or sells a result via subscription / per call;",
+    li3: "or takes bounties and fees faster than competitors.",
+    p5: "This is exactly why the conversation is shifting. The question is no longer 'can an agent answer smartly'. The question is — what money loop does it close without constant human involvement. Those who found such a loop earlier are already counting margins, not demos.",
+    highlight1: "An agent is valuable not for its intelligence but for its ability to close a money loop without a human. Xbow, Cursor, Clay and solo founders are different forms of the same thing: a system that does work and gets paid for it.",
+    footer: "If your agent already acts — give it the ability to pay for itself. Create a paid agent →"
+  };
+
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        if (el.tagName === 'A' && el.classList.contains('lang-switch')) {
+          el.textContent = value;
+        } else {
+          el.innerHTML = value;
+        }
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          document.querySelectorAll('meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]').forEach(m => m.setAttribute('content', value));
+        }
+      }
+    });
+  }
+
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', '?lang=' + next);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>

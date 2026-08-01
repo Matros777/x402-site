@@ -5,8 +5,29 @@
     <link>https://x402-ai-agent.space/blog/</link>
     <description>Articles about x402 protocol, AI agent payments, agentic economy, and autonomous agents.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 30 Jul 2026 00:47:50 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 01 Aug 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://x402-ai-agent.space/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Why the fastest companies to $100M ARR are now agentic</title>
+      <link>https://x402-ai-agent.space/blog/agentic-100m-arr.html</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agentic-100m-arr.html</guid>
+      <pubDate>Sat, 01 Aug 2026 00:00:00 +0000</pubDate>
+      <description>Agentic companies reach $100M ARR noticeably faster than classic SaaS. The reason is product form: an agent closes a whole slice of work instead of augmenting a human. The price of speed is autonomy, control, and observability.</description>
+    </item>
+    <item>
+      <title>The agent economy is no longer theory: who pays, who earns, and where the real volume is</title>
+      <link>https://x402-ai-agent.space/blog/agents-economy-not-theory.html</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agents-economy-not-theory.html</guid>
+      <pubDate>Sat, 01 Aug 2026 00:00:00 +0000</pubDate>
+      <description>Three contours of the agent economy: executors inside businesses, agents selling services, infrastructure. Who pays, who earns, and why micropayments stop being exotic.</description>
+    </item>
+    <item>
+      <title>The agent that beat humans: how autonomous systems are already earning six figures</title>
+      <link>https://x402-ai-agent.space/blog/agents-outperformed-humans.html</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agents-outperformed-humans.html</guid>
+      <pubDate>Sat, 01 Aug 2026 00:00:00 +0000</pubDate>
+      <description>Xbow, Cursor, Clay and solo founders: autonomous agents are already generating six-figure revenue. Breaking down the money loop an agent closes without human involvement.</description>
+    </item>
     <item>
       <title>Humans should no longer be the executor</title>
       <link>https://x402-ai-agent.space/blog/human-not-executor.html</link>

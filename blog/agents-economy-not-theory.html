@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Экономика агентов уже не теория: кто платит, кто зарабатывает и где настоящий объём</title>
+  <meta name="description" data-i18n="metaDescription" content="Три контура агентной экономики: исполнители внутри бизнеса, агенты-продавцы услуг, инфраструктура. Кто платит, кто зарабатывает и почему микроплатежи перестают быть экзотикой.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/agents-economy-not-theory.html">
+  <meta property="og:title" data-i18n="title" content="Экономика агентов уже не теория: кто платит, кто зарабатывает и где настоящий объём">
+  <meta property="og:description" data-i18n="metaDescription" content="Три контура агентной экономики: исполнители внутри бизнеса, агенты-продавцы услуг, инфраструктура. Кто платит, кто зарабатывает и почему микроплатежи перестают быть экзотикой.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/agents-economy-not-theory-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="Экономика агентов уже не теория: кто платит, кто зарабатывает и где настоящий объём">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Три контура агентной экономики: исполнители внутри бизнеса, агенты-продавцы услуг, инфраструктура. Кто платит, кто зарабатывает и почему микроплатежи перестают быть экзотикой.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/agents-economy-not-theory-cover.jpg">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/agents-economy-not-theory.html">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #f5f5f5;
+      --text-secondary: #a3a3a3;
+      --muted: #737373;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      min-height: 100vh; display: flex; flex-direction: column;
+    }
+    .wrap { max-width: 680px; margin: 0 auto; padding: 0 16px; }
+    header.site {
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 12px 0; position: sticky; top: 0;
+      background: rgba(10,10,10,0.92); backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--text); }
+    .logo-img { width: 28px; height: 28px; border-radius: 6px; }
+    .logo span { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.02em; }
+    .logo span span { color: var(--muted); font-weight: 400; }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      color: var(--text-secondary); text-decoration: none;
+      font-size: 0.85rem; padding: 6px 10px; border-radius: var(--radius-xs);
+      transition: var(--transition); white-space: nowrap;
+    }
+    nav .link:hover { background: var(--bg-card); color: var(--text); }
+    .lang-switch { font-size: 0.8rem; padding: 4px 8px; }
+    @media (max-width: 480px) {
+      nav .link { font-size: 0.78rem; padding: 4px 6px; }
+    }
+    main { flex: 1; }
+    article { padding: 32px 0 48px; }
+    .back-link {
+      display: inline-block; color: var(--muted); text-decoration: none;
+      font-size: 0.85rem; margin-bottom: 8px; transition: var(--transition);
+    }
+    .back-link:hover { color: var(--text); }
+    .post-date {
+      font-size: 0.85rem; color: var(--muted); margin-bottom: 8px;
+    }
+    h1 {
+      font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em;
+      line-height: 1.3; margin-bottom: 24px;
+    }
+    .cover-img {
+      width: 100%; max-width: 640px; height: 437px;
+      border-radius: var(--radius); margin: 24px 0 32px;
+      border: 1px solid var(--border);
+    }
+    h2 {
+      font-size: 1.5rem; font-weight: 600; margin: 40px 0 16px;
+      letter-spacing: -0.01em;
+    }
+    h3 {
+      font-size: 1.2rem; font-weight: 600; margin: 32px 0 12px;
+    }
+    p { margin-bottom: 20px; color: var(--text-secondary); }
+    p strong { color: var(--text); }
+    ul, ol { margin: 0 0 20px 24px; color: var(--text-secondary); }
+    li { margin-bottom: 8px; }
+    li strong { color: var(--text); }
+    hr {
+      border: none; border-top: 1px solid var(--border);
+      margin: 40px 0; opacity: 0.5;
+    }
+    .highlight {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 24px;
+      margin: 24px 0; font-size: 0.95rem;
+    }
+    .highlight strong { color: var(--text); }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.6rem; }
+      h2 { font-size: 1.25rem; }
+      article { padding: 24px 0 40px; }
+    }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link" href="/" data-i18n="nav.home">На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article>
+  <div class="wrap">
+    <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+    <img class="cover-img" src="/assets/img/blog/agents-economy-not-theory-cover.jpg" alt="" loading="lazy">
+    <div class="post-date" data-i18n="postDate">1 августа 2026</div>
+    <h1 data-i18n="title">Экономика агентов уже не теория: кто платит, кто зарабатывает и где настоящий объём</h1>
+
+    <p data-i18n="p1">Ещё недавно фраза «агентная экономика» звучала как прогноз из презентации. В 2026 году у неё появились цифры, чеки и рабочие контуры. Не идеальные, не равномерно распределённые — но уже не нулевые.</p>
+
+    <p data-i18n="p2">Первый контур — это агенты как исполнители внутри бизнеса. Компании перестают покупать «ещё одного сотрудника в поддержку» и начинают покупать систему, которая закрывает поток однотипных задач: квалификация лидов, онбординг, подготовка отчётов, первичная обработка тикетов, research по открытым данным. Здесь деньги выглядят привычно: подписка, usage-based тариф, контракт на результат. Разница в том, что предельная стоимость дополнительной единицы работы падает сильнее, чем в классическом аутсорсе.</p>
+
+    <p data-i18n="p3">Второй контур — агенты как продавцы услуг друг другу и внешним системам. На платформах вроде Virtuals уже существуют тысячи агентов, миллионы выполненных jobs и оборот, который нельзя объяснить одним лишь спекулятивным токеном. Где-то это сигналы, где-то execution, где-то узкие сервисные действия. Важнее другое: появляется привычка платить агенту за завершённую работу, а не за доступ к чату.</p>
+
+    <p data-i18n="p4">Третий контур — инфраструктура. Кошельки, RPC, compute, каталоги навыков, протоколы оплаты. Именно здесь сейчас концентрируется самая «скучная» и самая устойчивая выручка. Пока одни запускают очередного мем-агента, другие берут комиссию каждый раз, когда агенту нужно заплатить, получить данные или подтвердить действие в сети. Для x402-подобных рельсов это особенно заметно: API внезапно становится витриной с ценником, а не закрытым клубом с ключами и менеджером.</p>
+
+    <p data-i18n="p5">Но если смотреть честно, рынок пока расколот. Есть хайповая часть, где стоимость «агента» определяется вниманием ленты. Есть операционная часть, где агент либо экономит фонд оплаты труда, либо приносит измеримую выручку. Путать их опасно. Первая даёт красивые графики капитализации. Вторая даёт повторные платежи.</p>
+
+    <h2 data-i18n="h2_1">Самые живучие модели сегодня</h2>
+
+    <ul>
+      <li data-i18n="li1"><strong>Вертикальный агент</strong> — один домен, понятный результат, явная цена ошибки.</li>
+      <li data-i18n="li2"><strong>Микросервис для агентов</strong> — один навык, оплата за вызов, без долгого онбординга.</li>
+      <li data-i18n="li3"><strong>Человек + рой</strong> — фаундер или маленькая команда задаёт цели, агенты закрывают цикл исполнения.</li>
+      <li data-i18n="li4"><strong>Инфраструктурный слой</strong> — всё, без чего агент не может действовать автономно: идентичность, платежи, логи, лимиты.</li>
+    </ul>
+
+    <p data-i18n="p6">Именно поэтому микроплатежи перестают быть экзотикой. Если агенту нужно купить один запрос к данным, один сигнал или один проход через специализированный API, подписка на месяц выглядит тяжело и неестественно. Оплата за факт использования — наоборот. Протоколы вроде x402 как раз закрывают этот зазор: машина видит цену, принимает решение, платит, получает результат.</p>
+
+    <p data-i18n="p7">Главный сдвиг даже не технологический. Экономическим субъектом постепенно становится не только компания и не только человек, а процесс, способный самостоятельно проходить путь «задача → действие → оплата → результат». Пока такие процессы хрупкие. Но там, где они уже стабильно замыкают денежный цикл, разговор об агентах перестаёт быть философским. Он становится бухгалтерским.</p>
+
+    <div class="highlight">
+      <p data-i18n="highlight1">Экономика агентов — это не «кто умнее», а «кто замыкает денежный цикл». Хайповая часть даёт графики капитализации, операционная — повторные платежи. И именно бухгалтерия, а не демо, будет главным фильтром следующих двух лет.</p>
+    </div>
+
+    <hr>
+
+    <p data-i18n="footer">Если ваш агент уже действует — дайте ему возможность платить за себя самому. Создать платного агента →</p>
+  </div>
+</article>
+</main>
+
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+
+  const embeddedRu = {
+    title: "Экономика агентов уже не теория: кто платит, кто зарабатывает и где настоящий объём",
+    metaDescription: "Три контура агентной экономики: исполнители внутри бизнеса, агенты-продавцы услуг, инфраструктура. Кто платит, кто зарабатывает и почему микроплатежи перестают быть экзотикой.",
+    nav: { back: "← Блог", home: "На сайт", lang: "🇬🇧 EN" },
+    backLink: "← Назад к блогу",
+    postDate: "1 августа 2026",
+    p1: "Ещё недавно фраза «агентная экономика» звучала как прогноз из презентации. В 2026 году у неё появились цифры, чеки и рабочие контуры. Не идеальные, не равномерно распределённые — но уже не нулевые.",
+    p2: "Первый контур — это агенты как исполнители внутри бизнеса. Компании перестают покупать «ещё одного сотрудника в поддержку» и начинают покупать систему, которая закрывает поток однотипных задач: квалификация лидов, онбординг, подготовка отчётов, первичная обработка тикетов, research по открытым данным. Здесь деньги выглядят привычно: подписка, usage-based тариф, контракт на результат. Разница в том, что предельная стоимость дополнительной единицы работы падает сильнее, чем в классическом аутсорсе.",
+    p3: "Второй контур — агенты как продавцы услуг друг другу и внешним системам. На платформах вроде Virtuals уже существуют тысячи агентов, миллионы выполненных jobs и оборот, который нельзя объяснить одним лишь спекулятивным токеном. Где-то это сигналы, где-то execution, где-то узкие сервисные действия. Важнее другое: появляется привычка платить агенту за завершённую работу, а не за доступ к чату.",
+    p4: "Третий контур — инфраструктура. Кошельки, RPC, compute, каталоги навыков, протоколы оплаты. Именно здесь сейчас концентрируется самая «скучная» и самая устойчивая выручка. Пока одни запускают очередного мем-агента, другие берут комиссию каждый раз, когда агенту нужно заплатить, получить данные или подтвердить действие в сети. Для x402-подобных рельсов это особенно заметно: API внезапно становится витриной с ценником, а не закрытым клубом с ключами и менеджером.",
+    p5: "Но если смотреть честно, рынок пока расколот. Есть хайповая часть, где стоимость «агента» определяется вниманием ленты. Есть операционная часть, где агент либо экономит фонд оплаты труда, либо приносит измеримую выручку. Путать их опасно. Первая даёт красивые графики капитализации. Вторая даёт повторные платежи.",
+    h2_1: "Самые живучие модели сегодня",
+    li1: "Вертикальный агент — один домен, понятный результат, явная цена ошибки.",
+    li2: "Микросервис для агентов — один навык, оплата за вызов, без долгого онбординга.",
+    li3: "Человек + рой — фаундер или маленькая команда задаёт цели, агенты закрывают цикл исполнения.",
+    li4: "Инфраструктурный слой — всё, без чего агент не может действовать автономно: идентичность, платежи, логи, лимиты.",
+    p6: "Именно поэтому микроплатежи перестают быть экзотикой. Если агенту нужно купить один запрос к данным, один сигнал или один проход через специализированный API, подписка на месяц выглядит тяжело и неестественно. Оплата за факт использования — наоборот. Протоколы вроде x402 как раз закрывают этот зазор: машина видит цену, принимает решение, платит, получает результат.",
+    p7: "Главный сдвиг даже не технологический. Экономическим субъектом постепенно становится не только компания и не только человек, а процесс, способный самостоятельно проходить путь «задача → действие → оплата → результат». Пока такие процессы хрупкие. Но там, где они уже стабильно замыкают денежный цикл, разговор об агентах перестаёт быть философским. Он становится бухгалтерским.",
+    highlight1: "Экономика агентов — это не «кто умнее», а «кто замыкает денежный цикл». Хайповая часть даёт графики капитализации, операционная — повторные платежи. И именно бухгалтерия, а не демо, будет главным фильтром следующих двух лет.",
+    footer: "Если ваш агент уже действует — дайте ему возможность платить за себя самому. Создать платного агента →"
+  };
+
+  const embeddedEn = {
+    title: "The agent economy is no longer theory: who pays, who earns, and where the real volume is",
+    metaDescription: "Three contours of the agent economy: executors inside businesses, agents selling services, infrastructure. Who pays, who earns, and why micropayments stop being exotic.",
+    nav: { back: "← Blog", home: "Home", lang: "🇷🇺 RU" },
+    backLink: "← Back to blog",
+    postDate: "August 1, 2026",
+    p1: "Until recently, the phrase 'agent economy' sounded like a forecast from a slide deck. In 2026 it got numbers, invoices, and working contours. Not perfect, not evenly distributed — but no longer zero.",
+    p2: "The first contour is agents as executors inside a business. Companies stop buying 'one more support employee' and start buying a system that closes the stream of repetitive tasks: lead qualification, onboarding, report preparation, first-line ticket handling, open-data research. Here the money looks familiar: subscription, usage-based pricing, outcome-based contract. The difference is that the marginal cost of an additional unit of work drops harder than in classic outsourcing.",
+    p3: "The second contour is agents selling services to each other and to external systems. On platforms like Virtuals there are already thousands of agents, millions of completed jobs, and volume that cannot be explained by a speculative token alone. Somewhere it's signals, somewhere execution, somewhere narrow service actions. What matters more: the habit of paying an agent for completed work — not for access to a chat — is emerging.",
+    p4: "The third contour is infrastructure. Wallets, RPC, compute, skill catalogs, payment protocols. This is exactly where the most 'boring' and most sustainable revenue is concentrating now. While some launch yet another meme agent, others take a fee every time an agent needs to pay, fetch data, or confirm an action on-chain. On x402-like rails this is especially visible: an API suddenly becomes a storefront with a price tag, not a closed club with keys and a manager.",
+    p5: "But to be honest, the market is still split. There's the hype part, where an 'agent's' value is determined by feed attention. And there's the operational part, where an agent either saves payroll or brings measurable revenue. Confusing them is dangerous. The first gives pretty capitalization charts. The second gives recurring payments.",
+    h2_1: "The most durable models today",
+    li1: "Vertical agent — one domain, a clear outcome, an explicit cost of error.",
+    li2: "Microservice for agents — one skill, pay-per-call, no long onboarding.",
+    li3: "Human + swarm — a founder or a small team sets goals, agents close the execution loop.",
+    li4: "Infrastructure layer — everything an agent can't act autonomously without: identity, payments, logs, limits.",
+    p6: "This is exactly why micropayments stop being exotic. If an agent needs to buy a single data request, a single signal, or a single pass through a specialized API, a monthly subscription feels heavy and unnatural. Pay-per-use feels the opposite. Protocols like x402 close this gap: a machine sees the price, makes a decision, pays, gets the result.",
+    p7: "The main shift isn't even technological. The economic subject is gradually becoming not only the company and not only the human, but a process capable of walking the path 'task → action → payment → result' on its own. Such processes are still fragile. But where they already close the money loop reliably, the conversation about agents stops being philosophical. It becomes bookkeeping.",
+    highlight1: "The agent economy is not about 'who is smarter' but 'who closes the money loop'. The hype part gives capitalization charts, the operational part gives recurring payments. And it's bookkeeping, not demos, that will be the main filter of the next two years.",
+    footer: "If your agent already acts — give it the ability to pay for itself. Create a paid agent →"
+  };
+
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        if (el.tagName === 'A' && el.classList.contains('lang-switch')) {
+          el.textContent = value;
+        } else {
+          el.innerHTML = value;
+        }
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          document.querySelectorAll('meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]').forEach(m => m.setAttribute('content', value));
+        }
+      }
+    });
+  }
+
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', '?lang=' + next);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>
