@@ -817,8 +817,8 @@ def agent_logic(data: dict) -> dict:
 
         <div class="ai-help-label" style="margin-top:1.35rem" data-i18n="extra_deps_label">Доп. библиотеки (pip)</div>
         <p class="hint" data-i18n="extra_deps_hint">Если вам нужны доп. библиотеки — вставляйте их сюда (через запятую или с новой строки). Они попадут в <code>requirements.txt</code> при генерации. Импорты всё равно пишите в коде над <code>agent_logic</code>.</p>
-        <input type="text" id="extraDeps" placeholder="requests, beautifulsoup4, pandas" style="margin-top:0.45rem" />
-        <p class="hint-xs" data-i18n="extra_deps_note">Пример: пакет <code>beautifulsoup4</code>, в коде — <code>from bs4 import BeautifulSoup</code>. Имя pip ≠ всегда имя import.</p>
+        <input type="text" id="extraDeps" placeholder="requests, beautifulsoup4, pandas, from datetime import datetime" style="margin-top:0.45rem" />
+        <p class="hint-xs" data-i18n="extra_deps_note">Пакеты (pip) — в <code>requirements.txt</code>. Python-импорты (<code>from datetime import datetime</code>, <code>import json</code>) — вставятся в код автоматически. Стандартная библиотека в requirements не попадает.</p>
       </div>
     </div>
 
@@ -850,8 +850,16 @@ httpx</pre>
           </div>
         </div>
         <div style="margin-top: 1.35rem;">
-          <div class="card-title" data-i18n="test_title">Как протестировать</div>
-          <p class="hint" style="margin-bottom: 0.4rem;" data-i18n="test_hint">После деплоя выполни:</p>
+          <div class="result-header" style="margin-bottom: 0.5rem;">
+            <div>
+              <div class="card-title" data-i18n="test_title">Как протестировать</div>
+              <p class="hint" style="margin: 0.25rem 0 0;" data-i18n="test_hint">После деплоя выполни:</p>
+            </div>
+            <button class="btn-copy" id="copyTestBtn" onclick="copyTestCmd()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              <span data-i18n="btn_copy_test">Копировать команду</span>
+            </button>
+          </div>
           <div class="test-cmd" id="testCmd"></div>
         </div>
       </div>
@@ -907,6 +915,7 @@ httpx</pre>
         btn_generate: "Сгенерировать готовый агент",
         result_title: "Готовый серверный код",
         btn_copy: "Копировать",
+        btn_copy_test: "Копировать команду",
         btn_copied: "Скопировано",
         req_title: "requirements.txt",
         test_title: "Как протестировать",
@@ -917,8 +926,8 @@ httpx</pre>
         ai_prompt_label: "Промпт для ИИ",
         btn_copy_prompt: "Копировать промпт",
         extra_deps_label: "Доп. библиотеки (pip)",
-        extra_deps_hint: "Если вам нужны доп. библиотеки — вставляйте их сюда (через запятую или с новой строки). Они попадут в <code>requirements.txt</code> при генерации. Импорты всё равно пишите в коде над <code>agent_logic</code>.",
-        extra_deps_note: "Пример: пакет <code>beautifulsoup4</code>, в коде — <code>from bs4 import BeautifulSoup</code>. Имя pip ≠ всегда имя import."
+        extra_deps_hint: "Если вам нужны доп. библиотеки — вставляйте их сюда (через запятую или с новой строки). Они попадут в <code>requirements.txt</code> при генерации. Импорты (<code>from datetime import datetime</code>, <code>import json</code>) тоже можно вставлять сюда — они добавятся в код автоматически. Импорты всё равно пишите в коде над <code>agent_logic</code>.",
+        extra_deps_note: "Пакеты (pip) — в <code>requirements.txt</code>. Python-импорты (<code>from datetime import datetime</code>, <code>import json</code>) — вставятся в код автоматически. Стандартная библиотека в requirements не попадает."
       },
       en: {
         nav_home: "← Back to home",
@@ -961,6 +970,7 @@ httpx</pre>
         btn_generate: "Generate ready agent",
         result_title: "Ready server code",
         btn_copy: "Copy",
+        btn_copy_test: "Copy command",
         btn_copied: "Copied",
         req_title: "requirements.txt",
         test_title: "How to test",
@@ -971,8 +981,8 @@ httpx</pre>
         ai_prompt_label: "Prompt for AI",
         btn_copy_prompt: "Copy prompt",
         extra_deps_label: "Extra libraries (pip)",
-        extra_deps_hint: "If you need extra libraries — paste them here (comma or newline separated). They will be added to <code>requirements.txt</code> on generate. Still write imports in code above <code>agent_logic</code>.",
-        extra_deps_note: "Example: package <code>beautifulsoup4</code>, in code — <code>from bs4 import BeautifulSoup</code>. Pip name ≠ always import name."
+        extra_deps_hint: "If you need extra libraries — paste them here (comma or newline separated). They will be added to <code>requirements.txt</code> on generate. You can also paste Python imports (<code>from datetime import datetime</code>, <code>import json</code>) — they will be inserted into the code automatically. Still write imports in code above <code>agent_logic</code>.",
+        extra_deps_note: "Packages (pip) go to <code>requirements.txt</code>. Python imports (<code>from datetime import datetime</code>, <code>import json</code>) are inserted into the code automatically. Standard library is excluded from requirements."
       }
     };
     let currentLang = "ru";
@@ -1116,6 +1126,43 @@ CDP_API_KEY_SECRET = os.getenv("CDP_API_KEY_SECRET", """${cdpKeySecret.replace(/
 FACILITATOR_KIND = "xpay"
 `;
 
+      // ===== Доп. библиотеки и Python-импорты =====
+      // Поле extraDeps принимает и pip-пакеты, и Python-импорты:
+      //   "requests, pandas, from datetime import datetime, import json"
+      // - импорты (from x import y / import x) вставляются в код,
+      // - pip-пакеты добавляются в requirements.txt.
+      // Разделяем по запятым/строкам, но НЕ по пробелам (чтобы не разорвать "from datetime import datetime").
+      const extraDepsRaw = (document.getElementById("extraDeps") && document.getElementById("extraDeps").value || "").trim();
+      const extraDepsTokens = extraDepsRaw
+        .split(/[\n,]+/)
+        .map(s => s.trim())
+        .filter(Boolean);
+      const stdlib = new Set([
+        "abc","argparse","array","asyncio","base64","bisect","calendar","cmath",
+        "collections","concurrent","contextlib","copy","csv","ctypes","dataclasses",
+        "datetime","decimal","difflib","enum","errno","fractions","functools","gc",
+        "getpass","glob","gzip","hashlib","heapq","hmac","html","http","importlib",
+        "inspect","io","itertools","json","logging","math","multiprocessing","numbers",
+        "operator","os","pathlib","pickle","platform","queue","random","re","reprlib",
+        "sched","secrets","select","shlex","shutil","signal","socket","sqlite3",
+        "ssl","statistics","string","struct","subprocess","sys","tempfile","threading",
+        "time","timeit","tkinter","traceback","types","typing","unittest","urllib",
+        "uuid","warnings","weakref","xml","zipfile","zoneinfo"
+      ]);
+      const extraImports = [];   // пойдёт в код (import ... / from ... import ...)
+      const extraPip = [];       // пойдёт в requirements.txt
+      for (const tok of extraDepsTokens) {
+        const m = tok.match(/^(?:from\s+([\w.]+)\s+import|import\s+([\w.]+))/);
+        if (m) {
+          extraImports.push(tok);
+          const pkg = (m[1] || m[2]).split(".")[0];
+          if (!stdlib.has(pkg)) extraPip.push(pkg);
+        } else {
+          extraPip.push(tok);
+        }
+      }
+      const extraImportsBlock = extraImports.length ? extraImports.join("\n") + "\n" : "";
+
       const commonTop = `import os
 import json
 import base64
@@ -1123,7 +1170,7 @@ import httpx
 from fastapi import FastAPI, Request, Response
 from fastapi.responses import JSONResponse
 ${cdpImports}
-# ====================== НАСТРОЙКИ ======================
+${extraImportsBlock}# ====================== НАСТРОЙКИ ======================
 PRICE_USD = "${price.replace("$","")}"
 AMOUNT_ATOMIC = "${amountAtomic}"
 PAY_TO = "${wallet}"
@@ -1598,17 +1645,10 @@ if __name__ == "__main__":
       }
 
       document.getElementById("outputCode").textContent = fullCode;
-      const extraDepsRaw = (document.getElementById("extraDeps") && document.getElementById("extraDeps").value || "").trim();
-      const extraDeps = extraDepsRaw
-        .split(/[\s,]+/)
-        .map(s => s.trim())
-        .filter(Boolean)
-        // убрать дубликаты и уже базовые
-        .filter((v, i, a) => a.indexOf(v) === i);
       const baseReq = ["x402[fastapi]", "uvicorn", "python-dotenv", "pydantic", "httpx"];
       if (useCdp) baseReq.push("cdp-sdk");
       const baseNames = new Set(baseReq.map(x => x.split("[")[0].toLowerCase()));
-      const extraFiltered = extraDeps.filter(d => !baseNames.has(d.split("[")[0].toLowerCase()));
+      const extraFiltered = extraPip.filter(d => !baseNames.has(d.split("[")[0].toLowerCase()));
       let reqTxt = baseReq.concat(extraFiltered).join("\n");
       document.getElementById("reqCode").textContent = reqTxt;
       // -q обязателен: awal часто теряет POST body на retry после оплаты
@@ -1618,8 +1658,12 @@ if __name__ == "__main__":
       let testExtra = useCdp
         ? "\n# CDP: после деплоя задай CDP_API_KEY_ID / CDP_API_KEY_SECRET и сделай один settle — иначе agentic.market не увидит эндпоинт"
         : "";
+      // Команду оплаты собираем из реального Resource URL (поле на странице),
+      // чтобы после деплоя можно было скопировать готовую команду с рабочей ссылкой.
+      const deployUrl = resourceUrl.replace(/\/+$/, "");          // убираем хвостовые слэши
+      const routePath = path === "/" ? "" : "/" + path.replace(/^\/+/, ""); // без двойных слэшей
       document.getElementById("testCmd").textContent =
-        `npx awal x402 pay https://твой-домен.onrender.com${path}${testBody}${testExtra}`;
+        `npx awal x402 pay ${deployUrl}${routePath}${testBody}${testExtra}`;
       document.getElementById("result").style.display = "block";
       document.getElementById("result").scrollIntoView({ behavior: "smooth", block: "start" });
     }
@@ -1633,6 +1677,19 @@ if __name__ == "__main__":
         setTimeout(() => {
           btn.classList.remove("copied");
           span.textContent = i18n[currentLang].btn_copy;
+        }, 2000);
+      });
+    }
+    function copyTestCmd() {
+      const text = document.getElementById("testCmd").textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById("copyTestBtn");
+        btn.classList.add("copied");
+        const span = btn.querySelector("span");
+        span.textContent = i18n[currentLang].btn_copied;
+        setTimeout(() => {
+          btn.classList.remove("copied");
+          span.textContent = i18n[currentLang].btn_copy_test;
         }, 2000);
       });
     }
