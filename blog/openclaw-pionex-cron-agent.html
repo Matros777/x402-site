@@ -96,10 +96,9 @@
       object-fit: cover;
     }
     .post-img {
-      width: 100%; max-width: 340px; height: auto;
-      border-radius: var(--radius); margin: 24px auto;
+      width: 100%; max-width: 640px; height: auto;
+      border-radius: var(--radius); margin: 24px 0 32px;
       border: 1px solid var(--border);
-      display: block;
     }
     h2 {
       font-size: 1.5rem; font-weight: 600; margin: 40px 0 16px;
@@ -151,6 +150,27 @@
     .article pre.code::-webkit-scrollbar-thumb:hover {
       background: #4a4a4a;
     }
+    .cron-block { position: relative; margin: 24px 0 32px; }
+    .copy-btn {
+      position: absolute; top: 12px; right: 12px; z-index: 2;
+      background: #222; color: #fff; border: 1px solid #333;
+      border-radius: var(--radius-xs); padding: 6px 12px;
+      font-size: 0.8rem; cursor: pointer; transition: var(--transition);
+      font-family: inherit;
+    }
+    .copy-btn:hover { background: #333; border-color: #444; }
+    .cron-prompt {
+      background: #141414; border: 1px solid #1a1a1a; border-radius: var(--radius);
+      padding: 44px 20px 20px; overflow: auto; white-space: pre;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.82rem; line-height: 1.5; color: #e5e5e5;
+      max-height: 480px;
+      scrollbar-width: thin; scrollbar-color: #3a3a3a #141414;
+    }
+    .cron-prompt::-webkit-scrollbar { width: 8px; height: 8px; }
+    .cron-prompt::-webkit-scrollbar-track { background: #141414; }
+    .cron-prompt::-webkit-scrollbar-thumb { background: #3a3a3a; border-radius: 4px; }
+    .cron-prompt::-webkit-scrollbar-thumb:hover { background: #4a4a4a; }
     .highlight {
       background: var(--bg-card); border: 1px solid var(--border);
       border-radius: var(--radius-sm); padding: 24px;
@@ -380,6 +400,145 @@
 
     <p data-i18n="p29">Если убрать хотя бы один слой — получается либо ручная торговля, либо бесконтрольный скрипт. В связке они уже похожи на автономного агента: не потому что он умный всегда, а потому что он действует по одному и тому же жёсткому процессу каждый час.</p>
 
+    <h2 data-i18n="h2prompt">Полный промпт крон-задачи</h2>
+
+    <p data-i18n="p30">Скопируйте этот промпт и вставьте его в крон-задачу как есть — со всеми эмодзи и форматированием. Это точная логика, по которой агент работает каждый час.</p>
+
+    <div class="cron-block">
+      <button class="copy-btn" type="button" onclick="copyCronPrompt(this)" data-i18n="copyBtn">⧉ Копировать</button>
+      <pre class="cron-prompt" id="cron-prompt"><code>Выполни крон-задачу автоматической торговли:
+═══════════════════════════════════════
+🔄 КРОН-ЗАДАЧА | [время] МСК ([дата])
+═══════════════════════════════════════
+
+Шаг 1: Запуск сканера
+
+Выполни: python3 /home/matros/.openclaw/workspace/multi_coin_scanner_v5.py
+Анализирует фьючерсные PERP пары
+Выдаёт сигналы LONG/SHORT с conviction
+Шаг 2: ПРОВЕРКА СУЩЕСТВУЮЩИХ БОТОВ (КРИТИЧЕСКИ ВАЖНО!)
+
+Проверь список работающих ботов через pionex_bot_order_list(status='running')
+ЕСЛИ ЕСТЬ ХОТЬ ОДИН РАБОТАЮЩИЙ БОТ:
+✅ НЕ СОЗДАВАТЬ НОВОГО БОТА!
+✅ НЕ ПЫТАТЬСЯ СОЗДАТЬ БОТА!
+✅ ТОЛЬКО отправить отчет в Telegram с текущим статусом
+✅ В отчете указать: "Есть работающий бот, новый не создан"
+ЕСЛИ БОТОВ НЕТ:
+Продолжить к Шагу 3
+Шаг 3: Отбор кандидата №1 (ТОЛЬКО ЕСЛИ НЕТ РАБОТАЮЩИХ БОТОВ)
+
+Приоритет: VERY HIGH &gt; HIGH &gt; MEDIUM &gt; LOW
+Если conviction одинаковый — брать с самым высоким Score
+Если сигнал SHORT — брать SHORT, если LONG — брать LONG
+Проверить: Volume Ratio &gt; 1.0x, Risk/Reward &gt; 1.0, RSI не экстремальный
+Если всё плохо — пропустить, ждать следующий час
+Создовай на весь доступный баланс !
+БРАТЬ В КОНЕЧНОМ ИТОГЕ МОНЕТУ ДЛЯ GRID BOT ИЗ 🎯 ФИНАЛЬНОГО РЕШЕНИЯ !
+Шаг 4: Создание Grid бота (ТОЛЬКО ЕСЛИ НЕТ РАБОТАЮЩИХ БОТОВ)
+
+Тип: PERP фьючерсный Grid бот
+Монета: выбранная (например, ETH_USDT_PERP)
+Направление: LONG или SHORT (как у сигнала)
+Сумма: ВЕСЬ доступный баланс USDT (с запасом на комиссии)
+Плечо: 9x
+Уровней: 20 (geometric)
+Диапазон: entry * 0.92 (bottom) до entry * 1.08 (top)
+Тейк-профит: PNL +3% (profitStopType: profit_ratio, profitStop: 0.03)
+Стоп-лосс: ПО ЦЕНЕ -10% для LONG, +10% для SHORT (lossStopType: price)
+Минимальный баланс: 8 USDT (если меньше — пропуск)
+Параметры для MCP pionex_bot_futures_grid_create:
+
+base: [монета без _PERP, например ETH]
+quote: USDT
+buOrderData:
+top: [entry * 1.08]
+bottom: [entry * 0.92]
+row: 20
+grid_type: geometric
+trend: long или short
+leverage: 9
+quoteInvestment: [весь баланс USDT]
+profitStopType: profit_ratio // TP по PNL +3%
+profitStop: 0.03
+lossStopType: price // ⚠️ SL по ЦЕНЕ -10% для LONG, +10% для SHORT
+lossStop: [entry * 0.90 для LONG] или [entry * 1.10 для SHORT]
+Шаг 5: Отправить красивый отчёт в Telegram
+Формат отчёта (ИСПОЛЬЗОВАТЬ ТОЧНО ТАК):
+
+═══════════════════════════════════════
+📊 CRYPTO TRADING BOT REPORT — [HH:MM] (Europe/Minsk)
+═══════════════════════════════════════
+
+🔥 ТОП-3 LONG СИГНАЛЫ
+┌─────────────────────────────────────┐
+│ #1 [MONETA] Score: [score] 🟢 │
+│ Conviction: [conviction] │
+│ Vol: [ratio]x | R/R: [ratio] │
+├─────────────────────────────────────┤
+│ #2 [MONETA] Score: [score] 🟢 │
+│ Conviction: [conviction] │
+│ Vol: [ratio]x | R/R: [ratio] │
+├─────────────────────────────────────┤
+│ #3 [MONETA] Score: [score] 🟢 │
+│ Conviction: [conviction] │
+│ Vol: [ratio]x | R/R: [ratio] │
+└─────────────────────────────────────┘
+
+📉 ТОП-3 SHORT СИГНАЛЫ
+┌─────────────────────────────────────┐
+│ #1 [MONETA] Score: [score] 🔴 │
+│ Conviction: [conviction] │
+│ Vol: [ratio]x | R/R: [ratio] │
+├─────────────────────────────────────┤
+│ #2 [MONETA] Score: [score] 🔴 │
+│ Conviction: [conviction] │
+│ Vol: [ratio]x | R/R: [ratio] │
+├─────────────────────────────────────┤
+│ #3 [MONETA] Score: [score] 🔴 │
+│ Conviction: [conviction] │
+│ Vol: [ratio]x | R/R: [ratio] │
+└─────────────────────────────────────┘
+
+✅ ВЫБРАННЫЙ КАНДИДАТ
+┌─────────────────────────────────────┐
+│ [🟢/🔴] [MONETA] │
+│ Сигнал: [LONG/SHORT] │
+│ Score: [score] │
+│ Conviction: [conviction] │
+│ Entry: $[price] │
+│ Target: $[price] │
+│ Stop: $[price] │
+│ R/R: 1:[ratio] │
+└─────────────────────────────────────┘
+
+📈 СТАТУС БОТОВ
+┌─────────────────────────────────────┐
+│ Активных ботов: [количество] │
+│ ├─ [BOT_NAME] ([LONG/SHORT]) │
+│ │ Прибыль: [pnl]% │
+│ │ Время работы: ~[время] │
+│ │ Статус: 🟢 Активен │
+└─────────────────────────────────────┘
+
+💰 БАЛАНС
+┌─────────────────────────────────────┐
+│ Баланс: [balance] USDT │
+│ В боте: [in_bot] USDT │
+│ Свободно: [free] USDT │
+└─────────────────────────────────────┘
+
+🚀 ДЕЙСТВИЕ
+[создан новый бот / есть работающий бот, новый не создан / ошибка API]
+
+═══════════════════════════════════════
+🤖 Crypto Snapshot Pro Bot
+
+⚠️ КРИТИЧЕСКОЕ ПРАВИЛО:
+НЕ ПЫТАТЬСЯ СОЗДАТЬ ГРИД БОТА ЕСЛИ ЕСТЬ РАБОТАЮЩИЙ БОТ !!!!
+ПРОСТО В ТАКОМ СЛУЧАЕ ПРИСЫЛАТЬ ОТЧЕТ В ТЕЛЕГРАМ !!!!</code></pre>
+    </div>
+
     <hr>
 
     <p data-i18n="footer">Если ваш агент уже действует — дайте ему возможность платить за себя самому. <a href="/generator">Создать платного агента</a> →</p>
@@ -497,6 +656,9 @@
     highlight1: "OpenClaw здесь не «магический трейдер». Это оркестратор: сканер даёт картину рынка, MCP даёт руки для биржи, cron даёт ритм, а правила не дают системе потерять дисциплину.",
     h2g: "Вывод",
     p29: "Если убрать хотя бы один слой — получается либо ручная торговля, либо бесконтрольный скрипт. В связке они уже похожи на автономного агента: не потому что он умный всегда, а потому что он действует по одному и тому же жёсткому процессу каждый час.",
+    h2prompt: "Полный промпт крон-задачи",
+    p30: "Скопируйте этот промпт и вставьте его в крон-задачу как есть — со всеми эмодзи и форматированием. Это точная логика, по которой агент работает каждый час.",
+    copyBtn: "⧉ Копировать",
     footer: "Если ваш агент уже действует — дайте ему возможность платить за себя самому. <a href=\"\/generator\">Создать платного агента</a> →"
   };
 
@@ -599,8 +761,37 @@
     highlight1: "OpenClaw here isn't a 'magic trader'. It's an orchestrator: the scanner provides the market picture, MCP provides hands for the exchange, cron provides the rhythm, and rules keep the system disciplined.",
     h2g: "Conclusion",
     p29: "Remove even one layer and you get either manual trading or an uncontrolled script. Together they already resemble an autonomous agent — not because it's always smart, but because it follows the same strict process every hour.",
+    h2prompt: "Full cron job prompt",
+    p30: "Copy this prompt and paste it into the cron job as-is — with all emojis and formatting. This is the exact logic the agent follows every hour.",
+    copyBtn: "⧉ Copy",
     footer: "If your agent already acts — give it the ability to pay for itself. <a href=\"\/generator\">Create a paid agent</a> →"
   };
+
+  function copyCronPrompt(btn) {
+    const pre = document.getElementById('cron-prompt');
+    const text = pre.textContent;
+    const done = () => {
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied';
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => { fallbackCopy(pre, done); });
+    } else {
+      fallbackCopy(pre, done);
+    }
+  }
+
+  function fallbackCopy(pre, done) {
+    const range = document.createRange();
+    range.selectNodeContents(pre);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    try { document.execCommand('copy'); } catch (e) {}
+    sel.removeAllRanges();
+    done();
+  }
 
   function getNested(obj, path) {
     return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
