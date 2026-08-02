@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-i18n="title">x402 — payments for AI agents | One HTTP request</title>
   <meta name="description" data-i18n="metaDescription" content="Protocol x402: AI agents pay for APIs in one HTTP request. Install x402-wallet and launch an agent. Minimal, no fluff.">
-  <meta name="keywords" content="x402, x402-wallet, AI agents, платежи ИИ, микроплатежи, USDC, agentic payments">
+  <meta name="keywords" data-i18n="keywords" content="x402, x402-wallet, AI agents, AI agent payments, micropayments, USDC, agentic payments, machine-to-machine payments, crypto payments">
   <meta property="og:title" data-i18n="ogTitle" content="x402 — платежи для ИИ-агентов | Одним HTTP-запросом">
   <meta property="og:description" data-i18n="ogDescription" content="Как ИИ-агенты платят за API через протокол x402 и кошелёк x402-wallet. Гайд без воды.">
   <meta property="og:type" content="website">
@@ -1782,6 +1782,7 @@ npx awal send 10 usdc 0x...</pre>
     "title": "x402 — платежи для ИИ-агентов | Одним HTTP-запросом",
     "metaDescription": "Протокол x402: ИИ-агенты платят за API в одном HTTP-запросе. Установка x402-wallet и запуск агента. Минимализм, без воды.",
     "ogTitle": "x402 — платежи для ИИ-агентов | Одним HTTP-запросом",
+    "keywords": "x402, x402-wallet, ИИ-агенты, платежи ИИ, микроплатежи, USDC, агентные платежи, машинные платежи, криптоплатежи",
     "ogDescription": "Как ИИ-агенты платят за API через протокол x402 и кошелёк x402-wallet. Гайд без воды.",
     "nav": {
       "what": "Что это",
@@ -1997,6 +1998,7 @@ npx awal send 10 usdc 0x...</pre>
     "title": "x402 — payments for AI agents | One HTTP request",
     "metaDescription": "x402 protocol: how AI agents pay for APIs in a single HTTP request. Install x402-wallet and run your own agent. Minimal, factual, no fluff.",
     "ogTitle": "x402 — payments for AI agents | One HTTP request",
+    "keywords": "x402, x402-wallet, AI agents, AI agent payments, micropayments, USDC, agentic payments, machine-to-machine payments, crypto payments",
     "ogDescription": "How AI agents pay for APIs via the x402 protocol and x402-wallet. A no-fluff guide.",
     "nav": {
       "what": "What is it",
@@ -2344,6 +2346,10 @@ npx awal send 10 usdc 0x...</pre>
         }
         if (key === 'ogDescription') {
           const meta = document.querySelector('meta[property="og:description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+        if (key === 'keywords') {
+          const meta = document.querySelector('meta[name="keywords"]');
           if (meta) meta.setAttribute('content', value);
         }
       }
