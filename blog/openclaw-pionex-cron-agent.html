@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">OpenClaw + Pionex: как собрать крон-агента для автоматической торговли через MCP</title>
+  <meta name="description" data-i18n="metaDescription" content="Крон-агент на OpenClaw, MCP Pionex, cron и Telegram: сканер PERP-пар по расписанию, проверка активных ботов, выбор сигнала и создание futures grid. Ключевое правило системы — уметь не торговать.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/openclaw-pionex-cron-agent.html">
+  <meta property="og:title" data-i18n="title" content="OpenClaw + Pionex: как собрать крон-агента для автоматической торговли через MCP">
+  <meta property="og:description" data-i18n="metaDescription" content="Крон-агент на OpenClaw, MCP Pionex, cron и Telegram: сканер PERP-пар по расписанию, проверка активных ботов, выбор сигнала и создание futures grid. Ключевое правило системы — уметь не торговать.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/openclaw-pionex-cover.jpg">
+  <meta property="og:image:width" content="1168">
+  <meta property="og:image:height" content="784">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="OpenClaw + Pionex: как собрать крон-агента для автоматической торговли через MCP">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Крон-агент на OpenClaw, MCP Pionex, cron и Telegram: сканер PERP-пар по расписанию, проверка активных ботов, выбор сигнала и создание futures grid. Ключевое правило системы — уметь не торговать.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/openclaw-pionex-cover.jpg">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/openclaw-pionex-cron-agent.html">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #ffffff;
+      --text-secondary: #c9c9c9;
+      --muted: #8f8f8f;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      min-height: 100vh; display: flex; flex-direction: column;
+    }
+    .wrap { max-width: 680px; margin: 0 auto; padding: 0 16px; }
+    header.site {
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 12px 0; position: sticky; top: 0;
+      background: rgba(10,10,10,0.92); backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--text); }
+    .logo-img { width: 28px; height: 28px; border-radius: 6px; }
+    .logo span { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.02em; }
+    .logo span span { color: var(--muted); font-weight: 400; }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      color: var(--text-secondary); text-decoration: none;
+      font-size: 0.85rem; padding: 6px 10px; border-radius: var(--radius-xs);
+      transition: var(--transition); white-space: nowrap;
+    }
+    nav .link:hover { background: var(--bg-card); color: var(--text); }
+    .lang-switch { font-size: 0.8rem; padding: 4px 8px; }
+    @media (max-width: 480px) {
+      nav .link { font-size: 0.78rem; padding: 4px 6px; }
+    }
+    main { flex: 1; }
+    article { padding: 32px 0 48px; }
+    .back-link {
+      display: inline-block; color: var(--muted); text-decoration: none;
+      font-size: 0.85rem; margin-bottom: 8px; transition: var(--transition);
+    }
+    .back-link:hover { color: var(--text); }
+    .post-date {
+      font-size: 0.85rem; color: var(--muted); margin-bottom: 8px;
+    }
+    h1 {
+      font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em;
+      line-height: 1.3; margin-bottom: 24px;
+    }
+    .cover-img {
+      width: 100%; max-width: 640px;
+      aspect-ratio: 1168 / 784; height: auto;
+      border-radius: var(--radius); margin: 24px 0 32px;
+      border: 1px solid var(--border);
+      object-fit: cover;
+    }
+    .post-img {
+      width: 100%; max-width: 340px; height: auto;
+      border-radius: var(--radius); margin: 24px auto;
+      border: 1px solid var(--border);
+      display: block;
+    }
+    h2 {
+      font-size: 1.5rem; font-weight: 600; margin: 40px 0 16px;
+      letter-spacing: -0.01em;
+    }
+    h3 {
+      font-size: 1.2rem; font-weight: 600; margin: 32px 0 12px;
+    }
+    p { margin-bottom: 20px; color: var(--text-secondary); }
+    p strong { color: var(--text); }
+    p a { color: var(--text); }
+    ul, ol { margin: 0 0 20px 24px; color: var(--text-secondary); }
+    li { margin-bottom: 8px; }
+    li strong { color: var(--text); }
+    hr {
+      border: none; border-top: 1px solid var(--border);
+      margin: 40px 0; opacity: 0.5;
+    }
+    .article pre.code {
+      background: #141414;
+      padding: 20px;
+      border-radius: var(--radius);
+      overflow-x: auto;
+      border: 1px solid #1a1a1a;
+      margin: 24px 0;
+    }
+    .article pre.code code {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: #e5e5e5;
+      line-height: 1.6;
+      white-space: pre;
+    }
+    .article pre.code {
+      scrollbar-width: thin;
+      scrollbar-color: #3a3a3a #141414;
+    }
+    .article pre.code::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    .article pre.code::-webkit-scrollbar-track {
+      background: #141414;
+    }
+    .article pre.code::-webkit-scrollbar-thumb {
+      background: #3a3a3a;
+      border-radius: 4px;
+    }
+    .article pre.code::-webkit-scrollbar-thumb:hover {
+      background: #4a4a4a;
+    }
+    .highlight {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 24px;
+      margin: 24px 0; font-size: 0.95rem;
+    }
+    .highlight strong { color: var(--text); }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.6rem; }
+      h2 { font-size: 1.25rem; }
+      article { padding: 24px 0 40px; }
+    }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link" href="/" data-i18n="nav.home">На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article class="article">
+  <div class="wrap">
+    <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+    <img class="cover-img" src="/assets/img/blog/openclaw-pionex-cover.jpg" alt="" loading="lazy">
+    <div class="post-date" data-i18n="postDate">3 августа 2026 · 6 мин чтения</div>
+    <h1 data-i18n="title">OpenClaw + Pionex: как собрать крон-агента для автоматической торговли через MCP</h1>
+
+    <p data-i18n="p1">Большинство «торговых ботов» — это либо слепой grid на одной паре, либо скрипт, который не умеет остановиться. Более интересный вариант выглядит иначе: агент по расписанию сканирует рынок, проверяет уже запущенные боты, и только потом принимает решение. Не каждую минуту. Не в панике. По жёстким правилам.</p>
+
+    <p data-i18n="p2">Ниже — рабочая схема на стеке <strong>OpenClaw + MCP Pionex + cron + Telegram</strong>. Это не инвестиционный совет, а технический разбор того, как собрать автономный цикл принятия решений.</p>
+
+    <h2 data-i18n="h2a">Что делает система</h2>
+
+    <p data-i18n="p3">Раз в заданный интервал агент:</p>
+
+    <ol>
+      <li data-i18n="li1">Запускает сканер фьючерсных PERP-пар</li>
+      <li data-i18n="li2">Получает сигналы LONG/SHORT с conviction и score</li>
+      <li data-i18n="li3">Проверяет, есть ли уже работающий бот на Pionex</li>
+      <li data-i18n="li4">Если бот есть — <strong>не создаёт новый</strong>, только шлёт отчёт</li>
+      <li data-i18n="li5">Если ботов нет — выбирает лучший сигнал и создаёт futures grid</li>
+      <li data-i18n="li6">Отправляет структурированный отчёт в Telegram</li>
+    </ol>
+
+    <p data-i18n="p4">Ключевая идея простая: система должна уметь <strong>не торговать</strong>. Именно это отделяет автоматизацию от хаоса.</p>
+
+    <h2 data-i18n="h2b">Архитектура</h2>
+
+    <pre class="code"><code>cron
+  └─ OpenClaw agent
+       ├─ multi_coin_scanner_v5.py
+       ├─ MCP Pionex
+       │    ├─ pionex_bot_order_list
+       │    └─ pionex_bot_futures_grid_create
+       └─ Telegram report</code></pre>
+
+    <p data-i18n="p5"><strong>OpenClaw</strong> здесь — среда, в которой живёт агент, его инструкции и инструменты.</p>
+    <p data-i18n="p6"><strong>MCP Pionex</strong> — слой доступа к бирже: список ботов, создание grid, баланс.</p>
+    <p data-i18n="p7"><strong>Cron</strong> — триггер, а не мозг. Мозг — правила агента.</p>
+
+    <h2 data-i18n="h2c">Что нужно до запуска</h2>
+
+    <ol>
+      <li data-i18n="li7">Рабочий OpenClaw workspace</li>
+      <li data-i18n="li8">Установленный MCP-набор для Pionex</li>
+      <li data-i18n="li9">API-доступ к Pionex с правами на futures bot</li>
+      <li data-i18n="li10">Скрипт сканера — <a href="https://gist.github.com/Matros777/99eb360201ac2ab2f570313d6caeea9a" target="_blank" rel="noopener">multi_coin_scanner_v5.py</a> на GitHub Gist</li>
+      <li data-i18n="li11">Telegram-канал или чат для отчётов</li>
+      <li data-i18n="li12">Cron или аналог (systemd timer / внешний scheduler)</li>
+    </ol>
+
+    <p data-i18n="p8">Крон-задача вызывает скрипт, скрипт вызывает модель. Модель дополнительно анализирует выбранный актив и только потом создаёт бота — это финальная проверка перед входом в позицию.</p>
+
+    <p data-i18n="p9">Без MCP-kit агент не сможет безопасно и одинаково вызывать биржевые методы. Именно MCP делает сценарий повторяемым: не «надеюсь, скрипт отработает», а «есть инструмент с понятным входом и выходом».</p>
+
+    <h2 data-i18n="h2d">Логика крон-задачи</h2>
+
+    <h3 data-i18n="h3a">Шаг 1. Сканер</h3>
+
+    <p data-i18n="p10">Агент запускает:</p>
+
+    <pre class="code"><code>python3 /home/matros/.openclaw/workspace/multi_coin_scanner_v5.py</code></pre>
+
+    <p data-i18n="p11">Сканер разбирает futures PERP-пары и возвращает сигналы:</p>
+
+    <ul>
+      <li data-i18n="li13">направление: LONG / SHORT</li>
+      <li data-i18n="li14">conviction: VERY HIGH / HIGH / MEDIUM / LOW</li>
+      <li data-i18n="li15">score</li>
+      <li data-i18n="li16">volume ratio</li>
+      <li data-i18n="li17">risk/reward</li>
+      <li data-i18n="li18">RSI и связанные фильтры</li>
+    </ul>
+
+    <p data-i18n="p12">Это сырьё для решения, а не приказ покупать.</p>
+
+    <h3 data-i18n="h3b">Шаг 2. Проверка существующих ботов</h3>
+
+    <p data-i18n="p13">Критический шаг:</p>
+
+    <pre class="code"><code>pionex_bot_order_list(status='running')</code></pre>
+
+    <p data-i18n="p14">Если есть хотя бы один running-бот:</p>
+
+    <ul>
+      <li data-i18n="li19">нового бота не создавать</li>
+      <li data-i18n="li20">не пытаться «добавить ещё один»</li>
+      <li data-i18n="li21">только отчёт в Telegram</li>
+      <li data-i18n="li22">в отчёте явно писать: «Есть работающий бот, новый не создан»</li>
+    </ul>
+
+    <p data-i18n="p15">Это главное safety-правило всей системы.</p>
+
+    <h3 data-i18n="h3c">Шаг 3. Отбор кандидата</h3>
+
+    <p data-i18n="p16">Только если running-ботов нет.</p>
+
+    <p data-i18n="p17">Приоритет:</p>
+
+    <ol>
+      <li data-i18n="li23">VERY HIGH</li>
+      <li data-i18n="li24">HIGH</li>
+      <li data-i18n="li25">MEDIUM</li>
+      <li data-i18n="li26">LOW</li>
+    </ol>
+
+    <p data-i18n="p18">При равном conviction — выше Score. Дополнительно:</p>
+
+    <ul>
+      <li data-i18n="li27">Volume Ratio &gt; 1.0x</li>
+      <li data-i18n="li28">Risk/Reward &gt; 1.0</li>
+      <li data-i18n="li29">RSI не в экстремуме</li>
+    </ul>
+
+    <p data-i18n="p19">Брать монету нужно из <strong>финального решения сканера</strong>, а не «что-то примерно похожее». Если всё слабо — пропуск до следующего часа.</p>
+
+    <h3 data-i18n="h3d">Шаг 4. Создание futures grid</h3>
+
+    <p data-i18n="p20">Только если ботов нет и кандидат прошёл фильтры.</p>
+
+    <p data-i18n="p21">Параметры:</p>
+
+    <ul>
+      <li data-i18n="li30">тип: PERP futures grid</li>
+      <li data-i18n="li31">направление: как у сигнала</li>
+      <li data-i18n="li32">сумма: весь доступный USDT-баланс с запасом на комиссии</li>
+      <li data-i18n="li33">плечо: 9x</li>
+      <li data-i18n="li34">уровней: 20</li>
+      <li data-i18n="li35">тип сетки: geometric</li>
+      <li data-i18n="li36">диапазон: bottom = entry × 0.92, top = entry × 1.08</li>
+      <li data-i18n="li37">take-profit: +3% PnL (profitStopType: profit_ratio, profitStop: 0.03)</li>
+      <li data-i18n="li38">stop-loss по цене: LONG — entry × 0.90, SHORT — entry × 1.10</li>
+      <li data-i18n="li39">минимальный баланс: 8 USDT, иначе пропуск</li>
+    </ul>
+
+    <p data-i18n="p22">Пример вызова MCP:</p>
+
+    <pre class="code"><code>pionex_bot_futures_grid_create
+  base: ETH
+  quote: USDT
+  buOrderData:
+    top: entry * 1.08
+    bottom: entry * 0.92
+    row: 20
+    grid_type: geometric
+    trend: long | short
+    leverage: 9
+    quoteInvestment: [весь доступный USDT]
+    profitStopType: profit_ratio
+    profitStop: 0.03
+    lossStopType: price
+    lossStop: entry * 0.90  # для LONG</code></pre>
+
+    <p data-i18n="p23">Для SHORT <code>lossStop</code> считается как <code>entry * 1.10</code>.</p>
+
+    <img class="post-img" src="/assets/img/blog/openclaw-pionex-bot-panel.jpg" alt="" loading="lazy">
+
+    <h3 data-i18n="h3e">Шаг 5. Отчёт в Telegram</h3>
+
+    <p data-i18n="p24">Отчёт должен быть одинаковым каждый раз. Тогда его можно читать за 10 секунд.</p>
+
+    <p data-i18n="p25">В отчёте:</p>
+
+    <ul>
+      <li data-i18n="li40">топ-3 LONG</li>
+      <li data-i18n="li41">топ-3 SHORT</li>
+      <li data-i18n="li42">выбранный кандидат</li>
+      <li data-i18n="li43">статус ботов</li>
+      <li data-i18n="li44">баланс: total / in bot / free</li>
+      <li data-i18n="li45">действие: создан бот / не создан / ошибка API</li>
+    </ul>
+
+    <p data-i18n="p26">Если бот уже был — это не «тишина». Это тоже результат, и он обязан попасть в Telegram.</p>
+
+    <h2 data-i18n="h2e">Почему так, а не «всегда в рынке»</h2>
+
+    <p data-i18n="p27">Сетка на весь баланс и плечо 9x — агрессивный режим. Именно поэтому система не должна плодить ботов. Один работающий grid уже занимает капитал и задаёт риск. Второй бот в таком режиме — не диверсификация, а способ ускорить ошибку.</p>
+
+    <p data-i18n="p28">Хороший крон-агент отличается не тем, что он постоянно что-то открывает. А тем, что у него есть право на действие «ничего не делать».</p>
+
+    <h2 data-i18n="h2f">Минимальный чеклист перед боем</h2>
+
+    <ul>
+      <li data-i18n="li46">MCP Pionex отвечает на <code>pionex_bot_order_list</code></li>
+      <li data-i18n="li47">сканер стабильно возвращает JSON/структурированный вывод</li>
+      <li data-i18n="li48">Telegram-отправка работает</li>
+      <li data-i18n="li49">в промпте агента правило «не создавать бота при running» написано жёстко</li>
+      <li data-i18n="li50">есть нижний порог баланса</li>
+      <li data-i18n="li51">есть стоп по цене, а не только надежда на grid</li>
+    </ul>
+
+    <div class="highlight">
+      <p data-i18n="highlight1">OpenClaw здесь не «магический трейдер». Это оркестратор: сканер даёт картину рынка, MCP даёт руки для биржи, cron даёт ритм, а правила не дают системе потерять дисциплину.</p>
+    </div>
+
+    <h2 data-i18n="h2g">Вывод</h2>
+
+    <p data-i18n="p29">Если убрать хотя бы один слой — получается либо ручная торговля, либо бесконтрольный скрипт. В связке они уже похожи на автономного агента: не потому что он умный всегда, а потому что он действует по одному и тому же жёсткому процессу каждый час.</p>
+
+    <hr>
+
+    <p data-i18n="footer">Если ваш агент уже действует — дайте ему возможность платить за себя самому. <a href="/generator">Создать платного агента</a> →</p>
+  </div>
+</article>
+</main>
+
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+
+  const embeddedRu = {
+    title: "OpenClaw + Pionex: как собрать крон-агента для автоматической торговли через MCP",
+    metaDescription: "Крон-агент на OpenClaw, MCP Pionex, cron и Telegram: сканер PERP-пар по расписанию, проверка активных ботов, выбор сигнала и создание futures grid. Ключевое правило системы — уметь не торговать.",
+    nav: { back: "← Блог", home: "На сайт", lang: "🇬🇧 EN" },
+    backLink: "← Назад к блогу",
+    postDate: "3 августа 2026 · 6 мин чтения",
+    p1: "Большинство «торговых ботов» — это либо слепой grid на одной паре, либо скрипт, который не умеет остановиться. Более интересный вариант выглядит иначе: агент по расписанию сканирует рынок, проверяет уже запущенные боты, и только потом принимает решение. Не каждую минуту. Не в панике. По жёстким правилам.",
+    p2: "Ниже — рабочая схема на стеке <strong>OpenClaw + MCP Pionex + cron + Telegram</strong>. Это не инвестиционный совет, а технический разбор того, как собрать автономный цикл принятия решений.",
+    h2a: "Что делает система",
+    p3: "Раз в заданный интервал агент:",
+    li1: "Запускает сканер фьючерсных PERP-пар",
+    li2: "Получает сигналы LONG/SHORT с conviction и score",
+    li3: "Проверяет, есть ли уже работающий бот на Pionex",
+    li4: "Если бот есть — <strong>не создаёт новый</strong>, только шлёт отчёт",
+    li5: "Если ботов нет — выбирает лучший сигнал и создаёт futures grid",
+    li6: "Отправляет структурированный отчёт в Telegram",
+    p4: "Ключевая идея простая: система должна уметь <strong>не торговать</strong>. Именно это отделяет автоматизацию от хаоса.",
+    h2b: "Архитектура",
+    p5: "<strong>OpenClaw</strong> здесь — среда, в которой живёт агент, его инструкции и инструменты.",
+    p6: "<strong>MCP Pionex</strong> — слой доступа к бирже: список ботов, создание grid, баланс.",
+    p7: "<strong>Cron</strong> — триггер, а не мозг. Мозг — правила агента.",
+    h2c: "Что нужно до запуска",
+    li7: "Рабочий OpenClaw workspace",
+    li8: "Установленный MCP-набор для Pionex",
+    li9: "API-доступ к Pionex с правами на futures bot",
+    li10: "Скрипт сканера — <a href=\"https://gist.github.com/Matros777/99eb360201ac2ab2f570313d6caeea9a\" target=\"_blank\" rel=\"noopener\">multi_coin_scanner_v5.py</a> на GitHub Gist",
+    li11: "Telegram-канал или чат для отчётов",
+    li12: "Cron или аналог (systemd timer / внешний scheduler)",
+    p8: "Крон-задача вызывает скрипт, скрипт вызывает модель. Модель дополнительно анализирует выбранный актив и только потом создаёт бота — это финальная проверка перед входом в позицию.",
+    p9: "Без MCP-kit агент не сможет безопасно и одинаково вызывать биржевые методы. Именно MCP делает сценарий повторяемым: не «надеюсь, скрипт отработает», а «есть инструмент с понятным входом и выходом».",
+    h2d: "Логика крон-задачи",
+    h3a: "Шаг 1. Сканер",
+    p10: "Агент запускает:",
+    p11: "Сканер разбирает futures PERP-пары и возвращает сигналы:",
+    li13: "направление: LONG / SHORT",
+    li14: "conviction: VERY HIGH / HIGH / MEDIUM / LOW",
+    li15: "score",
+    li16: "volume ratio",
+    li17: "risk/reward",
+    li18: "RSI и связанные фильтры",
+    p12: "Это сырьё для решения, а не приказ покупать.",
+    h3b: "Шаг 2. Проверка существующих ботов",
+    p13: "Критический шаг:",
+    p14: "Если есть хотя бы один running-бот:",
+    li19: "нового бота не создавать",
+    li20: "не пытаться «добавить ещё один»",
+    li21: "только отчёт в Telegram",
+    li22: "в отчёте явно писать: «Есть работающий бот, новый не создан»",
+    p15: "Это главное safety-правило всей системы.",
+    h3c: "Шаг 3. Отбор кандидата",
+    p16: "Только если running-ботов нет.",
+    p17: "Приоритет:",
+    li23: "VERY HIGH",
+    li24: "HIGH",
+    li25: "MEDIUM",
+    li26: "LOW",
+    p18: "При равном conviction — выше Score. Дополнительно:",
+    li27: "Volume Ratio > 1.0x",
+    li28: "Risk/Reward > 1.0",
+    li29: "RSI не в экстремуме",
+    p19: "Брать монету нужно из <strong>финального решения сканера</strong>, а не «что-то примерно похожее». Если всё слабо — пропуск до следующего часа.",
+    h3d: "Шаг 4. Создание futures grid",
+    p20: "Только если ботов нет и кандидат прошёл фильтры.",
+    p21: "Параметры:",
+    li30: "тип: PERP futures grid",
+    li31: "направление: как у сигнала",
+    li32: "сумма: весь доступный USDT-баланс с запасом на комиссии",
+    li33: "плечо: 9x",
+    li34: "уровней: 20",
+    li35: "тип сетки: geometric",
+    li36: "диапазон: bottom = entry × 0.92, top = entry × 1.08",
+    li37: "take-profit: +3% PnL (profitStopType: profit_ratio, profitStop: 0.03)",
+    li38: "stop-loss по цене: LONG — entry × 0.90, SHORT — entry × 1.10",
+    li39: "минимальный баланс: 8 USDT, иначе пропуск",
+    p22: "Пример вызова MCP:",
+    p23: "Для SHORT <code>lossStop</code> считается как <code>entry * 1.10</code>.",
+    h3e: "Шаг 5. Отчёт в Telegram",
+    p24: "Отчёт должен быть одинаковым каждый раз. Тогда его можно читать за 10 секунд.",
+    p25: "В отчёте:",
+    li40: "топ-3 LONG",
+    li41: "топ-3 SHORT",
+    li42: "выбранный кандидат",
+    li43: "статус ботов",
+    li44: "баланс: total / in bot / free",
+    li45: "действие: создан бот / не создан / ошибка API",
+    p26: "Если бот уже был — это не «тишина». Это тоже результат, и он обязан попасть в Telegram.",
+    h2e: "Почему так, а не «всегда в рынке»",
+    p27: "Сетка на весь баланс и плечо 9x — агрессивный режим. Именно поэтому система не должна плодить ботов. Один работающий grid уже занимает капитал и задаёт риск. Второй бот в таком режиме — не диверсификация, а способ ускорить ошибку.",
+    p28: "Хороший крон-агент отличается не тем, что он постоянно что-то открывает. А тем, что у него есть право на действие «ничего не делать».",
+    h2f: "Минимальный чеклист перед боем",
+    li46: "MCP Pionex отвечает на <code>pionex_bot_order_list</code>",
+    li47: "сканер стабильно возвращает JSON/структурированный вывод",
+    li48: "Telegram-отправка работает",
+    li49: "в промпте агента правило «не создавать бота при running» написано жёстко",
+    li50: "есть нижний порог баланса",
+    li51: "есть стоп по цене, а не только надежда на grid",
+    highlight1: "OpenClaw здесь не «магический трейдер». Это оркестратор: сканер даёт картину рынка, MCP даёт руки для биржи, cron даёт ритм, а правила не дают системе потерять дисциплину.",
+    h2g: "Вывод",
+    p29: "Если убрать хотя бы один слой — получается либо ручная торговля, либо бесконтрольный скрипт. В связке они уже похожи на автономного агента: не потому что он умный всегда, а потому что он действует по одному и тому же жёсткому процессу каждый час.",
+    footer: "Если ваш агент уже действует — дайте ему возможность платить за себя самому. <a href=\"\/generator\">Создать платного агента</a> →"
+  };
+
+  const embeddedEn = {
+    title: "OpenClaw + Pionex: how to build a cron agent for automated trading via MCP",
+    metaDescription: "A cron agent on OpenClaw, Pionex MCP, cron, and Telegram: scheduled PERP scanning, active-bot checks, signal selection, and futures grid creation. The system's key rule — knowing when not to trade.",
+    nav: { back: "← Blog", home: "Home", lang: "🇷🇺 RU" },
+    backLink: "← Back to blog",
+    postDate: "August 3, 2026 · 6 min read",
+    p1: "Most 'trading bots' are either a blind grid on a single pair or a script that doesn't know how to stop. A more interesting option looks different: an agent scans the market on a schedule, checks already running bots, and only then makes a decision. Not every minute. Not in a panic. By strict rules.",
+    p2: "Below is a working scheme on the <strong>OpenClaw + Pionex MCP + cron + Telegram</strong> stack. This is not investment advice — it's a technical breakdown of how to build an autonomous decision-making loop.",
+    h2a: "What the system does",
+    p3: "Once per configured interval, the agent:",
+    li1: "Runs the futures PERP scanner",
+    li2: "Gets LONG/SHORT signals with conviction and score",
+    li3: "Checks whether a bot is already running on Pionex",
+    li4: "If a bot exists — <strong>does not create a new one</strong>, only sends a report",
+    li5: "If no bots exist — picks the best signal and creates a futures grid",
+    li6: "Sends a structured report to Telegram",
+    p4: "The key idea is simple: the system must know how to <strong>not trade</strong>. That is what separates automation from chaos.",
+    h2b: "Architecture",
+    p5: "<strong>OpenClaw</strong> is the environment where the agent, its instructions, and its tools live.",
+    p6: "<strong>Pionex MCP</strong> is the exchange access layer: bot list, grid creation, balance.",
+    p7: "<strong>Cron</strong> is the trigger, not the brain. The brain is the agent's rules.",
+    h2c: "What you need before launch",
+    li7: "A working OpenClaw workspace",
+    li8: "The Pionex MCP kit installed",
+    li9: "Pionex API access with futures bot permissions",
+    li10: "The scanner script — <a href=\"https://gist.github.com/Matros777/99eb360201ac2ab2f570313d6caeea9a\" target=\"_blank\" rel=\"noopener\">multi_coin_scanner_v5.py</a> on GitHub Gist",
+    li11: "A Telegram channel or chat for reports",
+    li12: "Cron or an equivalent (systemd timer / external scheduler)",
+    p8: "The cron job calls the script, and the script calls the model. The model additionally analyzes the chosen asset and only then creates a bot — the final check before entering a position.",
+    p9: "Without the MCP kit, the agent can't safely and consistently call exchange methods. MCP is what makes the scenario repeatable: not 'hope the script works' but 'there's a tool with a clear input and output'.",
+    h2d: "The cron job logic",
+    h3a: "Step 1. The scanner",
+    p10: "The agent runs:",
+    p11: "The scanner parses futures PERP pairs and returns signals:",
+    li13: "direction: LONG / SHORT",
+    li14: "conviction: VERY HIGH / HIGH / MEDIUM / LOW",
+    li15: "score",
+    li16: "volume ratio",
+    li17: "risk/reward",
+    li18: "RSI and related filters",
+    p12: "This is raw material for a decision, not an order to buy.",
+    h3b: "Step 2. Check existing bots",
+    p13: "The critical step:",
+    p14: "If at least one running bot exists:",
+    li19: "do not create a new bot",
+    li20: "do not try to 'add another one'",
+    li21: "only send a report to Telegram",
+    li22: "state it explicitly in the report: 'A bot is running, no new bot created'",
+    p15: "This is the main safety rule of the whole system.",
+    h3c: "Step 3. Candidate selection",
+    p16: "Only when no running bots exist.",
+    p17: "Priority:",
+    li23: "VERY HIGH",
+    li24: "HIGH",
+    li25: "MEDIUM",
+    li26: "LOW",
+    p18: "With equal conviction — higher Score wins. Additionally:",
+    li27: "Volume Ratio > 1.0x",
+    li28: "Risk/Reward > 1.0",
+    li29: "RSI not in an extreme zone",
+    p19: "Take the coin from the <strong>scanner's final decision</strong>, not 'something roughly similar'. If everything is weak — skip until the next hour.",
+    h3d: "Step 4. Create a futures grid",
+    p20: "Only if no bots exist and the candidate passed the filters.",
+    p21: "Parameters:",
+    li30: "type: PERP futures grid",
+    li31: "direction: matching the signal",
+    li32: "amount: the entire available USDT balance with a reserve for fees",
+    li33: "leverage: 9x",
+    li34: "levels: 20",
+    li35: "grid type: geometric",
+    li36: "range: bottom = entry × 0.92, top = entry × 1.08",
+    li37: "take-profit: +3% PnL (profitStopType: profit_ratio, profitStop: 0.03)",
+    li38: "stop-loss by price: LONG — entry × 0.90, SHORT — entry × 1.10",
+    li39: "minimum balance: 8 USDT, otherwise skip",
+    p22: "Example MCP call:",
+    p23: "For SHORT, <code>lossStop</code> is calculated as <code>entry * 1.10</code>.",
+    h3e: "Step 5. Telegram report",
+    p24: "The report must look the same every time. Then it can be read in 10 seconds.",
+    p25: "In the report:",
+    li40: "top-3 LONG",
+    li41: "top-3 SHORT",
+    li42: "the chosen candidate",
+    li43: "bot status",
+    li44: "balance: total / in bot / free",
+    li45: "action: bot created / not created / API error",
+    p26: "If a bot already existed — that's not 'silence'. It's a result too, and it must reach Telegram.",
+    h2e: "Why this way, not 'always in the market'",
+    p27: "A grid on the whole balance with 9x leverage is an aggressive mode. That's exactly why the system must not spawn bots. One running grid already locks capital and sets the risk. A second bot in this mode isn't diversification — it's a way to speed up a mistake.",
+    p28: "A good cron agent is not defined by constantly opening positions. It's defined by having the right to do 'nothing'.",
+    h2f: "Minimal pre-launch checklist",
+    li46: "Pionex MCP responds to <code>pionex_bot_order_list</code>",
+    li47: "the scanner reliably returns JSON/structured output",
+    li48: "Telegram delivery works",
+    li49: "the 'don't create a bot while running' rule is written hard into the agent prompt",
+    li50: "there's a balance floor",
+    li51: "there's a price stop, not just hope in the grid",
+    highlight1: "OpenClaw here isn't a 'magic trader'. It's an orchestrator: the scanner provides the market picture, MCP provides hands for the exchange, cron provides the rhythm, and rules keep the system disciplined.",
+    h2g: "Conclusion",
+    p29: "Remove even one layer and you get either manual trading or an uncontrolled script. Together they already resemble an autonomous agent — not because it's always smart, but because it follows the same strict process every hour.",
+    footer: "If your agent already acts — give it the ability to pay for itself. <a href=\"\/generator\">Create a paid agent</a> →"
+  };
+
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        if (el.tagName === 'A' && el.classList.contains('lang-switch')) {
+          el.textContent = value;
+        } else {
+          el.innerHTML = value;
+        }
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          document.querySelectorAll('meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]').forEach(m => m.setAttribute('content', value));
+        }
+      }
+    });
+  }
+
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', '?lang=' + next);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>

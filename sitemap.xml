@@ -17,6 +17,14 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- Blog: openclaw-pionex-cron-agent -->
+  <url>
+    <loc>https://x402-ai-agent.space/blog/openclaw-pionex-cron-agent.html</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Blog: agentic-100m-arr -->
   <url>
     <loc>https://x402-ai-agent.space/blog/agentic-100m-arr.html</loc>

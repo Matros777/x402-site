@@ -5,8 +5,15 @@
     <link>https://x402-ai-agent.space/blog/</link>
     <description>Articles about x402 protocol, AI agent payments, agentic economy, and autonomous agents.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 01 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 03 Aug 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://x402-ai-agent.space/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>OpenClaw + Pionex: how to build a cron agent for automated trading via MCP</title>
+      <link>https://x402-ai-agent.space/blog/openclaw-pionex-cron-agent.html</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/openclaw-pionex-cron-agent.html</guid>
+      <pubDate>Mon, 03 Aug 2026 00:00:00 +0000</pubDate>
+      <description>A cron agent on OpenClaw, Pionex MCP, cron, and Telegram: scheduled PERP scanning, active-bot checks, signal selection, and futures grid creation. The system's key rule — knowing when not to trade.</description>
+    </item>
     <item>
       <title>Why the fastest companies to $100M ARR are now agentic</title>
       <link>https://x402-ai-agent.space/blog/agentic-100m-arr.html</link>
