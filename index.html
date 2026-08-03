@@ -1777,6 +1777,26 @@ npx awal send 10 usdc 0x...</pre>
   const DEFAULT_LANG = 'ru';
   const LANG_KEY = 'x402_lang';
 
+  // ─── Кэш для INP-оптимизации ───
+  let i18nElements = null;
+  const externalCache = {};
+  const metaEls = {
+    desc: null, ogTitle: null, ogDesc: null, kw: null
+  };
+  function getI18nElements() {
+    if (!i18nElements) i18nElements = document.querySelectorAll('[data-i18n]');
+    return i18nElements;
+  }
+  function getMetaEls() {
+    if (!metaEls.desc) {
+      metaEls.desc = document.querySelector('meta[name="description"]');
+      metaEls.ogTitle = document.querySelector('meta[property="og:title"]');
+      metaEls.ogDesc = document.querySelector('meta[property="og:description"]');
+      metaEls.kw = document.querySelector('meta[name="keywords"]');
+    }
+    return metaEls;
+  }
+
   // ─── Встроенные переводы (nested) ───
   const embeddedRu = {
     "title": "x402 — платежи для ИИ-агентов | Одним HTTP-запросом",
@@ -2289,34 +2309,39 @@ npx awal send 10 usdc 0x...</pre>
     'всё начинается заново': 'starting fresh',
   };
 
+  let terminalKeys = null;
   function translateTerminal(text, lang) {
     if (lang !== 'en') return text;
     let result = text;
-    // Sort by length descending to avoid partial overlap
-    const keys = Object.keys(TERMINAL_TR).sort((a, b) => b.length - a.length);
-    for (const ru of keys) {
-      result = result.split(ru).join(TERMINAL_TR[ru]);
+    // Sort once and cache (previously sorted on every call — INP hit)
+    if (!terminalKeys) {
+      terminalKeys = Object.keys(TERMINAL_TR).sort((a, b) => b.length - a.length);
+    }
+    for (let i = 0; i < terminalKeys.length; i++) {
+      result = result.split(terminalKeys[i]).join(TERMINAL_TR[terminalKeys[i]]);
     }
     return result;
   }
 
+  let terminalLines = null;
   function retranslateTerminal(lang) {
     if (!lang) lang = getDemoLang();
-    // Lines that already have data-original — re-translate
-    document.querySelectorAll('#terminal-body .terminal-line[data-original]').forEach(el => {
-      if (el.querySelector('.chat-markdown')) return;
+    // Cache the line list once (terminal body is stable after init)
+    if (!terminalLines) {
+      terminalLines = document.querySelectorAll('#terminal-body .terminal-line');
+    }
+    for (let i = 0; i < terminalLines.length; i++) {
+      const el = terminalLines[i];
+      if (el.querySelector('.chat-markdown')) continue;
       const original = el.getAttribute('data-original');
       if (original !== null) {
         el.innerHTML = translateTerminal(original, lang);
+      } else {
+        const txt = el.innerHTML;
+        el.setAttribute('data-original', txt);
+        el.innerHTML = translateTerminal(txt, lang);
       }
-    });
-    // Static lines (no data-original yet) — capture and translate
-    document.querySelectorAll('#terminal-body .terminal-line:not([data-original])').forEach(el => {
-      if (el.querySelector('.chat-markdown')) return;
-      const txt = el.innerHTML;
-      el.setAttribute('data-original', txt);
-      el.innerHTML = translateTerminal(txt, lang);
-    });
+    }
   }
 
   function getNested(obj, path) {
@@ -2324,7 +2349,10 @@ npx awal send 10 usdc 0x...</pre>
   }
 
   function applyTranslations(data) {
-    document.querySelectorAll('[data-i18n]').forEach(el => {
+    const els = getI18nElements();
+    const meta = getMetaEls();
+    for (let i = 0; i < els.length; i++) {
+      const el = els[i];
       const key = el.getAttribute('data-i18n');
       const value = getNested(data, key);
       if (value !== undefined) {
@@ -2332,28 +2360,19 @@ npx awal send 10 usdc 0x...</pre>
           el.placeholder = value;
         } else if (el.namespaceURI === 'http://www.w3.org/2000/svg') {
           el.textContent = value;
+        } else if (value.indexOf('<') === -1) {
+          // Чистый текст — textContent в разы быстрее innerHTML
+          el.textContent = value;
         } else {
           el.innerHTML = value;
         }
         if (key === 'title') document.title = value;
-        if (key === 'metaDescription') {
-          const meta = document.querySelector('meta[name="description"]');
-          if (meta) meta.setAttribute('content', value);
-        }
-        if (key === 'ogTitle') {
-          const meta = document.querySelector('meta[property="og:title"]');
-          if (meta) meta.setAttribute('content', value);
-        }
-        if (key === 'ogDescription') {
-          const meta = document.querySelector('meta[property="og:description"]');
-          if (meta) meta.setAttribute('content', value);
-        }
-        if (key === 'keywords') {
-          const meta = document.querySelector('meta[name="keywords"]');
-          if (meta) meta.setAttribute('content', value);
-        }
+        if (key === 'metaDescription' && meta.desc) meta.desc.setAttribute('content', value);
+        if (key === 'ogTitle' && meta.ogTitle) meta.ogTitle.setAttribute('content', value);
+        if (key === 'ogDescription' && meta.ogDesc) meta.ogDesc.setAttribute('content', value);
+        if (key === 'keywords' && meta.kw) meta.kw.setAttribute('content', value);
       }
-    });
+    }
   }
 
   function updateSwitcher(lang) {
@@ -2377,12 +2396,19 @@ npx awal send 10 usdc 0x...</pre>
     updateSwitcher(lang);
     retranslateTerminal(lang);
 
+    if (externalCache[lang]) {
+      window.langData = externalCache[lang];
+      applyTranslations(externalCache[lang]);
+      updateSwitcher(lang);
+      return;
+    }
     fetch(`/lang/${lang}.json`)
       .then(r => {
         if (!r.ok) throw new Error('not found');
         return r.json();
       })
       .then(external => {
+        externalCache[lang] = external;
         window.langData = external;
         applyTranslations(external);
         updateSwitcher(lang);
