@@ -17,6 +17,14 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- Blog: openclaw-config-2026 -->
+  <url>
+    <loc>https://x402-ai-agent.space/blog/openclaw-config-2026.html</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Blog: agent-without-memory -->
   <url>
     <loc>https://x402-ai-agent.space/blog/agent-without-memory.html</loc>

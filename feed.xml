@@ -8,6 +8,13 @@
     <lastBuildDate>Tue, 04 Aug 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://x402-ai-agent.space/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>OpenClaw 2026.7: a ready config with ASI1, Ollama, and free OpenRouter models</title>
+      <link>https://x402-ai-agent.space/blog/openclaw-config-2026.html</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/openclaw-config-2026.html</guid>
+      <pubDate>Tue, 04 Aug 2026 00:00:00 +0000</pubDate>
+      <description>A working openclaw scaffold for 2026.7.x: local Ollama, cloud ASI1, free OpenRouter models, and MCP servers for trading and web research. Secrets are placeholders only.</description>
+    </item>
+    <item>
       <title>An agent without memory is an intern who comes to work for the first time every day</title>
       <link>https://x402-ai-agent.space/blog/agent-without-memory.html</link>
       <guid isPermaLink="true">https://x402-ai-agent.space/blog/agent-without-memory.html</guid>

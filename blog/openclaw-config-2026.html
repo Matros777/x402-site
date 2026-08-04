@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">OpenClaw 2026.7: готовый конфиг с ASI1, Ollama и бесплатными моделями OpenRouter</title>
+  <meta name="description" data-i18n="metaDescription" content="Рабочий каркас openclaw под ветку 2026.7.x: локальные модели через Ollama, облачный ASI1, free-модели OpenRouter, MCP-серверы для торговли и web-research. Секреты — только плейсхолдеры.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/openclaw-config-2026.html">
+  <meta property="og:title" data-i18n="title" content="OpenClaw 2026.7: готовый конфиг с ASI1, Ollama и бесплатными моделями OpenRouter">
+  <meta property="og:description" data-i18n="metaDescription" content="Рабочий каркас openclaw под ветку 2026.7.x: локальные модели через Ollama, облачный ASI1, free-модели OpenRouter, MCP-серверы для торговли и web-research. Секреты — только плейсхолдеры.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/openclaw-config-2026-cover.jpg">
+  <meta property="og:image:width" content="1168">
+  <meta property="og:image:height" content="784">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="OpenClaw 2026.7: готовый конфиг с ASI1, Ollama и бесплатными моделями OpenRouter">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Рабочий каркас openclaw под ветку 2026.7.x: локальные модели через Ollama, облачный ASI1, free-модели OpenRouter, MCP-серверы для торговли и web-research. Секреты — только плейсхолдеры.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/openclaw-config-2026-cover.jpg">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/openclaw-config-2026.html">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #ffffff;
+      --text-secondary: #c9c9c9;
+      --muted: #8f8f8f;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      min-height: 100vh; display: flex; flex-direction: column;
+    }
+    .wrap { max-width: 680px; margin: 0 auto; padding: 0 16px; }
+    header.site {
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 12px 0; position: sticky; top: 0;
+      background: rgba(10,10,10,0.92); backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--text); }
+    .logo-img { width: 28px; height: 28px; border-radius: 6px; }
+    .logo span { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.02em; }
+    .logo span span { color: var(--muted); font-weight: 400; }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      color: var(--text-secondary); text-decoration: none;
+      font-size: 0.85rem; padding: 6px 10px; border-radius: var(--radius-xs);
+      transition: var(--transition); white-space: nowrap;
+    }
+    nav .link:hover { background: var(--bg-card); color: var(--text); }
+    .lang-switch { font-size: 0.8rem; padding: 4px 8px; }
+    @media (max-width: 480px) {
+      nav .link { font-size: 0.78rem; padding: 4px 6px; }
+    }
+    main { flex: 1; }
+    article { padding: 32px 0 48px; }
+    .back-link {
+      display: inline-block; color: var(--muted); text-decoration: none;
+      font-size: 0.85rem; margin-bottom: 8px; transition: var(--transition);
+    }
+    .back-link:hover { color: var(--text); }
+    .post-date {
+      font-size: 0.85rem; color: var(--muted); margin-bottom: 8px;
+    }
+    h1 {
+      font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em;
+      line-height: 1.3; margin-bottom: 24px;
+    }
+    .cover-img {
+      width: 100%; max-width: 640px;
+      aspect-ratio: 1168 / 784; height: auto;
+      border-radius: var(--radius); margin: 24px 0 32px;
+      border: 1px solid var(--border);
+      object-fit: cover;
+    }
+    h2 {
+      font-size: 1.5rem; font-weight: 600; margin: 40px 0 16px;
+      letter-spacing: -0.01em;
+    }
+    h3 {
+      font-size: 1.2rem; font-weight: 600; margin: 32px 0 12px;
+    }
+    p { margin-bottom: 20px; color: var(--text-secondary); }
+    p strong { color: var(--text); }
+    p a { color: var(--text); }
+    ul, ol { margin: 0 0 20px 24px; color: var(--text-secondary); }
+    li { margin-bottom: 8px; }
+    li strong { color: var(--text); }
+    hr {
+      border: none; border-top: 1px solid var(--border);
+      margin: 40px 0; opacity: 0.5;
+    }
+    .article pre.code {
+      background: #141414;
+      padding: 20px;
+      border-radius: var(--radius);
+      overflow-x: auto;
+      border: 1px solid #1a1a1a;
+      margin: 24px 0;
+      scrollbar-width: thin;
+      scrollbar-color: #3a3a3a #141414;
+    }
+    .article pre.code code {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.8rem;
+      color: #e5e5e5;
+      line-height: 1.6;
+      white-space: pre;
+    }
+    .article pre.code::-webkit-scrollbar { width: 8px; height: 8px; }
+    .article pre.code::-webkit-scrollbar-track { background: #141414; }
+    .article pre.code::-webkit-scrollbar-thumb { background: #3a3a3a; border-radius: 4px; }
+    .article pre.code::-webkit-scrollbar-thumb:hover { background: #4a4a4a; }
+    .highlight {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 24px;
+      margin: 24px 0; font-size: 0.95rem;
+    }
+    .highlight strong { color: var(--text); }
+    code {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.85em; color: var(--text);
+      background: var(--bg-card); padding: 2px 6px;
+      border-radius: 4px; border: 1px solid var(--border);
+    }
+    table {
+      width: 100%; border-collapse: collapse; margin: 24px 0;
+      font-size: 0.9rem;
+    }
+    th, td {
+      text-align: left; padding: 10px 12px;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+    th { background: var(--bg-card); color: var(--text); font-weight: 600; }
+    td code { color: var(--text); }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.6rem; }
+      h2 { font-size: 1.25rem; }
+      article { padding: 24px 0 40px; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 8px 10px; }
+    }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link" href="/" data-i18n="nav.home">На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article class="article">
+  <div class="wrap">
+    <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+    <img class="cover-img" src="/assets/img/blog/openclaw-config-2026-cover.jpg" alt="" loading="lazy">
+    <div class="post-date" data-i18n="postDate">4 августа 2026 · 7 мин чтения</div>
+    <h1 data-i18n="title">OpenClaw 2026.7: готовый конфиг с ASI1, Ollama и бесплатными моделями OpenRouter</h1>
+
+    <p data-i18n="p1">Ниже — рабочий каркас <code>openclaw</code> под последнюю ветку <strong>2026.7.x</strong>: локальные модели через Ollama, облачный ASI1 и большой набор free-моделей OpenRouter. Плюс MCP-серверы для торговли, поиска и web-research.</p>
+
+    <p data-i18n="p2">Важно: <strong>не вставляйте чужие ключи из примеров в сеть</strong>. В конфиге ниже все секреты заменены на плейсхолдеры.</p>
+
+    <h2 data-i18n="h2a">Что делает этот конфиг</h2>
+
+    <table>
+      <tr><th data-i18n="th1">Блок</th><th data-i18n="th2">Назначение</th></tr>
+      <tr><td><code>agents.defaults</code></td><td data-i18n="tr1">Основная модель агента и fallback</td></tr>
+      <tr><td><code>models.providers</code></td><td data-i18n="tr2">ASI1 + Ollama + OpenRouter</td></tr>
+      <tr><td><code>channels.telegram</code></td><td data-i18n="tr3">Связь агента с Telegram-ботом</td></tr>
+      <tr><td><code>gateway</code></td><td data-i18n="tr4">Локальный шлюз OpenClaw</td></tr>
+      <tr><td><code>mcp.servers</code></td><td data-i18n="tr5">Инструменты, которые агент вызывает руками</td></tr>
+      <tr><td><code>plugins</code></td><td data-i18n="tr6">Включение Ollama-плагина</td></tr>
+    </table>
+
+    <h2 data-i18n="h2b">Куда вставлять ключи</h2>
+
+    <ol>
+      <li data-i18n="li1"><strong>ASI1</strong> → <code>models.providers.asi1.apiKey</code>. Ключ с <a href="https://api.asi1.ai" target="_blank" rel="noopener">api.asi1.ai</a>. Формат обычно: <code>sk_...</code></li>
+      <li data-i18n="li2"><strong>OpenRouter</strong> → <code>models.providers.openrouter.apiKey</code>. Ключ с <a href="https://openrouter.ai/keys" target="_blank" rel="noopener">openrouter.ai/keys</a>. Формат: <code>sk-or-v1-...</code></li>
+      <li data-i18n="li3"><strong>Telegram</strong> → <code>channels.telegram.botToken</code>. Токен от <a href="https://t.me/BotFather" target="_blank" rel="noopener">@BotFather</a></li>
+      <li data-i18n="li4"><strong>Gateway auth</strong> → <code>gateway.auth.token</code>. Свой длинный случайный токен для локального API OpenClaw</li>
+      <li data-i18n="li5"><strong>Ollama Web Search</strong> → <code>mcp.servers.ollama-web-search.env.OLLAMA_API_KEY</code>. Если используете cloud/search-ключ Ollama</li>
+      <li data-i18n="li6"><strong>Ollama local</strong>. Для локальных моделей <code>apiKey: "ollama"</code> обычно достаточно. Сервер: <code>http://localhost:11434</code></li>
+    </ol>
+
+    <p data-i18n="p3">Pionex MCP и crypto-snapshot ключи/секреты настраиваются уже внутри самих MCP (env/файлы инструментов), не обязательно в этом JSON.</p>
+
+    <h2 data-i18n="h2c">Модели</h2>
+
+    <p data-i18n="p4"><strong>Primary:</strong> <code>asi1-mini</code></p>
+    <p data-i18n="p5"><strong>Fallback:</strong> <code>asi1</code></p>
+
+    <h3 data-i18n="h3a">ASI1</h3>
+
+    <ul>
+      <li data-i18n="li7"><code>asi1</code> / <code>asi1-mini</code></li>
+      <li data-i18n="li8">большой context window</li>
+      <li data-i18n="li9">text + image</li>
+    </ul>
+
+    <h3 data-i18n="h3b">Ollama (локально)</h3>
+
+    <ul>
+      <li data-i18n="li10"><code>qwen3.5:4b</code> — лёгкая быстрая локалка</li>
+      <li data-i18n="li11"><code>AgentBDW/GIR9b:latest</code> — более «агентная» локальная модель</li>
+      <li data-i18n="li12">нужен запущенный <code>ollama serve</code></li>
+    </ul>
+
+    <h3 data-i18n="h3c">OpenRouter free</h3>
+
+    <p data-i18n="p6">Набор бесплатных моделей для экспериментов и запасных маршрутов:</p>
+
+    <ul>
+      <li data-i18n="li13"><code>tencent/hy3:free</code></li>
+      <li data-i18n="li14"><code>poolside/laguna-xs-2.1:free</code></li>
+      <li data-i18n="li15"><code>poolside/laguna-m.1:free</code></li>
+      <li data-i18n="li16"><code>cohere/north-mini-code:free</code></li>
+      <li data-i18n="li17"><code>google/gemma-4-26b-a4b-it:free</code></li>
+      <li data-i18n="li18"><code>google/gemma-4-31b-it:free</code></li>
+      <li data-i18n="li19"><code>nvidia/nemotron-3-*:free</code></li>
+      <li data-i18n="li20"><code>qwen/qwen3-next-80b-a3b-instruct:free</code></li>
+      <li data-i18n="li21"><code>qwen/qwen3-coder:free</code></li>
+      <li data-i18n="li22"><code>openai/gpt-oss-20b:free</code></li>
+      <li data-i18n="li23"><code>meta-llama/llama-3.3-70b-instruct:free</code></li>
+      <li data-i18n="li24"><code>nousresearch/hermes-3-llama-3.1-405b:free</code></li>
+      <li data-i18n="li25"><code>openrouter/free</code> — роутер по free-пулу</li>
+    </ul>
+
+    <p data-i18n="p7">Free-модели удобны для тестов, но лимиты и качество плавают. Для боевого контура лучше primary/fallback на стабильном провайдере.</p>
+
+    <h2 data-i18n="h2d">MCP-серверы: зачем каждый</h2>
+
+    <h3 data-i18n="h3d">1. <code>pionex-trade-mcp</code></h3>
+
+    <ul>
+      <li data-i18n="li26">локальная команда: <code>pionex-trade-mcp</code></li>
+      <li data-i18n="li27">доступ агента к Pionex</li>
+      <li data-i18n="li28">список ботов, создание grid, торговые действия</li>
+      <li data-i18n="li29">нужен для автоторговли и крон-сценариев</li>
+    </ul>
+
+    <h3 data-i18n="h3e">2. <code>crypto-snapshot</code></h3>
+
+    <ul>
+      <li data-i18n="li30">remote MCP: <code>https://crypto-snapshot-pro.onrender.com/mcp/</code></li>
+      <li data-i18n="li31">transport: <code>streamable-http</code></li>
+      <li data-i18n="li32">рыночный snapshot / сигнальный контур</li>
+      <li data-i18n="li33">удобно как внешний research/signal tool</li>
+    </ul>
+
+    <h3 data-i18n="h3f">3. <code>aeo</code></h3>
+
+    <ul>
+      <li data-i18n="li34">запуск: <code>npx -y aeo-mcp</code></li>
+      <li data-i18n="li35">AEO/поисковый MCP-слой</li>
+      <li data-i18n="li36">для задач вокруг answer engine optimization и web-oriented research</li>
+    </ul>
+
+    <h3 data-i18n="h3g">4. <code>ollama-web-search</code></h3>
+
+    <ul>
+      <li data-i18n="li37">локальный бинарь <code>ollama-web-search-mcp</code></li>
+      <li data-i18n="li38">веб-поиск через Ollama search pipeline</li>
+      <li data-i18n="li39">в <code>env</code> нужен <code>OLLAMA_API_KEY</code>, если провайдер этого требует</li>
+    </ul>
+
+    <p data-i18n="p8">Итого у агента есть руки для:</p>
+
+    <ul>
+      <li data-i18n="li40">биржи,</li>
+      <li data-i18n="li41">рыночных данных,</li>
+      <li data-i18n="li42">web-search,</li>
+      <li data-i18n="li43">AEO-исследований.</li>
+    </ul>
+
+    <h2 data-i18n="h2e">Telegram и Gateway</h2>
+
+    <pre class="code"><code>{
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "botToken": "TELEGRAM_BOT_TOKEN"
+    }
+  }
+}</code></pre>
+
+    <pre class="code"><code>{
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "OPENCLAW_GATEWAY_TOKEN"
+    }
+  }
+}</code></pre>
+
+    <ul>
+      <li data-i18n="li44">Telegram — канал общения с агентом</li>
+      <li data-i18n="li45">Gateway — локальный порт управления OpenClaw</li>
+      <li data-i18n="li46"><code>bind: loopback</code> означает доступ только с машины, где крутится агент</li>
+    </ul>
+
+    <h2 data-i18n="h2f">Готовый конфиг с плейсхолдерами</h2>
+
+    <p data-i18n="p9">Вставьте свои ключи вместо <code>YOUR_...</code>:</p>
+
+    <pre class="code"><code>{
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "asi1-mini",
+        "fallbacks": ["asi1"]
+      },
+      "workspace": "/home/matros/.openclaw/workspace",
+      "heartbeat": {
+        "every": ""
+      }
+    }
+  },
+  "models": {
+    "providers": {
+      "asi1": {
+        "baseUrl": "https://api.asi1.ai/v1",
+        "apiKey": "YOUR_ASI1_API_KEY",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "asi1",
+            "name": "ASI1",
+            "contextWindow": 550000,
+            "maxTokens": 8192,
+            "input": ["text", "image"]
+          },
+          {
+            "id": "asi1-mini",
+            "name": "ASI1 Mini",
+            "contextWindow": 550000,
+            "maxTokens": 4096,
+            "input": ["text", "image"]
+          }
+        ]
+      },
+      "ollama": {
+        "baseUrl": "http://localhost:11434",
+        "apiKey": "ollama",
+        "api": "ollama",
+        "models": [
+          {
+            "id": "qwen3.5:4b",
+            "name": "Qwen 3.5 4B",
+            "contextWindow": 150000,
+            "maxTokens": 4096,
+            "input": ["text"],
+            "params": { "num_ctx": 150000 }
+          },
+          {
+            "id": "AgentBDW/GIR9b:latest",
+            "name": "AgentBDW GIR9b",
+            "contextWindow": 150000,
+            "maxTokens": 8192,
+            "input": ["text"],
+            "params": { "num_ctx": 150000 }
+          }
+        ]
+      },
+      "openrouter": {
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "apiKey": "YOUR_OPENROUTER_API_KEY",
+        "api": "openai-completions",
+        "models": [
+          { "id": "tencent/hy3:free", "name": "Tencent: Hy3 (free)", "contextWindow": 262144, "maxTokens": 4096, "input": ["text"] },
+          { "id": "poolside/laguna-xs-2.1:free", "name": "Poolside: Laguna XS 2.1 (free)", "contextWindow": 262144, "maxTokens": 4096, "input": ["text"] },
+          { "id": "cohere/north-mini-code:free", "name": "Cohere: North Mini Code (free)", "contextWindow": 256000, "maxTokens": 4096, "input": ["text"] },
+          { "id": "nvidia/nemotron-3-ultra-550b-a55b:free", "name": "NVIDIA: Nemotron 3 Ultra (free)", "contextWindow": 1000000, "maxTokens": 4096, "input": ["text"] },
+          { "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free", "name": "NVIDIA: Nemotron 3 Nano Omni (free)", "contextWindow": 256000, "maxTokens": 4096, "input": ["text"] },
+          { "id": "poolside/laguna-m.1:free", "name": "Poolside: Laguna M.1 (free)", "contextWindow": 262144, "maxTokens": 4096, "input": ["text"] },
+          { "id": "google/gemma-4-26b-a4b-it:free", "name": "Google: Gemma 4 26B A4B (free)", "contextWindow": 262144, "maxTokens": 4096, "input": ["text"] },
+          { "id": "google/gemma-4-31b-it:free", "name": "Google: Gemma 4 31B (free)", "contextWindow": 262144, "maxTokens": 4096, "input": ["text"] },
+          { "id": "nvidia/nemotron-3-super-120b-a12b:free", "name": "NVIDIA: Nemotron 3 Super (free)", "contextWindow": 1000000, "maxTokens": 4096, "input": ["text"] },
+          { "id": "openrouter/free", "name": "Free Models Router", "contextWindow": 200000, "maxTokens": 4096, "input": ["text"] },
+          { "id": "nvidia/nemotron-3-nano-30b-a3b:free", "name": "NVIDIA: Nemotron 3 Nano 30B A3B (free)", "contextWindow": 256000, "maxTokens": 4096, "input": ["text"] },
+          { "id": "nvidia/nemotron-nano-12b-v2-vl:free", "name": "NVIDIA: Nemotron Nano 12B 2 VL (free)", "contextWindow": 128000, "maxTokens": 4096, "input": ["text", "image"] },
+          { "id": "qwen/qwen3-next-80b-a3b-instruct:free", "name": "Qwen: Qwen3 Next 80B A3B Instruct (free)", "contextWindow": 262144, "maxTokens": 4096, "input": ["text"] },
+          { "id": "nvidia/nemotron-nano-9b-v2:free", "name": "NVIDIA: Nemotron Nano 9B V2 (free)", "contextWindow": 128000, "maxTokens": 4096, "input": ["text"] },
+          { "id": "openai/gpt-oss-20b:free", "name": "OpenAI: gpt-oss-20b (free)", "contextWindow": 131072, "maxTokens": 4096, "input": ["text"] },
+          { "id": "qwen/qwen3-coder:free", "name": "Qwen: Qwen3 Coder 480B A35B (free)", "contextWindow": 1048576, "maxTokens": 4096, "input": ["text"] },
+          { "id": "cognitivecomputations/dolphin-mistral-24b-venice-edition:free", "name": "Venice: Uncensored (free)", "contextWindow": 32768, "maxTokens": 4096, "input": ["text"] },
+          { "id": "meta-llama/llama-3.3-70b-instruct:free", "name": "Meta: Llama 3.3 70B Instruct (free)", "contextWindow": 131072, "maxTokens": 4096, "input": ["text"] },
+          { "id": "meta-llama/llama-3.2-3b-instruct:free", "name": "Meta: Llama 3.2 3B Instruct (free)", "contextWindow": 131072, "maxTokens": 4096, "input": ["text"] },
+          { "id": "nousresearch/hermes-3-llama-3.1-405b:free", "name": "Nous: Hermes 3 405B Instruct (free)", "contextWindow": 131072, "maxTokens": 4096, "input": ["text"] }
+        ]
+      }
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "botToken": "YOUR_TELEGRAM_BOT_TOKEN"
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "YOUR_OPENCLAW_GATEWAY_TOKEN"
+    }
+  },
+  "mcp": {
+    "servers": {
+      "pionex-trade-mcp": {
+        "command": "/home/matros/.npm-global/bin/pionex-trade-mcp",
+        "args": []
+      },
+      "crypto-snapshot": {
+        "url": "https://crypto-snapshot-pro.onrender.com/mcp/",
+        "transport": "streamable-http"
+      },
+      "aeo": {
+        "command": "npx",
+        "args": ["-y", "aeo-mcp"]
+      },
+      "ollama-web-search": {
+        "command": "/home/matros/.nvm/versions/node/v24.18.0/bin/ollama-web-search-mcp",
+        "env": {
+          "OLLAMA_API_KEY": "YOUR_OLLAMA_API_KEY"
+        }
+      }
+    }
+  },
+  "plugins": {
+    "entries": {
+      "ollama": {
+        "enabled": true
+      }
+    }
+  }
+}
+</code></pre>
+
+    <p data-i18n="p10">Пути <code>command</code> поправьте под свою машину (<code>which pionex-trade-mcp</code>, <code>which ollama-web-search-mcp</code>).</p>
+
+    <h2 data-i18n="h2g">Быстрый запуск</h2>
+
+    <ol>
+      <li data-i18n="li47">Поставить и запустить Ollama</li>
+      <li data-i18n="li48">Протянуть модели:</li>
+    </ol>
+
+    <pre class="code"><code>ollama pull qwen3.5:4b</code></pre>
+
+    <ol start="3">
+      <li data-i18n="li49">Вписать ключи ASI1 / OpenRouter / Telegram / Gateway</li>
+      <li data-i18n="li50">Проверить MCP-бинари и remote URL</li>
+      <li data-i18n="li51">Поднять OpenClaw и прогнать <code>doctor</code></li>
+      <li data-i18n="li52">Написать боту в Telegram тестовую команду</li>
+    </ol>
+
+    <h2 data-i18n="h2h">Практический совет</h2>
+
+    <ul>
+      <li data-i18n="li53">Для повседневной работы: <code>asi1-mini</code> → fallback <code>asi1</code></li>
+      <li data-i18n="li54">Для офлайна и дешёвых задач: Ollama</li>
+      <li data-i18n="li55">Для экспериментов и запасных маршрутов: OpenRouter free</li>
+      <li data-i18n="li56">MCP подключайте только те, что реально нужны: лишние tools = лишний шум и риск</li>
+    </ul>
+
+    <div class="highlight">
+      <p data-i18n="highlight1">Этот конфиг — не «магическая кнопка», а нормальная боевая схема: облако + локалка + free-роутер + инструменты. Дальше ценность начинается не в JSON, а в правилах агента и дисциплине вызова MCP.</p>
+    </div>
+
+    <hr>
+
+    <p data-i18n="footer">Если ваш агент уже действует — дайте ему возможность платить за себя самому. <a href="/generator">Создать платного агента</a> →</p>
+  </div>
+</article>
+</main>
+
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+
+  const embeddedRu = {
+    title: "OpenClaw 2026.7: готовый конфиг с ASI1, Ollama и бесплатными моделями OpenRouter",
+    metaDescription: "Рабочий каркас openclaw под ветку 2026.7.x: локальные модели через Ollama, облачный ASI1, free-модели OpenRouter, MCP-серверы для торговли и web-research. Секреты — только плейсхолдеры.",
+    nav: { back: "← Блог", home: "На сайт", lang: "🇬🇧 EN" },
+    backLink: "← Назад к блогу",
+    postDate: "4 августа 2026 · 7 мин чтения",
+    p1: "Ниже — рабочий каркас <code>openclaw</code> под последнюю ветку <strong>2026.7.x</strong>: локальные модели через Ollama, облачный ASI1 и большой набор free-моделей OpenRouter. Плюс MCP-серверы для торговли, поиска и web-research.",
+    p2: "Важно: <strong>не вставляйте чужие ключи из примеров в сеть</strong>. В конфиге ниже все секреты заменены на плейсхолдеры.",
+    h2a: "Что делает этот конфиг",
+    th1: "Блок",
+    th2: "Назначение",
+    tr1: "Основная модель агента и fallback",
+    tr2: "ASI1 + Ollama + OpenRouter",
+    tr3: "Связь агента с Telegram-ботом",
+    tr4: "Локальный шлюз OpenClaw",
+    tr5: "Инструменты, которые агент вызывает руками",
+    tr6: "Включение Ollama-плагина",
+    h2b: "Куда вставлять ключи",
+    li1: "<strong>ASI1</strong> → <code>models.providers.asi1.apiKey</code>. Ключ с <a href=\"https://api.asi1.ai\" target=\"_blank\" rel=\"noopener\">api.asi1.ai</a>. Формат обычно: <code>sk_...</code>",
+    li2: "<strong>OpenRouter</strong> → <code>models.providers.openrouter.apiKey</code>. Ключ с <a href=\"https://openrouter.ai/keys\" target=\"_blank\" rel=\"noopener\">openrouter.ai/keys</a>. Формат: <code>sk-or-v1-...</code>",
+    li3: "<strong>Telegram</strong> → <code>channels.telegram.botToken</code>. Токен от <a href=\"https://t.me/BotFather\" target=\"_blank\" rel=\"noopener\">@BotFather</a>",
+    li4: "<strong>Gateway auth</strong> → <code>gateway.auth.token</code>. Свой длинный случайный токен для локального API OpenClaw",
+    li5: "<strong>Ollama Web Search</strong> → <code>mcp.servers.ollama-web-search.env.OLLAMA_API_KEY</code>. Если используете cloud/search-ключ Ollama",
+    li6: "<strong>Ollama local</strong>. Для локальных моделей <code>apiKey: \"ollama\"</code> обычно достаточно. Сервер: <code>http://localhost:11434</code>",
+    p3: "Pionex MCP и crypto-snapshot ключи/секреты настраиваются уже внутри самих MCP (env/файлы инструментов), не обязательно в этом JSON.",
+    h2c: "Модели",
+    p4: "<strong>Primary:</strong> <code>asi1-mini</code>",
+    p5: "<strong>Fallback:</strong> <code>asi1</code>",
+    h3a: "ASI1",
+    li7: "<code>asi1</code> / <code>asi1-mini</code>",
+    li8: "большой context window",
+    li9: "text + image",
+    h3b: "Ollama (локально)",
+    li10: "<code>qwen3.5:4b</code> — лёгкая быстрая локалка",
+    li11: "<code>AgentBDW/GIR9b:latest</code> — более «агентная» локальная модель",
+    li12: "нужен запущенный <code>ollama serve</code>",
+    h3c: "OpenRouter free",
+    p6: "Набор бесплатных моделей для экспериментов и запасных маршрутов:",
+    li13: "<code>tencent/hy3:free</code>",
+    li14: "<code>poolside/laguna-xs-2.1:free</code>",
+    li15: "<code>poolside/laguna-m.1:free</code>",
+    li16: "<code>cohere/north-mini-code:free</code>",
+    li17: "<code>google/gemma-4-26b-a4b-it:free</code>",
+    li18: "<code>google/gemma-4-31b-it:free</code>",
+    li19: "<code>nvidia/nemotron-3-*:free</code>",
+    li20: "<code>qwen/qwen3-next-80b-a3b-instruct:free</code>",
+    li21: "<code>qwen/qwen3-coder:free</code>",
+    li22: "<code>openai/gpt-oss-20b:free</code>",
+    li23: "<code>meta-llama/llama-3.3-70b-instruct:free</code>",
+    li24: "<code>nousresearch/hermes-3-llama-3.1-405b:free</code>",
+    li25: "<code>openrouter/free</code> — роутер по free-пулу",
+    p7: "Free-модели удобны для тестов, но лимиты и качество плавают. Для боевого контура лучше primary/fallback на стабильном провайдере.",
+    h2d: "MCP-серверы: зачем каждый",
+    h3d: "1. <code>pionex-trade-mcp</code>",
+    li26: "локальная команда: <code>pionex-trade-mcp</code>",
+    li27: "доступ агента к Pionex",
+    li28: "список ботов, создание grid, торговые действия",
+    li29: "нужен для автоторговли и крон-сценариев",
+    h3e: "2. <code>crypto-snapshot</code>",
+    li30: "remote MCP: <code>https://crypto-snapshot-pro.onrender.com/mcp/</code>",
+    li31: "transport: <code>streamable-http</code>",
+    li32: "рыночный snapshot / сигнальный контур",
+    li33: "удобно как внешний research/signal tool",
+    h3f: "3. <code>aeo</code>",
+    li34: "запуск: <code>npx -y aeo-mcp</code>",
+    li35: "AEO/поисковый MCP-слой",
+    li36: "для задач вокруг answer engine optimization и web-oriented research",
+    h3g: "4. <code>ollama-web-search</code>",
+    li37: "локальный бинарь <code>ollama-web-search-mcp</code>",
+    li38: "веб-поиск через Ollama search pipeline",
+    li39: "в <code>env</code> нужен <code>OLLAMA_API_KEY</code>, если провайдер этого требует",
+    p8: "Итого у агента есть руки для:",
+    li40: "биржи,",
+    li41: "рыночных данных,",
+    li42: "web-search,",
+    li43: "AEO-исследований.",
+    h2e: "Telegram и Gateway",
+    li44: "Telegram — канал общения с агентом",
+    li45: "Gateway — локальный порт управления OpenClaw",
+    li46: "<code>bind: loopback</code> означает доступ только с машины, где крутится агент",
+    h2f: "Готовый конфиг с плейсхолдерами",
+    p9: "Вставьте свои ключи вместо <code>YOUR_...</code>:",
+    p10: "Пути <code>command</code> поправьте под свою машину (<code>which pionex-trade-mcp</code>, <code>which ollama-web-search-mcp</code>).",
+    h2g: "Быстрый запуск",
+    li47: "Поставить и запустить Ollama",
+    li48: "Протянуть модели:",
+    li49: "Вписать ключи ASI1 / OpenRouter / Telegram / Gateway",
+    li50: "Проверить MCP-бинари и remote URL",
+    li51: "Поднять OpenClaw и прогнать <code>doctor</code>",
+    li52: "Написать боту в Telegram тестовую команду",
+    h2h: "Практический совет",
+    li53: "Для повседневной работы: <code>asi1-mini</code> → fallback <code>asi1</code>",
+    li54: "Для офлайна и дешёвых задач: Ollama",
+    li55: "Для экспериментов и запасных маршрутов: OpenRouter free",
+    li56: "MCP подключайте только те, что реально нужны: лишние tools = лишний шум и риск",
+    highlight1: "Этот конфиг — не «магическая кнопка», а нормальная боевая схема: облако + локалка + free-роутер + инструменты. Дальше ценность начинается не в JSON, а в правилах агента и дисциплине вызова MCP.",
+    footer: "Если ваш агент уже действует — дайте ему возможность платить за себя самому. <a href=\"\/generator\">Создать платного агента</a> →"
+  };
+
+  const embeddedEn = {
+    title: "OpenClaw 2026.7: a ready config with ASI1, Ollama, and free OpenRouter models",
+    metaDescription: "A working openclaw scaffold for the 2026.7.x branch: local models via Ollama, cloud ASI1, free OpenRouter models, and MCP servers for trading and web research. Secrets are placeholders only.",
+    nav: { back: "← Blog", home: "Home", lang: "🇷🇺 RU" },
+    backLink: "← Back to blog",
+    postDate: "August 4, 2026 · 7 min read",
+    p1: "Below is a working <code>openclaw</code> scaffold for the latest <strong>2026.7.x</strong> branch: local models via Ollama, cloud ASI1, and a large set of free OpenRouter models. Plus MCP servers for trading, search, and web research.",
+    p2: "Important: <strong>don't paste other people's keys from examples online</strong>. All secrets in the config below are replaced with placeholders.",
+    h2a: "What this config does",
+    th1: "Block",
+    th2: "Purpose",
+    tr1: "Main agent model and fallback",
+    tr2: "ASI1 + Ollama + OpenRouter",
+    tr3: "Agent connection to a Telegram bot",
+    tr4: "OpenClaw local gateway",
+    tr5: "Tools the agent calls by hand",
+    tr6: "Enabling the Ollama plugin",
+    h2b: "Where to put the keys",
+    li1: "<strong>ASI1</strong> → <code>models.providers.asi1.apiKey</code>. Key from <a href=\"https://api.asi1.ai\" target=\"_blank\" rel=\"noopener\">api.asi1.ai</a>. Usually in the form: <code>sk_...</code>",
+    li2: "<strong>OpenRouter</strong> → <code>models.providers.openrouter.apiKey</code>. Key from <a href=\"https://openrouter.ai/keys\" target=\"_blank\" rel=\"noopener\">openrouter.ai/keys</a>. Format: <code>sk-or-v1-...</code>",
+    li3: "<strong>Telegram</strong> → <code>channels.telegram.botToken</code>. Token from <a href=\"https://t.me/BotFather\" target=\"_blank\" rel=\"noopener\">@BotFather</a>",
+    li4: "<strong>Gateway auth</strong> → <code>gateway.auth.token</code>. Your own long random token for the local OpenClaw API",
+    li5: "<strong>Ollama Web Search</strong> → <code>mcp.servers.ollama-web-search.env.OLLAMA_API_KEY</code>. If you use an Ollama cloud/search key",
+    li6: "<strong>Ollama local</strong>. For local models, <code>apiKey: \"ollama\"</code> is usually enough. Server: <code>http://localhost:11434</code>",
+    p3: "Pionex MCP and crypto-snapshot keys/secrets are configured inside the MCPs themselves (env/tool files), not necessarily in this JSON.",
+    h2c: "Models",
+    p4: "<strong>Primary:</strong> <code>asi1-mini</code>",
+    p5: "<strong>Fallback:</strong> <code>asi1</code>",
+    h3a: "ASI1",
+    li7: "<code>asi1</code> / <code>asi1-mini</code>",
+    li8: "large context window",
+    li9: "text + image",
+    h3b: "Ollama (local)",
+    li10: "<code>qwen3.5:4b</code> — light and fast local model",
+    li11: "<code>AgentBDW/GIR9b:latest</code> — a more 'agentic' local model",
+    li12: "a running <code>ollama serve</code> is required",
+    h3c: "OpenRouter free",
+    p6: "A set of free models for experiments and backup routes:",
+    li13: "<code>tencent/hy3:free</code>",
+    li14: "<code>poolside/laguna-xs-2.1:free</code>",
+    li15: "<code>poolside/laguna-m.1:free</code>",
+    li16: "<code>cohere/north-mini-code:free</code>",
+    li17: "<code>google/gemma-4-26b-a4b-it:free</code>",
+    li18: "<code>google/gemma-4-31b-it:free</code>",
+    li19: "<code>nvidia/nemotron-3-*:free</code>",
+    li20: "<code>qwen/qwen3-next-80b-a3b-instruct:free</code>",
+    li21: "<code>qwen/qwen3-coder:free</code>",
+    li22: "<code>openai/gpt-oss-20b:free</code>",
+    li23: "<code>meta-llama/llama-3.3-70b-instruct:free</code>",
+    li24: "<code>nousresearch/hermes-3-llama-3.1-405b:free</code>",
+    li25: "<code>openrouter/free</code> — router across the free pool",
+    p7: "Free models are convenient for tests, but limits and quality vary. For a production loop, keep primary/fallback on a stable provider.",
+    h2d: "MCP servers: why each one",
+    h3d: "1. <code>pionex-trade-mcp</code>",
+    li26: "local command: <code>pionex-trade-mcp</code>",
+    li27: "agent access to Pionex",
+    li28: "bot list, grid creation, trading actions",
+    li29: "needed for auto-trading and cron scenarios",
+    h3e: "2. <code>crypto-snapshot</code>",
+    li30: "remote MCP: <code>https://crypto-snapshot-pro.onrender.com/mcp/</code>",
+    li31: "transport: <code>streamable-http</code>",
+    li32: "market snapshot / signal loop",
+    li33: "handy as an external research/signal tool",
+    h3f: "3. <code>aeo</code>",
+    li34: "launch: <code>npx -y aeo-mcp</code>",
+    li35: "AEO/search MCP layer",
+    li36: "for answer engine optimization and web-oriented research tasks",
+    h3g: "4. <code>ollama-web-search</code>",
+    li37: "local binary <code>ollama-web-search-mcp</code>",
+    li38: "web search through the Ollama search pipeline",
+    li39: "needs <code>OLLAMA_API_KEY</code> in <code>env</code> if the provider requires it",
+    p8: "In total the agent has hands for:",
+    li40: "exchange,",
+    li41: "market data,",
+    li42: "web-search,",
+    li43: "AEO research.",
+    h2e: "Telegram and Gateway",
+    li44: "Telegram is the channel to talk to the agent",
+    li45: "Gateway is the local control port of OpenClaw",
+    li46: "<code>bind: loopback</code> means access only from the machine where the agent runs",
+    h2f: "Ready config with placeholders",
+    p9: "Paste your keys instead of <code>YOUR_...</code>:",
+    p10: "Adjust <code>command</code> paths to your machine (<code>which pionex-trade-mcp</code>, <code>which ollama-web-search-mcp</code>).",
+    h2g: "Quick start",
+    li47: "Install and run Ollama",
+    li48: "Pull the models:",
+    li49: "Fill in the ASI1 / OpenRouter / Telegram / Gateway keys",
+    li50: "Check MCP binaries and the remote URL",
+    li51: "Start OpenClaw and run <code>doctor</code>",
+    li52: "Send the bot a test command in Telegram",
+    h2h: "Practical advice",
+    li53: "For everyday work: <code>asi1-mini</code> → fallback <code>asi1</code>",
+    li54: "For offline and cheap tasks: Ollama",
+    li55: "For experiments and backup routes: OpenRouter free",
+    li56: "Only plug in the MCPs you actually need: extra tools = extra noise and risk",
+    highlight1: "This config isn't a 'magic button' — it's a normal production scheme: cloud + local + free router + tools. Value starts not in the JSON, but in agent rules and MCP call discipline.",
+    footer: "If your agent already acts — give it the ability to pay for itself. <a href=\"\/generator\">Create a paid agent</a> →"
+  };
+
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        if (el.tagName === 'A' && el.classList.contains('lang-switch')) {
+          el.textContent = value;
+        } else {
+          el.innerHTML = value;
+        }
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          document.querySelectorAll('meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]').forEach(m => m.setAttribute('content', value));
+        }
+      }
+    });
+  }
+
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', '?lang=' + next);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>
