@@ -133,6 +133,16 @@
     .article pre.code::-webkit-scrollbar-track { background: #141414; }
     .article pre.code::-webkit-scrollbar-thumb { background: #3a3a3a; border-radius: 4px; }
     .article pre.code::-webkit-scrollbar-thumb:hover { background: #4a4a4a; }
+    .code-block { position: relative; margin: 24px 0 32px; }
+    .copy-btn {
+      position: absolute; top: 12px; right: 12px; z-index: 2;
+      background: #222; color: #fff; border: 1px solid #333;
+      border-radius: var(--radius-xs); padding: 6px 12px;
+      font-size: 0.8rem; cursor: pointer; transition: var(--transition);
+      font-family: inherit;
+    }
+    .copy-btn:hover { background: #333; border-color: #444; }
+    .code-block pre.code { margin-top: 0; }
     .highlight {
       background: var(--bg-card); border: 1px solid var(--border);
       border-radius: var(--radius-sm); padding: 24px;
@@ -338,7 +348,9 @@
 
     <p data-i18n="p9">Вставьте свои ключи вместо <code>YOUR_...</code>:</p>
 
-    <pre class="code"><code>{
+    <div class="code-block">
+      <button class="copy-btn" type="button" onclick="copyConfig(this)" data-i18n="copyBtn">⧉ Копировать</button>
+      <pre class="code" id="config-code"><code>{
   "agents": {
     "defaults": {
       "model": {
@@ -472,6 +484,7 @@
   }
 }
 </code></pre>
+    </div>
 
     <p data-i18n="p10">Пути <code>command</code> поправьте под свою машину (<code>which pionex-trade-mcp</code>, <code>which ollama-web-search-mcp</code>).</p>
 
@@ -617,6 +630,7 @@
     li54: "Для офлайна и дешёвых задач: Ollama",
     li55: "Для экспериментов и запасных маршрутов: OpenRouter free",
     li56: "MCP подключайте только те, что реально нужны: лишние tools = лишний шум и риск",
+    copyBtn: "⧉ Копировать",
     highlight1: "Этот конфиг — не «магическая кнопка», а нормальная боевая схема: облако + локалка + free-роутер + инструменты. Дальше ценность начинается не в JSON, а в правилах агента и дисциплине вызова MCP.",
     footer: "Если ваш агент уже действует — дайте ему возможность платить за себя самому. <a href=\"\/generator\">Создать платного агента</a> →"
   };
@@ -716,9 +730,36 @@
     li54: "For offline and cheap tasks: Ollama",
     li55: "For experiments and backup routes: OpenRouter free",
     li56: "Only plug in the MCPs you actually need: extra tools = extra noise and risk",
+    copyBtn: "⧉ Copy",
     highlight1: "This config isn't a 'magic button' — it's a normal production scheme: cloud + local + free router + tools. Value starts not in the JSON, but in agent rules and MCP call discipline.",
     footer: "If your agent already acts — give it the ability to pay for itself. <a href=\"\/generator\">Create a paid agent</a> →"
   };
+
+  function copyConfig(btn) {
+    const pre = document.getElementById('config-code');
+    const text = pre.textContent;
+    const done = () => {
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied';
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => { fallbackCopy(pre, done); });
+    } else {
+      fallbackCopy(pre, done);
+    }
+  }
+
+  function fallbackCopy(pre, done) {
+    const range = document.createRange();
+    range.selectNodeContents(pre);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    try { document.execCommand('copy'); } catch (e) {}
+    sel.removeAllRanges();
+    done();
+  }
 
   function getNested(obj, path) {
     return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
