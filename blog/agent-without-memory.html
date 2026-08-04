@@ -1,0 +1,437 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Агент без памяти — это стажёр, который каждый день приходит на работу впервые</title>
+  <meta name="description" data-i18n="metaDescription" content="Самая недооценённая проблема ИИ-агентов — не интеллект, а отсутствие преемственности. Четыре уровня памяти, цена плохой памяти и почему память — это архитектура, а не механизм.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/agent-without-memory.html">
+  <meta property="og:title" data-i18n="title" content="Агент без памяти — это стажёр, который каждый день приходит на работу впервые">
+  <meta property="og:description" data-i18n="metaDescription" content="Самая недооценённая проблема ИИ-агентов — не интеллект, а отсутствие преемственности. Четыре уровня памяти, цена плохой памяти и почему память — это архитектура, а не механизм.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/agent-without-memory-cover.jpg">
+  <meta property="og:image:width" content="1168">
+  <meta property="og:image:height" content="784">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="Агент без памяти — это стажёр, который каждый день приходит на работу впервые">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Самая недооценённая проблема ИИ-агентов — не интеллект, а отсутствие преемственности. Четыре уровня памяти, цена плохой памяти и почему память — это архитектура, а не механизм.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/agent-without-memory-cover.jpg">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/agent-without-memory.html">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #ffffff;
+      --text-secondary: #c9c9c9;
+      --muted: #8f8f8f;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      min-height: 100vh; display: flex; flex-direction: column;
+    }
+    .wrap { max-width: 680px; margin: 0 auto; padding: 0 16px; }
+    header.site {
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 12px 0; position: sticky; top: 0;
+      background: rgba(10,10,10,0.92); backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--text); }
+    .logo-img { width: 28px; height: 28px; border-radius: 6px; }
+    .logo span { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.02em; }
+    .logo span span { color: var(--muted); font-weight: 400; }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      color: var(--text-secondary); text-decoration: none;
+      font-size: 0.85rem; padding: 6px 10px; border-radius: var(--radius-xs);
+      transition: var(--transition); white-space: nowrap;
+    }
+    nav .link:hover { background: var(--bg-card); color: var(--text); }
+    .lang-switch { font-size: 0.8rem; padding: 4px 8px; }
+    @media (max-width: 480px) {
+      nav .link { font-size: 0.78rem; padding: 4px 6px; }
+    }
+    main { flex: 1; }
+    article { padding: 32px 0 48px; }
+    .back-link {
+      display: inline-block; color: var(--muted); text-decoration: none;
+      font-size: 0.85rem; margin-bottom: 8px; transition: var(--transition);
+    }
+    .back-link:hover { color: var(--text); }
+    .post-date {
+      font-size: 0.85rem; color: var(--muted); margin-bottom: 8px;
+    }
+    h1 {
+      font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em;
+      line-height: 1.3; margin-bottom: 24px;
+    }
+    .cover-img {
+      width: 100%; max-width: 640px;
+      aspect-ratio: 1168 / 784; height: auto;
+      border-radius: var(--radius); margin: 24px 0 32px;
+      border: 1px solid var(--border);
+      object-fit: cover;
+    }
+    h2 {
+      font-size: 1.5rem; font-weight: 600; margin: 40px 0 16px;
+      letter-spacing: -0.01em;
+    }
+    h3 {
+      font-size: 1.2rem; font-weight: 600; margin: 32px 0 12px;
+    }
+    p { margin-bottom: 20px; color: var(--text-secondary); }
+    p strong { color: var(--text); }
+    p a { color: var(--text); }
+    ul, ol { margin: 0 0 20px 24px; color: var(--text-secondary); }
+    li { margin-bottom: 8px; }
+    li strong { color: var(--text); }
+    hr {
+      border: none; border-top: 1px solid var(--border);
+      margin: 40px 0; opacity: 0.5;
+    }
+    .highlight {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 24px;
+      margin: 24px 0; font-size: 0.95rem;
+    }
+    .highlight strong { color: var(--text); }
+    .checklist { margin: 0 0 20px 24px; color: var(--text-secondary); }
+    .checklist li { margin-bottom: 10px; }
+    .checklist li strong { color: var(--text); }
+    .checklist li code { color: var(--text); }
+    code {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.85em; color: var(--text);
+      background: var(--bg-card); padding: 2px 6px;
+      border-radius: 4px; border: 1px solid var(--border);
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.6rem; }
+      h2 { font-size: 1.25rem; }
+      article { padding: 24px 0 40px; }
+    }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link" href="/" data-i18n="nav.home">На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article class="article">
+  <div class="wrap">
+    <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+    <img class="cover-img" src="/assets/img/blog/agent-without-memory-cover.jpg" alt="" loading="lazy">
+    <div class="post-date" data-i18n="postDate">4 августа 2026 · 5 мин чтения</div>
+    <h1 data-i18n="title">Агент без памяти — это стажёр, который каждый день приходит на работу впервые</h1>
+
+    <p data-i18n="p1">Самая недооценённая проблема ИИ-агентов — не интеллект. А отсутствие преемственности.</p>
+
+    <p data-i18n="p2">Человек к середине рабочего дня уже несёт в голове слой контекста: что пробовали утром, какие файлы лучше не трогать, какой клиент бесится из-за задержки, какой деплой вчера едва не опрокинул прод. Даже усталость человека — это форма накопленного состояния. Агент же часто существует только внутри одного запуска. Сессия закончилась — и вместе с ней исчезли промежуточные выводы, ложные следы, удачные эвристики и дорогие ошибки.</p>
+
+    <p data-i18n="p3">Именно поэтому демо агентов выглядят убедительно, а внедрение проседает. В демо ему дают чистую задачу, полный бриф и короткий горизонт. В реальности задача размазана по времени: вчерашние решения, чужие коммиты, устаревшая документация, противоречивые требования и половина правды в тикетах. Без памяти агент каждый раз заново проходит онбординг. Он может быть сильным. Но он каждый день — новый стажёр.</p>
+
+    <h2 data-i18n="h2a">Память — это не один механизм</h2>
+
+    <p data-i18n="p4">Когда говорят «добавим memory», обычно смешивают несколько разных вещей.</p>
+
+    <ol>
+      <li data-i18n="li1"><strong>Контекстное окно.</strong> То, что модель видит прямо сейчас. Это не память в сильном смысле, а рабочий стол. Он большой, но конечный. И главное — временный.</li>
+      <li data-i18n="li2"><strong>Рабочая память сессии.</strong> Цепочка шагов внутри одной задачи: что уже сделано, какие инструменты вызваны, какие гипотезы отпали. Если этого слоя нет, агент ходит кругами и повторно проверяет одно и то же.</li>
+      <li data-i18n="li3"><strong>Долгая память между запусками.</strong> Предпочтения пользователя, правила проекта, история инцидентов, устойчивые факты. Здесь начинается ощущение, что система «продолжает работу», а не «начинает жизнь заново».</li>
+      <li data-i18n="li4"><strong>Память среды.</strong> Репозиторий, база данных, статусы ботов, баланс кошелька, логи, CRM, очередь тикетов. Иногда лучшая память агента — не векторное хранилище, а аккуратная среда, из которой можно заново прочитать состояние мира.</li>
+    </ol>
+
+    <p data-i18n="p5">Сильные команды перестают романтизировать «память модели» и начинают проектировать память как архитектуру. Что должно жить в промпте, что — в файле, что — в базе, что — в логах, а что не должно сохраняться вообще.</p>
+
+    <h2 data-i18n="h2b">Почему плохая память опаснее её отсутствия</h2>
+
+    <p data-i18n="p6">Отсутствие памяти делает агента дорогим и медленным. Плохая память делает его уверенно неправым.</p>
+
+    <p data-i18n="p7">Если агент сохранил устаревший вывод вроде «этот endpoint всегда отвечает так», он будет строить следующий план на ложном фундаменте. Если запомнил случайную корреляцию как правило — начнёт воспроизводить её снова и снова. Если сохранил слишком много сырого шума — в нужный момент не найдёт важное.</p>
+
+    <div class="highlight">
+      <p data-i18n="highlight1">Память без критики — это не обучение. Это накопление осадка.</p>
+    </div>
+
+    <p data-i18n="p8">Поэтому в серьёзных системах появляются простые, но жёсткие практики:</p>
+
+    <ul class="checklist">
+      <li data-i18n="li5">сохранять не «мысли», а проверяемые факты;</li>
+      <li data-i18n="li6">отделять факты от интерпретаций;</li>
+      <li data-i18n="li7">писать, почему решение было принято;</li>
+      <li data-i18n="li8">помечать источник и время;</li>
+      <li data-i18n="li9">давать человеку право исправить или стереть запись;</li>
+      <li data-i18n="li10">запрещать автосохранение выводов с низкой уверенностью.</li>
+    </ul>
+
+    <p data-i18n="p9">Иначе агент постепенно превращается в шкаф, набитый чужими черновиками.</p>
+
+    <h2 data-i18n="h2c">Где память реально меняет экономику</h2>
+
+    <p data-i18n="p10">Возьмём три сценария.</p>
+
+    <h3 data-i18n="h3a">Поддержка</h3>
+
+    <p data-i18n="p11">Агент без памяти каждый раз заново читает историю клиента и снова предлагает одно и то же «базовое решение». Агент с памятью видит, что клиент уже отверг этот путь, что проблема связана с конкретной версией и что прошлый эскалационный путь сработал.</p>
+
+    <h3 data-i18n="h3b">Разработка</h3>
+
+    <p data-i18n="p12">Без памяти агент повторно исследует репозиторий, заново открывает одни и те же файлы, снова предлагает рефакторинг, который команда уже отвергла. С памятью он знает границы модуля, хрупкие места и стиль проекта.</p>
+
+    <h3 data-i18n="h3c">Торговля и операции</h3>
+
+    <p data-i18n="p13">Без памяти система не видит, что похожий сигнал уже приводил к убытку в том же режиме рынка, или что бот уже запущен и новый запуск опасен. С памятью состояний она способна не только действовать, но и воздерживаться.</p>
+
+    <div class="highlight">
+      <p data-i18n="highlight2">Именно умение не повторять и не делать лишнего часто ценнее эффектного первого действия.</p>
+    </div>
+
+    <h2 data-i18n="h2d">Настоящий сдвиг 2026 года</h2>
+
+    <p data-i18n="p14">Раньше вокруг агентов крутился вопрос: насколько далеко они могут пройти в одном запуске. Теперь рядом с ним встаёт второй: насколько хорошо они переносят полезное состояние через время.</p>
+
+    <p data-i18n="p15">Автономность без памяти — это длинный рывок с амнезией. Автономность с памятью — это смена, которая продолжается.</p>
+
+    <p data-i18n="p16">Поэтому конкуренция медленно уходит из плоскости «чья модель умнее в чате». Там уже тесно. Новый разрыв накапливается в другом месте:</p>
+
+    <ul class="checklist">
+      <li data-i18n="li11">кто меньше тратит токены на повторное понимание;</li>
+      <li data-i18n="li12">кто реже наступает на одни и те же грабли;</li>
+      <li data-i18n="li13">кто быстрее возвращается в рабочий контекст после сбоя;</li>
+      <li data-i18n="li14">кто умеет забывать вовремя.</li>
+    </ul>
+
+    <p data-i18n="p17">Последний пункт особенно важен. Взрослая система памяти умеет не только сохранять. Она умеет вытеснять, архивировать и признавать данные протухшими. Вечная память без политики устаревания со временем становится свалкой.</p>
+
+    <h2 data-i18n="h2e">Практический вывод</h2>
+
+    <p data-i18n="p18">Если вы оцениваете агента только по тому, как красиво он решает задачу с нуля, вы оцениваете стажёра на тестовом задании. Если хотите понять его ценность в проде, смотрите на другое:</p>
+
+    <ul class="checklist">
+      <li data-i18n="li15">что он помнит после вчерашнего запуска;</li>
+      <li data-i18n="li16">на какие источники состояния опирается;</li>
+      <li data-i18n="li17">как исправляет ложные воспоминания;</li>
+      <li data-i18n="li18">сколько лишней работы он перестаёт делать на третий день.</li>
+    </ul>
+
+    <p data-i18n="p19">Агент без памяти всегда будет впечатлять в первый час. Агент с хорошо устроенной памятью начинает выигрывать на второй неделе — когда накопленный контекст уже дороже сырого интеллекта.</p>
+
+    <p data-i18n="p20">И через год разница между ними будет выглядеть не как разница бенчмарков. Она будет выглядеть как разница в стоимости повторных ошибок.</p>
+
+    <hr>
+
+    <p data-i18n="footer">Если ваш агент уже действует — дайте ему возможность платить за себя самому. <a href="/generator">Создать платного агента</a> →</p>
+  </div>
+</article>
+</main>
+
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+
+  const embeddedRu = {
+    title: "Агент без памяти — это стажёр, который каждый день приходит на работу впервые",
+    metaDescription: "Самая недооценённая проблема ИИ-агентов — не интеллект, а отсутствие преемственности. Четыре уровня памяти, цена плохой памяти и почему память — это архитектура, а не механизм.",
+    nav: { back: "← Блог", home: "На сайт", lang: "🇬🇧 EN" },
+    backLink: "← Назад к блогу",
+    postDate: "4 августа 2026 · 5 мин чтения",
+    p1: "Самая недооценённая проблема ИИ-агентов — не интеллект. А отсутствие преемственности.",
+    p2: "Человек к середине рабочего дня уже несёт в голове слой контекста: что пробовали утром, какие файлы лучше не трогать, какой клиент бесится из-за задержки, какой деплой вчера едва не опрокинул прод. Даже усталость человека — это форма накопленного состояния. Агент же часто существует только внутри одного запуска. Сессия закончилась — и вместе с ней исчезли промежуточные выводы, ложные следы, удачные эвристики и дорогие ошибки.",
+    p3: "Именно поэтому демо агентов выглядят убедительно, а внедрение проседает. В демо ему дают чистую задачу, полный бриф и короткий горизонт. В реальности задача размазана по времени: вчерашние решения, чужие коммиты, устаревшая документация, противоречивые требования и половина правды в тикетах. Без памяти агент каждый раз заново проходит онбординг. Он может быть сильным. Но он каждый день — новый стажёр.",
+    h2a: "Память — это не один механизм",
+    p4: "Когда говорят «добавим memory», обычно смешивают несколько разных вещей.",
+    li1: "<strong>Контекстное окно.</strong> То, что модель видит прямо сейчас. Это не память в сильном смысле, а рабочий стол. Он большой, но конечный. И главное — временный.",
+    li2: "<strong>Рабочая память сессии.</strong> Цепочка шагов внутри одной задачи: что уже сделано, какие инструменты вызваны, какие гипотезы отпали. Если этого слоя нет, агент ходит кругами и повторно проверяет одно и то же.",
+    li3: "<strong>Долгая память между запусками.</strong> Предпочтения пользователя, правила проекта, история инцидентов, устойчивые факты. Здесь начинается ощущение, что система «продолжает работу», а не «начинает жизнь заново».",
+    li4: "<strong>Память среды.</strong> Репозиторий, база данных, статусы ботов, баланс кошелька, логи, CRM, очередь тикетов. Иногда лучшая память агента — не векторное хранилище, а аккуратная среда, из которой можно заново прочитать состояние мира.",
+    p5: "Сильные команды перестают романтизировать «память модели» и начинают проектировать память как архитектуру. Что должно жить в промпте, что — в файле, что — в базе, что — в логах, а что не должно сохраняться вообще.",
+    h2b: "Почему плохая память опаснее её отсутствия",
+    p6: "Отсутствие памяти делает агента дорогим и медленным. Плохая память делает его уверенно неправым.",
+    p7: "Если агент сохранил устаревший вывод вроде «этот endpoint всегда отвечает так», он будет строить следующий план на ложном фундаменте. Если запомнил случайную корреляцию как правило — начнёт воспроизводить её снова и снова. Если сохранил слишком много сырого шума — в нужный момент не найдёт важное.",
+    highlight1: "Память без критики — это не обучение. Это накопление осадка.",
+    p8: "Поэтому в серьёзных системах появляются простые, но жёсткие практики:",
+    li5: "сохранять не «мысли», а проверяемые факты;",
+    li6: "отделять факты от интерпретаций;",
+    li7: "писать, почему решение было принято;",
+    li8: "помечать источник и время;",
+    li9: "давать человеку право исправить или стереть запись;",
+    li10: "запрещать автосохранение выводов с низкой уверенностью.",
+    p9: "Иначе агент постепенно превращается в шкаф, набитый чужими черновиками.",
+    h2c: "Где память реально меняет экономику",
+    p10: "Возьмём три сценария.",
+    h3a: "Поддержка",
+    p11: "Агент без памяти каждый раз заново читает историю клиента и снова предлагает одно и то же «базовое решение». Агент с памятью видит, что клиент уже отверг этот путь, что проблема связана с конкретной версией и что прошлый эскалационный путь сработал.",
+    h3b: "Разработка",
+    p12: "Без памяти агент повторно исследует репозиторий, заново открывает одни и те же файлы, снова предлагает рефакторинг, который команда уже отвергла. С памятью он знает границы модуля, хрупкие места и стиль проекта.",
+    h3c: "Торговля и операции",
+    p13: "Без памяти система не видит, что похожий сигнал уже приводил к убытку в том же режиме рынка, или что бот уже запущен и новый запуск опасен. С памятью состояний она способна не только действовать, но и воздерживаться.",
+    highlight2: "Именно умение не повторять и не делать лишнего часто ценнее эффектного первого действия.",
+    h2d: "Настоящий сдвиг 2026 года",
+    p14: "Раньше вокруг агентов крутился вопрос: насколько далеко они могут пройти в одном запуске. Теперь рядом с ним встаёт второй: насколько хорошо они переносят полезное состояние через время.",
+    p15: "Автономность без памяти — это длинный рывок с амнезией. Автономность с памятью — это смена, которая продолжается.",
+    p16: "Поэтому конкуренция медленно уходит из плоскости «чья модель умнее в чате». Там уже тесно. Новый разрыв накапливается в другом месте:",
+    li11: "кто меньше тратит токены на повторное понимание;",
+    li12: "кто реже наступает на одни и те же грабли;",
+    li13: "кто быстрее возвращается в рабочий контекст после сбоя;",
+    li14: "кто умеет забывать вовремя.",
+    p17: "Последний пункт особенно важен. Взрослая система памяти умеет не только сохранять. Она умеет вытеснять, архивировать и признавать данные протухшими. Вечная память без политики устаревания со временем становится свалкой.",
+    h2e: "Практический вывод",
+    p18: "Если вы оцениваете агента только по тому, как красиво он решает задачу с нуля, вы оцениваете стажёра на тестовом задании. Если хотите понять его ценность в проде, смотрите на другое:",
+    li15: "что он помнит после вчерашнего запуска;",
+    li16: "на какие источники состояния опирается;",
+    li17: "как исправляет ложные воспоминания;",
+    li18: "сколько лишней работы он перестаёт делать на третий день.",
+    p19: "Агент без памяти всегда будет впечатлять в первый час. Агент с хорошо устроенной памятью начинает выигрывать на второй неделе — когда накопленный контекст уже дороже сырого интеллекта.",
+    p20: "И через год разница между ними будет выглядеть не как разница бенчмарков. Она будет выглядеть как разница в стоимости повторных ошибок.",
+    footer: "Если ваш агент уже действует — дайте ему возможность платить за себя самому. <a href=\"\/generator\">Создать платного агента</a> →"
+  };
+
+  const embeddedEn = {
+    title: "An agent without memory is an intern who comes to work for the first time every day",
+    metaDescription: "The most underestimated problem of AI agents is not intelligence — it's lack of continuity. Four levels of memory, the cost of bad memory, and why memory is architecture, not a mechanism.",
+    nav: { back: "← Blog", home: "Home", lang: "🇷🇺 RU" },
+    backLink: "← Back to blog",
+    postDate: "August 4, 2026 · 5 min read",
+    p1: "The most underestimated problem of AI agents is not intelligence. It's lack of continuity.",
+    p2: "By the middle of the workday, a human already carries a layer of context in their head: what was tried in the morning, which files are better left alone, which client is upset about a delay, which deploy almost broke production yesterday. Even a human's fatigue is a form of accumulated state. An agent, however, often exists only within a single run. The session ends — and with it disappear intermediate conclusions, false trails, useful heuristics, and expensive mistakes.",
+    p3: "That's why agent demos look convincing, while real adoption falls short. In a demo, you give it a clean task, a complete brief, and a short horizon. In reality, the task is spread across time: yesterday's decisions, other people's commits, outdated documentation, contradictory requirements, and half-truths in tickets. Without memory, the agent redoes its onboarding every time. It may be strong. But every day it's a new intern.",
+    h2a: "Memory is not one mechanism",
+    p4: "When people say 'let's add memory', they usually mix up several different things.",
+    li1: "<strong>The context window.</strong> What the model sees right now. This isn't memory in a strong sense — it's a desk. Large, but finite. And most importantly, temporary.",
+    li2: "<strong>Session working memory.</strong> The chain of steps within a single task: what's been done, which tools were called, which hypotheses fell away. Without this layer, the agent walks in circles and re-checks the same things.",
+    li3: "<strong>Long-term memory across runs.</strong> User preferences, project rules, incident history, durable facts. This is where the system starts to feel like it 'continues work' rather than 'starts life anew'.",
+    li4: "<strong>Environment memory.</strong> The repository, database, bot statuses, wallet balance, logs, CRM, ticket queue. Sometimes the agent's best memory isn't a vector store — it's a well-organized environment whose state can be re-read.",
+    p5: "Strong teams stop romanticizing 'model memory' and start designing memory as architecture. What should live in the prompt, what in a file, what in a database, what in logs — and what shouldn't be stored at all.",
+    h2b: "Why bad memory is more dangerous than no memory",
+    p6: "No memory makes an agent expensive and slow. Bad memory makes it confidently wrong.",
+    p7: "If an agent stored an outdated conclusion like 'this endpoint always responds this way', it will build its next plan on a false foundation. If it remembered a random correlation as a rule, it will reproduce it again and again. If it saved too much raw noise, it won't find what matters when it matters.",
+    highlight1: "Memory without critique is not learning. It's accumulation of sediment.",
+    p8: "That's why serious systems adopt simple but strict practices:",
+    li5: "store not 'thoughts' but verifiable facts;",
+    li6: "separate facts from interpretations;",
+    li7: "write down why a decision was made;",
+    li8: "mark the source and the time;",
+    li9: "give a human the right to correct or erase a record;",
+    li10: "forbid auto-saving low-confidence conclusions.",
+    p9: "Otherwise the agent gradually turns into a closet stuffed with other people's drafts.",
+    h2c: "Where memory actually changes the economics",
+    p10: "Let's take three scenarios.",
+    h3a: "Support",
+    p11: "An agent without memory re-reads the customer's history from scratch and again offers the same 'basic solution'. An agent with memory sees that the customer already rejected that path, that the issue is tied to a specific version, and that the previous escalation path worked.",
+    h3b: "Development",
+    p12: "Without memory, the agent re-explores the repository, reopens the same files, and again proposes a refactor the team already rejected. With memory, it knows the module's boundaries, its fragile spots, and the project's style.",
+    h3c: "Trading and operations",
+    p13: "Without memory, the system doesn't see that a similar signal already led to a loss in the same market regime, or that a bot is already running and a new launch is dangerous. With state memory, it can not only act — it can also abstain.",
+    highlight2: "The ability to not repeat and not do extra is often worth more than a flashy first move.",
+    h2d: "The real shift of 2026",
+    p14: "Previously, the question around agents was: how far can they go in a single run. Now a second question stands next to it: how well do they carry useful state across time.",
+    p15: "Autonomy without memory is a long sprint with amnesia. Autonomy with memory is a shift that continues.",
+    p16: "So competition is slowly moving away from 'whose model is smarter in chat'. It's crowded there. The new gap is accumulating elsewhere:",
+    li11: "who spends fewer tokens on re-understanding;",
+    li12: "who steps on the same rake less often;",
+    li13: "who gets back into working context faster after a failure;",
+    li14: "who knows how to forget on time.",
+    p17: "The last point matters most. A mature memory system doesn't just store. It evicts, archives, and admits that data has gone stale. Eternal memory without an eviction policy eventually becomes a dump.",
+    h2e: "The practical takeaway",
+    p18: "If you judge an agent only by how beautifully it solves a task from scratch, you're evaluating an intern on a test assignment. If you want to understand its value in production, look at something else:",
+    li15: "what it remembers after yesterday's run;",
+    li16: "which state sources it relies on;",
+    li17: "how it corrects false memories;",
+    li18: "how much redundant work it stops doing by day three.",
+    p19: "An agent without memory will always impress in the first hour. An agent with well-built memory starts winning in the second week — when accumulated context is already worth more than raw intelligence.",
+    p20: "And in a year, the difference between them won't look like a difference in benchmarks. It will look like a difference in the cost of repeated mistakes.",
+    footer: "If your agent already acts — give it the ability to pay for itself. <a href=\"\/generator\">Create a paid agent</a> →"
+  };
+
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        if (el.tagName === 'A' && el.classList.contains('lang-switch')) {
+          el.textContent = value;
+        } else {
+          el.innerHTML = value;
+        }
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          document.querySelectorAll('meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]').forEach(m => m.setAttribute('content', value));
+        }
+      }
+    });
+  }
+
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', '?lang=' + next);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>

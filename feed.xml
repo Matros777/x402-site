@@ -5,8 +5,15 @@
     <link>https://x402-ai-agent.space/blog/</link>
     <description>Articles about x402 protocol, AI agent payments, agentic economy, and autonomous agents.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 03 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 04 Aug 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://x402-ai-agent.space/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>An agent without memory is an intern who comes to work for the first time every day</title>
+      <link>https://x402-ai-agent.space/blog/agent-without-memory.html</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agent-without-memory.html</guid>
+      <pubDate>Tue, 04 Aug 2026 00:00:00 +0000</pubDate>
+      <description>Not intelligence, but lack of continuity is the most underestimated agent problem. Four levels of memory, the cost of bad memory, and why memory is architecture, not a mechanism.</description>
+    </item>
     <item>
       <title>OpenClaw + Pionex: how to build a cron agent for automated trading via MCP</title>
       <link>https://x402-ai-agent.space/blog/openclaw-pionex-cron-agent.html</link>
