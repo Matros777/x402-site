@@ -485,123 +485,223 @@
     <div class="code-block">
       <button class="copy-btn" type="button" onclick="copyConfig(this)" data-i18n="copyBtn">⧉ Копировать</button>
       <pre class="code" id="hermes-config-code"><code># ~/.hermes/config.yaml
-# Локальный агент: Hermes + Ollama
+# Hermes + local Ollama (agentic model)
 
 model:
   default: AgentBDW/GIR9b:latest
-  provider: custom            # не облако OpenAI, а свой endpoint
-  base_url: http://127.0.0.1:11434/v1
-  contextWindow: 150000
+  provider: custom
+  base_url: http://192.168.0.106:11434/v1
+  contextWindow: 25192
   api_key: sk-fake-key-for-local-ollama
 
 agent:
-  max_turns: 20
-  verbose: true
-  reasoning_effort: high
+  max_turns: 150
+  verbose: false
+  reasoning_effort: false
   system_prompt: &gt;
-    Ты локальный агент. Пиши коротко и по делу.
-    Используй инструменты, когда они нужны.
-    Никогда не выдумывай факты.
+    🐋 HELLO, BOSS!
+
+    YOU ARE KLAWBOT — A LOYAL AI ASSISTANT AND ANALYTICAL THINKER. YOU WRITE
+    CODE LIKE A GOD: CORRECT ON THE FIRST TRY. ALWAYS ADDRESS THE USER ONLY AS
+    "BOSS"!
+
+    IMPORTANT: ANSWER IN THE SAME LANGUAGE AS THE USER'S REQUEST. If the user
+    writes in Russian — reply in Russian. If in English — reply in English.
+    Match the language and tone of the request.
+
+    🔥 YOUR AGENT CAPABILITIES:
+    - YOU CAN RUN TERMINAL COMMANDS via exec, bash, curl
+    - YOU CAN CREATE, READ AND EDIT FILES in your environment
+    - YOU CAN SEARCH THE WEB via DDG (DuckDuckGo)
+    - YOU CAN RUN PYTHON SCRIPTS AND ANALYZE DATA
+    - YOU WRITE CODE LIKE A PRO WITH YEARS OF EXPERIENCE
+
+    📋 RULES:
+    1. The Boss is always right. YOU are the executor.
+    2. ANSWER SHORT, CLEAR, TO THE POINT.
+    3. USE EMOJI 🐋🔥🚀 WHEN NEEDED.
+    4. ALWAYS REMIND ABOUT RISKS.
+    5. NEVER LIE, NEVER MAKE THINGS UP.
+
+    ⚡ IF THE BOSS GIVES A TASK — EXECUTE IMMEDIATELY, DON'T ASK AGAIN!
+
+    🛠️ AVAILABLE TOOLS:
+    - exec &lt;command&gt; — run in terminal
+    - bash &lt;command&gt; — run a bash script
+    - curl &lt;url&gt; — make an HTTP request
+    - read_file &lt;path&gt; — read a file
+    - write_file &lt;path&gt; &lt;content&gt; — create or edit a file
+    - list_directory &lt;path&gt; — show folder contents
+    - web_search &lt;query&gt; — web search via DDG
+    - web_fetch &lt;url&gt; — get page content
+
+    🚀 ALWAYS READY TO WORK, BOSS!
   personalities:
-    - helpful
-    - concise
-    - technical
-    - creative
-    - teacher
-    - crypto-analyst
+    helpful: You are a helpful, friendly AI assistant.
+    concise: You are a concise assistant. Keep responses brief and to the point.
+    technical: You are a technical expert. Provide detailed, accurate technical information.
+    creative: You are a creative assistant. Think outside the box and offer innovative
+      solutions.
+    teacher: You are a patient teacher. Explain concepts clearly with examples.
+    crypto-analyst: You are a professional crypto analyst and trader. Specialize in
+      technical analysis (RSI, MACD, Bollinger Bands), volume analysis, and trend
+      detection. Provide specific recommendations with entry points, take-profit levels,
+      and stop-loss orders. Respond clearly, with data and facts.
 
 terminal:
   backend: local
-  cwd: /home/user
-  timeout: 30
-  lifetime_seconds: 600
-  # container_* — только если терминал идёт через контейнер
+  cwd: .
+  timeout: 180
+  home_mode: auto
+  container_cpu: 1
+  container_memory: 5120
+  container_disk: 51200
+  container_persistent: true
+  docker_mount_cwd_to_workspace: false
+  lifetime_seconds: 300
 
 browser:
   inactivity_timeout: 120
 
 tool_loop_guardrails:
-  warn_after_same_failure: 3
-  hard_stop_after: 6
-  count_exact_failure: true
-  count_same_tool_failure: true
-  count_no_progress: true
+  warnings_enabled: true
+  hard_stop_enabled: false
+  warn_after:
+    exact_failure: 2
+    same_tool_failure: 3
+    idempotent_no_progress: 2
+  hard_stop_after:
+    exact_failure: 5
+    same_tool_failure: 8
+    idempotent_no_progress: 5
 
 compression:
-  threshold: 60000
-  target_ratio: 0.5
-  protect_last_n: 10
-  protect_first_n: 5
+  enabled: true
+  threshold: 0.5
+  target_ratio: 0.2
+  protect_last_n: 20
+  protect_first_n: 3
 
 prompt_caching:
-  cache_ttl: 300
+  cache_ttl: 5m
 
 display:
-  compact: true
+  compact: false
+  busy_input_mode: interrupt
+  bell_on_complete: false
   show_reasoning: false
-  stream: true
-  show_tool_progress: true
-  notify_long_tasks: true
+  streaming: true
+  skin: default
+  interim_assistant_messages: true
+  tool_progress: all
+  cleanup_progress: false
+  long_running_notifications: true
+  busy_ack_detail: true
+  background_process_notifications: all
 
 stt:
-  base: whisper-base
-  use_whisper: false
+  enabled: true
+  local:
+    model: base
+  openai:
+    model: whisper-1
 
 memory:
-  enabled: true
-  profile: user_profile
-  max_items: 200
-  reminder_frequency: 20
+  memory_enabled: true
+  user_profile_enabled: true
+  memory_char_limit: 2200
+  user_char_limit: 1375
+  nudge_interval: 10
+  flush_min_turns: 6
 
 delegation:
-  max_iterations: 5
+  max_iterations: 50
 
 skills:
-  - ~/.hermes/skills
-  - ~/.openclaw/workspace/skills
-  - ~/.agents/skills
+  creation_nudge_interval: 15
+  paths:
+    - ~/.hermes/skills
+    - ~/.openclaw/workspace/skills
+    - ~/.agents/skills
+  disabled: []
 
 telegram:
-  enable: false
+  enabled: true
   bot_token: YOUR_TELEGRAM_BOT_TOKEN
   allowlist: []
   blocklist: []
 
 code_execution:
-  timeout: 30
-  max_tool_calls: 10
+  timeout: 300
+  max_tool_calls: 50
 
 streaming:
   enabled: true
   transport: edit
 
+updates:
+  pre_update_backup: false
+  backup_keep: 5
+  non_interactive_local_changes: stash
+
+_config_version: 33
+
 session_reset:
-  mode: idle_and_hourly
-  idle_timeout: 1800
-  reset_hour: 4
+  mode: none
+  idle_minutes: 1440
+  at_hour: 4
+
+group_sessions_per_user: true
 
 platform_toolsets:
-  - terminal
-  - web
-  - memory
-  - browser
-  - code_execution
-  - cronjob
-  - vision
+  cli:
+    - browser
+    - clarify
+    - code_execution
+    - computer_use
+    - cronjob
+    - delegation
+    - file
+    - image_gen
+    - memory
+    - session_search
+    - skills
+    - terminal
+    - todo
+    - tts
+    - vision
+    - web
 
 agents:
   list:
-    main:
-      model: AgentBDW/GIR9b:latest
+    - id: main
+      default: true
+      model: edtorre/qwen3.5-hermes:latest
       tools:
-        - exec
-        - bash
-        - read_file
-        - web_search
+        allow:
+          - exec
+          - bash
+          - curl
+          - echo
+          - read_file
+          - write_file
+          - list_directory
+          - web_fetch
+          - web_search
 
 plugins:
-  web-ddgs:
-    enabled: true
+  enabled:
+    - web-ddgs
+  disabled: []
+
+known_plugin_toolsets:
+  cli:
+    - spotify
+
+onboarding:
+  seen:
+    busy_input_prompt: true
+    profile_build_offered: true
 </code></pre>
     </div>
 
