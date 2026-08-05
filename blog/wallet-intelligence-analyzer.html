@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Wallet Intelligence: смотрим кошелёк сразу в 4 сетях</title>
+  <meta name="description" data-i18n="metaDescription" content="Новый инструмент на сайте: проверка любого EVM-кошелька в четырёх сетях — Ethereum, Base, Arbitrum, Polygon. Балансы, токены, NFT, переводы и Smart Summary. Ключ Alchemy — на сервере.">
+  <meta name="theme-color" content="#0a0a0a">
+  <!-- Open Graph -->
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/wallet-intelligence-analyzer">
+  <meta property="og:title" data-i18n="title" content="Wallet Intelligence: смотрим кошелёк сразу в 4 сетях — x402-ai-agent.space">
+  <meta property="og:description" data-i18n="metaDescription" content="Новый инструмент на сайте: проверка любого EVM-кошелька в четырёх сетях — Ethereum, Base, Arbitrum, Polygon. Балансы, токены, NFT, переводы и Smart Summary. Ключ Alchemy — на сервере.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/wallet-intelligence-cover.jpg">
+  <meta property="og:image:width" content="1168">
+  <meta property="og:image:height" content="784">
+  <meta property="og:locale" content="ru_RU">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="Wallet Intelligence: смотрим кошелёк сразу в 4 сетях — x402-ai-agent.space">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Новый инструмент на сайте: проверка любого EVM-кошелька в четырёх сетях — Ethereum, Base, Arbitrum, Polygon. Балансы, токены, NFT, переводы и Smart Summary. Ключ Alchemy — на сервере.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/wallet-intelligence-cover.jpg">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/wallet-intelligence-analyzer">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    /* Higher specificity overrides for style.css */
+    .article img {
+      display: block;
+      width: 100%;
+      max-width: 720px;
+      height: auto !important;
+      max-height: none !important;
+      object-fit: contain;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem) !important;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .article ul, .article ol {
+      margin: 16px 0 24px 24px;
+      color: #a3a3a3;
+    }
+    .article ul li, .article ol li {
+      margin-bottom: 8px;
+    }
+    .article pre.code {
+      background: #141414;
+      padding: 20px;
+      border-radius: var(--radius);
+      overflow-x: auto;
+      border: 1px solid #1a1a1a;
+      margin: 24px 0;
+    }
+    .article pre.code code {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: #e5e5e5;
+      line-height: 1.6;
+      white-space: pre;
+    }
+    .cta {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #f97316;
+      color: #111 !important;
+      border-radius: 9999px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+      margin: 8px 0;
+    }
+    .cta:hover {
+      background: #ea580c;
+    }
+    .article .muted {
+      color: #737373;
+      font-size: 0.95rem;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+<main>
+<article class="article">
+  <div class="wrap">
+    <img src="/assets/img/blog/wallet-intelligence-cover.jpg" alt="Wallet Intelligence — проверка кошелька в четырёх сетях" loading="lazy">
+    <h1 data-i18n="h1">Wallet Intelligence: смотрим кошелёк сразу в 4 сетях</h1>
+    <div class="meta" data-i18n="meta">2026-08-05 · 3 мин чтения</div>
+    <p data-i18n="p1">На сайте появился новый инструмент — <strong>Wallet Intelligence</strong>. Это страница <a href="/wallet-intelligence/">/wallet-intelligence/</a>, где можно проверить любой EVM-кошелёк по четырём сетям: Ethereum, Base, Arbitrum и Polygon. Без регистрации, без подключения кошелька — просто вставляешь адрес и получаешь сводку.</p>
+    <h2 data-i18n="h2_1">Что показывает</h2>
+    <p data-i18n="p2">Страница собирает по адресу всю базовую картину:</p>
+    <ul>
+      <li data-i18n="li1">баланс нативной монеты — ETH или MATIC;</li>
+      <li data-i18n="li2">запасы стейблкоинов USDC и USDT;</li>
+      <li data-i18n="li3">все ненулевые токены с балансами и контрактами;</li>
+      <li data-i18n="li4">количество NFT;</li>
+      <li data-i18n="li5">последние переводы с типом IN/OUT и ссылками на эксплорер.</li>
+    </ul>
+    <p data-i18n="p3">Плюс <strong>Smart Summary</strong> — короткая текстовая сводка профиля кошелька: доминируют ли стейблы, похож ли адрес на платёжный/DeFi-профиль, сколько NFT и какой объём переводов.</p>
+    <h2 data-i18n="h2_2">Как это устроено</h2>
+    <p data-i18n="p4">Запрос идёт через наш бэкенд — эндпоинт <code>/api/wallet</code>, который живёт в Cloudflare Worker. Ключ Alchemy хранится в серверной переменной <code>ALCHEMY_API_KEY</code> и до браузера не доезжает. Никакой утечки, даже если открыть страницу на чужом компьютере.</p>
+    <p data-i18n="p5">Сервер сам ходит в RPC за балансом и токенами, в NFT-API за коллекциями и считает переводы. Клиенту приходит готовый JSON, а страница только рисует его.</p>
+    <h2 data-i18n="h2_3">Зачем это x402</h2>
+    <p data-i18n="p6">Кошелёк — это платёжный профиль агента. Прежде чем агент начнёт платить за данные по протоколу x402, полезно понимать, что у него на балансе: хватит ли ETH на газ, есть ли USDC для микроплатежей, куда уходят переводы.</p>
+    <p data-i18n="p7">Wallet Intelligence — первый шаг «знай своего агента»: проверили адрес, увидели баланс, оценили активность. Дальше — лимиты бюджета и платежи через x402.</p>
+    <a class="cta" href="/wallet-intelligence/" data-i18n="cta">Попробовать Wallet Intelligence</a>
+    <p class="muted" data-i18n="p8">Проверить можно любой адрес — хоть свой, хоть адрес агента, хоть адрес знакомого кита. Просто откройте страницу и вставьте адрес в поле.</p>
+  </div>
+</article>
+</main>
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Wallet Intelligence: смотрим кошелёк сразу в 4 сетях",
+  "description": "Новый инструмент на сайте: проверка любого EVM-кошелька в четырёх сетях — Ethereum, Base, Arbitrum, Polygon. Балансы, токены, NFT, переводы и Smart Summary.",
+  "datePublished": "2026-08-05",
+  "author": {
+    "@type": "Organization",
+    "name": "x402-ai-agent.space"
+  },
+  "image": "https://x402-ai-agent.space/assets/img/blog/wallet-intelligence-cover.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Блог x402",
+      "item": "https://x402-ai-agent.space/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Wallet Intelligence: смотрим кошелёк сразу в 4 сетях",
+      "item": "https://x402-ai-agent.space/blog/wallet-intelligence-analyzer"
+    }
+  ]
+}
+</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+  const embeddedRu = {
+    title: "Wallet Intelligence: смотрим кошелёк сразу в 4 сетях — x402-ai-agent.space",
+    metaDescription: "Новый инструмент на сайте: проверка любого EVM-кошелька в четырёх сетях — Ethereum, Base, Arbitrum, Polygon. Балансы, токены, NFT, переводы и Smart Summary. Ключ Alchemy — на сервере.",
+    nav: { back: "← Блог", lang: "🇬🇧 EN" },
+    h1: "Wallet Intelligence: смотрим кошелёк сразу в 4 сетях",
+    meta: "2026-08-05 · 3 мин чтения",
+    p1: "На сайте появился новый инструмент — <strong>Wallet Intelligence</strong>. Это страница <a href=\"/wallet-intelligence/\">/wallet-intelligence/</a>, где можно проверить любой EVM-кошелёк по четырём сетям: Ethereum, Base, Arbitrum и Polygon. Без регистрации, без подключения кошелька — просто вставляешь адрес и получаешь сводку.",
+    h2_1: "Что показывает",
+    p2: "Страница собирает по адресу всю базовую картину:",
+    li1: "баланс нативной монеты — ETH или MATIC;",
+    li2: "запасы стейблкоинов USDC и USDT;",
+    li3: "все ненулевые токены с балансами и контрактами;",
+    li4: "количество NFT;",
+    li5: "последние переводы с типом IN/OUT и ссылками на эксплорер.",
+    p3: "Плюс <strong>Smart Summary</strong> — короткая текстовая сводка профиля кошелька: доминируют ли стейблы, похож ли адрес на платёжный/DeFi-профиль, сколько NFT и какой объём переводов.",
+    h2_2: "Как это устроено",
+    p4: "Запрос идёт через наш бэкенд — эндпоинт <code>/api/wallet</code>, который живёт в Cloudflare Worker. Ключ Alchemy хранится в серверной переменной <code>ALCHEMY_API_KEY</code> и до браузера не доезжает. Никакой утечки, даже если открыть страницу на чужом компьютере.",
+    p5: "Сервер сам ходит в RPC за балансом и токенами, в NFT-API за коллекциями и считает переводы. Клиенту приходит готовый JSON, а страница только рисует его.",
+    h2_3: "Зачем это x402",
+    p6: "Кошелёк — это платёжный профиль агента. Прежде чем агент начнёт платить за данные по протоколу x402, полезно понимать, что у него на балансе: хватит ли ETH на газ, есть ли USDC для микроплатежей, куда уходят переводы.",
+    p7: "Wallet Intelligence — первый шаг «знай своего агента»: проверили адрес, увидели баланс, оценили активность. Дальше — лимиты бюджета и платежи через x402.",
+    cta: "Попробовать Wallet Intelligence",
+    p8: "Проверить можно любой адрес — хоть свой, хоть адрес агента, хоть адрес знакомого кита. Просто откройте страницу и вставьте адрес в поле."
+  };
+  const embeddedEn = {
+    title: "Wallet Intelligence: inspect any wallet across 4 networks — x402-ai-agent.space",
+    metaDescription: "A new tool on the site: inspect any EVM wallet across four networks — Ethereum, Base, Arbitrum, Polygon. Balances, tokens, NFTs, transfers and a Smart Summary. Alchemy key is server-side.",
+    nav: { back: "← Blog", lang: "🇷🇺 RU" },
+    h1: "Wallet Intelligence: inspect any wallet across 4 networks",
+    meta: "2026-08-05 · 3 min read",
+    p1: "We added a new tool to the site — <strong>Wallet Intelligence</strong>. It's the <a href=\"/wallet-intelligence/\">/wallet-intelligence/</a> page where you can inspect any EVM wallet across four networks: Ethereum, Base, Arbitrum and Polygon. No registration, no wallet connection — just paste an address and get a summary.",
+    h2_1: "What it shows",
+    p2: "The page collects the full basic picture for an address:",
+    li1: "native coin balance — ETH or MATIC;",
+    li2: "USDC and USDT stablecoin holdings;",
+    li3: "all non-zero token balances with contracts;",
+    li4: "NFT count;",
+    li5: "recent transfers with IN/OUT type and explorer links.",
+    p3: "Plus a <strong>Smart Summary</strong> — a short text profile of the wallet: whether stables dominate, if the address looks like a payments/DeFi profile, NFT count and transfer volume.",
+    h2_2: "How it works",
+    p4: "The request goes through our backend — the <code>/api/wallet</code> endpoint running in a Cloudflare Worker. The Alchemy key lives in the server-side <code>ALCHEMY_API_KEY</code> variable and never reaches the browser. Nothing leaks, even if you open the page on a shared computer.",
+    p5: "The server queries the RPC for balances and tokens, the NFT API for collections, and counts transfers. The client gets ready JSON and the page just renders it.",
+    h2_3: "Why x402",
+    p6: "A wallet is an agent's payment profile. Before an agent starts paying for data via the x402 protocol, it helps to know what it holds: enough ETH for gas, USDC for micropayments, where the transfers go.",
+    p7: "Wallet Intelligence is the first step of «know your agent»: check the address, see the balance, evaluate activity. Next — budget limits and x402 payments.",
+    cta: "Try Wallet Intelligence",
+    p8: "You can check any address — your own, an agent's, or a whale's. Just open the page and paste the address into the field."
+  };
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        el.innerHTML = value;
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>

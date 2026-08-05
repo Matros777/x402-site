@@ -5,8 +5,15 @@
     <link>https://x402-ai-agent.space/blog/</link>
     <description>Articles about x402 protocol, AI agent payments, agentic economy, and autonomous agents.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 05 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 05 Aug 2026 22:56:00 +0000</lastBuildDate>
     <atom:link href="https://x402-ai-agent.space/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Wallet Intelligence: inspect any wallet across 4 networks</title>
+      <link>https://x402-ai-agent.space/blog/wallet-intelligence-analyzer</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/wallet-intelligence-analyzer</guid>
+      <pubDate>Wed, 05 Aug 2026 22:56:00 +0000</pubDate>
+      <description>A new tool on the site: inspect any EVM wallet across four networks — Ethereum, Base, Arbitrum, Polygon. Balances, tokens, NFTs, transfers and a Smart Summary. Alchemy key is server-side.</description>
+    </item>
     <item>
       <title>How to run local Ollama and connect an agentic model to Hermes</title>
       <link>https://x402-ai-agent.space/blog/local-ollama-hermes</link>

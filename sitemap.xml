@@ -25,6 +25,14 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Blog: wallet-intelligence-analyzer -->
+  <url>
+    <loc>https://x402-ai-agent.space/blog/wallet-intelligence-analyzer</loc>
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Blog: local-ollama-hermes -->
   <url>
     <loc>https://x402-ai-agent.space/blog/local-ollama-hermes</loc>
