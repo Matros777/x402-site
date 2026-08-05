@@ -499,12 +499,13 @@
 
     <p data-i18n="p44">Вставьте свой путь и модель, остальное — рабочие значения по умолчанию:</p>
 
+    <p data-i18n="p53">Файл: <code>~/.hermes/config.yaml</code>. Найти: <code>echo $HOME/.hermes/config.yaml</code> (Linux/macOS) или <code>%USERPROFILE%\.hermes\config.yaml</code> (Windows).</p>
+
+    <p data-i18n="p54">Как заменить: откройте файл редактором, вставьте конфиг ниже целиком, поменяйте <code>base_url</code> и <code>default</code> под себя, сохраните и перезапустите Hermes.</p>
+
     <div class="code-block">
       <button class="copy-btn" type="button" onclick="copyConfig(this)" data-i18n="copyBtn">⧉ Копировать</button>
-      <pre class="code" id="hermes-config-code"><code># ~/.hermes/config.yaml
-# Hermes + local Ollama (agentic model)
-
-model:
+      <pre class="code" id="hermes-config-code"><code>model:
   default: AgentBDW/GIR9b:latest
   provider: custom
   base_url: http://192.168.0.106:11434/v1
@@ -940,6 +941,8 @@ onboarding:
     p51: "Служебные флаги онбординга: какие подсказки уже показаны пользователю.",
     h2f: "Готовый конфиг",
     p44: "Вставьте свой путь и модель, остальное — рабочие значения по умолчанию:",
+    p53: "Файл: <code>~/.hermes/config.yaml</code>. Найти: <code>echo $HOME/.hermes/config.yaml</code> (Linux/macOS) или <code>%USERPROFILE%\\.hermes\\config.yaml</code> (Windows).",
+    p54: "Как заменить: откройте файл редактором, вставьте конфиг ниже целиком, поменяйте <code>base_url</code> и <code>default</code> под себя, сохраните и перезапустите Hermes.",
     copyBtn: "⧉ Копировать",
     h2g: "Минимальный порядок запуска",
     li66: "Установить Ollama",
@@ -1129,6 +1132,8 @@ onboarding:
     p51: "Service onboarding flags: which hints have already been shown to the user.",
     h2f: "Ready config",
     p44: "Paste your own path and model — the rest are working defaults:",
+    p53: "File: <code>~/.hermes/config.yaml</code>. Find it: <code>echo $HOME/.hermes/config.yaml</code> (Linux/macOS) or <code>%USERPROFILE%\\.hermes\\config.yaml</code> (Windows).",
+    p54: "How to replace it: open the file in an editor, paste the whole config below, adjust <code>base_url</code> and <code>default</code> for your setup, save, and restart Hermes.",
     copyBtn: "⧉ Copy",
     h2g: "Minimal launch sequence",
     li66: "Install Ollama",
