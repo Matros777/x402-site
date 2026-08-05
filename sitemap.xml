@@ -17,6 +17,14 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- Wallet Intelligence -->
+  <url>
+    <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Blog: local-ollama-hermes -->
   <url>
     <loc>https://x402-ai-agent.space/blog/local-ollama-hermes</loc>

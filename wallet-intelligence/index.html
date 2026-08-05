@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="yandex-verification" content="d9c78b212e08c0c4" />
+  <meta name="google-site-verification" content="kEP1_OVsa5NTmWuNILV9m_kpC__2tNtrouRnbHjJGo8" />
+  <title>Wallet Intelligence — Ethereum, Base, Arbitrum, Optimism, Polygon</title>
+  <meta name="description" content="Wallet analyzer for Ethereum, Base, Arbitrum, Optimism and Polygon: balances, tokens, NFTs, transfers and AI summary. Powered by Alchemy.">
+  <meta name="keywords" content="wallet analyzer, ethereum wallet checker, base wallet, arbitrum wallet, polygon wallet, wallet intelligence, x402">
+  <link rel="canonical" href="https://x402-ai-agent.space/wallet-intelligence/">
+  <meta property="og:title" content="Wallet Intelligence — multi-chain analyzer">
+  <meta property="og:description" content="Analyze wallets on Ethereum, Base, Arbitrum, Optimism and Polygon.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://x402-ai-agent.space/wallet-intelligence/">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/favicon/favicon-192.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg:#0b0d11; --bg-card:#12151c; --border:#1e2430; --text:#e6eaf0;
+      --muted:#8b93a7; --accent:#f97316; --accent-hover:#ea580c;
+      --green:#22c55e; --red:#ef4444; --code:#0f131a;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh}
+    .container{max-width:980px;margin:0 auto;padding:40px 20px 80px}
+    .topbar{display:flex;justify-content:flex-end;margin-bottom:18px}
+    .lang-switch{display:inline-flex;border:1px solid var(--border);border-radius:999px;overflow:hidden;background:var(--bg-card)}
+    .lang-switch button{border:none;background:transparent;color:var(--muted);padding:7px 12px;font-size:12px;font-weight:650;cursor:pointer}
+    .lang-switch button.active{background:rgba(249,115,22,.15);color:var(--accent)}
+    header{margin-bottom:28px}
+    .badge{display:inline-block;font-size:12px;color:var(--accent);border:1px solid rgba(249,115,22,.35);background:rgba(249,115,22,.08);padding:4px 10px;border-radius:999px;margin-bottom:14px}
+    h1{font-size:32px;font-weight:700;letter-spacing:-.03em;margin-bottom:10px}
+    .subtitle{color:var(--muted);font-size:16px;max-width:680px}
+    .card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:16px}
+    .card h2{font-size:15px;font-weight:600;margin-bottom:14px}
+    label{display:block;font-size:13px;color:var(--muted);margin-bottom:7px}
+    input,select{width:100%;background:var(--code);border:1px solid var(--border);border-radius:10px;color:var(--text);padding:12px 14px;font-size:14px;outline:none}
+    input:focus,select:focus{border-color:rgba(249,115,22,.55)}
+    .grid-2{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:14px}
+    .btn{background:var(--accent);color:#111;border:none;border-radius:10px;padding:12px 18px;font-size:14px;font-weight:650;cursor:pointer}
+    .btn:hover{background:var(--accent-hover)}
+    .btn:disabled{opacity:.55;cursor:not-allowed}
+    .muted{color:var(--muted);font-size:13px;margin-top:10px}
+    .hidden{display:none}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .stat{background:linear-gradient(180deg,rgba(249,115,22,.06),transparent);border:1px solid var(--border);border-radius:14px;padding:16px}
+    .stat .k{font-size:12px;color:var(--muted);margin-bottom:8px}
+    .stat .v{font-size:20px;font-weight:700;word-break:break-word}
+    .summary{background:var(--code);border:1px solid var(--border);border-radius:12px;padding:16px;font-size:14.5px;line-height:1.7;white-space:pre-wrap}
+    table{width:100%;border-collapse:collapse;font-size:13px}
+    th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--border)}
+    th{color:var(--muted);font-weight:600}
+    .pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid var(--border)}
+    .pill.in{color:var(--green);border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.08)}
+    .pill.out{color:var(--red);border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.08)}
+    a{color:var(--accent);text-decoration:none}
+    @media(max-width:800px){.stats{grid-template-columns:1fr 1fr}.grid-2{grid-template-columns:1fr}h1{font-size:26px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="lang-switch">
+        <button id="btnRu" class="active" onclick="setLang('ru')">RU</button>
+        <button id="btnEn" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+
+    <header>
+      <div class="badge">Wallet Intelligence</div>
+      <h1 data-i18n="title">Анализ кошелька · 5 сетей</h1>
+      <p class="subtitle" data-i18n="subtitle">Ethereum, Base, Arbitrum, Optimism, Polygon — балансы, токены, NFT, переводы и smart summary.</p>
+    </header>
+
+    <section class="card">
+      <h2 data-i18n="s1">1. Адрес</h2>
+      <div class="grid-2">
+        <div>
+          <label data-i18n="addr">Адрес кошелька</label>
+          <input id="address" type="text" placeholder="0x..." />
+        </div>
+        <div>
+          <label data-i18n="net">Сеть</label>
+          <select id="network">
+            <option value="base-mainnet">Base</option>
+            <option value="eth-mainnet">Ethereum</option>
+            <option value="arb-mainnet">Arbitrum</option>
+            <option value="opt-mainnet">Optimism</option>
+            <option value="polygon-mainnet">Polygon</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" id="runBtn" onclick="runAnalyze()" data-i18n="btn">Анализировать</button>
+      <p class="muted" data-i18n="note">Ключ Alchemy на сервере: переменная ALCHEMY_API_KEY</p>
+    </section>
+
+    <section class="card hidden" id="sumCard">
+      <h2 data-i18n="s2">2. Сводка</h2>
+      <div class="stats" id="stats"></div>
+    </section>
+
+    <section class="card hidden" id="aiCard">
+      <h2 data-i18n="s3">3. Smart Summary</h2>
+      <div class="summary" id="summary"></div>
+    </section>
+
+    <section class="card hidden" id="tokCard">
+      <h2 data-i18n="s4">4. Токены</h2>
+      <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>Token</th><th>Balance</th><th>Contract</th></tr></thead>
+          <tbody id="tokBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card hidden" id="txCard">
+      <h2 data-i18n="s5">5. Переводы</h2>
+      <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>Type</th><th>Asset</th><th>Value</th><th>Counterparty</th><th>Tx</th></tr></thead>
+          <tbody id="txBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const i18n = {
+      ru: {
+        title: "Анализ кошелька · 5 сетей",
+        subtitle: "Ethereum, Base, Arbitrum, Optimism, Polygon — балансы, токены, NFT, переводы и smart summary.",
+        s1: "1. Адрес", addr: "Адрес кошелька", net: "Сеть", btn: "Анализировать",
+        note: "Ключ Alchemy на сервере: переменная ALCHEMY_API_KEY",
+        s2: "2. Сводка", s3: "3. Smart Summary", s4: "4. Токены", s5: "5. Переводы",
+        loading: "Анализ...", errAddr: "Нужен адрес вида 0x...", err: "Ошибка"
+      },
+      en: {
+        title: "Wallet analyzer · 5 networks",
+        subtitle: "Ethereum, Base, Arbitrum, Optimism, Polygon — balances, tokens, NFTs, transfers and smart summary.",
+        s1: "1. Address", addr: "Wallet address", net: "Network", btn: "Analyze",
+        note: "Alchemy key is server-side: ALCHEMY_API_KEY",
+        s2: "2. Summary", s3: "3. Smart Summary", s4: "4. Tokens", s5: "5. Transfers",
+        loading: "Analyzing...", errAddr: "Need a valid 0x address", err: "Error"
+      }
+    };
+    let lang = localStorage.getItem("x402_wallet_lang") || "ru";
+    const $ = (id) => document.getElementById(id);
+    const short = (a) => a ? a.slice(0,6)+"…"+a.slice(-4) : "—";
+
+    function setLang(l) {
+      lang = l;
+      localStorage.setItem("x402_wallet_lang", l);
+      document.documentElement.lang = l;
+      $("btnRu").classList.toggle("active", l==="ru");
+      $("btnEn").classList.toggle("active", l==="en");
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const k = el.getAttribute("data-i18n");
+        if (i18n[l][k]) el.textContent = i18n[l][k];
+      });
+    }
+
+    function buildSummary(d) {
+      const inN = d.transfers.filter(t => t.direction === "in").length;
+      const outN = d.transfers.filter(t => t.direction === "out").length;
+      const stables = [];
+      if (Number(d.usdc) > 0) stables.push("USDC");
+      if (Number(d.usdt) > 0) stables.push("USDT");
+      if (lang === "ru") {
+        return `🧠 Профиль кошелька ${short(d.address)}
+🌐 Сеть: ${d.network}
+💰 ${d.nativeSymbol}: ${d.native}
+💵 Стейблкоины: ${stables.length ? stables.join(", ") : "не выделены"} (USDC ${d.usdc} · USDT ${d.usdt})
+🪙 Ненулевых токенов в выборке: ${d.tokens.length} (всего raw: ${d.tokenCount})
+🖼️ NFT: ${d.nfts}
+📥 Последние IN: ${inN} · 📤 OUT: ${outN}
+⚡ Эвристика: ${stables.length ? "похоже на платёжный/DeFi-профиль" : "стейблы в топе не доминируют"}
+⚠️ Не финсовет — только on-chain данные Alchemy.`;
+      }
+      return `🧠 Wallet profile ${short(d.address)}
+🌐 Network: ${d.network}
+💰 ${d.nativeSymbol}: ${d.native}
+💵 Stables: ${stables.length ? stables.join(", ") : "not highlighted"} (USDC ${d.usdc} · USDT ${d.usdt})
+🪙 Non-zero tokens in sample: ${d.tokens.length} (raw: ${d.tokenCount})
+🖼️ NFTs: ${d.nfts}
+📥 Recent IN: ${inN} · 📤 OUT: ${outN}
+⚡ Heuristic: ${stables.length ? "looks like payments/DeFi profile" : "stables not dominant in top"}
+⚠️ Not financial advice — Alchemy on-chain data only.`;
+    }
+
+    async function runAnalyze() {
+      const address = $("address").value.trim();
+      const network = $("network").value;
+      if (!/^0x[a-fA-F0-9]{40}$/.test(address)) {
+        alert(i18n[lang].errAddr); return;
+      }
+      $("runBtn").disabled = true;
+      $("runBtn").textContent = i18n[lang].loading;
+      try {
+        const res = await fetch(`/api/wallet?address=${encodeURIComponent(address)}&network=${encodeURIComponent(network)}`);
+        const d = await res.json();
+        if (!res.ok) throw new Error(d.error || i18n[lang].err);
+
+        $("sumCard").classList.remove("hidden");
+        $("stats").innerHTML = `
+          <div class="stat"><div class="k">💰 ${d.nativeSymbol}</div><div class="v">${d.native}</div></div>
+          <div class="stat"><div class="k">💵 USDC</div><div class="v">${d.usdc}</div></div>
+          <div class="stat"><div class="k">💵 USDT</div><div class="v">${d.usdt}</div></div>
+          <div class="stat"><div class="k">🖼️ NFT</div><div class="v">${d.nfts}</div></div>`;
+
+        $("aiCard").classList.remove("hidden");
+        $("summary").textContent = buildSummary(d);
+
+        $("tokCard").classList.remove("hidden");
+        $("tokBody").innerHTML = d.tokens.map(t => `
+          <tr>
+            <td>🪙 ${t.symbol}</td>
+            <td>${t.balance}</td>
+            <td><a href="${d.explorer}/token/${t.contract}" target="_blank" rel="noopener">${short(t.contract)}</a></td>
+          </tr>`).join("") || `<tr><td colspan="3">—</td></tr>`;
+
+        $("txCard").classList.remove("hidden");
+        $("txBody").innerHTML = d.transfers.map(t => `
+          <tr>
+            <td><span class="pill ${t.direction}">${t.direction === "in" ? "📥 IN" : "📤 OUT"}</span> ${t.category||""}</td>
+            <td>${t.asset||"—"}</td>
+            <td>${t.value ?? "—"}</td>
+            <td>${short(t.direction==="in"?t.from:t.to)}</td>
+            <td>${t.hash?`<a href="${d.explorer}/tx/${t.hash}" target="_blank" rel="noopener">${short(t.hash)}</a>`:"—"}</td>
+          </tr>`).join("") || `<tr><td colspan="5">—</td></tr>`;
+      } catch (e) {
+        alert(i18n[lang].err + ": " + e.message);
+      }
+      $("runBtn").disabled = false;
+      $("runBtn").textContent = i18n[lang].btn;
+    }
+
+    setLang(lang);
+  </script>
+</body>
+</html>
