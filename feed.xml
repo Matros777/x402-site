@@ -5,8 +5,15 @@
     <link>https://x402-ai-agent.space/blog/</link>
     <description>Articles about x402 protocol, AI agent payments, agentic economy, and autonomous agents.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 04 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 05 Aug 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://x402-ai-agent.space/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>How to run local Ollama and connect an agentic model to Hermes</title>
+      <link>https://x402-ai-agent.space/blog/local-ollama-hermes.html</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/local-ollama-hermes.html</guid>
+      <pubDate>Wed, 05 Aug 2026 00:00:00 +0000</pubDate>
+      <description>A local agent: Ollama, an agentic model, Hermes. Install, pull a model, connect via an OpenAI-compatible API, config.yaml explained block by block, and common mistakes.</description>
+    </item>
     <item>
       <title>OpenClaw 2026.7: a ready config with ASI1, Ollama, and free OpenRouter models</title>
       <link>https://x402-ai-agent.space/blog/openclaw-config-2026.html</link>

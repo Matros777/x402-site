@@ -191,6 +191,11 @@
     </div>
 
     <div class="grid">
+      <a class="post" href="/blog/local-ollama-hermes.html">
+        <div class="date">2026-08-05</div>
+        <h3 data-i18n="post28.title">Как поднять локальный Ollama и подключить агентскую модель к Hermes</h3>
+        <p data-i18n="post28.desc">Локальный агент: Ollama, агентская модель, Hermes. Установка, скачивание модели, подключение через OpenAI-совместимый API, разбор config.yaml по блокам и частые ошибки.</p>
+      </a>
       <a class="post" href="/blog/openclaw-config-2026.html">
         <div class="date">2026-08-04</div>
         <h3 data-i18n="post27.title">OpenClaw 2026.7: готовый конфиг с ASI1, Ollama и бесплатными моделями OpenRouter</h3>
@@ -394,7 +399,8 @@
     post24: { title: "Почему самые быстрые компании до $100M ARR теперь agentic", desc: "Agentic-компании проходят путь до $100M ARR заметно быстрее классического SaaS. Причина — форма продукта: агент закрывает целый участок работы, а не усиливает человека. Цена скорости — автономия, контроль и наблюдаемость." },
     post25: { title: "OpenClaw + Pionex: как собрать крон-агента для автоматической торговли через MCP", desc: "Крон-агент на OpenClaw, MCP Pionex, cron и Telegram: сканер PERP-пар по расписанию, проверка активных ботов, выбор сигнала и создание futures grid. Ключевое правило системы — уметь не торговать." },
     post26: { title: "Агент без памяти — это стажёр, который каждый день приходит на работу впервые", desc: "Не интеллект, а отсутствие преемственности — главная недооценённая проблема агентов. Четыре уровня памяти, цена плохой памяти и почему память — это архитектура, а не механизм." },
-    post27: { title: "OpenClaw 2026.7: готовый конфиг с ASI1, Ollama и бесплатными моделями OpenRouter", desc: "Рабочий каркас openclaw под 2026.7.x: Ollama локально, облачный ASI1, free-модели OpenRouter и MCP для торговли и web-research. Все секреты — плейсхолдеры." }
+    post27: { title: "OpenClaw 2026.7: готовый конфиг с ASI1, Ollama и бесплатными моделями OpenRouter", desc: "Рабочий каркас openclaw под 2026.7.x: Ollama локально, облачный ASI1, free-модели OpenRouter и MCP для торговли и web-research. Все секреты — плейсхолдеры." },
+    post28: { title: "Как поднять локальный Ollama и подключить агентскую модель к Hermes", desc: "Локальный агент: Ollama, агентская модель, Hermes. Установка, скачивание модели, подключение через OpenAI-совместимый API, разбор config.yaml по блокам и частые ошибки." }
   };
 
   const embeddedEn = {
@@ -432,7 +438,8 @@
     post24: { title: "Why the fastest companies to $100M ARR are now agentic", desc: "Agentic companies reach $100M ARR noticeably faster than classic SaaS. The reason is product form: an agent closes a whole slice of work instead of augmenting a human. The price of speed is autonomy, control, and observability." },
     post25: { title: "OpenClaw + Pionex: how to build a cron agent for automated trading via MCP", desc: "A cron agent on OpenClaw, Pionex MCP, cron, and Telegram: scheduled PERP scanning, active-bot checks, signal selection, and futures grid creation. The system's key rule — knowing when not to trade." },
     post26: { title: "An agent without memory is an intern who comes to work for the first time every day", desc: "Not intelligence, but lack of continuity is the most underestimated agent problem. Four levels of memory, the cost of bad memory, and why memory is architecture, not a mechanism." },
-    post27: { title: "OpenClaw 2026.7: a ready config with ASI1, Ollama, and free OpenRouter models", desc: "A working openclaw scaffold for 2026.7.x: local Ollama, cloud ASI1, free OpenRouter models, and MCP servers for trading and web research. Secrets are placeholders only." }
+    post27: { title: "OpenClaw 2026.7: a ready config with ASI1, Ollama, and free OpenRouter models", desc: "A working openclaw scaffold for 2026.7.x: local Ollama, cloud ASI1, free OpenRouter models, and MCP servers for trading and web research. Secrets are placeholders only." },
+    post28: { title: "How to run local Ollama and connect an agentic model to Hermes", desc: "A local agent: Ollama, an agentic model, Hermes. Install, pull a model, connect via an OpenAI-compatible API, config.yaml explained block by block, and common mistakes." }
   };
 
   function getNested(obj, path) {

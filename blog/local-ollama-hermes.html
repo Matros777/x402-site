@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Как поднять локальный Ollama и подключить агентскую модель к Hermes</title>
+  <meta name="description" data-i18n="metaDescription" content="Пошаговая инструкция: установка Ollama, скачивание агентской модели, подключение к Hermes через OpenAI-совместимый API. Разбор config.yaml по блокам, частые ошибки и готовый конфиг.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/local-ollama-hermes.html">
+  <meta property="og:title" data-i18n="title" content="Как поднять локальный Ollama и подключить агентскую модель к Hermes">
+  <meta property="og:description" data-i18n="metaDescription" content="Пошаговая инструкция: установка Ollama, скачивание агентской модели, подключение к Hermes через OpenAI-совместимый API. Разбор config.yaml по блокам, частые ошибки и готовый конфиг.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/local-ollama-hermes-cover.jpg">
+  <meta property="og:image:width" content="1168">
+  <meta property="og:image:height" content="784">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="Как поднять локальный Ollama и подключить агентскую модель к Hermes">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Пошаговая инструкция: установка Ollama, скачивание агентской модели, подключение к Hermes через OpenAI-совместимый API. Разбор config.yaml по блокам, частые ошибки и готовый конфиг.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/local-ollama-hermes-cover.jpg">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/local-ollama-hermes.html">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #ffffff;
+      --text-secondary: #c9c9c9;
+      --muted: #8f8f8f;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+      min-height: 100vh; display: flex; flex-direction: column;
+    }
+    .wrap { max-width: 680px; margin: 0 auto; padding: 0 16px; }
+    header.site {
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 12px 0; position: sticky; top: 0;
+      background: rgba(10,10,10,0.92); backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--text); }
+    .logo-img { width: 28px; height: 28px; border-radius: 6px; }
+    .logo span { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.02em; }
+    .logo span span { color: var(--muted); font-weight: 400; }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      color: var(--text-secondary); text-decoration: none;
+      font-size: 0.85rem; padding: 6px 10px; border-radius: var(--radius-xs);
+      transition: var(--transition); white-space: nowrap;
+    }
+    nav .link:hover { background: var(--bg-card); color: var(--text); }
+    .lang-switch { font-size: 0.8rem; padding: 4px 8px; }
+    @media (max-width: 480px) {
+      nav .link { font-size: 0.78rem; padding: 4px 6px; }
+    }
+    main { flex: 1; }
+    article { padding: 32px 0 48px; }
+    .back-link {
+      display: inline-block; color: var(--muted); text-decoration: none;
+      font-size: 0.85rem; margin-bottom: 8px; transition: var(--transition);
+    }
+    .back-link:hover { color: var(--text); }
+    .post-date {
+      font-size: 0.85rem; color: var(--muted); margin-bottom: 8px;
+    }
+    h1 {
+      font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em;
+      line-height: 1.3; margin-bottom: 24px;
+    }
+    .cover-img {
+      width: 100%; max-width: 640px;
+      aspect-ratio: 1168 / 784; height: auto;
+      border-radius: var(--radius); margin: 24px 0 32px;
+      border: 1px solid var(--border);
+      object-fit: cover;
+    }
+    h2 {
+      font-size: 1.5rem; font-weight: 600; margin: 40px 0 16px;
+      letter-spacing: -0.01em;
+    }
+    h3 {
+      font-size: 1.2rem; font-weight: 600; margin: 32px 0 12px;
+    }
+    p { margin-bottom: 20px; color: var(--text-secondary); }
+    p strong { color: var(--text); }
+    p a { color: var(--text); }
+    ul, ol { margin: 0 0 20px 24px; color: var(--text-secondary); }
+    li { margin-bottom: 8px; }
+    li strong { color: var(--text); }
+    hr {
+      border: none; border-top: 1px solid var(--border);
+      margin: 40px 0; opacity: 0.5;
+    }
+    .article pre.code {
+      background: #141414;
+      padding: 20px;
+      border-radius: var(--radius);
+      overflow-x: auto;
+      border: 1px solid #1a1a1a;
+      margin: 24px 0;
+      scrollbar-width: thin;
+      scrollbar-color: #3a3a3a #141414;
+    }
+    .article pre.code code {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.8rem;
+      color: #e5e5e5;
+      line-height: 1.6;
+      white-space: pre;
+    }
+    .article pre.code::-webkit-scrollbar { width: 8px; height: 8px; }
+    .article pre.code::-webkit-scrollbar-track { background: #141414; }
+    .article pre.code::-webkit-scrollbar-thumb { background: #3a3a3a; border-radius: 4px; }
+    .article pre.code::-webkit-scrollbar-thumb:hover { background: #4a4a4a; }
+    .code-block { position: relative; margin: 24px 0 32px; }
+    .copy-btn {
+      position: absolute; top: 12px; right: 12px; z-index: 2;
+      background: #222; color: #fff; border: 1px solid #333;
+      border-radius: var(--radius-xs); padding: 6px 12px;
+      font-size: 0.8rem; cursor: pointer; transition: var(--transition);
+      font-family: inherit;
+    }
+    .copy-btn:hover { background: #333; border-color: #444; }
+    .code-block pre.code { margin-top: 0; }
+    .highlight {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 24px;
+      margin: 24px 0; font-size: 0.95rem;
+    }
+    .highlight strong { color: var(--text); }
+    code {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.85em; color: var(--text);
+      background: var(--bg-card); padding: 2px 6px;
+      border-radius: 4px; border: 1px solid var(--border);
+    }
+    table {
+      width: 100%; border-collapse: collapse; margin: 24px 0;
+      font-size: 0.9rem;
+    }
+    th, td {
+      text-align: left; padding: 10px 12px;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+    th { background: var(--bg-card); color: var(--text); font-weight: 600; }
+    td code { color: var(--text); }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.6rem; }
+      h2 { font-size: 1.25rem; }
+      article { padding: 24px 0 40px; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 8px 10px; }
+    }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link" href="/" data-i18n="nav.home">На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article class="article">
+  <div class="wrap">
+    <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+    <img class="cover-img" src="/assets/img/blog/local-ollama-hermes-cover.jpg" alt="" loading="lazy">
+    <div class="post-date" data-i18n="postDate">5 августа 2026 · 10 мин чтения</div>
+    <h1 data-i18n="title">Как поднять локальный Ollama и подключить агентскую модель к Hermes</h1>
+
+    <p data-i18n="p1">Локальный агент — это когда модель крутится у вас на машине, а не в чужом облаке. Ниже — понятная инструкция: установить Ollama, скачать агентскую модель и разобрать конфиг Hermes по блокам. Без лишней магии, шаг за шагом.</p>
+
+    <h2 data-i18n="h2a">Зачем это нужно</h2>
+
+    <p data-i18n="p2">Облачные модели удобны, но:</p>
+
+    <ul>
+      <li data-i18n="li1">нужен интернет и API-ключ;</li>
+      <li data-i18n="li2">есть лимиты и задержки;</li>
+      <li data-i18n="li3">данные уходят во внешний сервис.</li>
+    </ul>
+
+    <p data-i18n="p3">Локальный стек даёт другое:</p>
+
+    <ul>
+      <li data-i18n="li4">модель работает в вашей сети;</li>
+      <li data-i18n="li5">можно выбрать «агентную» модель под код, терминал и инструменты;</li>
+      <li data-i18n="li6">Hermes подключается к Ollama как к обычному OpenAI-совместимому API.</li>
+    </ul>
+
+    <p data-i18n="p4">В этой схеме:</p>
+
+    <pre class="code"><code>Вы → Hermes → Ollama (локально) → модель AgentBDW/GIR9b или qwen3.5-hermes</code></pre>
+
+    <h2 data-i18n="h2b">Шаг 1. Установить Ollama</h2>
+
+    <p data-i18n="p5">На Linux:</p>
+
+    <pre class="code"><code>curl -fsSL https://ollama.com/install.sh | sh</code></pre>
+
+    <p data-i18n="p6">Проверка:</p>
+
+    <pre class="code"><code>ollama --version</code></pre>
+
+    <p data-i18n="p7">Запуск сервера:</p>
+
+    <pre class="code"><code>ollama serve</code></pre>
+
+    <p data-i18n="p8">По умолчанию Ollama слушает:</p>
+
+    <pre class="code"><code>http://127.0.0.1:11434</code></pre>
+
+    <p data-i18n="p9">Если Hermes стоит на другом устройстве в той же сети, Ollama должна быть доступна по LAN, например:</p>
+
+    <pre class="code"><code>http://192.168.0.106:11434</code></pre>
+
+    <p data-i18n="p10">Для этого Ollama должна слушать не только localhost, а нужный интерфейс. Проще всего проверить доступ со второй машины:</p>
+
+    <pre class="code"><code>curl http://192.168.0.106:11434/api/tags</code></pre>
+
+    <p data-i18n="p11">Если видите список моделей — сервер доступен.</p>
+
+    <h2 data-i18n="h2c">Шаг 2. Скачать агентскую модель</h2>
+
+    <p data-i18n="p12">Примеры:</p>
+
+    <pre class="code"><code>ollama pull AgentBDW/GIR9b:latest</code></pre>
+
+    <p data-i18n="p13">или:</p>
+
+    <pre class="code"><code>ollama pull edtorre/qwen3.5-hermes:latest</code></pre>
+
+    <p data-i18n="p14">Проверить, что модель на месте:</p>
+
+    <pre class="code"><code>ollama list</code></pre>
+
+    <p data-i18n="p15">Быстрый тест в терминале:</p>
+
+    <pre class="code"><code>ollama run AgentBDW/GIR9b:latest</code></pre>
+
+    <p data-i18n="p16">Если модель отвечает локально — можно подключать Hermes.</p>
+
+    <h2 data-i18n="h2d">Шаг 3. Подключить Hermes к Ollama</h2>
+
+    <p data-i18n="p17">В <code>~/.hermes/config.yaml</code> блок модели должен смотреть на ваш Ollama endpoint.</p>
+
+    <p data-i18n="p18">Смысл такой:</p>
+
+    <ul>
+      <li data-i18n="li7"><code>provider: custom</code> — не облако OpenAI, а свой endpoint</li>
+      <li data-i18n="li8"><code>base_url: http://192.168.0.106:11434/v1</code> — адрес Ollama в OpenAI-совместимом режиме</li>
+      <li data-i18n="li9"><code>api_key: sk-fake-key-for-local-ollama</code> — для локалки часто достаточно заглушки</li>
+      <li data-i18n="li10"><code>default: AgentBDW/GIR9b:latest</code> — какая модель используется по умолчанию</li>
+    </ul>
+
+    <p data-i18n="p19">Важно: путь именно с <code>/v1</code> на конце, если клиент ждёт OpenAI-style API.</p>
+
+    <h2 data-i18n="h2e">Разбор конфига: что за что отвечает</h2>
+
+    <p data-i18n="p20">Ниже — логика конфига простым языком. Сам YAML вы вставите на сайт отдельно.</p>
+
+    <h3 data-i18n="h3a">1. <code>model</code> — какая модель и откуда</h3>
+
+    <ul>
+      <li data-i18n="li11"><strong>default</strong> — основная модель агента</li>
+      <li data-i18n="li12"><strong>provider: custom</strong> — свой сервер, не стандартный SaaS</li>
+      <li data-i18n="li13"><strong>base_url</strong> — адрес Ollama</li>
+      <li data-i18n="li14"><strong>contextWindow</strong> — сколько контекста модель может держать в одном заходе</li>
+      <li data-i18n="li15"><strong>api_key</strong> — ключ; для локальной Ollama обычно фиктивный</li>
+    </ul>
+
+    <p data-i18n="p21">Это сердце связки Hermes ↔ Ollama.</p>
+
+    <h3 data-i18n="h3b">2. <code>agent</code> — характер и поведение</h3>
+
+    <ul>
+      <li data-i18n="li16"><strong>max_turns</strong> — сколько шагов агент может сделать в рамках задачи</li>
+      <li data-i18n="li17"><strong>verbose</strong> — подробные служебные логи</li>
+      <li data-i18n="li18"><strong>reasoning_effort</strong> — режим «думать дольше/глубже», если поддерживается</li>
+      <li data-i18n="li19"><strong>system_prompt</strong> — главный характер агента: как пишет, как обращается, что умеет, какие правила держит</li>
+      <li data-i18n="li20"><strong>personalities</strong> — готовые роли: helpful, concise, technical, creative, teacher, crypto-analyst</li>
+    </ul>
+
+    <p data-i18n="p22">System prompt здесь задаёт стиль: коротко, по делу, с инструментами, без выдуманных фактов.</p>
+
+    <h3 data-i18n="h3c">3. <code>terminal</code> — доступ к терминалу</h3>
+
+    <ul>
+      <li data-i18n="li21"><strong>backend: local</strong> — команды выполняются локально</li>
+      <li data-i18n="li22"><strong>cwd</strong> — рабочая директория</li>
+      <li data-i18n="li23"><strong>timeout</strong> — лимит времени на команду</li>
+      <li data-i18n="li24"><strong>container_*</strong> — ограничения, если терминал идёт через контейнер</li>
+      <li data-i18n="li25"><strong>lifetime_seconds</strong> — сколько живёт терминальная сессия</li>
+    </ul>
+
+    <p data-i18n="p23">Именно этот блок превращает чат-модель в агента, который реально запускает команды.</p>
+
+    <h3 data-i18n="h3d">4. <code>browser</code> — браузерный контур</h3>
+
+    <ul>
+      <li data-i18n="li26"><strong>inactivity_timeout</strong> — через сколько простоя браузерная сессия гасится</li>
+    </ul>
+
+    <p data-i18n="p24">Нужен, если агент умеет открывать страницы и работать с вебом не только через search API.</p>
+
+    <h3 data-i18n="h3e">5. <code>tool_loop_guardrails</code> — защита от зацикливания</h3>
+
+    <p data-i18n="p25">Агент иногда повторяет одну и ту же ошибку. Этот блок ограничивает такой цикл:</p>
+
+    <ul>
+      <li data-i18n="li27">предупреждения после нескольких одинаковых провалов</li>
+      <li data-i18n="li28">жёсткая остановка после большего числа повторов</li>
+      <li data-i18n="li29">отдельно считаются exact failure, same tool failure, no progress</li>
+    </ul>
+
+    <p data-i18n="p26">Это страховка от «агент крутится и жжёт ресурс».</p>
+
+    <h3 data-i18n="h3f">6. <code>compression</code> — сжатие истории</h3>
+
+    <p data-i18n="p27">Когда диалог разрастается, старые куски сжимаются:</p>
+
+    <ul>
+      <li data-i18n="li30"><strong>threshold</strong> — когда начинать сжатие</li>
+      <li data-i18n="li31"><strong>target_ratio</strong> — насколько агрессивно сжимать</li>
+      <li data-i18n="li32"><strong>protect_last_n / protect_first_n</strong> — что не трогать: свежие реплики и начало контекста</li>
+    </ul>
+
+    <p data-i18n="p28">Помогает не упираться в лимит context window слишком рано.</p>
+
+    <h3 data-i18n="h3g">7. <code>prompt_caching</code></h3>
+
+    <ul>
+      <li data-i18n="li33"><strong>cache_ttl</strong> — как долго кешировать повторяющиеся куски промпта</li>
+    </ul>
+
+    <p data-i18n="p29">Ускоряет повторные запросы и снижает лишнюю нагрузку.</p>
+
+    <h3 data-i18n="h3h">8. <code>display</code> — как выглядит работа в UI</h3>
+
+    <ul>
+      <li data-i18n="li34">компактность вывода</li>
+      <li data-i18n="li35">показывать ли reasoning</li>
+      <li data-i18n="li36">streaming ответа</li>
+      <li data-i18n="li37">прогресс tool-вызовов</li>
+      <li data-i18n="li38">уведомления о долгих задачах</li>
+    </ul>
+
+    <p data-i18n="p30">На поведение модели почти не влияет, на удобство — сильно.</p>
+
+    <h3 data-i18n="h3i">9. <code>stt</code> — речь в текст</h3>
+
+    <ul>
+      <li data-i18n="li39">локальная модель <code>base</code></li>
+      <li data-i18n="li40">опционально OpenAI Whisper</li>
+    </ul>
+
+    <p data-i18n="p31">Нужно, если хотите говорить с агентом голосом.</p>
+
+    <h3 data-i18n="h3j">10. <code>memory</code> — память между шагами и сессиями</h3>
+
+    <ul>
+      <li data-i18n="li41">включена ли память</li>
+      <li data-i18n="li42">профиль пользователя</li>
+      <li data-i18n="li43">лимиты объёма</li>
+      <li data-i18n="li44">как часто напоминать/сбрасывать накопленное</li>
+    </ul>
+
+    <p data-i18n="p32">Без памяти агент каждый раз как новый. С памятью — сохраняет полезный контекст.</p>
+
+    <h3 data-i18n="h3k">11. <code>delegation</code></h3>
+
+    <ul>
+      <li data-i18n="li45"><strong>max_iterations</strong> — сколько итераций можно отдать на делегирование подзадач</li>
+    </ul>
+
+    <p data-i18n="p33">Если агент умеет дробить большую задачу на части.</p>
+
+    <h3 data-i18n="h3l">12. <code>skills</code> — навыки</h3>
+
+    <p data-i18n="p34">Пути, откуда подхватываются skills:</p>
+
+    <pre class="code"><code>~/.hermes/skills
+~/.openclaw/workspace/skills
+~/.agents/skills</code></pre>
+
+    <p data-i18n="p35">Skills — это готовые сценарии и расширения, не сами веса модели.</p>
+
+    <h3 data-i18n="h3m">13. <code>telegram</code></h3>
+
+    <ul>
+      <li data-i18n="li46">включение бота</li>
+      <li data-i18n="li47">токен BotFather</li>
+      <li data-i18n="li48">allowlist / blocklist</li>
+    </ul>
+
+    <p data-i18n="p36">Через это агент становится доступен из Telegram.</p>
+    <p data-i18n="p37">Токен храните только у себя, в публичный пост не вставляйте.</p>
+
+    <h3 data-i18n="h3n">14. <code>code_execution</code></h3>
+
+    <ul>
+      <li data-i18n="li49">таймаут выполнения кода</li>
+      <li data-i18n="li50">лимит tool-вызовов</li>
+    </ul>
+
+    <p data-i18n="p38">Ограничивает, насколько долго и широко агент может гонять код.</p>
+
+    <h3 data-i18n="h3o">15. <code>streaming</code></h3>
+
+    <ul>
+      <li data-i18n="li51">стриминг ответа</li>
+      <li data-i18n="li52">transport: edit — обновление сообщения по ходу генерации</li>
+    </ul>
+
+    <p data-i18n="p39">Удобно в мессенджерах и CLI.</p>
+
+    <h3 data-i18n="h3p">16. <code>session_reset</code></h3>
+
+    <ul>
+      <li data-i18n="li53">когда сбрасывать сессию</li>
+      <li data-i18n="li54">idle-таймер</li>
+      <li data-i18n="li55">сброс в заданный час</li>
+    </ul>
+
+    <p data-i18n="p40">Нужно, чтобы старые диалоги не жили бесконечно.</p>
+
+    <h3 data-i18n="h3q">17. <code>platform_toolsets</code> / <code>agents.list</code> / <code>plugins</code></h3>
+
+    <p data-i18n="p41">Это список доступных классов инструментов:</p>
+
+    <ul>
+      <li data-i18n="li56">terminal</li>
+      <li data-i18n="li57">web</li>
+      <li data-i18n="li58">memory</li>
+      <li data-i18n="li59">browser</li>
+      <li data-i18n="li60">code_execution</li>
+      <li data-i18n="li61">cronjob</li>
+      <li data-i18n="li62">vision</li>
+      <li data-i18n="li63">и т.д.</li>
+    </ul>
+
+    <p data-i18n="p42">В <code>agents.list</code> задаётся конкретный агент:</p>
+
+    <ul>
+      <li data-i18n="li64">какая модель у <code>main</code></li>
+      <li data-i18n="li65">какие tools ему разрешены: <code>exec</code>, <code>bash</code>, <code>read_file</code>, <code>web_search</code> и др.</li>
+    </ul>
+
+    <p data-i18n="p43">Плагин <code>web-ddgs</code> — поиск через DuckDuckGo.</p>
+
+    <h2 data-i18n="h2f">Готовый конфиг</h2>
+
+    <p data-i18n="p44">Вставьте свой путь и модель, остальное — рабочие значения по умолчанию:</p>
+
+    <div class="code-block">
+      <button class="copy-btn" type="button" onclick="copyConfig(this)" data-i18n="copyBtn">⧉ Копировать</button>
+      <pre class="code" id="hermes-config-code"><code># ~/.hermes/config.yaml
+# Локальный агент: Hermes + Ollama
+
+model:
+  default: AgentBDW/GIR9b:latest
+  provider: custom            # не облако OpenAI, а свой endpoint
+  base_url: http://127.0.0.1:11434/v1
+  contextWindow: 150000
+  api_key: sk-fake-key-for-local-ollama
+
+agent:
+  max_turns: 20
+  verbose: true
+  reasoning_effort: high
+  system_prompt: &gt;
+    Ты локальный агент. Пиши коротко и по делу.
+    Используй инструменты, когда они нужны.
+    Никогда не выдумывай факты.
+  personalities:
+    - helpful
+    - concise
+    - technical
+    - creative
+    - teacher
+    - crypto-analyst
+
+terminal:
+  backend: local
+  cwd: /home/user
+  timeout: 30
+  lifetime_seconds: 600
+  # container_* — только если терминал идёт через контейнер
+
+browser:
+  inactivity_timeout: 120
+
+tool_loop_guardrails:
+  warn_after_same_failure: 3
+  hard_stop_after: 6
+  count_exact_failure: true
+  count_same_tool_failure: true
+  count_no_progress: true
+
+compression:
+  threshold: 60000
+  target_ratio: 0.5
+  protect_last_n: 10
+  protect_first_n: 5
+
+prompt_caching:
+  cache_ttl: 300
+
+display:
+  compact: true
+  show_reasoning: false
+  stream: true
+  show_tool_progress: true
+  notify_long_tasks: true
+
+stt:
+  base: whisper-base
+  use_whisper: false
+
+memory:
+  enabled: true
+  profile: user_profile
+  max_items: 200
+  reminder_frequency: 20
+
+delegation:
+  max_iterations: 5
+
+skills:
+  - ~/.hermes/skills
+  - ~/.openclaw/workspace/skills
+  - ~/.agents/skills
+
+telegram:
+  enable: false
+  bot_token: YOUR_TELEGRAM_BOT_TOKEN
+  allowlist: []
+  blocklist: []
+
+code_execution:
+  timeout: 30
+  max_tool_calls: 10
+
+streaming:
+  enabled: true
+  transport: edit
+
+session_reset:
+  mode: idle_and_hourly
+  idle_timeout: 1800
+  reset_hour: 4
+
+platform_toolsets:
+  - terminal
+  - web
+  - memory
+  - browser
+  - code_execution
+  - cronjob
+  - vision
+
+agents:
+  list:
+    main:
+      model: AgentBDW/GIR9b:latest
+      tools:
+        - exec
+        - bash
+        - read_file
+        - web_search
+
+plugins:
+  web-ddgs:
+    enabled: true
+</code></pre>
+    </div>
+
+    <h2 data-i18n="h2g">Минимальный порядок запуска</h2>
+
+    <ol>
+      <li data-i18n="li66">Установить Ollama</li>
+      <li data-i18n="li67"><code>ollama serve</code></li>
+      <li data-i18n="li68"><code>ollama pull AgentBDW/GIR9b:latest</code></li>
+      <li data-i18n="li69">Проверить <code>ollama list</code> и <code>curl .../api/tags</code></li>
+      <li data-i18n="li70">В Hermes прописать <code>base_url</code> на ваш Ollama <code>/v1</code></li>
+      <li data-i18n="li71">Указать <code>default</code> модель</li>
+      <li data-i18n="li72">Проверить system prompt и разрешённые tools</li>
+      <li data-i18n="li73">Запустить Hermes и дать простой тест:</li>
+    </ol>
+
+    <ul>
+      <li data-i18n="li74">«создай файл test.txt»</li>
+      <li data-i18n="li75">«выполни ls»</li>
+      <li data-i18n="li76">«найди в сети последние новости по Ollama»</li>
+    </ul>
+
+    <p data-i18n="p45">Если агент читает файлы, выполняет команды и отвечает через локальную модель — связка собрана правильно.</p>
+
+    <h2 data-i18n="h2h">Частые ошибки</h2>
+
+    <table>
+      <tr><th data-i18n="th1">Проблема</th><th data-i18n="th2">Что проверить</th></tr>
+      <tr><td data-i18n="td1">Hermes не видит модель</td><td data-i18n="td2"><code>ollama list</code>, правильный <code>base_url</code>, суффикс <code>/v1</code></td></tr>
+      <tr><td data-i18n="td3">Есть модель, но timeout</td><td data-i18n="td4"><code>ollama serve</code> запущен, порт 11434 открыт</td></tr>
+      <tr><td data-i18n="td5">Работает только на этой машине</td><td data-i18n="td6">адрес <code>192.168.x.x</code>, а не <code>127.0.0.1</code>, если клиент в сети</td></tr>
+      <tr><td data-i18n="td7">Агент «тупит» и повторяет ошибки</td><td data-i18n="td8">guardrails, max_turns, tool allow-list</td></tr>
+      <tr><td data-i18n="td9">Кончается контекст</td><td data-i18n="td10">compression, contextWindow, длина system prompt</td></tr>
+      <tr><td data-i18n="td11">Telegram молчит</td><td data-i18n="td12">bot token, webhook/polling, enable: true</td></tr>
+    </table>
+
+    <h2 data-i18n="h2i">Практический совет</h2>
+
+    <p data-i18n="p46">Для старта не усложняйте:</p>
+
+    <ol>
+      <li data-i18n="li77">Одна локальная агентская модель</li>
+      <li data-i18n="li78">Короткий system prompt</li>
+      <li data-i18n="li79">Минимум tools: файлы, терминал, web_search</li>
+      <li data-i18n="li80">Память включена умеренно</li>
+      <li data-i18n="li81">Guardrails включены</li>
+    </ol>
+
+    <p data-i18n="p47">Когда стабильно заработает — добавляйте browser, cron, delegation и отдельные personalities.</p>
+
+    <div class="highlight">
+      <p data-i18n="highlight1">Локальный Ollama плюс нормальный agent-config — это не просто «модель дома». Это ваш собственный исполнитель: без облачной аренды на каждый шаг и с полным контролем над тем, какие команды ему вообще можно давать.</p>
+    </div>
+
+    <hr>
+
+    <p data-i18n="footer">Если ваш агент уже действует — дайте ему возможность платить за себя самому. <a href="/generator">Создать платного агента</a> →</p>
+  </div>
+</article>
+</main>
+
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+
+  const embeddedRu = {
+    title: "Как поднять локальный Ollama и подключить агентскую модель к Hermes",
+    metaDescription: "Пошаговая инструкция: установка Ollama, скачивание агентской модели, подключение к Hermes через OpenAI-совместимый API. Разбор config.yaml по блокам, частые ошибки и готовый конфиг.",
+    nav: { back: "← Блог", home: "На сайт", lang: "🇬🇧 EN" },
+    backLink: "← Назад к блогу",
+    postDate: "5 августа 2026 · 10 мин чтения",
+    p1: "Локальный агент — это когда модель крутится у вас на машине, а не в чужом облаке. Ниже — понятная инструкция: установить Ollama, скачать агентскую модель и разобрать конфиг Hermes по блокам. Без лишней магии, шаг за шагом.",
+    h2a: "Зачем это нужно",
+    p2: "Облачные модели удобны, но:",
+    li1: "нужен интернет и API-ключ;",
+    li2: "есть лимиты и задержки;",
+    li3: "данные уходят во внешний сервис.",
+    p3: "Локальный стек даёт другое:",
+    li4: "модель работает в вашей сети;",
+    li5: "можно выбрать «агентную» модель под код, терминал и инструменты;",
+    li6: "Hermes подключается к Ollama как к обычному OpenAI-совместимому API.",
+    p4: "В этой схеме:",
+    h2b: "Шаг 1. Установить Ollama",
+    p5: "На Linux:",
+    p6: "Проверка:",
+    p7: "Запуск сервера:",
+    p8: "По умолчанию Ollama слушает:",
+    p9: "Если Hermes стоит на другом устройстве в той же сети, Ollama должна быть доступна по LAN, например:",
+    p10: "Для этого Ollama должна слушать не только localhost, а нужный интерфейс. Проще всего проверить доступ со второй машины:",
+    p11: "Если видите список моделей — сервер доступен.",
+    h2c: "Шаг 2. Скачать агентскую модель",
+    p12: "Примеры:",
+    p13: "или:",
+    p14: "Проверить, что модель на месте:",
+    p15: "Быстрый тест в терминале:",
+    p16: "Если модель отвечает локально — можно подключать Hermes.",
+    h2d: "Шаг 3. Подключить Hermes к Ollama",
+    p17: "В <code>~/.hermes/config.yaml</code> блок модели должен смотреть на ваш Ollama endpoint.",
+    p18: "Смысл такой:",
+    li7: "<code>provider: custom</code> — не облако OpenAI, а свой endpoint",
+    li8: "<code>base_url: http://192.168.0.106:11434/v1</code> — адрес Ollama в OpenAI-совместимом режиме",
+    li9: "<code>api_key: sk-fake-key-for-local-ollama</code> — для локалки часто достаточно заглушки",
+    li10: "<code>default: AgentBDW/GIR9b:latest</code> — какая модель используется по умолчанию",
+    p19: "Важно: путь именно с <code>/v1</code> на конце, если клиент ждёт OpenAI-style API.",
+    h2e: "Разбор конфига: что за что отвечает",
+    p20: "Ниже — логика конфига простым языком. Сам YAML вы вставите на сайт отдельно.",
+    h3a: "1. <code>model</code> — какая модель и откуда",
+    li11: "<strong>default</strong> — основная модель агента",
+    li12: "<strong>provider: custom</strong> — свой сервер, не стандартный SaaS",
+    li13: "<strong>base_url</strong> — адрес Ollama",
+    li14: "<strong>contextWindow</strong> — сколько контекста модель может держать в одном заходе",
+    li15: "<strong>api_key</strong> — ключ; для локальной Ollama обычно фиктивный",
+    p21: "Это сердце связки Hermes ↔ Ollama.",
+    h3b: "2. <code>agent</code> — характер и поведение",
+    li16: "<strong>max_turns</strong> — сколько шагов агент может сделать в рамках задачи",
+    li17: "<strong>verbose</strong> — подробные служебные логи",
+    li18: "<strong>reasoning_effort</strong> — режим «думать дольше/глубже», если поддерживается",
+    li19: "<strong>system_prompt</strong> — главный характер агента: как пишет, как обращается, что умеет, какие правила держит",
+    li20: "<strong>personalities</strong> — готовые роли: helpful, concise, technical, creative, teacher, crypto-analyst",
+    p22: "System prompt здесь задаёт стиль: коротко, по делу, с инструментами, без выдуманных фактов.",
+    h3c: "3. <code>terminal</code> — доступ к терминалу",
+    li21: "<strong>backend: local</strong> — команды выполняются локально",
+    li22: "<strong>cwd</strong> — рабочая директория",
+    li23: "<strong>timeout</strong> — лимит времени на команду",
+    li24: "<strong>container_*</strong> — ограничения, если терминал идёт через контейнер",
+    li25: "<strong>lifetime_seconds</strong> — сколько живёт терминальная сессия",
+    p23: "Именно этот блок превращает чат-модель в агента, который реально запускает команды.",
+    h3d: "4. <code>browser</code> — браузерный контур",
+    li26: "<strong>inactivity_timeout</strong> — через сколько простоя браузерная сессия гасится",
+    p24: "Нужен, если агент умеет открывать страницы и работать с вебом не только через search API.",
+    h3e: "5. <code>tool_loop_guardrails</code> — защита от зацикливания",
+    p25: "Агент иногда повторяет одну и ту же ошибку. Этот блок ограничивает такой цикл:",
+    li27: "предупреждения после нескольких одинаковых провалов",
+    li28: "жёсткая остановка после большего числа повторов",
+    li29: "отдельно считаются exact failure, same tool failure, no progress",
+    p26: "Это страховка от «агент крутится и жжёт ресурс».",
+    h3f: "6. <code>compression</code> — сжатие истории",
+    p27: "Когда диалог разрастается, старые куски сжимаются:",
+    li30: "<strong>threshold</strong> — когда начинать сжатие",
+    li31: "<strong>target_ratio</strong> — насколько агрессивно сжимать",
+    li32: "<strong>protect_last_n / protect_first_n</strong> — что не трогать: свежие реплики и начало контекста",
+    p28: "Помогает не упираться в лимит context window слишком рано.",
+    h3g: "7. <code>prompt_caching</code>",
+    li33: "<strong>cache_ttl</strong> — как долго кешировать повторяющиеся куски промпта",
+    p29: "Ускоряет повторные запросы и снижает лишнюю нагрузку.",
+    h3h: "8. <code>display</code> — как выглядит работа в UI",
+    li34: "компактность вывода",
+    li35: "показывать ли reasoning",
+    li36: "streaming ответа",
+    li37: "прогресс tool-вызовов",
+    li38: "уведомления о долгих задачах",
+    p30: "На поведение модели почти не влияет, на удобство — сильно.",
+    h3i: "9. <code>stt</code> — речь в текст",
+    li39: "локальная модель <code>base</code>",
+    li40: "опционально OpenAI Whisper",
+    p31: "Нужно, если хотите говорить с агентом голосом.",
+    h3j: "10. <code>memory</code> — память между шагами и сессиями",
+    li41: "включена ли память",
+    li42: "профиль пользователя",
+    li43: "лимиты объёма",
+    li44: "как часто напоминать/сбрасывать накопленное",
+    p32: "Без памяти агент каждый раз как новый. С памятью — сохраняет полезный контекст.",
+    h3k: "11. <code>delegation</code>",
+    li45: "<strong>max_iterations</strong> — сколько итераций можно отдать на делегирование подзадач",
+    p33: "Если агент умеет дробить большую задачу на части.",
+    h3l: "12. <code>skills</code> — навыки",
+    p34: "Пути, откуда подхватываются skills:",
+    p35: "Skills — это готовые сценарии и расширения, не сами веса модели.",
+    h3m: "13. <code>telegram</code>",
+    li46: "включение бота",
+    li47: "токен BotFather",
+    li48: "allowlist / blocklist",
+    p36: "Через это агент становится доступен из Telegram.",
+    p37: "Токен храните только у себя, в публичный пост не вставляйте.",
+    h3n: "14. <code>code_execution</code>",
+    li49: "таймаут выполнения кода",
+    li50: "лимит tool-вызовов",
+    p38: "Ограничивает, насколько долго и широко агент может гонять код.",
+    h3o: "15. <code>streaming</code>",
+    li51: "стриминг ответа",
+    li52: "transport: edit — обновление сообщения по ходу генерации",
+    p39: "Удобно в мессенджерах и CLI.",
+    h3p: "16. <code>session_reset</code>",
+    li53: "когда сбрасывать сессию",
+    li54: "idle-таймер",
+    li55: "сброс в заданный час",
+    p40: "Нужно, чтобы старые диалоги не жили бесконечно.",
+    h3q: "17. <code>platform_toolsets</code> / <code>agents.list</code> / <code>plugins</code>",
+    p41: "Это список доступных классов инструментов:",
+    li56: "terminal",
+    li57: "web",
+    li58: "memory",
+    li59: "browser",
+    li60: "code_execution",
+    li61: "cronjob",
+    li62: "vision",
+    li63: "и т.д.",
+    p42: "В <code>agents.list</code> задаётся конкретный агент:",
+    li64: "какая модель у <code>main</code>",
+    li65: "какие tools ему разрешены: <code>exec</code>, <code>bash</code>, <code>read_file</code>, <code>web_search</code> и др.",
+    p43: "Плагин <code>web-ddgs</code> — поиск через DuckDuckGo.",
+    h2f: "Готовый конфиг",
+    p44: "Вставьте свой путь и модель, остальное — рабочие значения по умолчанию:",
+    copyBtn: "⧉ Копировать",
+    h2g: "Минимальный порядок запуска",
+    li66: "Установить Ollama",
+    li67: "<code>ollama serve</code>",
+    li68: "<code>ollama pull AgentBDW/GIR9b:latest</code>",
+    li69: "Проверить <code>ollama list</code> и <code>curl .../api/tags</code>",
+    li70: "В Hermes прописать <code>base_url</code> на ваш Ollama <code>/v1</code>",
+    li71: "Указать <code>default</code> модель",
+    li72: "Проверить system prompt и разрешённые tools",
+    li73: "Запустить Hermes и дать простой тест:",
+    li74: "«создай файл test.txt»",
+    li75: "«выполни ls»",
+    li76: "«найди в сети последние новости по Ollama»",
+    p45: "Если агент читает файлы, выполняет команды и отвечает через локальную модель — связка собрана правильно.",
+    h2h: "Частые ошибки",
+    th1: "Проблема",
+    th2: "Что проверить",
+    td1: "Hermes не видит модель",
+    td2: "<code>ollama list</code>, правильный <code>base_url</code>, суффикс <code>/v1</code>",
+    td3: "Есть модель, но timeout",
+    td4: "<code>ollama serve</code> запущен, порт 11434 открыт",
+    td5: "Работает только на этой машине",
+    td6: "адрес <code>192.168.x.x</code>, а не <code>127.0.0.1</code>, если клиент в сети",
+    td7: "Агент «тупит» и повторяет ошибки",
+    td8: "guardrails, max_turns, tool allow-list",
+    td9: "Кончается контекст",
+    td10: "compression, contextWindow, длина system prompt",
+    td11: "Telegram молчит",
+    td12: "bot token, webhook/polling, enable: true",
+    h2i: "Практический совет",
+    p46: "Для старта не усложняйте:",
+    li77: "Одна локальная агентская модель",
+    li78: "Короткий system prompt",
+    li79: "Минимум tools: файлы, терминал, web_search",
+    li80: "Память включена умеренно",
+    li81: "Guardrails включены",
+    p47: "Когда стабильно заработает — добавляйте browser, cron, delegation и отдельные personalities.",
+    highlight1: "Локальный Ollama плюс нормальный agent-config — это не просто «модель дома». Это ваш собственный исполнитель: без облачной аренды на каждый шаг и с полным контролем над тем, какие команды ему вообще можно давать.",
+    footer: "Если ваш агент уже действует — дайте ему возможность платить за себя самому. <a href=\"\/generator\">Создать платного агента</a> →"
+  };
+
+  const embeddedEn = {
+    title: "How to run local Ollama and connect an agentic model to Hermes",
+    metaDescription: "A step-by-step guide: install Ollama, pull an agentic model, and connect it to Hermes via an OpenAI-compatible API. config.yaml explained block by block, common mistakes, and a ready config.",
+    nav: { back: "← Blog", home: "Home", lang: "🇷🇺 RU" },
+    backLink: "← Back to blog",
+    postDate: "August 5, 2026 · 10 min read",
+    p1: "A local agent is when the model runs on your own machine, not in someone else's cloud. Below is a clear guide: install Ollama, pull an agentic model, and walk through the Hermes config block by block. No magic, just steps.",
+    h2a: "Why you need this",
+    p2: "Cloud models are convenient, but:",
+    li1: "you need internet and an API key;",
+    li2: "there are limits and latency;",
+    li3: "data leaves your machine to an external service.",
+    p3: "A local stack gives you something different:",
+    li4: "the model runs inside your own network;",
+    li5: "you can pick an 'agentic' model built for code, terminal, and tools;",
+    li6: "Hermes talks to Ollama as if it were a regular OpenAI-compatible API.",
+    p4: "The scheme:",
+    h2b: "Step 1. Install Ollama",
+    p5: "On Linux:",
+    p6: "Verify:",
+    p7: "Start the server:",
+    p8: "By default Ollama listens on:",
+    p9: "If Hermes runs on another device on the same network, Ollama must be reachable over LAN, for example:",
+    p10: "For that, Ollama must listen not only on localhost but on the right interface. The simplest check from a second machine:",
+    p11: "If you see the model list — the server is reachable.",
+    h2c: "Step 2. Pull an agentic model",
+    p12: "Examples:",
+    p13: "or:",
+    p14: "Check that the model is in place:",
+    p15: "Quick terminal test:",
+    p16: "If the model answers locally — you're ready to connect Hermes.",
+    h2d: "Step 3. Connect Hermes to Ollama",
+    p17: "In <code>~/.hermes/config.yaml</code> the model block must point to your Ollama endpoint.",
+    p18: "The idea:",
+    li7: "<code>provider: custom</code> — not the OpenAI cloud, but your own endpoint",
+    li8: "<code>base_url: http://192.168.0.106:11434/v1</code> — Ollama address in OpenAI-compatible mode",
+    li9: "<code>api_key: sk-fake-key-for-local-ollama</code> — a placeholder is usually enough for local use",
+    li10: "<code>default: AgentBDW/GIR9b:latest</code> — the default model",
+    p19: "Important: the path must end with <code>/v1</code> if the client expects an OpenAI-style API.",
+    h2e: "Config breakdown: what does what",
+    p20: "Below is the config logic in plain language. The YAML itself is included separately.",
+    h3a: "1. <code>model</code> — which model and from where",
+    li11: "<strong>default</strong> — the agent's main model",
+    li12: "<strong>provider: custom</strong> — your own server, not standard SaaS",
+    li13: "<strong>base_url</strong> — Ollama address",
+    li14: "<strong>contextWindow</strong> — how much context the model can hold in one run",
+    li15: "<strong>api_key</strong> — the key; usually fake for local Ollama",
+    p21: "This is the heart of the Hermes ↔ Ollama connection.",
+    h3b: "2. <code>agent</code> — character and behavior",
+    li16: "<strong>max_turns</strong> — how many steps the agent can take within a task",
+    li17: "<strong>verbose</strong> — detailed service logs",
+    li18: "<strong>reasoning_effort</strong> — a 'think longer/deeper' mode, if supported",
+    li19: "<strong>system_prompt</strong> — the agent's main character: how it writes, addresses, what it can do, what rules it keeps",
+    li20: "<strong>personalities</strong> — ready roles: helpful, concise, technical, creative, teacher, crypto-analyst",
+    p22: "The system prompt sets the style: short, to the point, with tools, no invented facts.",
+    h3c: "3. <code>terminal</code> — terminal access",
+    li21: "<strong>backend: local</strong> — commands run locally",
+    li22: "<strong>cwd</strong> — working directory",
+    li23: "<strong>timeout</strong> — time limit per command",
+    li24: "<strong>container_*</strong> — limits if the terminal runs through a container",
+    li25: "<strong>lifetime_seconds</strong> — how long a terminal session lives",
+    p23: "This block is what turns a chat model into an agent that actually runs commands.",
+    h3d: "4. <code>browser</code> — browser loop",
+    li26: "<strong>inactivity_timeout</strong> — after how much idle time the browser session is shut down",
+    p24: "Needed if the agent can open pages and work with the web beyond a search API.",
+    h3e: "5. <code>tool_loop_guardrails</code> — loop protection",
+    p25: "An agent sometimes repeats the same mistake. This block limits such a cycle:",
+    li27: "warnings after several identical failures",
+    li28: "a hard stop after a larger number of repeats",
+    li29: "exact failure, same tool failure, and no progress are counted separately",
+    p26: "Insurance against 'the agent spins in circles and burns resources'.",
+    h3f: "6. <code>compression</code> — history compression",
+    p27: "When the conversation grows, old chunks get compressed:",
+    li30: "<strong>threshold</strong> — when compression starts",
+    li31: "<strong>target_ratio</strong> — how aggressively to compress",
+    li32: "<strong>protect_last_n / protect_first_n</strong> — what to keep: fresh replies and the start of the context",
+    p28: "Helps avoid hitting the context window limit too early.",
+    h3g: "7. <code>prompt_caching</code>",
+    li33: "<strong>cache_ttl</strong> — how long to cache repeated prompt chunks",
+    p29: "Speeds up repeated requests and reduces extra load.",
+    h3h: "8. <code>display</code> — how work looks in the UI",
+    li34: "compact output",
+    li35: "whether to show reasoning",
+    li36: "response streaming",
+    li37: "tool-call progress",
+    li38: "notifications for long tasks",
+    p30: "Hardly affects model behavior, but affects comfort a lot.",
+    h3i: "9. <code>stt</code> — speech to text",
+    li39: "local <code>base</code> model",
+    li40: "optionally OpenAI Whisper",
+    p31: "Needed if you want to talk to the agent by voice.",
+    h3j: "10. <code>memory</code> — memory between steps and sessions",
+    li41: "whether memory is enabled",
+    li42: "user profile",
+    li43: "volume limits",
+    li44: "how often to remind/reset what's accumulated",
+    p32: "Without memory the agent is new every time. With memory it keeps useful context.",
+    h3k: "11. <code>delegation</code>",
+    li45: "<strong>max_iterations</strong> — how many iterations can be spent delegating subtasks",
+    p33: "If the agent can split a big task into parts.",
+    h3l: "12. <code>skills</code> — skills",
+    p34: "Paths where skills are picked up:",
+    p35: "Skills are ready-made scenarios and extensions, not model weights.",
+    h3m: "13. <code>telegram</code>",
+    li46: "enable the bot",
+    li47: "BotFather token",
+    li48: "allowlist / blocklist",
+    p36: "This makes the agent reachable from Telegram.",
+    p37: "Keep the token to yourself, don't put it in a public post.",
+    h3n: "14. <code>code_execution</code>",
+    li49: "code execution timeout",
+    li50: "tool-call limit",
+    p38: "Limits how long and how wide the agent can run code.",
+    h3o: "15. <code>streaming</code>",
+    li51: "response streaming",
+    li52: "transport: edit — updating the message as it generates",
+    p39: "Handy in messengers and CLI.",
+    h3p: "16. <code>session_reset</code>",
+    li53: "when to reset the session",
+    li54: "idle timer",
+    li55: "reset at a given hour",
+    p40: "Needed so old dialogs don't live forever.",
+    h3q: "17. <code>platform_toolsets</code> / <code>agents.list</code> / <code>plugins</code>",
+    p41: "This is the list of available tool classes:",
+    li56: "terminal",
+    li57: "web",
+    li58: "memory",
+    li59: "browser",
+    li60: "code_execution",
+    li61: "cronjob",
+    li62: "vision",
+    li63: "etc.",
+    p42: "In <code>agents.list</code> a concrete agent is defined:",
+    li64: "which model <code>main</code> uses",
+    li65: "which tools are allowed: <code>exec</code>, <code>bash</code>, <code>read_file</code>, <code>web_search</code>, etc.",
+    p43: "The <code>web-ddgs</code> plugin is DuckDuckGo search.",
+    h2f: "Ready config",
+    p44: "Paste your own path and model — the rest are working defaults:",
+    copyBtn: "⧉ Copy",
+    h2g: "Minimal launch sequence",
+    li66: "Install Ollama",
+    li67: "<code>ollama serve</code>",
+    li68: "<code>ollama pull AgentBDW/GIR9b:latest</code>",
+    li69: "Check <code>ollama list</code> and <code>curl .../api/tags</code>",
+    li70: "Set <code>base_url</code> in Hermes to your Ollama <code>/v1</code>",
+    li71: "Set the <code>default</code> model",
+    li72: "Check the system prompt and allowed tools",
+    li73: "Run Hermes and give it a simple test:",
+    li74: "'create a file test.txt'",
+    li75: "'run ls'",
+    li76: "'search the web for the latest Ollama news'",
+    p45: "If the agent reads files, runs commands, and answers through the local model — the setup is correct.",
+    h2h: "Common mistakes",
+    th1: "Problem",
+    th2: "What to check",
+    td1: "Hermes doesn't see the model",
+    td2: "<code>ollama list</code>, correct <code>base_url</code>, the <code>/v1</code> suffix",
+    td3: "Model exists, but timeout",
+    td4: "<code>ollama serve</code> is running, port 11434 is open",
+    td5: "Works only on this machine",
+    td6: "use <code>192.168.x.x</code>, not <code>127.0.0.1</code>, when the client is on the network",
+    td7: "The agent 'dumbs out' and repeats mistakes",
+    td8: "guardrails, max_turns, tool allow-list",
+    td9: "Context runs out",
+    td10: "compression, contextWindow, system prompt length",
+    td11: "Telegram is silent",
+    td12: "bot token, webhook/polling, enable: true",
+    h2i: "Practical advice",
+    p46: "Keep it simple to start:",
+    li77: "One local agentic model",
+    li78: "A short system prompt",
+    li79: "Minimal tools: files, terminal, web_search",
+    li80: "Memory enabled moderately",
+    li81: "Guardrails on",
+    p47: "Once it works reliably — add browser, cron, delegation, and separate personalities.",
+    highlight1: "Local Ollama plus a proper agent-config is not just a 'model at home'. It's your own executor: no per-step cloud rent and full control over which commands it's even allowed to run.",
+    footer: "If your agent already acts — give it the ability to pay for itself. <a href=\"\/generator\">Create a paid agent</a> →"
+  };
+
+  function copyConfig(btn) {
+    const pre = document.getElementById('hermes-config-code');
+    const text = pre.textContent;
+    const done = () => {
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied';
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => { fallbackCopy(pre, done); });
+    } else {
+      fallbackCopy(pre, done);
+    }
+  }
+
+  function fallbackCopy(pre, done) {
+    const range = document.createRange();
+    range.selectNodeContents(pre);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    try { document.execCommand('copy'); } catch (e) {}
+    sel.removeAllRanges();
+    done();
+  }
+
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        if (el.tagName === 'A' && el.classList.contains('lang-switch')) {
+          el.textContent = value;
+        } else {
+          el.innerHTML = value;
+        }
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          document.querySelectorAll('meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]').forEach(m => m.setAttribute('content', value));
+        }
+      }
+    });
+  }
+
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', '?lang=' + next);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>
