@@ -456,7 +456,7 @@
 
     <h3 data-i18n="h3q">17. <code>platform_toolsets</code> / <code>agents.list</code> / <code>plugins</code></h3>
 
-    <p data-i18n="p41">Это список доступных классов инструментов:</p>
+    <p data-i18n="p41"><code>platform_toolsets.cli</code> — какие классы инструментов доступны агенту в CLI:</p>
 
     <ul>
       <li data-i18n="li56">terminal</li>
@@ -469,14 +469,31 @@
       <li data-i18n="li63">и т.д.</li>
     </ul>
 
-    <p data-i18n="p42">В <code>agents.list</code> задаётся конкретный агент:</p>
+    <p data-i18n="p42">В <code>agents.list</code> агент задаётся как элемент списка:</p>
 
     <ul>
-      <li data-i18n="li64">какая модель у <code>main</code></li>
-      <li data-i18n="li65">какие tools ему разрешены: <code>exec</code>, <code>bash</code>, <code>read_file</code>, <code>web_search</code> и др.</li>
+      <li data-i18n="li64"><code>id: main</code> + <code>default: true</code> — агент по умолчанию</li>
+      <li data-i18n="li65"><code>model: edtorre/qwen3.5-hermes:latest</code> — модель конкретного агента</li>
+      <li data-i18n="li82"><code>tools.allow</code> — белый список инструментов: <code>exec</code>, <code>bash</code>, <code>curl</code>, <code>read_file</code>, <code>write_file</code>, <code>web_search</code> и др.</li>
     </ul>
 
-    <p data-i18n="p43">Плагин <code>web-ddgs</code> — поиск через DuckDuckGo.</p>
+    <p data-i18n="p43"><code>plugins.enabled: web-ddgs</code> — поиск через DuckDuckGo.</p>
+
+    <h3 data-i18n="h3r">18. <code>updates</code> / <code>_config_version</code></h3>
+
+    <p data-i18n="p48">Служебные блоки: автоматический бэкап перед обновлением и сколько версий хранить. <code>_config_version</code> — версия схемы конфига, вручную её лучше не трогать.</p>
+
+    <h3 data-i18n="h3s">19. <code>group_sessions_per_user</code></h3>
+
+    <p data-i18n="p49">Группировка сессий по пользователям — удобно, когда с агентом работают несколько человек.</p>
+
+    <h3 data-i18n="h3t">20. <code>known_plugin_toolsets</code></h3>
+
+    <p data-i18n="p50">Тулсеты, которые агент знает от плагинов (например, <code>spotify</code>).</p>
+
+    <h3 data-i18n="h3u">21. <code>onboarding</code></h3>
+
+    <p data-i18n="p51">Служебные флаги онбординга: какие подсказки уже показаны пользователю.</p>
 
     <h2 data-i18n="h2f">Готовый конфиг</h2>
 
@@ -752,6 +769,8 @@ onboarding:
 
     <p data-i18n="p47">Когда стабильно заработает — добавляйте browser, cron, delegation и отдельные personalities.</p>
 
+    <p data-i18n="p52">Проверенная связка: локальный Ollama с этой конфигурацией отлично живёт на машине с Ryzen 7 и RTX 3050 — хватает и на агентские инструменты, и на длинные диалоги без облака.</p>
+
     <div class="highlight">
       <p data-i18n="highlight1">Локальный Ollama плюс нормальный agent-config — это не просто «модель дома». Это ваш собственный исполнитель: без облачной аренды на каждый шаг и с полным контролем над тем, какие команды ему вообще можно давать.</p>
     </div>
@@ -897,7 +916,7 @@ onboarding:
     li55: "сброс в заданный час",
     p40: "Нужно, чтобы старые диалоги не жили бесконечно.",
     h3q: "17. <code>platform_toolsets</code> / <code>agents.list</code> / <code>plugins</code>",
-    p41: "Это список доступных классов инструментов:",
+    p41: "<code>platform_toolsets.cli</code> — какие классы инструментов доступны агенту в CLI:",
     li56: "terminal",
     li57: "web",
     li58: "memory",
@@ -906,10 +925,19 @@ onboarding:
     li61: "cronjob",
     li62: "vision",
     li63: "и т.д.",
-    p42: "В <code>agents.list</code> задаётся конкретный агент:",
-    li64: "какая модель у <code>main</code>",
-    li65: "какие tools ему разрешены: <code>exec</code>, <code>bash</code>, <code>read_file</code>, <code>web_search</code> и др.",
-    p43: "Плагин <code>web-ddgs</code> — поиск через DuckDuckGo.",
+    p42: "В <code>agents.list</code> агент задаётся как элемент списка:",
+    li64: "<code>id: main</code> + <code>default: true</code> — агент по умолчанию",
+    li65: "<code>model: edtorre/qwen3.5-hermes:latest</code> — модель конкретного агента",
+    li82: "<code>tools.allow</code> — белый список инструментов: <code>exec</code>, <code>bash</code>, <code>curl</code>, <code>read_file</code>, <code>write_file</code>, <code>web_search</code> и др.",
+    p43: "<code>plugins.enabled: web-ddgs</code> — поиск через DuckDuckGo.",
+    h3r: "18. <code>updates</code> / <code>_config_version</code>",
+    p48: "Служебные блоки: автоматический бэкап перед обновлением и сколько версий хранить. <code>_config_version</code> — версия схемы конфига, вручную её лучше не трогать.",
+    h3s: "19. <code>group_sessions_per_user</code>",
+    p49: "Группировка сессий по пользователям — удобно, когда с агентом работают несколько человек.",
+    h3t: "20. <code>known_plugin_toolsets</code>",
+    p50: "Тулсеты, которые агент знает от плагинов (например, <code>spotify</code>).",
+    h3u: "21. <code>onboarding</code>",
+    p51: "Служебные флаги онбординга: какие подсказки уже показаны пользователю.",
     h2f: "Готовый конфиг",
     p44: "Вставьте свой путь и модель, остальное — рабочие значения по умолчанию:",
     copyBtn: "⧉ Копировать",
@@ -949,6 +977,7 @@ onboarding:
     li80: "Память включена умеренно",
     li81: "Guardrails включены",
     p47: "Когда стабильно заработает — добавляйте browser, cron, delegation и отдельные personalities.",
+    p52: "Проверенная связка: локальный Ollama с этой конфигурацией отлично живёт на машине с Ryzen 7 и RTX 3050 — хватает и на агентские инструменты, и на длинные диалоги без облака.",
     highlight1: "Локальный Ollama плюс нормальный agent-config — это не просто «модель дома». Это ваш собственный исполнитель: без облачной аренды на каждый шаг и с полным контролем над тем, какие команды ему вообще можно давать.",
     footer: "Если ваш агент уже действует — дайте ему возможность платить за себя самому. <a href=\"\/generator\">Создать платного агента</a> →"
   };
@@ -1076,7 +1105,7 @@ onboarding:
     li55: "reset at a given hour",
     p40: "Needed so old dialogs don't live forever.",
     h3q: "17. <code>platform_toolsets</code> / <code>agents.list</code> / <code>plugins</code>",
-    p41: "This is the list of available tool classes:",
+    p41: "<code>platform_toolsets.cli</code> — the tool classes available to the agent in CLI:",
     li56: "terminal",
     li57: "web",
     li58: "memory",
@@ -1085,10 +1114,19 @@ onboarding:
     li61: "cronjob",
     li62: "vision",
     li63: "etc.",
-    p42: "In <code>agents.list</code> a concrete agent is defined:",
-    li64: "which model <code>main</code> uses",
-    li65: "which tools are allowed: <code>exec</code>, <code>bash</code>, <code>read_file</code>, <code>web_search</code>, etc.",
-    p43: "The <code>web-ddgs</code> plugin is DuckDuckGo search.",
+    p42: "In <code>agents.list</code> an agent is defined as a list item:",
+    li64: "<code>id: main</code> + <code>default: true</code> — the default agent",
+    li65: "<code>model: edtorre/qwen3.5-hermes:latest</code> — the model of a concrete agent",
+    li82: "<code>tools.allow</code> — the allow-list of tools: <code>exec</code>, <code>bash</code>, <code>curl</code>, <code>read_file</code>, <code>write_file</code>, <code>web_search</code>, etc.",
+    p43: "<code>plugins.enabled: web-ddgs</code> — DuckDuckGo search.",
+    h3r: "18. <code>updates</code> / <code>_config_version</code>",
+    p48: "Service blocks: automatic backup before an update and how many versions to keep. <code>_config_version</code> is the config schema version — better not to touch it manually.",
+    h3s: "19. <code>group_sessions_per_user</code>",
+    p49: "Grouping sessions per user — handy when several people work with the agent.",
+    h3t: "20. <code>known_plugin_toolsets</code>",
+    p50: "Toolsets the agent knows from plugins (e.g., <code>spotify</code>).",
+    h3u: "21. <code>onboarding</code>",
+    p51: "Service onboarding flags: which hints have already been shown to the user.",
     h2f: "Ready config",
     p44: "Paste your own path and model — the rest are working defaults:",
     copyBtn: "⧉ Copy",
@@ -1128,6 +1166,7 @@ onboarding:
     li80: "Memory enabled moderately",
     li81: "Guardrails on",
     p47: "Once it works reliably — add browser, cron, delegation, and separate personalities.",
+    p52: "A tested setup: local Ollama with this config runs great on a Ryzen 7 + RTX 3050 machine — enough for agent tools and long dialogs without any cloud.",
     highlight1: "Local Ollama plus a proper agent-config is not just a 'model at home'. It's your own executor: no per-step cloud rent and full control over which commands it's even allowed to run.",
     footer: "If your agent already acts — give it the ability to pay for itself. <a href=\"\/generator\">Create a paid agent</a> →"
   };
