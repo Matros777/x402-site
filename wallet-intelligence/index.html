@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="yandex-verification" content="d9c78b212e08c0c4" />
   <meta name="google-site-verification" content="kEP1_OVsa5NTmWuNILV9m_kpC__2tNtrouRnbHjJGo8" />
-  <title>Wallet Intelligence — Ethereum, Base, Arbitrum, Optimism, Polygon</title>
-  <meta name="description" content="Wallet analyzer for Ethereum, Base, Arbitrum, Optimism and Polygon: balances, tokens, NFTs, transfers and AI summary. Powered by Alchemy.">
+  <title>Wallet Intelligence — Ethereum, Base, Arbitrum, Polygon</title>
+  <meta name="description" content="Wallet analyzer for Ethereum, Base, Arbitrum and Polygon: balances, tokens, NFTs, transfers and AI summary. Powered by Alchemy.">
   <meta name="keywords" content="wallet analyzer, ethereum wallet checker, base wallet, arbitrum wallet, polygon wallet, wallet intelligence, x402">
   <link rel="canonical" href="https://x402-ai-agent.space/wallet-intelligence/">
   <meta property="og:title" content="Wallet Intelligence — multi-chain analyzer">
-  <meta property="og:description" content="Analyze wallets on Ethereum, Base, Arbitrum, Optimism and Polygon.">
+  <meta property="og:description" content="Analyze wallets on Ethereum, Base, Arbitrum and Polygon.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://x402-ai-agent.space/wallet-intelligence/">
   <meta property="og:image" content="https://x402-ai-agent.space/assets/favicon/favicon-192.png">
@@ -31,10 +31,22 @@
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh}
     .container{max-width:980px;margin:0 auto;padding:40px 20px 80px}
-    .topbar{display:flex;justify-content:flex-end;margin-bottom:18px}
-    .lang-switch{display:inline-flex;border:1px solid var(--border);border-radius:999px;overflow:hidden;background:var(--bg-card)}
-    .lang-switch button{border:none;background:transparent;color:var(--muted);padding:7px 12px;font-size:12px;font-weight:650;cursor:pointer}
-    .lang-switch button.active{background:rgba(249,115,22,.15);color:var(--accent)}
+    /* Header (tester style) */
+    header.site{position:sticky;top:0;z-index:100;background:rgba(11,13,17,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:24px;max-width:1100px;margin:0 auto;padding:0 24px}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:500;font-size:1.1rem;letter-spacing:-.02em;color:var(--muted);flex-shrink:0}
+    .logo-img{height:28px;width:auto;border-radius:6px}
+    .logo span span{color:var(--muted)}
+    nav{display:flex;align-items:center;gap:4px}
+    nav .link{padding:8px 12px;border-radius:8px;font-size:.875rem;color:var(--muted);transition:color .2s,background .2s;text-decoration:none;background:transparent;border:none;font-family:inherit;cursor:pointer}
+    nav .link:hover{color:var(--text);background:rgba(255,255,255,.05)}
+    .lang-switch{margin-left:8px;border:1px solid var(--border);border-radius:9999px;padding:6px 14px!important;font-size:.8rem!important;cursor:pointer;background:transparent;font-family:inherit}
+    .lang-switch:hover{border-color:#444;background:rgba(255,255,255,.06)!important}
+    /* Footer (tester style) */
+    footer.site{padding:40px 0;border-top:1px solid var(--border)}
+    footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;font-size:.875rem;color:var(--muted);max-width:1100px;margin:0 auto;padding:0 24px}
+    footer a{color:var(--muted);text-decoration:none}
+    footer a:hover{color:var(--text)}
     header{margin-bottom:28px}
     .badge{display:inline-block;font-size:12px;color:var(--accent);border:1px solid rgba(249,115,22,.35);background:rgba(249,115,22,.08);padding:4px 10px;border-radius:999px;margin-bottom:14px}
     h1{font-size:32px;font-weight:700;letter-spacing:-.03em;margin-bottom:10px}
@@ -62,22 +74,29 @@
     .pill.in{color:var(--green);border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.08)}
     .pill.out{color:var(--red);border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.08)}
     a{color:var(--accent);text-decoration:none}
-    @media(max-width:800px){.stats{grid-template-columns:1fr 1fr}.grid-2{grid-template-columns:1fr}h1{font-size:26px}}
+    @media(max-width:800px){.stats{grid-template-columns:1fr 1fr}.grid-2{grid-template-columns:1fr}h1{font-size:26px}.nav{padding:0 1.1rem}}
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="topbar">
-      <div class="lang-switch">
-        <button id="btnRu" class="active" onclick="setLang('ru')">RU</button>
-        <button id="btnEn" onclick="setLang('en')">EN</button>
+  <header class="site">
+    <div class="nav">
+      <div class="logo">
+        <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+        <span>x402<span>.ai</span></span>
       </div>
+      <nav>
+        <a class="link" href="/" data-i18n="nav_home">← На главную</a>
+        <button class="link lang-switch" id="langBtn" onclick="toggleLang()" data-i18n="nav_lang">🇬🇧 EN</button>
+      </nav>
     </div>
+  </header>
+
+  <div class="container">
 
     <header>
       <div class="badge">Wallet Intelligence</div>
       <h1 data-i18n="title">Анализ кошелька · 5 сетей</h1>
-      <p class="subtitle" data-i18n="subtitle">Ethereum, Base, Arbitrum, Optimism, Polygon — балансы, токены, NFT, переводы и smart summary.</p>
+      <p class="subtitle" data-i18n="subtitle">Ethereum, Base, Arbitrum, Polygon — балансы, токены, NFT, переводы и smart summary.</p>
     </header>
 
     <section class="card">
@@ -93,7 +112,6 @@
             <option value="base-mainnet">Base</option>
             <option value="eth-mainnet">Ethereum</option>
             <option value="arb-mainnet">Arbitrum</option>
-            <option value="opt-mainnet">Optimism</option>
             <option value="polygon-mainnet">Polygon</option>
           </select>
         </div>
@@ -133,39 +151,58 @@
     </section>
   </div>
 
+  <footer class="site">
+    <div class="wrap">
+      <div data-i18n="footer.text">© x402-ai-agent.space — про платежи для ИИ-агентов.</div>
+      <div data-i18n="footer.links">
+        <a href="/#what">x402</a> · <a href="/#install">Установка</a> · <a href="/blog/">Блог</a>
+      </div>
+    </div>
+  </footer>
+
   <script>
     const i18n = {
       ru: {
-        title: "Анализ кошелька · 5 сетей",
-        subtitle: "Ethereum, Base, Arbitrum, Optimism, Polygon — балансы, токены, NFT, переводы и smart summary.",
+        nav_home: "← На главную",
+        nav_lang: "🇬🇧 EN",
+        title: "Анализ кошелька · 4 сети",
+        subtitle: "Ethereum, Base, Arbitrum, Polygon — балансы, токены, NFT, переводы и smart summary.",
         s1: "1. Адрес", addr: "Адрес кошелька", net: "Сеть", btn: "Анализировать",
         note: "Ключ Alchemy на сервере: переменная ALCHEMY_API_KEY",
         s2: "2. Сводка", s3: "3. Smart Summary", s4: "4. Токены", s5: "5. Переводы",
-        loading: "Анализ...", errAddr: "Нужен адрес вида 0x...", err: "Ошибка"
+        loading: "Анализ...", errAddr: "Нужен адрес вида 0x...", err: "Ошибка",
+        "footer.text": "© x402-ai-agent.space — про платежи для ИИ-агентов.",
+        "footer.links": "<a href=\"/#what\">x402</a> · <a href=\"/#install\">Установка</a> · <a href=\"/blog/\">Блог</a>"
       },
       en: {
-        title: "Wallet analyzer · 5 networks",
-        subtitle: "Ethereum, Base, Arbitrum, Optimism, Polygon — balances, tokens, NFTs, transfers and smart summary.",
+        nav_home: "← Back to home",
+        nav_lang: "🇷🇺 RU",
+        title: "Wallet analyzer · 4 networks",
+        subtitle: "Ethereum, Base, Arbitrum, Polygon — balances, tokens, NFTs, transfers and smart summary.",
         s1: "1. Address", addr: "Wallet address", net: "Network", btn: "Analyze",
         note: "Alchemy key is server-side: ALCHEMY_API_KEY",
         s2: "2. Summary", s3: "3. Smart Summary", s4: "4. Tokens", s5: "5. Transfers",
-        loading: "Analyzing...", errAddr: "Need a valid 0x address", err: "Error"
+        loading: "Analyzing...", errAddr: "Need a valid 0x address", err: "Error",
+        "footer.text": "© x402-ai-agent.space — payments for AI agents.",
+        "footer.links": "<a href=\"/#what\">x402</a> · <a href=\"/#install\">Install</a> · <a href=\"/blog/\">Blog</a>"
       }
     };
-    let lang = localStorage.getItem("x402_wallet_lang") || "ru";
+    let lang = localStorage.getItem("x402_tester_lang") || "ru";
     const $ = (id) => document.getElementById(id);
     const short = (a) => a ? a.slice(0,6)+"…"+a.slice(-4) : "—";
 
     function setLang(l) {
       lang = l;
-      localStorage.setItem("x402_wallet_lang", l);
+      localStorage.setItem("x402_tester_lang", l);
       document.documentElement.lang = l;
-      $("btnRu").classList.toggle("active", l==="ru");
-      $("btnEn").classList.toggle("active", l==="en");
       document.querySelectorAll("[data-i18n]").forEach(el => {
         const k = el.getAttribute("data-i18n");
-        if (i18n[l][k]) el.textContent = i18n[l][k];
+        if (i18n[l][k]) el.innerHTML = i18n[l][k];
       });
+    }
+
+    function toggleLang() {
+      setLang(lang === "ru" ? "en" : "ru");
     }
 
     function buildSummary(d) {
