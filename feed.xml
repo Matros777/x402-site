@@ -9,197 +9,197 @@
     <atom:link href="https://x402-ai-agent.space/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>How to run local Ollama and connect an agentic model to Hermes</title>
-      <link>https://x402-ai-agent.space/blog/local-ollama-hermes.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/local-ollama-hermes.html</guid>
+      <link>https://x402-ai-agent.space/blog/local-ollama-hermes</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/local-ollama-hermes</guid>
       <pubDate>Wed, 05 Aug 2026 00:00:00 +0000</pubDate>
       <description>A local agent: Ollama, an agentic model, Hermes. Install, pull a model, connect via an OpenAI-compatible API, config.yaml explained block by block, and common mistakes.</description>
     </item>
     <item>
       <title>OpenClaw 2026.7: a ready config with ASI1, Ollama, and free OpenRouter models</title>
-      <link>https://x402-ai-agent.space/blog/openclaw-config-2026.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/openclaw-config-2026.html</guid>
+      <link>https://x402-ai-agent.space/blog/openclaw-config-2026</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/openclaw-config-2026</guid>
       <pubDate>Tue, 04 Aug 2026 00:00:00 +0000</pubDate>
       <description>A working openclaw scaffold for 2026.7.x: local Ollama, cloud ASI1, free OpenRouter models, and MCP servers for trading and web research. Secrets are placeholders only.</description>
     </item>
     <item>
       <title>An agent without memory is an intern who comes to work for the first time every day</title>
-      <link>https://x402-ai-agent.space/blog/agent-without-memory.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agent-without-memory.html</guid>
+      <link>https://x402-ai-agent.space/blog/agent-without-memory</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agent-without-memory</guid>
       <pubDate>Tue, 04 Aug 2026 00:00:00 +0000</pubDate>
       <description>Not intelligence, but lack of continuity is the most underestimated agent problem. Four levels of memory, the cost of bad memory, and why memory is architecture, not a mechanism.</description>
     </item>
     <item>
       <title>OpenClaw + Pionex: how to build a cron agent for automated trading via MCP</title>
-      <link>https://x402-ai-agent.space/blog/openclaw-pionex-cron-agent.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/openclaw-pionex-cron-agent.html</guid>
+      <link>https://x402-ai-agent.space/blog/openclaw-pionex-cron-agent</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/openclaw-pionex-cron-agent</guid>
       <pubDate>Mon, 03 Aug 2026 00:00:00 +0000</pubDate>
       <description>A cron agent on OpenClaw, Pionex MCP, cron, and Telegram: scheduled PERP scanning, active-bot checks, signal selection, and futures grid creation. The system's key rule — knowing when not to trade.</description>
     </item>
     <item>
       <title>Why the fastest companies to $100M ARR are now agentic</title>
-      <link>https://x402-ai-agent.space/blog/agentic-100m-arr.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agentic-100m-arr.html</guid>
+      <link>https://x402-ai-agent.space/blog/agentic-100m-arr</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agentic-100m-arr</guid>
       <pubDate>Sat, 01 Aug 2026 00:00:00 +0000</pubDate>
       <description>Agentic companies reach $100M ARR noticeably faster than classic SaaS. The reason is product form: an agent closes a whole slice of work instead of augmenting a human. The price of speed is autonomy, control, and observability.</description>
     </item>
     <item>
       <title>The agent economy is no longer theory: who pays, who earns, and where the real volume is</title>
-      <link>https://x402-ai-agent.space/blog/agents-economy-not-theory.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agents-economy-not-theory.html</guid>
+      <link>https://x402-ai-agent.space/blog/agents-economy-not-theory</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agents-economy-not-theory</guid>
       <pubDate>Sat, 01 Aug 2026 00:00:00 +0000</pubDate>
       <description>Three contours of the agent economy: executors inside businesses, agents selling services, infrastructure. Who pays, who earns, and why micropayments stop being exotic.</description>
     </item>
     <item>
       <title>The agent that beat humans: how autonomous systems are already earning six figures</title>
-      <link>https://x402-ai-agent.space/blog/agents-outperformed-humans.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agents-outperformed-humans.html</guid>
+      <link>https://x402-ai-agent.space/blog/agents-outperformed-humans</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agents-outperformed-humans</guid>
       <pubDate>Sat, 01 Aug 2026 00:00:00 +0000</pubDate>
       <description>Xbow, Cursor, Clay and solo founders: autonomous agents are already generating six-figure revenue. Breaking down the money loop an agent closes without human involvement.</description>
     </item>
     <item>
       <title>Humans should no longer be the executor</title>
-      <link>https://x402-ai-agent.space/blog/human-not-executor.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/human-not-executor.html</guid>
+      <link>https://x402-ai-agent.space/blog/human-not-executor</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/human-not-executor</guid>
       <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
       <description>While agents were weak, humans stayed as the main executors. With growing autonomy, the role shifts — from doing the work to orchestrating: goals, constraints, verification points.</description>
     </item>
     <item>
       <title>The main problem with agents is not intelligence — it's reliability</title>
-      <link>https://x402-ai-agent.space/blog/agent-reliability.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agent-reliability.html</guid>
+      <link>https://x402-ai-agent.space/blog/agent-reliability</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agent-reliability</guid>
       <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
       <description>Models have gotten smarter, but the main reason agents aren't in production isn't about IQ. It's about reliability. Step-by-step failures, trust, and what really holds agents back.</description>
     </item>
     <item>
       <title>What actually makes an agent different from a chatbot</title>
-      <link>https://x402-ai-agent.space/blog/agent-vs-chatbot.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agent-vs-chatbot.html</guid>
+      <link>https://x402-ai-agent.space/blog/agent-vs-chatbot</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agent-vs-chatbot</guid>
       <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
       <description>Most people still confuse AI agents with advanced chatbots. The difference is not in the quality of answers — it's in how they work. Planning, tools, memory, feedback loops.</description>
     </item>
     <item>
       <title>Why most companies haven't launched agents in production yet</title>
-      <link>https://x402-ai-agent.space/blog/why-not-production.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/why-not-production.html</guid>
+      <link>https://x402-ai-agent.space/blog/why-not-production</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/why-not-production</guid>
       <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
       <description>Less than 10% of companies have reached meaningful AI agent usage. The demo-to-production gap, lack of control, economics, and organizational barriers. What's stopping them and how to fix it.</description>
     </item>
     <item>
       <title>Multi-agent systems grew 327% in four months. What this actually means</title>
-      <link>https://x402-ai-agent.space/blog/multi-agent-327.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/multi-agent-327.html</guid>
+      <link>https://x402-ai-agent.space/blog/multi-agent-327</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/multi-agent-327</guid>
       <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
       <description>Databricks: multi-agent systems grew 327% in 4 months. 78% of companies use models from 2+ families. 97% of test and dev DB environments are created by agents.</description>
     </item>
     <item>
       <title>How much code agents already write (and why it matters more than it seems)</title>
-      <link>https://x402-ai-agent.space/blog/agents-write-code.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agents-write-code.html</guid>
+      <link>https://x402-ai-agent.space/blog/agents-write-code</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agents-write-code</guid>
       <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
       <description>By 2026, Claude Code generates a noticeable share of GitHub commits. Inside companies, 30–40% of new code is written by agents. What this changes in development and why task formulation becomes the key skill.</description>
     </item>
     <item>
       <title>Agents already broke production. And it was inevitable</title>
-      <link>https://x402-ai-agent.space/blog/agents-broke-prod.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agents-broke-prod.html</guid>
+      <link>https://x402-ai-agent.space/blog/agents-broke-prod</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agents-broke-prod</guid>
       <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
       <description>An Amazon agent shut down AWS in China for 13 hours. Another destroyed a database in 9 seconds. Real cases, lessons and protection.</description>
     </item>
     <item>
       <title>Agents already work 12 hours without humans. And this is just the beginning</title>
-      <link>https://x402-ai-agent.space/blog/agents-12-hours.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agents-12-hours.html</guid>
+      <link>https://x402-ai-agent.space/blog/agents-12-hours</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agents-12-hours</guid>
       <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
       <description>AI agent autonomy horizon grew from 40 minutes to 12 hours in a year and a half. METR data, growth curve and what this changes in practice.</description>
     </item>
     <item>
       <title>What it actually costs to run an agent (and why most calculations are wrong)</title>
-      <link>https://x402-ai-agent.space/blog/agent-real-cost.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agent-real-cost.html</guid>
+      <link>https://x402-ai-agent.space/blog/agent-real-cost</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agent-real-cost</guid>
       <pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
       <description>The real cost of an AI agent isn't just token prices. Tools, errors, oversight, risks — the full cost picture and why you should measure cost per outcome, not cost per request.</description>
     </item>
     <item>
       <title>Self-improving agent + x402</title>
-      <link>https://x402-ai-agent.space/blog/self-improving-x402.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/self-improving-x402.html</guid>
+      <link>https://x402-ai-agent.space/blog/self-improving-x402</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/self-improving-x402</guid>
       <pubDate>Tue, 28 Jul 2026 00:00:00 +0000</pubDate>
       <description>Self-improving agent with an x402 wallet: the agent buys tools, data and compute via HTTP 402. Minimal architecture, budget, catalog.</description>
     </item>
     <item>
       <title>Self-improving agents</title>
-      <link>https://x402-ai-agent.space/blog/self-improving-agents.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/self-improving-agents.html</guid>
+      <link>https://x402-ai-agent.space/blog/self-improving-agents</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/self-improving-agents</guid>
       <pubDate>Tue, 28 Jul 2026 00:00:00 +0000</pubDate>
       <description>Agents that rewrite their own prompts, tools and orchestration: AutoAgent, EvoAgentX, Hermes. arXiv 2607.13104, benchmarks, practice 2025–2026.</description>
     </item>
     <item>
       <title>How to list an agent on agentic.market</title>
-      <link>https://x402-ai-agent.space/blog/listing-on-agentic-market.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/listing-on-agentic-market.html</guid>
+      <link>https://x402-ai-agent.space/blog/listing-on-agentic-market</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/listing-on-agentic-market</guid>
       <pubDate>Tue, 28 Jul 2026 00:00:00 +0000</pubDate>
       <description>Technical guide: CDP Facilitator, Bazaar extension, settle via Coinbase, checklist, error table. No registration — only through real payments.</description>
     </item>
     <item>
       <title>How to deploy an agent that gets paid</title>
-      <link>https://x402-ai-agent.space/blog/how-to-deploy-agent.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/how-to-deploy-agent.html</guid>
+      <link>https://x402-ai-agent.space/blog/how-to-deploy-agent</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/how-to-deploy-agent</guid>
       <pubDate>Tue, 28 Jul 2026 00:00:00 +0000</pubDate>
       <description>Five steps from a Python function to an endpoint that responds 402 and accepts USDC. Generator, deploy, check — no three weeks of pain.</description>
     </item>
     <item>
       <title>They trade better than humans</title>
-      <link>https://x402-ai-agent.space/blog/agents-trade-better.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agents-trade-better.html</guid>
+      <link>https://x402-ai-agent.space/blog/agents-trade-better</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agents-trade-better</guid>
       <pubDate>Tue, 28 Jul 2026 00:00:00 +0000</pubDate>
       <description>Agents trade compositely: buying alpha, risk scoring and execution via x402 micropayments. No emotions, just PnL.</description>
     </item>
     <item>
       <title>Agents that pay people</title>
-      <link>https://x402-ai-agent.space/blog/agents-that-pay-people.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agents-that-pay-people.html</guid>
+      <link>https://x402-ai-agent.space/blog/agents-that-pay-people</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agents-that-pay-people</guid>
       <pubDate>Tue, 28 Jul 2026 00:00:00 +0000</pubDate>
       <description>AI agents are already paying humans for data, signals and compute via x402. A priced endpoint is a new profession. No registration, no account manager.</description>
     </item>
     <item>
       <title>💰 AI Agent v5 — Autonomous Crypto Trader — x402.ai</title>
-      <link>https://x402-ai-agent.space/blog/ai-agent-v6-intro.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/ai-agent-v6-intro.html</guid>
+      <link>https://x402-ai-agent.space/blog/ai-agent-v6-intro</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/ai-agent-v6-intro</guid>
       <pubDate>Thu, 23 Jul 2026 00:00:00 +0000</pubDate>
       <description>💰 AI Agent v5: autonomous crypto trader for BTC/ETH that works 24/7 with 95%+ accuracy and 1-3% profit guarantee per trade.</description>
     </item>
     <item>
       <title>Autonomy vs control</title>
-      <link>https://x402-ai-agent.space/blog/autonomy-vs-control.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/autonomy-vs-control.html</guid>
+      <link>https://x402-ai-agent.space/blog/autonomy-vs-control</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/autonomy-vs-control</guid>
       <pubDate>Mon, 20 Jul 2026 00:00:00 +0000</pubDate>
       <description>Where does the red line of AI agent autonomy lie: what the agent can do on its own and what requires human decision.</description>
     </item>
     <item>
       <title>How AI agents learn to pay for themselves</title>
-      <link>https://x402-ai-agent.space/blog/ai-agents-pay.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/ai-agents-pay.html</guid>
+      <link>https://x402-ai-agent.space/blog/ai-agents-pay</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/ai-agents-pay</guid>
       <pubDate>Mon, 20 Jul 2026 00:00:00 +0000</pubDate>
       <description>From API keys to machine micropayments: why the x402 protocol makes AI agents truly autonomous.</description>
     </item>
     <item>
       <title>AI agents that run the business while you sleep</title>
-      <link>https://x402-ai-agent.space/blog/agents-that-run-business.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agents-that-run-business.html</guid>
+      <link>https://x402-ai-agent.space/blog/agents-that-run-business</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agents-that-run-business</guid>
       <pubDate>Mon, 20 Jul 2026 00:00:00 +0000</pubDate>
       <description>Real cases: agents that find suppliers, pay for data, launch ads and close deals on their own. Without a human in the loop.</description>
     </item>
     <item>
       <title>Agents that pay for everything themselves</title>
-      <link>https://x402-ai-agent.space/blog/agents-that-pay-themselves.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agents-that-pay-themselves.html</guid>
+      <link>https://x402-ai-agent.space/blog/agents-that-pay-themselves</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agents-that-pay-themselves</guid>
       <pubDate>Mon, 20 Jul 2026 00:00:00 +0000</pubDate>
       <description>Real scenarios: an agent pays for data access, APIs, compute and services with micropayments. No card, no accounts, no you.</description>
     </item>
     <item>
       <title>An agent that does your job while you're on vacation</title>
-      <link>https://x402-ai-agent.space/blog/agent-does-your-job.html</link>
-      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agent-does-your-job.html</guid>
+      <link>https://x402-ai-agent.space/blog/agent-does-your-job</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agent-does-your-job</guid>
       <pubDate>Mon, 20 Jul 2026 00:00:00 +0000</pubDate>
       <description>Real examples: agents that write code, find bugs, handle client communication and pay for the tools they need. Routine disappears.</description>
     </item>
