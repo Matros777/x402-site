@@ -92,8 +92,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 64px;
-      padding: 10px 0;
+      height: 64px;
       gap: 24px;
     }
     .logo {
@@ -115,10 +114,10 @@
       color: var(--muted);
     }
     nav {
-      display: grid;
-      grid-template-columns: repeat(6, auto);
+      display: flex;
       align-items: center;
-      gap: 6px 4px;
+      gap: 4px;
+      flex-wrap: wrap;
       justify-content: flex-end;
     }
     nav .link {
@@ -127,7 +126,6 @@
       font-size: 0.875rem;
       color: var(--text-secondary);
       transition: all var(--transition);
-      white-space: nowrap;
     }
     nav .link:hover {
       color: var(--text);
@@ -652,12 +650,11 @@
         width: 220px;
       }
       nav {
-        grid-template-columns: repeat(4, auto);
-        gap: 4px 2px;
+        gap: 2px;
       }
       nav .link {
-        padding: 6px 9px;
-        font-size: 0.85rem;
+        padding: 6px 8px;
+        font-size: 0.8rem;
       }
       .pitch {
         padding: 28px 20px;
@@ -681,7 +678,6 @@
         gap: 12px;
       }
       nav {
-        display: flex;
         width: 100%;
         justify-content: flex-start;
         overflow-x: auto;
@@ -1107,7 +1103,6 @@
       <a class="link" href="/generator" data-i18n="nav.generator">Генератор агента</a>
       <a class="link" href="/tester" data-i18n="nav.tester">Тестер агента</a>
       <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
-      <a class="link" href="/wallet-intelligence/" data-i18n="nav.wallet">Анализатор кошелька</a>
     </nav>
   </div>
 </header>
@@ -1838,7 +1833,6 @@ npx awal send 10 usdc 0x...</pre>
       "bot": "Агент",
       "generator": "Генератор агента",
       "tester": "Тестер агента",
-      "wallet": "Анализатор кошелька",
       "lang": "🇬🇧 EN"
     },
     "hero": {
@@ -2056,7 +2050,6 @@ npx awal send 10 usdc 0x...</pre>
       "bot": "Agent",
       "generator": "Agent Generator",
       "tester": "Agent Tester",
-      "wallet": "Wallet Analyzer",
       "lang": "🇷🇺 RU"
     },
     "hero": {
