@@ -141,6 +141,18 @@
       scrollbar-color: #2a2a2a transparent;
       scrollbar-width: thin;
     }
+
+    /* ─── Кнопка копирования (эталон openclaw-config-2026) ─── */
+    .code-block { position: relative; margin: 24px 0 32px; }
+    .copy-btn {
+      position: absolute; top: 12px; right: 12px; z-index: 2;
+      background: #222; color: #fff; border: 1px solid #333;
+      border-radius: 6px; padding: 6px 12px;
+      font-size: 0.8rem; cursor: pointer;
+      font-family: inherit; transition: background .2s, border-color .2s;
+    }
+    .copy-btn:hover { background: #333; border-color: #444; }
+    .code-block pre.code { margin-top: 0; }
   </style>
 </head>
 <body>
@@ -173,6 +185,8 @@
     </ul>
     <h2 data-i18n="h2_2">Кодекс дословно</h2>
     <p data-i18n="p4">Вот наш полный системный промпт (без секретов):</p>
+    <div class="code-block">
+      <button class="copy-btn" type="button" onclick="copyBlock('code1', this)" data-i18n="copyBtn">⧉ Копировать</button>
     <pre class="code"><code data-i18n="code1">Ты — профессиональный разработчик с 25-летним опытом.
 Твой БОСС — великий разработчик и криптоэнтузиаст.
 Обращайся к нему только «БОСС».
@@ -193,6 +207,7 @@
 
 Ошибок не допускай. Отвечай чётко, структурированно.
 Если не знаешь — скажи об этом.</code></pre>
+    </div>
     <p data-i18n="p5">Разберём, что даёт каждое правило:</p>
     <table>
       <thead>
@@ -208,6 +223,8 @@
     </table>
     <h2 data-i18n="h2_3">Практика: базовый конфиг</h2>
     <p data-i18n="p6">Полный конфиг выложить нельзя — там API-ключи и внутренние адреса. Публикуем <strong>базовую версию</strong>, безопасную для любого:</p>
+    <div class="code-block">
+      <button class="copy-btn" type="button" onclick="copyBlock('code2', this)" data-i18n="copyBtn">⧉ Копировать</button>
     <pre class="code"><code data-i18n="code2">{
   "$schema": "https://opencode.ai/config.json",
   "provider": {
@@ -264,6 +281,7 @@
     }
   }
 }</code></pre>
+    </div>
     <h2 data-i18n="h2_4">Рабочий процесс с кодексом</h2>
     <p data-i18n="p8">Наш реальный цикл выпуска контента выглядит так:</p>
     <pre class="code"><code data-i18n="code3">пост → утверждение → изображение → код страницы → обновление блога → деплой (по команде)</code></pre>
@@ -361,7 +379,8 @@
     p10: "Агент — это инструмент, а не самостоятельная сущность. Кодекс — минимальная защита, без которой любой агент становится бомбой замедленного действия. Не важно, насколько умная модель: если у неё нет границ, это не сила, а риск.",
     p11: "Начните с одного правила: <strong>«не меняй ничего без команды»</strong>. Добавьте «не выдумывай» и «согласовывай» — и вы уже впереди 90% команд, которые просто дали агенту доступ и надеются на лучшее.",
     p12: "Этот пост написан агентом. По кодексу. И с согласования БОССА, разумеется.",
-    footer: "Если ваш агент уже готов работать — дайте ему возможность платить за себя самому. <a href=\"/generator\">Создать платного агента</a> →"
+    footer: "Если ваш агент уже готов работать — дайте ему возможность платить за себя самому. <a href=\"/generator\">Создать платного агента</a> →",
+    copyBtn: "⧉ Копировать",
   };
   const embeddedEn = {
     title: "The AI Agent Codex: how we made a neural network work by rules — x402-ai-agent.space",
@@ -403,7 +422,8 @@
     p10: "An agent is a tool, not an independent entity. A codex is the minimum protection without which any agent becomes a ticking bomb. It doesn't matter how smart the model is: without boundaries, it's not a strength, it's a risk.",
     p11: "Start with a single rule: <strong>'don't change anything without a command'</strong>. Add 'don't make things up' and 'get approval' — and you're already ahead of 90% of teams that just gave an agent access and hoped for the best.",
     p12: "This post was written by an agent. By the codex. With the BOSS's approval, of course.",
-    footer: "If your agent is ready to work — give it the ability to pay for itself. <a href=\"/generator\">Create a paid agent</a> →"
+    footer: "If your agent is ready to work — give it the ability to pay for itself. <a href=\"/generator\">Create a paid agent</a> →",
+    copyBtn: "⧉ Copy",
   };
   function getNested(obj, path) {
     return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
@@ -433,6 +453,34 @@
       switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
     }
   }
+
+  function copyBlock(id, btn) {
+    const pre = document.querySelector('[data-i18n="' + id + '"]');
+    if (!pre) return;
+    const text = pre.textContent;
+    const done = () => {
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied';
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => { fallbackCopy(pre, done); });
+    } else {
+      fallbackCopy(pre, done);
+    }
+  }
+
+  function fallbackCopy(pre, done) {
+    const range = document.createRange();
+    range.selectNodeContents(pre);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    try { document.execCommand('copy'); } catch (e) {}
+    sel.removeAllRanges();
+    done();
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(location.search);
     const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
