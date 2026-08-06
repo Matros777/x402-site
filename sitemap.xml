@@ -257,4 +257,11 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>https://x402-ai-agent.space/blog/agent-codex-guide</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>

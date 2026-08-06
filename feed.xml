@@ -5,8 +5,15 @@
     <link>https://x402-ai-agent.space/blog/</link>
     <description>Articles about x402 protocol, AI agent payments, agentic economy, and autonomous agents.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 05 Aug 2026 22:56:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 06 Aug 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://x402-ai-agent.space/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>The AI Agent Codex: how we made a neural network work by rules</title>
+      <link>https://x402-ai-agent.space/blog/agent-codex-guide</link>
+      <guid isPermaLink="true">https://x402-ai-agent.space/blog/agent-codex-guide</guid>
+      <pubDate>Thu, 06 Aug 2026 12:00:00 +0000</pubDate>
+      <description>A practical guide to the system prompt that keeps an AI agent in line: a hard ban on changes without approval, the BOSS-agent hierarchy and a safe base config without API keys.</description>
+    </item>
     <item>
       <title>Wallet Intelligence: inspect any wallet across 4 networks</title>
       <link>https://x402-ai-agent.space/blog/wallet-intelligence-analyzer</link>
