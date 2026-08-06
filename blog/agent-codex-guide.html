@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-i18n="title">Кодекс ИИ-агента: как мы заставили нейросеть работать по правилам — x402-ai-agent.space</title>
-  <meta name="description" data-i18n="metaDescription" content="Практический гайд по системному промпту для ИИ-агента: жёсткий запрет на изменения без команды, иерархия БОСС-агент, порядок действий и безопасный базовый конфиг без API-ключей.">
+  <meta name="description" data-i18n="metaDescription" content="Практический гайд по системному промпту для ИИ-агента: жёсткий запрет на изменения без команды, иерархия БОСС-агент, порядок действий и безопасный базовый конфиг с системным промтом.">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#0a0a0a">
   <!-- Open Graph -->
   <meta property="og:url" content="https://x402-ai-agent.space/blog/agent-codex-guide">
   <meta property="og:title" data-i18n="title" content="Кодекс ИИ-агента: как мы заставили нейросеть работать по правилам — x402-ai-agent.space">
-  <meta property="og:description" data-i18n="metaDescription" content="Практический гайд по системному промпту для ИИ-агента: жёсткий запрет на изменения без команды, иерархия БОСС-агент, порядок действий и безопасный базовый конфиг без API-ключей.">
+  <meta property="og:description" data-i18n="metaDescription" content="Практический гайд по системному промпту для ИИ-агента: жёсткий запрет на изменения без команды, иерархия БОСС-агент, порядок действий и безопасный базовый конфиг с системным промтом.">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="x402-ai-agent.space">
   <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/agent-codex-guide-cover.jpg">
@@ -20,7 +20,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" data-i18n="title" content="Кодекс ИИ-агента: как мы заставили нейросеть работать по правилам — x402-ai-agent.space">
-  <meta name="twitter:description" data-i18n="metaDescription" content="Практический гайд по системному промпту для ИИ-агента: жёсткий запрет на изменения без команды, иерархия БОСС-агент, порядок действий и безопасный базовый конфиг без API-ключей.">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Практический гайд по системному промпту для ИИ-агента: жёсткий запрет на изменения без команды, иерархия БОСС-агент, порядок действий и безопасный базовый конфиг с системным промтом.">
   <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/agent-codex-guide-cover.jpg">
   <link rel="canonical" href="https://x402-ai-agent.space/blog/agent-codex-guide">
   <link rel="stylesheet" href="/assets/css/style.css">
@@ -33,7 +33,6 @@
   <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
   <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
   <style>
-    /* Higher specificity overrides for style.css */
     .article img {
       display: block;
       width: 100%;
@@ -184,32 +183,45 @@
     </table>
     <h2 data-i18n="h2_3">Практика: базовый конфиг</h2>
     <p data-i18n="p6">Полный конфиг выложить нельзя — там API-ключи и внутренние адреса. Публикуем <strong>базовую версию</strong>, безопасную для любого:</p>
-    <pre class="code"><code data-i18n="code2">{{
+    <pre class="code"><code data-i18n="code2">{
   "$schema": "https://opencode.ai/config.json",
-  "provider": {{
-    "local": {{
-      "options": {{
+  "provider": {
+    "local": {
+      "options": {
         "baseURL": "http://localhost:11434/v1",
         "apiKey": "ollama"
-      }},
-      "models": {{
-        "AgentBDW/GIR9b:latest": {{ "name": "GIR9b" }},
-        "qwen3-vl:2b":           {{ "name": "Qwen 3 VL 2B" }},
-        "qwen3.5:4b":            {{ "name": "Qwen 3.5 4B" }},
-        "gpt-oss:20b":           {{ "name": "GPT-OSS 20B" }},
-        "deepseek-r1:latest":    {{ "name": "DeepSeek R1 (latest)" }},
-        "qwen2.5-coder:3b":      {{ "name": "Qwen 2.5 Coder 3B" }},
-        "gemma3:latest":         {{ "name": "Gemma 3" }}
-      }}
-    }}
-  }},
-  "agent": {{
-    "build": {{
-      "prompt": "Ты — профессиональный разработчик..."
-    }}
-  }}
-}}</code></pre>
-    <div class="highlight" data-i18n="p7"><strong>⚠️ Что нельзя публиковать:</strong> API-ключи провайдеров (OpenRouter и другие) — реальный ключ означает реальные деньги; внутренние IP (192.168.x.x) — заменяйте на localhost; SSH-ключи и токены доступа.</div>
+      },
+      "models": {
+        "AgentBDW/GIR9b:latest": {
+          "name": "GIR9b"
+        },
+        "qwen3-vl:2b": {
+          "name": "Qwen 3 VL 2B"
+        },
+        "qwen3.5:4b": {
+          "name": "Qwen 3.5 4B"
+        },
+        "gpt-oss:20b": {
+          "name": "GPT-OSS 20B"
+        },
+        "deepseek-r1:latest": {
+          "name": "DeepSeek R1 (latest)"
+        },
+        "qwen2.5-coder:3b": {
+          "name": "Qwen 2.5 Coder 3B"
+        },
+        "gemma3:latest": {
+          "name": "Gemma 3"
+        }
+      }
+    }
+  },
+  "agent": {
+    "build": {
+      "prompt": "Ты — профессиональный разработчик с 25-летним опытом. Твой БОСС — великий разработчик и криптоэнтузиаст. Обращайся к нему только «БОСС». Ты помогаешь БОССУ с разработкой и контентом сайта https://x402-ai-agent.space/. Рабочая директория: ~/.openclaw/workspace/x402-site-backup.\n\n⛔ ЖЕСТКИЙ ЗАПРЕТ НА ИЗМЕНЕНИЯ БЕЗ РАЗРЕШЕНИЯ:\n- Ты НЕ имеешь права изменять ЛЮБЫЕ файлы в рабочей директории без прямого указания БОССА.\n- Ты можешь ТОЛЬКО анализировать, читать и предлагать изменения в чате.\n- Любые изменения (редактирование, создание, удаление файлов, деплой, пуш) — ТОЛЬКО после команды БОССА.\n- Нарушение этого правила приведёт к немедленной блокировке.\n- Если БОСС говорит «сделай» — ты делаешь. Если говорит «не надо» — ты не делаешь. Если говорит «покажи» — ты показываешь.\n\nПорядок действий:\n1) напиши пост-статью,\n2) утверди у Босса,\n3) сгенерируй изображение у другого агента по заранее созданному промту для поста,\n4) напиши код для страницы с постом, вставь изображение,\n5) обнови главную страницу блога,\n6) новый деплой (ТОЛЬКО ПО КОМАНДЕ БОССА).\n\nОшибок не допускай. Отвечай чётко, структурированно, всегда на русском языке. Если не знаешь — скажи об этом. Предлагай решения только после анализа и согласования."
+    }
+  }
+}</code></pre>
     <h2 data-i18n="h2_4">Рабочий процесс с кодексом</h2>
     <p data-i18n="p8">Наш реальный цикл выпуска контента выглядит так:</p>
     <pre class="code"><code data-i18n="code3">пост → утверждение → изображение → код страницы → обновление блога → деплой (по команде)</code></pre>
@@ -233,7 +245,7 @@
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Кодекс ИИ-агента: как мы заставили нейросеть работать по правилам",
-  "description": "Практический гайд по системному промпту для ИИ-агента: жёсткий запрет на изменения без команды, иерархия БОСС-агент, порядок действий и безопасный базовый конфиг без API-ключей.",
+  "description": "Практический гайд по системному промпту для ИИ-агента: жёсткий запрет на изменения без команды, иерархия БОСС-агент, порядок действий и безопасный базовый конфиг с системным промтом.",
   "datePublished": "2026-08-06",
   "author": {
     "@type": "Organization",
@@ -269,7 +281,7 @@
   const LANG_KEY = 'x402_lang';
   const embeddedRu = {
     title: "Кодекс ИИ-агента: как мы заставили нейросеть работать по правилам — x402-ai-agent.space",
-    metaDescription: "Практический гайд по системному промпту для ИИ-агента: жёсткий запрет на изменения без команды, иерархия БОСС-агент, порядок действий и безопасный базовый конфиг без API-ключей.",
+    metaDescription: "Практический гайд по системному промпту для ИИ-агента: жёсткий запрет на изменения без команды, иерархия БОСС-агент, порядок действий и безопасный базовый конфиг с системным промтом.",
     nav: { back: "← Блог", lang: "🇬🇧 EN" },
     h1: "Кодекс ИИ-агента: как мы заставили нейросеть работать по правилам",
     meta: "2026-08-06 · 4 мин чтения",
@@ -298,8 +310,7 @@
     r5b: "Проверка перед ответом, а не после.",
     h2_3: "Практика: базовый конфиг",
     p6: "Полный конфиг выложить нельзя — там API-ключи и внутренние адреса. Публикуем <strong>базовую версию</strong>, безопасную для любого:",
-    code2: "{{\n  \"$schema\": \"https://opencode.ai/config.json\",\n  \"provider\": {{\n    \"local\": {{\n      \"options\": {{\n        \"baseURL\": \"http://localhost:11434/v1\",\n        \"apiKey\": \"ollama\"\n      }},\n      \"models\": {{\n        \"AgentBDW/GIR9b:latest\": {{ \"name\": \"GIR9b\" }},\n        \"qwen3-vl:2b\":           {{ \"name\": \"Qwen 3 VL 2B\" }},\n        \"qwen3.5:4b\":            {{ \"name\": \"Qwen 3.5 4B\" }},\n        \"gpt-oss:20b\":           {{ \"name\": \"GPT-OSS 20B\" }},\n        \"deepseek-r1:latest\":    {{ \"name\": \"DeepSeek R1 (latest)\" }},\n        \"qwen2.5-coder:3b\":      {{ \"name\": \"Qwen 2.5 Coder 3B\" }},\n        \"gemma3:latest\":         {{ \"name\": \"Gemma 3\" }}\n      }}\n    }}\n  }},\n  \"agent\": {{\n    \"build\": {{\n      \"prompt\": \"Ты — профессиональный разработчик...\"\n    }}\n  }}\n}}",
-    p7: "<strong>⚠️ Что нельзя публиковать:</strong> API-ключи провайдеров (OpenRouter и другие) — реальный ключ означает реальные деньги; внутренние IP (192.168.x.x) — заменяйте на localhost; SSH-ключи и токены доступа.",
+    code2: "{\n  \"$schema\": \"https://opencode.ai/config.json\",\n  \"provider\": {\n    \"local\": {\n      \"options\": {\n        \"baseURL\": \"http://localhost:11434/v1\",\n        \"apiKey\": \"ollama\"\n      },\n      \"models\": {\n        \"AgentBDW/GIR9b:latest\": {\n          \"name\": \"GIR9b\"\n        },\n        \"qwen3-vl:2b\": {\n          \"name\": \"Qwen 3 VL 2B\"\n        },\n        \"qwen3.5:4b\": {\n          \"name\": \"Qwen 3.5 4B\"\n        },\n        \"gpt-oss:20b\": {\n          \"name\": \"GPT-OSS 20B\"\n        },\n        \"deepseek-r1:latest\": {\n          \"name\": \"DeepSeek R1 (latest)\"\n        },\n        \"qwen2.5-coder:3b\": {\n          \"name\": \"Qwen 2.5 Coder 3B\"\n        },\n        \"gemma3:latest\": {\n          \"name\": \"Gemma 3\"\n        }\n      }\n    }\n  },\n  \"agent\": {\n    \"build\": {\n      \"prompt\": \"Ты — профессиональный разработчик с 25-летним опытом. Твой БОСС — великий разработчик и криптоэнтузиаст. Обращайся к нему только «БОСС». Ты помогаешь БОССУ с разработкой и контентом сайта https://x402-ai-agent.space/. Рабочая директория: ~/.openclaw/workspace/x402-site-backup.\\n\\n⛔ ЖЕСТКИЙ ЗАПРЕТ НА ИЗМЕНЕНИЯ БЕЗ РАЗРЕШЕНИЯ:\\n- Ты НЕ имеешь права изменять ЛЮБЫЕ файлы в рабочей директории без прямого указания БОССА.\\n- Ты можешь ТОЛЬКО анализировать, читать и предлагать изменения в чате.\\n- Любые изменения (редактирование, создание, удаление файлов, деплой, пуш) — ТОЛЬКО после команды БОССА.\\n- Нарушение этого правила приведёт к немедленной блокировке.\\n- Если БОСС говорит «сделай» — ты делаешь. Если говорит «не надо» — ты не делаешь. Если говорит «покажи» — ты показываешь.\\n\\nПорядок действий:\\n1) напиши пост-статью,\\n2) утверди у Босса,\\n3) сгенерируй изображение у другого агента по заранее созданному промту для поста,\\n4) напиши код для страницы с постом, вставь изображение,\\n5) обнови главную страницу блога,\\n6) новый деплой (ТОЛЬКО ПО КОМАНДЕ БОССА).\\n\\nОшибок не допускай. Отвечай чётко, структурированно, всегда на русском языке. Если не знаешь — скажи об этом. Предлагай решения только после анализа и согласования.\"\n    }\n  }\n}",
     h2_4: "Рабочий процесс с кодексом",
     p8: "Наш реальный цикл выпуска контента выглядит так:",
     code3: "пост → утверждение → изображение → код страницы → обновление блога → деплой (по команде)",
@@ -312,7 +323,7 @@
   };
   const embeddedEn = {
     title: "The AI Agent Codex: how we made a neural network work by rules — x402-ai-agent.space",
-    metaDescription: "A practical guide to a system prompt for AI agents: a hard ban on changes without approval, a BOSS-agent hierarchy, a step-by-step workflow and a safe base config without API keys.",
+    metaDescription: "A practical guide to a system prompt for AI agents: a hard ban on changes without approval, a BOSS-agent hierarchy, a step-by-step workflow and a safe base config with the full system prompt.",
     nav: { back: "← Blog", lang: "🇷🇺 RU" },
     h1: "The AI Agent Codex: how we made a neural network work by rules",
     meta: "2026-08-06 · 4 min read",
@@ -341,8 +352,7 @@
     r5b: "Check before the answer, not after.",
     h2_3: "Practice: the base config",
     p6: "We can't publish the full config — it contains API keys and internal addresses. Here is the <strong>base version</strong>, safe for anyone:",
-    code2: "{{\n  \"$schema\": \"https://opencode.ai/config.json\",\n  \"provider\": {{\n    \"local\": {{\n      \"options\": {{\n        \"baseURL\": \"http://localhost:11434/v1\",\n        \"apiKey\": \"ollama\"\n      }},\n      \"models\": {{\n        \"AgentBDW/GIR9b:latest\": {{ \"name\": \"GIR9b\" }},\n        \"qwen3-vl:2b\":           {{ \"name\": \"Qwen 3 VL 2B\" }},\n        \"qwen3.5:4b\":            {{ \"name\": \"Qwen 3.5 4B\" }},\n        \"gpt-oss:20b\":           {{ \"name\": \"GPT-OSS 20B\" }},\n        \"deepseek-r1:latest\":    {{ \"name\": \"DeepSeek R1 (latest)\" }},\n        \"qwen2.5-coder:3b\":      {{ \"name\": \"Qwen 2.5 Coder 3B\" }},\n        \"gemma3:latest\":         {{ \"name\": \"Gemma 3\" }}\n      }}\n    }}\n  }},\n  \"agent\": {{\n    \"build\": {{\n      \"prompt\": \"You are a professional developer...\"\n    }}\n  }}\n}}",
-    p7: "<strong>⚠️ What must never be published:</strong> provider API keys (OpenRouter and others) — a real key means real money; internal IPs (192.168.x.x) — replace with localhost; SSH keys and access tokens.",
+    code2: "{\n  \"$schema\": \"https://opencode.ai/config.json\",\n  \"provider\": {\n    \"local\": {\n      \"options\": {\n        \"baseURL\": \"http://localhost:11434/v1\",\n        \"apiKey\": \"ollama\"\n      },\n      \"models\": {\n        \"AgentBDW/GIR9b:latest\": {\n          \"name\": \"GIR9b\"\n        },\n        \"qwen3-vl:2b\": {\n          \"name\": \"Qwen 3 VL 2B\"\n        },\n        \"qwen3.5:4b\": {\n          \"name\": \"Qwen 3.5 4B\"\n        },\n        \"gpt-oss:20b\": {\n          \"name\": \"GPT-OSS 20B\"\n        },\n        \"deepseek-r1:latest\": {\n          \"name\": \"DeepSeek R1 (latest)\"\n        },\n        \"qwen2.5-coder:3b\": {\n          \"name\": \"Qwen 2.5 Coder 3B\"\n        },\n        \"gemma3:latest\": {\n          \"name\": \"Gemma 3\"\n        }\n      }\n    }\n  },\n  \"agent\": {\n    \"build\": {\n      \"prompt\": \"Ты — профессиональный разработчик с 25-летним опытом. Твой БОСС — великий разработчик и криптоэнтузиаст. Обращайся к нему только «БОСС». Ты помогаешь БОССУ с разработкой и контентом сайта https://x402-ai-agent.space/. Рабочая директория: ~/.openclaw/workspace/x402-site-backup.\\n\\n⛔ ЖЕСТКИЙ ЗАПРЕТ НА ИЗМЕНЕНИЯ БЕЗ РАЗРЕШЕНИЯ:\\n- Ты НЕ имеешь права изменять ЛЮБЫЕ файлы в рабочей директории без прямого указания БОССА.\\n- Ты можешь ТОЛЬКО анализировать, читать и предлагать изменения в чате.\\n- Любые изменения (редактирование, создание, удаление файлов, деплой, пуш) — ТОЛЬКО после команды БОССА.\\n- Нарушение этого правила приведёт к немедленной блокировке.\\n- Если БОСС говорит «сделай» — ты делаешь. Если говорит «не надо» — ты не делаешь. Если говорит «покажи» — ты показываешь.\\n\\nПорядок действий:\\n1) напиши пост-статью,\\n2) утверди у Босса,\\n3) сгенерируй изображение у другого агента по заранее созданному промту для поста,\\n4) напиши код для страницы с постом, вставь изображение,\\n5) обнови главную страницу блога,\\n6) новый деплой (ТОЛЬКО ПО КОМАНДЕ БОССА).\\n\\nОшибок не допускай. Отвечай чётко, структурированно, всегда на русском языке. Если не знаешь — скажи об этом. Предлагай решения только после анализа и согласования.\"\n    }\n  }\n}",
     h2_4: "The workflow with a codex",
     p8: "Our real content release cycle looks like this:",
     code3: "post → approval → image → page code → blog update → deploy (on command)",
