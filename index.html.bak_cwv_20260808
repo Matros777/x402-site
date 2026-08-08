@@ -22,7 +22,6 @@
   <link rel="alternate" hreflang="ru" href="https://x402-ai-agent.space/?lang=ru">
   <link rel="alternate" hreflang="en" href="https://x402-ai-agent.space/?lang=en">
   <link rel="alternate" hreflang="x-default" href="https://x402-ai-agent.space/">
-  <link rel="preload" as="image" href="/assets/img/logo.png" fetchpriority="high">
   <style>
     :root {
       --bg: #0a0a0a;
@@ -1085,13 +1084,13 @@
       opacity: 1;
     }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
 <header class="site">
   <div class="wrap nav">
     <div class="logo">
-      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img" width="28" height="28" fetchpriority="low">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
       <span>x402<span>.ai</span></span>
     </div>
     <nav>
@@ -1126,7 +1125,7 @@
       </div>
     </div>
     <div class="hero-art">
-      <img src="/assets/img/logo.png" alt="x402-ai-agent.space логотип" class="hero-logo" width="640" height="640" fetchpriority="high" decoding="async">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space логотип" class="hero-logo">
     </div>
   </div>
 </section>
