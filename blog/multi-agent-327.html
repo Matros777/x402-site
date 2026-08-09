@@ -65,10 +65,7 @@
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border-subtle);
     }
-    .nav {
-      display: flex; align-items: center; justify-content: space-between;
-      height: 64px; max-width: 1100px; margin: 0 auto; padding: 0 24px;
-    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
     .logo {
       display: flex; align-items: center; gap: 10px;
       font-weight: 500; font-size: 1.1rem; letter-spacing: -0.02em;
@@ -162,7 +159,7 @@
 </head>
 <body>
 <header class="site">
-  <div class="nav">
+  <div class="wrap nav">
     <div class="logo">
       <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
       <span>x402<span>.ai</span></span>
