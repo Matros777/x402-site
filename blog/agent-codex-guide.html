@@ -161,6 +161,11 @@
     header.site nav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
     header.site nav .link { padding: 8px 12px; }
     header.site .lang-switch { margin-left: 8px; }
+    .back-link {
+      display: inline-block; color: var(--muted); text-decoration: none;
+      font-size: 0.85rem; margin-bottom: 8px; transition: var(--transition);
+    }
+    .back-link:hover { color: var(--text); }
 </style>
 </head>
 <body>
@@ -180,6 +185,8 @@
 <main>
 <article class="article">
   <div class="wrap">
+    <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+
     <img src="/assets/img/blog/agent-codex-guide-cover.jpg" alt="Кодекс ИИ-агента — агент перед голографическим сводом правил" loading="lazy">
     <h1 data-i18n="h1">Кодекс ИИ-агента: как мы заставили нейросеть работать по правилам</h1>
     <div class="meta" data-i18n="meta">2026-08-06 · 4 мин чтения</div>
