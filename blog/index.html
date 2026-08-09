@@ -214,6 +214,21 @@
     </div>
 
     <div class="grid">
+       <a class="post" href="/blog/ai-agents-city-experiment">
+ <div class="date">2026-08-09</div>
+ <h3 data-i18n="posts.ai-agents-city-experiment.title">ИИ-агенты в виртуальном городе: 15 дней без присмотра</h3>
+ <p data-i18n="posts.ai-agents-city-experiment.desc">Эксперимент Emergence AI: агенты жили 15 дней без контроля. Одни создали стабильное общество, другие — хаос и насилие. Уроки для экономики агентов. Как протокол x402 и общие стандарты могут сделать автономные системы предсказуемыми.</p>
+ </a>
+
+<a class="post" href="/blog/ai-agents-beyond-singapore-ndp2026">
+ <div class="date">2026-08-09</div>
+ <h3 data-i18n="posts.ai-agents-beyond-singapore-ndp2026.title">«Идти дальше»: как Сингапур и ИИ-агенты переписывают правила</h3>
+ <p data-i18n="posts.ai-agents-beyond-singapore-ndp2026.desc">NDP 2026 проходит под лозунгом «Majulah Singapura, Go Beyond!». ИИ-агенты тоже «идти дальше» — от простых чат-ботов к автономным участникам экономики. Сингапурские уроки смелости и прогресса для мира агентов.</p>
+ </a>
+
+
+
+
 <a class="post" href="/blog/agent-codex-guide">
         <div class="date">2026-08-06</div>
         <h3 data-i18n="post30.title">Кодекс ИИ-агента: как мы заставили нейросеть работать по правилам</h3>
@@ -443,7 +458,12 @@
       desc: "Ценность ИИ больше не в красивых ответах. Рынок платит за завершённый цикл: лид, тикет, отчёт, сигнал. Разбираем новую формулу цены агента и при чём тут x402."
     },
     post29: { title: "Wallet Intelligence: смотрим кошелёк сразу в 4 сетях", desc: "Новый инструмент на сайте: проверка любого EVM-кошелька в четырёх сетях — Ethereum, Base, Arbitrum, Polygon. Балансы, токены, NFT, переводы и Smart Summary. Ключ Alchemy — на сервере." }
-  };
+,
+  posts: {
+    "ai-agents-beyond-singapore-ndp2026": { title: "«Идти дальше»: как Сингапур и ИИ-агенты переписывают правила", desc: "NDP 2026 проходит под лозунгом «Majulah Singapura, Go Beyond!». ИИ-агенты тоже «идти дальше» — от простых чат-ботов к автономным участникам экономики. Сингапурские уроки смелости и прогресса для мира агентов." }
+      "ai-agents-city-experiment": { title: "ИИ-агенты в виртуальном городе: 15 дней без присмотра", desc: "Эксперимент Emergence AI: агенты жили 15 дней без контроля. Одни создали стабильное общество, другие — хаос и насилие. Уроки для экономики агентов. Как протокол x402 и общие стандарты могут сделать автономные системы предсказуемыми." },
+    "ai-agents-city-experiment": { title: "ИИ-агенты в виртуальном городе: 15 дней без присмотра", desc: "Эксперимент Emergence AI: агенты жили 15 дней без контроля. Одни создали стабильное общество, другие — хаос и насилие. Уроки для экономики агентов. Как протокол x402 и общие стандарты могут сделать автономные системы предсказуемыми." },
+}  };
 
   const embeddedEn = {
     title: "x402-wallet Blog — AI agents, crypto trading and payments via x402 protocol",
@@ -491,7 +511,12 @@
       desc: "The value of AI is no longer in beautiful answers. The market pays for a completed loop: lead, ticket, report, signal. Breaking down the new pricing formula for agents and where x402 fits in."
     },
     post29: { title: "Wallet Intelligence: inspect any wallet across 4 networks", desc: "A new tool on the site: inspect any EVM wallet across four networks — Ethereum, Base, Arbitrum, Polygon. Balances, tokens, NFTs, transfers and a Smart Summary. Alchemy key is server-side." }
-  };
+,
+  posts: {
+    "ai-agents-beyond-singapore-ndp2026": { title: "“Go Beyond”: How Singapore and AI Agents Rewrite the Rules", desc: "NDP 2026 is held under the motto “Majulah Singapura, Go Beyond!”. AI agents are also “going beyond” — from simple chatbots to autonomous economic participants. Singapore's lessons of courage and progress for the world of agents." }
+      "ai-agents-city-experiment": { title: "AI Agents in a Virtual City: 15 Days Without Supervision", desc: "Emergence AI experiment: agents lived 15 days without control. Some built stable societies, others — chaos and violence. Lessons for the agent economy. How the x402 protocol and common standards can make autonomous systems predictable." },
+    "ai-agents-city-experiment": { title: "AI Agents in a Virtual City: 15 Days Without Supervision", desc: "Emergence AI experiment: agents lived 15 days without control. Some built stable societies, others — chaos and violence. Lessons for the agent economy. How the x402 protocol and common standards can make autonomous systems predictable." },
+}  };
 
   function getNested(obj, path) {
     return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);

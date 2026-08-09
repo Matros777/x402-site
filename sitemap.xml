@@ -2,7 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <!-- Главная -->
-  <!-- Wallet Intelligence -->
+  <!-- Blog: ai-agents-beyond-singapore-ndp2026 -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/ai-agents-beyond-singapore-ndp2026</loc>
+ <lastmod>2026-08-09</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
+ <!-- Blog: ai-agents-city-experiment -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/ai-agents-city-experiment</loc>
+ <lastmod>2026-08-09</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
+ <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
     <lastmod>2026-08-05</lastmod>
