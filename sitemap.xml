@@ -16,6 +16,20 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: between-chaos-and-economy -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/between-chaos-and-economy</loc>
+ <lastmod>2026-08-10</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
+ <!-- Blog: when-ai-agents-create-themselves -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/when-ai-agents-create-themselves</loc>
+ <lastmod>2026-08-10</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
