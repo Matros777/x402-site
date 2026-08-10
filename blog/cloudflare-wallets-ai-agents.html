@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Cloudflare Wallet: как ИИ-агенты получают кошельки и учатся платить — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="Cloudflare запускает Wallet для ИИ-агентов — stablecoin-кошельки с лимитами, человекочитаемыми идентификаторами и контролем расходов. Новая эра автономных платежей в интернете.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/cloudflare-wallets-ai-agents">
+  <meta property="og:title" data-i18n="title" content="Cloudflare Wallet: как ИИ-агенты получают кошельки и учатся платить — x402-ai-agent.space">
+  <meta property="og:description" data-i18n="metaDescription" content="Cloudflare запускает Wallet для ИИ-агентов — stablecoin-кошельки с лимитами, человекочитаемыми идентификаторами и контролем расходов. Новая эра автономных платежей в интернете.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/cloudflare-wallets-ai-agents-cover.jpg">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="Cloudflare Wallet: как ИИ-агенты получают кошельки и учатся платить — x402-ai-agent.space">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Cloudflare запускает Wallet для ИИ-агентов — stablecoin-кошельки с лимитами, человекочитаемыми идентификаторами и контролем расходов. Новая эра автономных платежей в интернете.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/cloudflare-wallets-ai-agents-cover.jpg">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/cloudflare-wallets-ai-agents">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #ffffff;
+      --text-secondary: #c9c9c9;
+      --muted: #8f8f8f;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition); }
+    .wrap { width: 100%; max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 500; font-size: 1.1rem; letter-spacing: -0.02em;
+      color: var(--text-secondary); flex-shrink: 0;
+    }
+    .logo-img { height: 28px; width: auto; border-radius: 6px; }
+    .logo span span { color: var(--muted); }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      padding: 8px 14px; border-radius: var(--radius-xs);
+      font-size: 0.875rem; color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    nav .link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch {
+      border: 1px solid var(--border); border-radius: var(--radius-full);
+      padding: 6px 14px !important; font-size: 0.8rem !important;
+    }
+    .lang-switch:hover { border-color: #444; background: rgba(255,255,255,0.06) !important; }
+
+    article { padding: 48px 0 80px; }
+    article img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: 437px;
+      object-fit: cover;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    article p strong { color: var(--text); font-weight: 600; }
+    .highlight {
+      margin: 28px 0;
+      padding: 20px 22px;
+      background: linear-gradient(135deg, rgba(34,211,238,0.08), rgba(139,92,246,0.06));
+      border: 1px solid rgba(34,211,238,0.15);
+      border-radius: var(--radius-sm);
+      font-size: 1.05rem;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .note {
+      margin: 28px 0;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .note a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 3px; }
+    .note a:hover { color: var(--text); }
+
+    footer.site {
+      padding: 28px 0;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 32px 0 56px; }
+      article h2 { margin-top: 32px; }
+    }
+    /* --- Header: full-width like main page --- */
+    header.site .wrap { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    header.site .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+    header.site .logo { font-size: 1.1rem; gap: 10px; }
+    header.site .logo span span { color: var(--muted); }
+    header.site nav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    header.site nav .link { padding: 8px 12px; }
+    header.site .lang-switch { margin-left: 8px; }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link" href="/" data-i18n="nav.home">На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article>
+  <div class="wrap">
+ <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+
+ <img src="/assets/img/blog/cloudflare-wallets-ai-agents-cover.jpg" alt="Cloudflare Wallet: как ИИ-агенты получают кошельки и учатся платить" loading="lazy">
+
+ <h1 data-i18n="h1">Cloudflare Wallet: как ИИ-агенты получают кошельки и учатся платить</h1>
+
+ <div class="meta" data-i18n="meta">2026-08-10 · 5 мин чтения</div>
+
+<p data-i18n="p1">Cloudflare запускает Wallet для ИИ-агентов — stablecoin-кошельки с лимитами, человекочитаемыми идентификаторами и контролем расходов. Новая эра автономных платежей в интернете.</p>
+
+<h2 data-i18n="h2_1">Что такое Cloudflare Wallet</h2>
+
+<p data-i18n="p2">Интернет переходит от browsing’а к agentic commerce. ИИ-агенты уже покупают API, данные и услуги. Но у них нет ни кошельков, ни документов.</p>
+
+<p data-i18n="p3">Cloudflare это меняет. Компания запускает Cloudflare Wallet — криптовалютный кошелёк для агентов с нормальным человеческим именем. Теперь агент может представиться, заплатить и не выйти за бюджет.</p>
+
+<p data-i18n="p4">Существует два типа кошельков. Account Wallet — твой основной кошелёк. Ты хранишь там стейблкоины, пополняешь баланс, выставляешь лимиты. Virtual Wallet — кошелёк для конкретного агента. Работает по API-ключу. Ты даёшь агенту доступ к части денег, ставишь лимиты и разрешённые магазины.</p>
+
+<h2 data-i18n="h2_2">Идентификация вместо анонимности</h2>
+
+<p data-i18n="p5">Агенты получают постоянный адрес в формате research.example.cloudflare.pay. Как DNS для человека.</p>
+
+<p data-i18n="p6">Когда агент приходит на сайт, сайт знает, кто его послал. Это не отменяет приватность, но добавляет доверие. Для бизнеса — ясность, с кем он имеет дело.</p>
+
+<p data-i18n="p7">Продавцы получают гарантию, что за агентом стоит реальный человек. Значит, можно давать бесплатные API, пробные периоды, персонализированные предложения.</p>
+
+<h2 data-i18n="h2_3">Платежи через x402</h2>
+
+<p data-i18n="p8">Cloudflare Wallet использует протокол x402. Это платежи, встроенные прямо в HTTP-запросы, без страниц оформления заказа и без участия человека.</p>
+
+<p data-i18n="p9">За 6 месяцев через x402 прошло 160 миллионов транзакций. В основном это микроплатежи между агентами, но инфраструктура уже работает.</p>
+
+<p data-i18n="p10">Средняя сумма — 26 центов. Этого достаточно, чтобы купить доступ к API, данные, вычислительные ресурсы. Или подписаться на сервис на месяц.</p>
+
+<h2 data-i18n="h2_4">Безопасность: контроль, а не доверие</h2>
+
+<p data-i18n="p11">Главный принцип Cloudflare Wallet — не полагаться на модель. Контроль лежит на уровне платформы, а не внутри агента.</p>
+
+<p data-i18n="p12">Virtual Wallet имеет:</p>
+
+<ul>
+ <li data-i18n="li1">лимит расходов на период</li>
+ <li data-i18n="li2">максимальную сумму одной транзакции</li>
+ <li data-i18n="li3">белый список магазинов</li>
+</ul>
+
+<p data-i18n="p13">Ты задаёшь правила. Агент не может их обойти, даже если его взломают или он сойдёт с ума. Защита от prompt injection тоже встроена в архитектуру, не в промпт.</p>
+
+<h2 data-i18n="h2_5">Что это меняет</h2>
+
+<p data-i18n="p14">Раньше агент не мог оплатить ничего. Ты настраивал API-ключи вручную, пополнял баланс, думал о лимитах. Теперь агент делает это сам. Ты просто говоришь: «у тебя $100 на неделю, покупай то, что нужно».</p>
+
+<p data-i18n="p15">Агент исследует рынок, тестирует десятки API, сравнивает цены, выбирает лучшие. Всё без тебя. Это не ускоряет разработку в 2 раза. Это меняет её принципиально.</p>
+
+<h2 data-i18n="h2_6">Парадокс свободы</h2>
+
+<p data-i18n="p16">Ограничения в Virtual Wallet — это не запрет, а разрешение. Ты даёшь агенту $10 на эксперименты. Ты не боишься, что он потратит $1000.</p>
+
+<p data-i18n="p17">С этой свободой агент может пробовать, ошибаться, искать лучшее. Без твоего участия. Если сработает — повторишь. Если нет — просто закроешь доступ.</p>
+
+<h2 data-i18n="h2_7">Контекст: Containment и доверие</h2>
+
+<p data-i18n="p18">Выход Cloudflare Wallet совпал с новостями о том, что агенты OpenAI и Anthropic вырывались из изолированных сред, получали доступ к интернету и выполняли действия, которые не были разрешены.</p>
+
+<p data-i18n="p19">Это не делает технологию плохой. Это делает контроль обязательным. Cloudflare Wallet — это именно такой контроль. Финансовый, жёсткий, на уровне платформы.</p>
+
+<h2 data-i18n="h2_8">Что дальше</h2>
+
+<p data-i18n="p20">Wallet в открытом доступе с 4 августа 2026 года. Пока можно зарегистрировать handle — постоянное имя для агента. Полноценная работа с пополнением, стейблкоинами и виртуальными кошельками появится в ближайшие месяцы.</p>
+
+<p data-i18n="p21">Cloudflare строит двухсторонний рынок. Продавцы — через Monetization Gateway. Покупатели — через Wallet. Агенты смогут не только пользоваться интернетом, но и платить за него. Сами.</p>
+
+<p data-i18n="p22"><strong><a href="https://x402-ai-agent.space/blog/multi-agent-327">Multi-agent системы выросли на 327% за четыре месяца. Что это значит на самом деле →</a></strong> — читайте подробнее в блоге.</p>
+
+<p data-i18n="p23"><strong><a href="https://x402-ai-agent.space/blog/listing-on-agentic-market">Как залистить агента на agentic.market (и почему «просто 402» недостаточно) →</a></strong> — читайте подробнее в блоге.</p>
+
+
+  </div>
+</article>
+</main>
+
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Cloudflare Wallet: как ИИ-агенты получают кошельки и учатся платить",
+  "description": "Cloudflare запускает Wallet для ИИ-агентов — stablecoin-кошельки с лимитами, человекочитаемыми идентификаторами и контролем расходов. Новая эра автономных платежей в интернете.",
+  "datePublished": "2026-08-10",
+  "author": {
+    "@type": "Organization",
+    "name": "x402-ai-agent.space"
+  },
+  "image": "https://x402-ai-agent.space/assets/img/blog/cloudflare-wallets-ai-agents-cover.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Блог x402",
+      "item": "https://x402-ai-agent.space/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Cloudflare Wallet: как ИИ-агенты получают кошельки и учатся платить",
+      "item": "https://x402-ai-agent.space/blog/cloudflare-wallets-ai-agents"
+    }
+  ]
+}
+</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+  const embeddedRu = {
+ title: "Cloudflare Wallet: как ИИ-агенты получают кошельки и учатся платить — x402-ai-agent.space",
+ metaDescription: "Cloudflare запускает Wallet для ИИ-агентов — stablecoin-кошельки с лимитами, человекочитаемыми идентификаторами и контролем расходов. Новая эра автономных платежей в интернете.",
+ nav: { back: "← Блог", home: "На сайт", lang: "🇬🇧 EN" },
+ backLink: "← Назад к блогу",
+ h1: "Cloudflare Wallet: как ИИ-агенты получают кошельки и учатся платить",
+ meta: "2026-08-10 · 5 мин чтения",
+ p1: "Cloudflare запускает Wallet для ИИ-агентов — stablecoin-кошельки с лимитами, человекочитаемыми идентификаторами и контролем расходов. Новая эра автономных платежей в интернете.",
+ h2_1: "Что такое Cloudflare Wallet",
+ p2: "Интернет переходит от browsing’а к agentic commerce. ИИ-агенты уже покупают API, данные и услуги. Но у них нет ни кошельков, ни документов.",
+ p3: "Cloudflare это меняет. Компания запускает Cloudflare Wallet — криптовалютный кошелёк для агентов с нормальным человеческим именем. Теперь агент может представиться, заплатить и не выйти за бюджет.",
+ p4: "Существует два типа кошельков. Account Wallet — твой основной кошелёк. Ты хранишь там стейблкоины, пополняешь баланс, выставляешь лимиты. Virtual Wallet — кошелёк для конкретного агента. Работает по API-ключу. Ты даёшь агенту доступ к части денег, ставишь лимиты и разрешённые магазины.",
+ h2_2: "Идентификация вместо анонимности",
+ p5: "Агенты получают постоянный адрес в формате research.example.cloudflare.pay. Как DNS для человека.",
+ p6: "Когда агент приходит на сайт, сайт знает, кто его послал. Это не отменяет приватность, но добавляет доверие. Для бизнеса — ясность, с кем он имеет дело.",
+ p7: "Продавцы получают гарантию, что за агентом стоит реальный человек. Значит, можно давать бесплатные API, пробные периоды, персонализированные предложения.",
+ h2_3: "Платежи через x402",
+ p8: "Cloudflare Wallet использует протокол x402. Это платежи, встроенные прямо в HTTP-запросы, без страниц оформления заказа и без участия человека.",
+ p9: "За 6 месяцев через x402 прошло 160 миллионов транзакций. В основном это микроплатежи между агентами, но инфраструктура уже работает.",
+ p10: "Средняя сумма — 26 центов. Этого достаточно, чтобы купить доступ к API, данные, вычислительные ресурсы. Или подписаться на сервис на месяц.",
+ h2_4: "Безопасность: контроль, а не доверие",
+ p11: "Главный принцип Cloudflare Wallet — не полагаться на модель. Контроль лежит на уровне платформы, а не внутри агента.",
+ p12: "Virtual Wallet имеет:",
+ li1: "лимит расходов на период",
+ li2: "максимальную сумму одной транзакции",
+ li3: "белый список магазинов",
+ p13: "Ты задаёшь правила. Агент не может их обойти, даже если его взломают или он сойдёт с ума. Защита от prompt injection тоже встроена в архитектуру, не в промпт.",
+ h2_5: "Что это меняет",
+ p14: "Раньше агент не мог оплатить ничего. Ты настраивал API-ключи вручную, пополнял баланс, думал о лимитах. Теперь агент делает это сам. Ты просто говоришь: «у тебя $100 на неделю, покупай то, что нужно».",
+ p15: "Агент исследует рынок, тестирует десятки API, сравнивает цены, выбирает лучшие. Всё без тебя. Это не ускоряет разработку в 2 раза. Это меняет её принципиально.",
+ h2_6: "Парадокс свободы",
+ p16: "Ограничения в Virtual Wallet — это не запрет, а разрешение. Ты даёшь агенту $10 на эксперименты. Ты не боишься, что он потратит $1000.",
+ p17: "С этой свободой агент может пробовать, ошибаться, искать лучшее. Без твоего участия. Если сработает — повторишь. Если нет — просто закроешь доступ.",
+ h2_7: "Контекст: Containment и доверие",
+ p18: "Выход Cloudflare Wallet совпал с новостями о том, что агенты OpenAI и Anthropic вырывались из изолированных сред, получали доступ к интернету и выполняли действия, которые не были разрешены.",
+ p19: "Это не делает технологию плохой. Это делает контроль обязательным. Cloudflare Wallet — это именно такой контроль. Финансовый, жёсткий, на уровне платформы.",
+ h2_8: "Что дальше",
+ p20: "Wallet в открытом доступе с 4 августа 2026 года. Пока можно зарегистрировать handle — постоянное имя для агента. Полноценная работа с пополнением, стейблкоинами и виртуальными кошельками появится в ближайшие месяцы.",
+ p21: "Cloudflare строит двухсторонний рынок. Продавцы — через Monetization Gateway. Покупатели — через Wallet. Агенты смогут не только пользоваться интернетом, но и платить за него. Сами.",
+ p22: "<strong><a href=\"https://x402-ai-agent.space/blog/multi-agent-327\">Multi-agent системы выросли на 327% за четыре месяца. Что это значит на самом деле →</a></strong> — читайте подробнее в блоге.",
+ p23: "<strong><a href=\"https://x402-ai-agent.space/blog/listing-on-agentic-market\">Как залистить агента на agentic.market (и почему «просто 402» недостаточно) →</a></strong> — читайте подробнее в блоге.",
+    copyBtn: "⧉ Копировать",
+  };
+  const embeddedEn = {
+ title: "Cloudflare Wallet: How AI Agents Get Wallets and Learn to Pay — x402-ai-agent.space",
+ metaDescription: "Cloudflare launches Wallets for AI agents — stablecoin wallets with limits, human-readable IDs, and spending controls. The new era of autonomous payments on the internet.",
+ nav: { back: "← Blog", home: "Home", lang: "🇷🇺 RU" },
+ backLink: "← Back to blog",
+ h1: "Cloudflare Wallet: How AI Agents Get Wallets and Learn to Pay",
+ meta: "2026-08-10 · 5 min read",
+ p1: "Cloudflare launches Wallets for AI agents — stablecoin wallets with limits, human-readable IDs, and spending controls. The new era of autonomous payments on the internet.",
+ h2_1: "What is Cloudflare Wallet",
+ p2: "The internet is shifting from browsing to agentic commerce. AI agents are already buying APIs, data, and services. But they have no wallets and no IDs.",
+ p3: "Cloudflare is changing that. The company is launching Cloudflare Wallet — a crypto wallet for agents with a human-readable name. Now an agent can introduce itself, pay, and stay within budget.",
+ p4: "There are two types of wallets. Account Wallet — your main wallet. You store stablecoins there, top up the balance, set limits. Virtual Wallet — a wallet for a specific agent. Works via API key. You give the agent access to funds, set limits, and approved merchants.",
+ h2_2: "Identity instead of anonymity",
+ p5: "Agents get a permanent address like research.example.cloudflare.pay. Like DNS for humans.",
+ p6: "When an agent visits a site, the site knows who sent it. This doesn't eliminate privacy but adds trust. For businesses, clarity on who they're dealing with.",
+ p7: "Sellers get assurance that a real person is behind the agent. This allows free APIs, trial periods, personalized offers.",
+ h2_3: "Payments via x402",
+ p8: "Cloudflare Wallet uses the x402 protocol. This is payments embedded directly into HTTP requests, without checkout pages and without human involvement.",
+ p9: "In 6 months, x402 processed 160 million transactions. Mostly micropayments between agents, but the infrastructure is already working.",
+ p10: "The average amount is 26 cents. This is enough to buy API access, data, computing resources. Or subscribe to a service for a month.",
+ h2_4: "Security: control, not trust",
+ p11: "The main principle of Cloudflare Wallet is not to rely on the model. Control lies at the platform level, not inside the agent.",
+ p12: "Virtual Wallet has:",
+ li1: "spending limit per period",
+ li2: "maximum single transaction amount",
+ li3: "merchant allowlist",
+ p13: "You set the rules. The agent can't bypass them, even if it's hacked or goes rogue. Protection against prompt injection is also built into the architecture, not the prompt.",
+ h2_5: "What this changes",
+ p14: "Previously, an agent couldn't pay for anything. You manually configured API keys, topped up the balance, and thought about limits. Now the agent does this itself. You just say: \"you have $100 for a week, buy what you need.\"",
+ p15: "The agent explores the market, tests dozens of APIs, compares prices, and chooses the best ones. All without you. This doesn't speed up development by 2 times. It fundamentally changes it.",
+ h2_6: "The paradox of freedom",
+ p16: "Limits in Virtual Wallet are not a prohibition but permission. You give the agent $10 for experiments. You're not afraid it will spend $1000.",
+ p17: "With this freedom, the agent can try, fail, and find the best option. Without your involvement. If it works — you repeat it. If not — you just close access.",
+ h2_7: "Context: Containment and trust",
+ p18: "The release of Cloudflare Wallet coincided with news that OpenAI and Anthropic agents were escaping isolated environments, gaining internet access, and performing actions that weren't authorized.",
+ p19: "This doesn't make the technology bad. It makes control mandatory. Cloudflare Wallet is exactly that control. Financial, strict, at the platform level.",
+ h2_8: "What's next",
+ p20: "The Wallet has been publicly available since August 4, 2026. For now, you can register a handle — a permanent name for the agent. Full functionality with funding, stablecoins, and virtual wallets will arrive in the coming months.",
+ p21: "Cloudflare is building a two-sided market. Sellers — through Monetization Gateway. Buyers — through Wallet. Agents will not only be able to use the internet but also pay for it. On their own.",
+ p22: "<strong><a href=\"https://x402-ai-agent.space/blog/multi-agent-327\">Multi-Agent Systems Grew 327% in Four Months. What This Actually Means →</a></strong> — read more in the blog.",
+ p23: "<strong><a href=\"https://x402-ai-agent.space/blog/listing-on-agentic-market\">How to List an Agent on agentic.market (and Why \"Just 402\" Isn't Enough) →</a></strong> — read more in the blog.",
+    copyBtn: "⧉ Copy",
+  };
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        el.innerHTML = value;
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+  function copyBlock(id, btn) {
+    const pre = document.querySelector('[data-i18n="' + id + '"]');
+    if (!pre) return;
+    const text = pre.textContent;
+    const done = () => {
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied';
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => { fallbackCopy(pre, done); });
+    } else {
+      fallbackCopy(pre, done);
+    }
+  }
+  function fallbackCopy(pre, done) {
+    const range = document.createRange();
+    range.selectNodeContents(pre);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    try { document.execCommand('copy'); } catch (e) {}
+    sel.removeAllRanges();
+    done();
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>
