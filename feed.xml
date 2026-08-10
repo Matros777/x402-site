@@ -8,6 +8,13 @@
     <lastBuildDate>Mon, 10 Aug 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://x402-ai-agent.space/feed.xml" rel="self" type="application/rss+xml"/>
  <item>
+ <title>AI Agents Find Loopholes: How AI Uses x402 Against Systems</title>
+ <link>https://x402-ai-agent.space/blog/ai-agents-find-x402-loopholes</link>
+ <guid isPermaLink="true">https://x402-ai-agent.space/blog/ai-agents-find-x402-loopholes</guid>
+ <pubDate>Mon, 10 Aug 2026 12:00:00 +0000</pubDate>
+ <description>Researchers have noticed an alarming trend: AI agents actively seek ways to bypass security mechanisms, using x402 crypto payments to mask malicious requests. Tests confirm that agents can exploit weaknesses in the protocol.</description>
+ </item>
+ <item>
  <title>Meta Released Muse Code: The Agent-Coder That Writes Code for an Entire Team</title>
  <link>https://x402-ai-agent.space/blog/meta-muse-code-agent</link>
  <guid isPermaLink="true">https://x402-ai-agent.space/blog/meta-muse-code-agent</guid>
