@@ -37,6 +37,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: meta-muse-code-agent -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/meta-muse-code-agent</loc>
+ <lastmod>2026-08-10</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>

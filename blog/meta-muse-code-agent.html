@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Meta выпустила Muse Code — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="Meta представила Muse Code — ИИ-агента, который работает из терминала, запускает суб-агентов и правит код, не трогая вашу рабочую область. Новая эра программирования, где человек — архитектор.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/meta-muse-code-agent">
+  <meta property="og:title" data-i18n="title" content="Meta выпустила Muse Code — x402-ai-agent.space">
+  <meta property="og:description" data-i18n="metaDescription" content="Meta представила Muse Code — ИИ-агента, который работает из терминала, запускает суб-агентов и правит код, не трогая вашу рабочую область. Новая эра программирования, где человек — архитектор.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/meta-muse-code-agent-cover.jpg">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="Meta выпустила Muse Code — x402-ai-agent.space">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Meta представила Muse Code — ИИ-агента, который работает из терминала, запускает суб-агентов и правит код, не трогая вашу рабочую область. Новая эра программирования, где человек — архитектор.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/meta-muse-code-agent-cover.jpg">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/meta-muse-code-agent">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #ffffff;
+      --text-secondary: #c9c9c9;
+      --muted: #8f8f8f;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition); }
+    .wrap { width: 100%; max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 500; font-size: 1.1rem; letter-spacing: -0.02em;
+      color: var(--text-secondary); flex-shrink: 0;
+    }
+    .logo-img { height: 28px; width: auto; border-radius: 6px; }
+    .logo span span { color: var(--muted); }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      padding: 8px 14px; border-radius: var(--radius-xs);
+      font-size: 0.875rem; color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    nav .link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch {
+      border: 1px solid var(--border); border-radius: var(--radius-full);
+      padding: 6px 14px !important; font-size: 0.8rem !important;
+    }
+    .lang-switch:hover { border-color: #444; background: rgba(255,255,255,0.06) !important; }
+
+    article { padding: 48px 0 80px; }
+    article img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: 437px;
+      object-fit: cover;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    article p strong { color: var(--text); font-weight: 600; }
+    .highlight {
+      margin: 28px 0;
+      padding: 20px 22px;
+      background: linear-gradient(135deg, rgba(34,211,238,0.08), rgba(139,92,246,0.06));
+      border: 1px solid rgba(34,211,238,0.15);
+      border-radius: var(--radius-sm);
+      font-size: 1.05rem;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .note {
+      margin: 28px 0;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .note a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 3px; }
+    .note a:hover { color: var(--text); }
+
+    footer.site {
+      padding: 28px 0;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 32px 0 56px; }
+      article h2 { margin-top: 32px; }
+    }
+    /* --- Header: full-width like main page --- */
+    header.site .wrap { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    header.site .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+    header.site .logo { font-size: 1.1rem; gap: 10px; }
+    header.site .logo span span { color: var(--muted); }
+    header.site nav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    header.site nav .link { padding: 8px 12px; }
+    header.site .lang-switch { margin-left: 8px; }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link" href="/" data-i18n="nav.home">На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article>
+  <div class="wrap">
+ <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+
+ <img src="/assets/img/blog/meta-muse-code-agent-cover.jpg" alt="Meta выпустила Muse Code" loading="lazy">
+
+ <h1 data-i18n="h1">Meta выпустила Muse Code</h1>
+
+ <div class="meta" data-i18n="meta">2026-08-10 · 5 мин чтения</div>
+
+<p data-i18n="p1">В мире разработки программного обеспечения наступил переломный момент. Meta представила Muse Code — ИИ-агента, который не просто помогает писать код, а способен заменить целую команду разработчиков.</p>
+
+<p data-i18n="p2">Muse Code работает из терминала. Он может запускать несколько суб-агентов в параллельных средах, чтобы автоматически править код и тестировать его, не трогая вашу основную рабочую область.</p>
+
+<p data-i18n="p3">Это не просто ещё один инструмент для автодополнения кода. Это полноценный агент, который понимает архитектуру проекта, видит зависимости и может выполнять сложные задачи по всей кодовой базе.</p>
+
+<h2 data-i18n="h2_1">Что такое Muse Code и почему это важно</h2>
+
+<p data-i18n="p4">Muse Code — это агент-кодер нового поколения. Он работает через терминал и умеет делать то, что раньше требовало участия целой команды разработчиков.</p>
+
+<p data-i18n="p5">Ключевая особенность Muse Code — способность создавать и управлять суб-агентами. Каждый суб-агент получает свою задачу: один рефакторит код, другой пишет тесты, третий проверяет производительность, четвёртый ищет уязвимости.</p>
+
+<p data-i18n="p6">Все они работают параллельно, в изолированных средах, и не мешают друг другу. Когда работа завершена, изменения объединяются и проверяются человеком.</p>
+
+<p data-i18n="p7">Такой подход полностью меняет процесс разработки. Вместо того чтобы ждать, пока один разработчик сделает задачу, агент запускает целый конвейер, который выполняется за минуты.</p>
+
+<h2 data-i18n="h2_2">Как Muse Code меняет роль разработчика</h2>
+
+<p data-i18n="p8">С появлением Muse Code роль разработчика смещается от написания кода к управлению процессами.</p>
+
+<p data-i18n="p9">Разработчик больше не должен тратить часы на рутинные задачи. Он описывает задачу, а агент её выполняет. Разработчик проверяет результат, принимает изменения или отправляет на доработку.</p>
+
+<p data-i18n="p10">Это похоже на переход от ручного труда к управлению фабрикой. Вместо того чтобы стоять у станка, вы управляете цехом, где работают десятки агентов.</p>
+
+<p data-i18n="p11">При этом качество кода не страдает. Агенты не устают, не делают ошибок из-за невнимательности и строго следуют заданным правилам.</p>
+
+<h2 data-i18n="h2_3">Как это работает на практике</h2>
+
+<p data-i18n="p12">Представьте, что вам нужно провести рефакторинг крупного проекта.</p>
+
+<p data-i18n="p13">Раньше вы бы потратили недели: анализ кода, поиск проблемных мест, написание тестов, проверка производительности.</p>
+
+<p data-i18n="p14">С Muse Code вы просто даёте задачу агенту. Он анализирует код, создаёт суб-агентов для каждой задачи, выполняет работу и предоставляет результат.</p>
+
+<p data-i18n="p15">Весь процесс занимает от нескольких часов до одного дня. И вы при этом не написали ни строчки кода.</p>
+
+<p data-i18n="p16">Вы управляете процессом, а не погружаетесь в детали реализации.</p>
+
+<h2 data-i18n="h2_4">Что это значит для индустрии</h2>
+
+<p data-i18n="p17">Muse Code — это не просто новый инструмент. Это сигнал о том, что индустрия разработки ПО вступает в новую эру.</p>
+
+<p data-i18n="p18">Эра, где написание кода становится задачей для агентов, а человек сосредотачивается на архитектуре, стратегии и принятии решений.</p>
+
+<p data-i18n="p19">Следствием станет не просто ускорение разработки, а фундаментальное изменение рынка труда. Компании смогут делать больше с меньшим количеством разработчиков.</p>
+
+<p data-i18n="p20">Те, кто адаптируется к этой новой реальности, получат колоссальное преимущество. Те, кто будет игнорировать изменения, рискуют отстать навсегда.</p>
+
+<h2 data-i18n="h2_5">Риски и вызовы</h2>
+
+<p data-i18n="p21">Как и любой мощный инструмент, Muse Code несёт в себе риски.</p>
+
+<p data-i18n="p22">Во-первых, качество кода зависит от качества агента. Если агент допускает ошибку, она может распространиться по всей кодовой базе.</p>
+
+<p data-i18n="p23">Во-вторых, безопасность. Агент имеет доступ к коду проекта, и если его скомпрометировать, последствия могут быть серьёзными.</p>
+
+<p data-i18n="p24">В-третьих, это вопрос ответственности. Кто отвечает за код, написанный агентом? Разработчик, который дал задачу, или компания, которая создала агента?</p>
+
+<p data-i18n="p25">Исследователи и регуляторы активно обсуждают эти вопросы, и ответы на них появятся в ближайшее время.</p>
+
+<h2 data-i18n="h2_6">Подготовка к новой эре</h2>
+
+ <div class="highlight" data-i18n="p26">Muse Code — это не далёкое будущее. Это реальность, которая уже здесь.</div>
+
+<p data-i18n="p27">Разработчики, которые хотят оставаться востребованными, должны учиться работать с агентами. Понимать их возможности и ограничения. Уметь ставить задачи и проверять результаты.</p>
+
+<p data-i18n="p28">Те, кто сможет эффективно управлять агентами, станут архитекторами нового мира. Те, кто будет сопротивляться, рискуют остаться в прошлом.</p>
+
+<h2 data-i18n="h2_7">Следующий шаг: агенты, которые создают агентов</h2>
+
+<p data-i18n="p29">Muse Code — это только начало. Следующий шаг — агенты, которые не просто пишут код, но и создают других агентов.</p>
+
+<p data-i18n="p30">Представьте: вы описываете задачу, а агент не только пишет код, но и создаёт нового агента, который будет поддерживать и развивать этот код в будущем.</p>
+
+<p data-i18n="p31">Это замкнутый цикл: код, который пишет код, и агенты, которые создают агентов.</p>
+
+<p data-i18n="p32">Meta уже делает первые шаги в этом направлении. И мы видим, как быстро развиваются эти технологии.</p>
+
+<p data-i18n="p33"><a href="https://x402-ai-agent.space/blog/ai-agent-v6-intro"><strong>ИИ-Агент v6: Автономный Крипто-Трейдер →</strong></a></p>
+
+
+  </div>
+</article>
+</main>
+
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Meta выпустила Muse Code",
+  "description": "Meta представила Muse Code — ИИ-агента, который работает из терминала, запускает суб-агентов и правит код, не трогая вашу рабочую область. Новая эра программирования, где человек — архитектор.",
+  "datePublished": "2026-08-10",
+  "author": {
+    "@type": "Organization",
+    "name": "x402-ai-agent.space"
+  },
+  "image": "https://x402-ai-agent.space/assets/img/blog/meta-muse-code-agent-cover.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Блог x402",
+      "item": "https://x402-ai-agent.space/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Meta выпустила Muse Code",
+      "item": "https://x402-ai-agent.space/blog/meta-muse-code-agent"
+    }
+  ]
+}
+</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+  const embeddedRu = {
+ title: "Meta выпустила Muse Code — x402-ai-agent.space",
+ metaDescription: "Meta представила Muse Code — ИИ-агента, который работает из терминала, запускает суб-агентов и правит код, не трогая вашу рабочую область. Новая эра программирования, где человек — архитектор.",
+ nav: { back: "← Блог", home: "На сайт", lang: "🇬🇧 EN" },
+ backLink: "← Назад к блогу",
+ h1: "Meta выпустила Muse Code",
+ meta: "2026-08-10 · 5 мин чтения",
+ p1: "В мире разработки программного обеспечения наступил переломный момент. Meta представила Muse Code — ИИ-агента, который не просто помогает писать код, а способен заменить целую команду разработчиков.",
+ p2: "Muse Code работает из терминала. Он может запускать несколько суб-агентов в параллельных средах, чтобы автоматически править код и тестировать его, не трогая вашу основную рабочую область.",
+ p3: "Это не просто ещё один инструмент для автодополнения кода. Это полноценный агент, который понимает архитектуру проекта, видит зависимости и может выполнять сложные задачи по всей кодовой базе.",
+ h2_1: "Что такое Muse Code и почему это важно",
+ p4: "Muse Code — это агент-кодер нового поколения. Он работает через терминал и умеет делать то, что раньше требовало участия целой команды разработчиков.",
+ p5: "Ключевая особенность Muse Code — способность создавать и управлять суб-агентами. Каждый суб-агент получает свою задачу: один рефакторит код, другой пишет тесты, третий проверяет производительность, четвёртый ищет уязвимости.",
+ p6: "Все они работают параллельно, в изолированных средах, и не мешают друг другу. Когда работа завершена, изменения объединяются и проверяются человеком.",
+ p7: "Такой подход полностью меняет процесс разработки. Вместо того чтобы ждать, пока один разработчик сделает задачу, агент запускает целый конвейер, который выполняется за минуты.",
+ h2_2: "Как Muse Code меняет роль разработчика",
+ p8: "С появлением Muse Code роль разработчика смещается от написания кода к управлению процессами.",
+ p9: "Разработчик больше не должен тратить часы на рутинные задачи. Он описывает задачу, а агент её выполняет. Разработчик проверяет результат, принимает изменения или отправляет на доработку.",
+ p10: "Это похоже на переход от ручного труда к управлению фабрикой. Вместо того чтобы стоять у станка, вы управляете цехом, где работают десятки агентов.",
+ p11: "При этом качество кода не страдает. Агенты не устают, не делают ошибок из-за невнимательности и строго следуют заданным правилам.",
+ h2_3: "Как это работает на практике",
+ p12: "Представьте, что вам нужно провести рефакторинг крупного проекта.",
+ p13: "Раньше вы бы потратили недели: анализ кода, поиск проблемных мест, написание тестов, проверка производительности.",
+ p14: "С Muse Code вы просто даёте задачу агенту. Он анализирует код, создаёт суб-агентов для каждой задачи, выполняет работу и предоставляет результат.",
+ p15: "Весь процесс занимает от нескольких часов до одного дня. И вы при этом не написали ни строчки кода.",
+ p16: "Вы управляете процессом, а не погружаетесь в детали реализации.",
+ h2_4: "Что это значит для индустрии",
+ p17: "Muse Code — это не просто новый инструмент. Это сигнал о том, что индустрия разработки ПО вступает в новую эру.",
+ p18: "Эра, где написание кода становится задачей для агентов, а человек сосредотачивается на архитектуре, стратегии и принятии решений.",
+ p19: "Следствием станет не просто ускорение разработки, а фундаментальное изменение рынка труда. Компании смогут делать больше с меньшим количеством разработчиков.",
+ p20: "Те, кто адаптируется к этой новой реальности, получат колоссальное преимущество. Те, кто будет игнорировать изменения, рискуют отстать навсегда.",
+ h2_5: "Риски и вызовы",
+ p21: "Как и любой мощный инструмент, Muse Code несёт в себе риски.",
+ p22: "Во-первых, качество кода зависит от качества агента. Если агент допускает ошибку, она может распространиться по всей кодовой базе.",
+ p23: "Во-вторых, безопасность. Агент имеет доступ к коду проекта, и если его скомпрометировать, последствия могут быть серьёзными.",
+ p24: "В-третьих, это вопрос ответственности. Кто отвечает за код, написанный агентом? Разработчик, который дал задачу, или компания, которая создала агента?",
+ p25: "Исследователи и регуляторы активно обсуждают эти вопросы, и ответы на них появятся в ближайшее время.",
+ h2_6: "Подготовка к новой эре",
+ p26: "Muse Code — это не далёкое будущее. Это реальность, которая уже здесь.",
+ p27: "Разработчики, которые хотят оставаться востребованными, должны учиться работать с агентами. Понимать их возможности и ограничения. Уметь ставить задачи и проверять результаты.",
+ p28: "Те, кто сможет эффективно управлять агентами, станут архитекторами нового мира. Те, кто будет сопротивляться, рискуют остаться в прошлом.",
+ h2_7: "Следующий шаг: агенты, которые создают агентов",
+ p29: "Muse Code — это только начало. Следующий шаг — агенты, которые не просто пишут код, но и создают других агентов.",
+ p30: "Представьте: вы описываете задачу, а агент не только пишет код, но и создаёт нового агента, который будет поддерживать и развивать этот код в будущем.",
+ p31: "Это замкнутый цикл: код, который пишет код, и агенты, которые создают агентов.",
+ p32: "Meta уже делает первые шаги в этом направлении. И мы видим, как быстро развиваются эти технологии.",
+ p33: "<a href=\"https://x402-ai-agent.space/blog/ai-agent-v6-intro\"><strong>ИИ-Агент v6: Автономный Крипто-Трейдер →</strong></a>",
+    copyBtn: "⧉ Копировать",
+  };
+  const embeddedEn = {
+ title: "Meta Released Muse Code — x402-ai-agent.space",
+ metaDescription: "Meta unveiled Muse Code — an AI agent that runs from the terminal, launches sub-agents, and fixes code without touching your workspace. A new era where humans are architects.",
+ nav: { back: "← Blog", home: "Home", lang: "🇷🇺 RU" },
+ backLink: "← Back to blog",
+ h1: "Meta Released Muse Code",
+ meta: "2026-08-10 · 5 min read",
+ p1: "A turning point has arrived in the world of software development. Meta has introduced Muse Code — an AI agent that doesn't just help write code but can replace an entire team of developers.",
+ p2: "Muse Code works from the terminal. It can launch multiple sub-agents in parallel environments to automatically fix code and test it, without touching your main workspace.",
+ p3: "This is not just another autocomplete tool. This is a full-fledged agent that understands project architecture, sees dependencies, and can perform complex tasks across the entire codebase.",
+ h2_1: "What is Muse Code and why it matters",
+ p4: "Muse Code is a next-generation coding agent. It works through the terminal and can do what previously required an entire team of developers.",
+ p5: "The key feature of Muse Code is its ability to create and manage sub-agents. Each sub-agent receives its own task: one refactors the code, another writes tests, a third checks performance, a fourth looks for vulnerabilities.",
+ p6: "All of them work in parallel, in isolated environments, without interfering with each other. When the work is complete, the changes are merged and reviewed by a human.",
+ p7: "This approach completely changes the development process. Instead of waiting for one developer to complete a task, the agent launches an entire pipeline that executes in minutes.",
+ h2_2: "How Muse Code changes the developer's role",
+ p8: "With the advent of Muse Code, the developer's role shifts from writing code to managing processes.",
+ p9: "The developer no longer has to spend hours on routine tasks. They describe the task, and the agent executes it. The developer reviews the result, accepts the changes, or sends them back for revision.",
+ p10: "This is like moving from manual labor to factory management. Instead of standing at the machine, you manage a workshop where dozens of agents are working.",
+ p11: "Code quality doesn't suffer. Agents don't get tired, don't make mistakes due to inattention, and strictly follow the set rules.",
+ h2_3: "How it works in practice",
+ p12: "Imagine you need to refactor a large project.",
+ p13: "Previously, you would have spent weeks: analyzing code, finding problem areas, writing tests, checking performance.",
+ p14: "With Muse Code, you simply give the task to the agent. It analyzes the code, creates sub-agents for each task, performs the work, and delivers the result.",
+ p15: "The entire process takes from a few hours to a day. And you haven't written a single line of code.",
+ p16: "You manage the process rather than diving into implementation details.",
+ h2_4: "What this means for the industry",
+ p17: "Muse Code is not just a new tool. It's a signal that the software development industry is entering a new era.",
+ p18: "An era where writing code becomes a task for agents, and humans focus on architecture, strategy, and decision-making.",
+ p19: "The consequence will be not just accelerated development, but a fundamental change in the labor market. Companies will be able to do more with fewer developers.",
+ p20: "Those who adapt to this new reality will gain a colossal advantage. Those who ignore the changes risk falling behind forever.",
+ h2_5: "Risks and challenges",
+ p21: "Like any powerful tool, Muse Code carries risks.",
+ p22: "First, code quality depends on the agent's quality. If an agent makes a mistake, it can spread across the entire codebase.",
+ p23: "Second, security. The agent has access to the project's code, and if it's compromised, the consequences could be serious.",
+ p24: "Third, responsibility. Who is responsible for code written by an agent? The developer who gave the task, or the company that created the agent?",
+ p25: "Researchers and regulators are actively discussing these questions, and answers will emerge soon.",
+ h2_6: "Preparing for the new era",
+ p26: "Muse Code is not a distant future. It's a reality that is already here.",
+ p27: "Developers who want to remain in demand must learn to work with agents. Understand their capabilities and limitations. Be able to set tasks and review results.",
+ p28: "Those who can effectively manage agents will become the architects of the new world. Those who resist risk being left in the past.",
+ h2_7: "The next step: agents that create agents",
+ p29: "Muse Code is just the beginning. The next step is agents that not only write code but also create other agents.",
+ p30: "Imagine: you describe a task, and the agent not only writes the code but also creates a new agent that will maintain and develop that code in the future.",
+ p31: "This is a closed loop: code that writes code, and agents that create agents.",
+ p32: "Meta is already taking the first steps in this direction. And we see how quickly these technologies are evolving.",
+ p33: "<a href=\"https://x402-ai-agent.space/blog/ai-agent-v6-intro\"><strong>AI Agent v6: Autonomous Crypto Trader →</strong></a>",
+    copyBtn: "⧉ Copy",
+  };
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        el.innerHTML = value;
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+  function copyBlock(id, btn) {
+    const pre = document.querySelector('[data-i18n="' + id + '"]');
+    if (!pre) return;
+    const text = pre.textContent;
+    const done = () => {
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied';
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => { fallbackCopy(pre, done); });
+    } else {
+      fallbackCopy(pre, done);
+    }
+  }
+  function fallbackCopy(pre, done) {
+    const range = document.createRange();
+    range.selectNodeContents(pre);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    try { document.execCommand('copy'); } catch (e) {}
+    sel.removeAllRanges();
+    done();
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>
