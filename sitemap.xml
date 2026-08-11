@@ -107,6 +107,41 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: osl-zapuskaet-agentpay-dlya-platezhey-steyblkoinami-ot-ii-agentov -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/osl-zapuskaet-agentpay-dlya-platezhey-steyblkoinami-ot-ii-agentov</loc>
+ <lastmod>2026-08-11</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
+ <!-- Blog: hak-ot-nekontroliruemogo-ii-predskazuem -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/hak-ot-nekontroliruemogo-ii-predskazuem</loc>
+ <lastmod>2026-08-11</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
+ <!-- Blog: trafik-ii-agentov-i-vopros-oplaty -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/trafik-ii-agentov-i-vopros-oplaty</loc>
+ <lastmod>2026-08-11</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
+ <!-- Blog: golosovoy-agent-referralmd-konets-ocheredi-v-registrature -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/golosovoy-agent-referralmd-konets-ocheredi-v-registrature</loc>
+ <lastmod>2026-08-12</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
+ <!-- Blog: grok-bot-ii-agenty-vyhodyat-iz-chata-v-ofis -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/grok-bot-ii-agenty-vyhodyat-iz-chata-v-ofis</loc>
+ <lastmod>2026-08-12</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>

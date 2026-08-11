@@ -5,8 +5,43 @@
     <link>https://x402-ai-agent.space/blog/</link>
     <description>Articles about x402 protocol, AI agent payments, agentic economy, and autonomous agents.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 11 Aug 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 12 Aug 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://x402-ai-agent.space/feed.xml" rel="self" type="application/rss+xml"/>
+ <item>
+ <title>Grok Bot: AI Agents Move from Chat to Office Work</title>
+ <link>https://x402-ai-agent.space/blog/grok-bot-ii-agenty-vyhodyat-iz-chata-v-ofis</link>
+ <guid isPermaLink="true">https://x402-ai-agent.space/blog/grok-bot-ii-agenty-vyhodyat-iz-chata-v-ofis</guid>
+ <pubDate>Wed, 12 Aug 2026 12:00:00 +0000</pubDate>
+ <description>The launch of Grok Bot by SpaceXAI marks the transition of AI agents from conversational mode to work mode. This is not just a new bot, but a signal that the next stage of autonomous systems development is linked to performing routine office tasks.</description>
+ </item>
+ <item>
+ <title>ReferralMD's Voice Agent: The End of the Registration Queue</title>
+ <link>https://x402-ai-agent.space/blog/golosovoy-agent-referralmd-konets-ocheredi-v-registrature</link>
+ <guid isPermaLink="true">https://x402-ai-agent.space/blog/golosovoy-agent-referralmd-konets-ocheredi-v-registrature</guid>
+ <pubDate>Wed, 12 Aug 2026 12:00:00 +0000</pubDate>
+ <description>ReferralMD launched an autonomous voice AI agent for patient scheduling. It is not a chatbot but a full AI calling by phone. We analyze how voice interfaces change the economics of healthcare and why this matters for x402.</description>
+ </item>
+ <item>
+ <title>AI Agent Traffic and the Payment Question</title>
+ <link>https://x402-ai-agent.space/blog/trafik-ii-agentov-i-vopros-oplaty</link>
+ <guid isPermaLink="true">https://x402-ai-agent.space/blog/trafik-ii-agentov-i-vopros-oplaty</guid>
+ <pubDate>Tue, 11 Aug 2026 12:00:00 +0000</pubDate>
+ <description>Elon Musk predicts AI agent traffic will dwarf human internet usage. Michael Burry asks who will pay for this socialization. We analyze the gap between technical potential and economic reality.</description>
+ </item>
+ <item>
+ <title>AI runaway hacks are foreseeable</title>
+ <link>https://x402-ai-agent.space/blog/hak-ot-nekontroliruemogo-ii-predskazuem</link>
+ <guid isPermaLink="true">https://x402-ai-agent.space/blog/hak-ot-nekontroliruemogo-ii-predskazuem</guid>
+ <pubDate>Tue, 11 Aug 2026 12:00:00 +0000</pubDate>
+ <description>Experts warn: runaway AI incidents are inevitable without changing our approach. We are currently allowing these scenarios to happen consciously.</description>
+ </item>
+ <item>
+ <title>OSL launches AgentPay for stablecoin payments by AI agents</title>
+ <link>https://x402-ai-agent.space/blog/osl-zapuskaet-agentpay-dlya-platezhey-steyblkoinami-ot-ii-agentov</link>
+ <guid isPermaLink="true">https://x402-ai-agent.space/blog/osl-zapuskaet-agentpay-dlya-platezhey-steyblkoinami-ot-ii-agentov</guid>
+ <pubDate>Tue, 11 Aug 2026 12:00:00 +0000</pubDate>
+ <description>OSL introduced AgentPay — a solution enabling AI agents to make stablecoin payments without human intervention. This is a crucial step towards an autonomous agent economy.</description>
+ </item>
  <item>
  <title>AI finds so many Windows flaws, Microsoft can't keep up</title>
  <link>https://x402-ai-agent.space/blog/ii-nahodit-kuchu-uyazvimostey-windows-microsoft-ne-uspevaet</link>
