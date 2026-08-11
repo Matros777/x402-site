@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">ИИ находит кучу уязвимостей Windows, Microsoft не успевает — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="ИИ-инструменты для поиска уязвимостей обнаруживают критические дыры в Windows быстрее, чем Microsoft успевает их исправлять. Это создаёт новые риски для безопасности и меняет подход к киберзащите.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/ii-nahodit-kuchu-uyazvimostey-windows-microsoft-ne-uspevaet">
+  <meta property="og:title" data-i18n="title" content="ИИ находит кучу уязвимостей Windows, Microsoft не успевает — x402-ai-agent.space">
+  <meta property="og:description" data-i18n="metaDescription" content="ИИ-инструменты для поиска уязвимостей обнаруживают критические дыры в Windows быстрее, чем Microsoft успевает их исправлять. Это создаёт новые риски для безопасности и меняет подход к киберзащите.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/ii-nahodit-kuchu-uyazvimostey-windows-microsoft-ne-uspevaet-cover.jpg">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="ИИ находит кучу уязвимостей Windows, Microsoft не успевает — x402-ai-agent.space">
+  <meta name="twitter:description" data-i18n="metaDescription" content="ИИ-инструменты для поиска уязвимостей обнаруживают критические дыры в Windows быстрее, чем Microsoft успевает их исправлять. Это создаёт новые риски для безопасности и меняет подход к киберзащите.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/ii-nahodit-kuchu-uyazvimostey-windows-microsoft-ne-uspevaet-cover.jpg">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/ii-nahodit-kuchu-uyazvimostey-windows-microsoft-ne-uspevaet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #ffffff;
+      --text-secondary: #c9c9c9;
+      --muted: #8f8f8f;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition); }
+    .wrap { width: 100%; max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 500; font-size: 1.1rem; letter-spacing: -0.02em;
+      color: var(--text-secondary); flex-shrink: 0;
+    }
+    .logo-img { height: 28px; width: auto; border-radius: 6px; }
+    .logo span span { color: var(--muted); }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      padding: 8px 14px; border-radius: var(--radius-xs);
+      font-size: 0.875rem; color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    nav .link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch {
+      border: 1px solid var(--border); border-radius: var(--radius-full);
+      padding: 6px 14px !important; font-size: 0.8rem !important;
+    }
+    .lang-switch:hover { border-color: #444; background: rgba(255,255,255,0.06) !important; }
+
+    article { padding: 48px 0 80px; }
+    article img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: 437px;
+      object-fit: cover;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    article p strong { color: var(--text); font-weight: 600; }
+    .highlight {
+      margin: 28px 0;
+      padding: 20px 22px;
+      background: linear-gradient(135deg, rgba(34,211,238,0.08), rgba(139,92,246,0.06));
+      border: 1px solid rgba(34,211,238,0.15);
+      border-radius: var(--radius-sm);
+      font-size: 1.05rem;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .note {
+      margin: 28px 0;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .note a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 3px; }
+    .note a:hover { color: var(--text); }
+
+    footer.site {
+      padding: 28px 0;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 32px 0 56px; }
+      article h2 { margin-top: 32px; }
+    }
+    /* --- Header: full-width like main page --- */
+    header.site .wrap { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    header.site .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+    header.site .logo { font-size: 1.1rem; gap: 10px; }
+    header.site .logo span span { color: var(--muted); }
+    header.site nav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    header.site nav .link { padding: 8px 12px; }
+    header.site .lang-switch { margin-left: 8px; }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link" href="/" data-i18n="nav.home">На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article>
+  <div class="wrap">
+ <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+
+ <img src="/assets/img/blog/ii-nahodit-kuchu-uyazvimostey-windows-microsoft-ne-uspevaet-cover.jpg" alt="ИИ находит кучу уязвимостей Windows, Microsoft не успевает" loading="lazy">
+
+ <h1 data-i18n="h1">ИИ находит кучу уязвимостей Windows, Microsoft не успевает</h1>
+
+ <div class="meta" data-i18n="meta">2026-08-11 · 2 мин чтения</div>
+
+<p data-i18n="p1">Ситуация с уязвимостями в Windows переходит в новую фазу. ИИ-инструменты для автоматического поиска багов в коде теперь выявляют критические уязвимости с такой скоростью, что команда Microsoft просто не успевает выпускать патчи вовремя. Это не просто техническая проблема — это фундаментальный сдвиг в балансе между атакой и защитой, где искусственный интеллект становится доминирующей силой на обеих сторонах баррикад.</p>
+
+<h2 data-i18n="h2_1">Что происходит</h2>
+
+<p data-i18n="p2">Ранее поиск уязвимостей был трудоёмким процессом, требующим месяцев ручного аудита кода и тестирования. Теперь же специализированные ИИ-системы могут анализировать миллионы строк кода за считанные часы, выявляя логические ошибки, проблемы с памятью, Race Conditions и другие классы уязвимостей, которые раньше ускользали от внимания людей. Масштаб выдачи становится таким, что даже компания с ресурсами Microsoft сталкивается с «бутылочным горлышком» — на анализ, приоритизацию и исправление каждого найденного бага нужно время, а поток новых не прекращается.</p>
+
+<p data-i18n="p3">Важно понимать, что речь не о каких-то случайных ошибках. ИИ находит системные проблемы в архитектуре Windows, некоторые из которых существуют годами. Это означает, что поверхность атаки для злоумышленников расширяется: если раньше уязвимости были редкостью и их стоимость на чёрном рынке была высока, то теперь их становится всё больше, и каждая из них потенциально может быть использована.</p>
+
+<h2 data-i18n="h2_2">Почему это критично</h2>
+
+<p data-i18n="p4">Проблема усугубляется тем, что ИИ для поиска уязвимостей доступен не только защитникам. Злоумышленники используют те же технологии для автоматизированного поиска эксплойтов. Это создаёт асимметричную ситуацию: найти уязвимость с помощью ИИ может любой, а исправить её — только Microsoft. Получается гонка вооружений, где скорость атаки превышает скорость обороны.</p>
+
+<p data-i18n="p5">Для обычных пользователей это означает, что концепция «установи обновление — и ты в безопасности» перестаёт работать так же эффективно, как раньше. Между тем, как уязвимость найдена, и моментом, когда патч доходит до конечного пользователя, может пройти значительное время. И это окно возможностей для атак только увеличивается.</p>
+
+<h2 data-i18n="h2_3">Что это значит для агентов и разработчиков</h2>
+
+<p data-i18n="p6">Для экосистемы ИИ-агентов эта новость имеет прямое отношение. Агенты, которые работают с системным уровнем, управляют криптовalletами, взаимодействуют с блокчейн-протоколами вроде x402, требуют надёжной песочницы и строгой изоляции. Если базовая ОС имеет множество не закрытых уязвимостей, то любая система контроля доступа становится потенциально уязвимой.</p>
+
+<p data-i18n="p7">Разработчики агентов должны учитывать этот новый контекст при проектировании архитектуры безопасности. Это включает в себя многоуровневую защиту, минимизацию привилегий, использование аппаратных средств безопасности и постоянный мониторинг. В мире, где ИИ может находить уязвимости быстрее, чем их исправляют, подход «security by design» становится не рекомендацией, а необходимостью.</p>
+
+<h2 data-i18n="h2_4">Перспективы и решения</h2>
+
+<p data-i18n="p8">Ситуация не безнадёжна, но требует изменений. Microsoft и другие крупные игроки уже внедряют ИИ для ускорения процесса разработки патчей. Это своего рода «битва ИИ против ИИ» — одна система ищет уязвимости, другая генерирует исправления. В долгосрочной перспективе это может привести к более безопасному ПО, но переходный период будет сложным.</p>
+
+<p data-i18n="p9">Для пользователей и организаций важнее всего понимать, что обновления критичны как никогда. Задержка установки патча даже на несколько дней может стать фатальной. Также стоит рассмотреть дополнительные слои защиты: EDR-системы, сетевую сегментацию, ограничение прав приложений. В мире, где поверхность атаки постоянно растёт, защита должна быть многоуровневой.</p>
+
+ <div class="highlight" data-i18n="p10"><strong><a href="https://x402-ai-agent.space/blog/self-improving-x402">Self-improving agent + x402: агент, который сам себя улучшает — и сам за это платит →</a></strong> — читайте подробнее в блоге.</div>
+
+ <div class="highlight" data-i18n="p11"><strong><a href="https://x402-ai-agent.space/blog/keti-vud-kritikuet-cloudflare-na-otchtnom-zvonke">Кэти Вуд критикует Cloudflare на отчётном звонке →</a></strong> — читайте подробнее в блоге.</div>
+
+
+  </div>
+</article>
+</main>
+
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ИИ находит кучу уязвимостей Windows, Microsoft не успевает",
+  "description": "ИИ-инструменты для поиска уязвимостей обнаруживают критические дыры в Windows быстрее, чем Microsoft успевает их исправлять. Это создаёт новые риски для безопасности и меняет подход к киберзащите.",
+  "datePublished": "2026-08-11",
+  "author": {
+    "@type": "Organization",
+    "name": "x402-ai-agent.space"
+  },
+  "image": "https://x402-ai-agent.space/assets/img/blog/ii-nahodit-kuchu-uyazvimostey-windows-microsoft-ne-uspevaet-cover.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Блог x402",
+      "item": "https://x402-ai-agent.space/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "ИИ находит кучу уязвимостей Windows, Microsoft не успевает",
+      "item": "https://x402-ai-agent.space/blog/ii-nahodit-kuchu-uyazvimostey-windows-microsoft-ne-uspevaet"
+    }
+  ]
+}
+</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+  const embeddedRu = {
+ title: "ИИ находит кучу уязвимостей Windows, Microsoft не успевает — x402-ai-agent.space",
+ metaDescription: "ИИ-инструменты для поиска уязвимостей обнаруживают критические дыры в Windows быстрее, чем Microsoft успевает их исправлять. Это создаёт новые риски для безопасности и меняет подход к киберзащите.",
+ nav: { back: "← Блог", home: "На сайт", lang: "🇬🇧 EN" },
+ backLink: "← Назад к блогу",
+ h1: "ИИ находит кучу уязвимостей Windows, Microsoft не успевает",
+ meta: "2026-08-11 · 2 мин чтения",
+ p1: "Ситуация с уязвимостями в Windows переходит в новую фазу. ИИ-инструменты для автоматического поиска багов в коде теперь выявляют критические уязвимости с такой скоростью, что команда Microsoft просто не успевает выпускать патчи вовремя. Это не просто техническая проблема — это фундаментальный сдвиг в балансе между атакой и защитой, где искусственный интеллект становится доминирующей силой на обеих сторонах баррикад.",
+ h2_1: "Что происходит",
+ p2: "Ранее поиск уязвимостей был трудоёмким процессом, требующим месяцев ручного аудита кода и тестирования. Теперь же специализированные ИИ-системы могут анализировать миллионы строк кода за считанные часы, выявляя логические ошибки, проблемы с памятью, Race Conditions и другие классы уязвимостей, которые раньше ускользали от внимания людей. Масштаб выдачи становится таким, что даже компания с ресурсами Microsoft сталкивается с «бутылочным горлышком» — на анализ, приоритизацию и исправление каждого найденного бага нужно время, а поток новых не прекращается.",
+ p3: "Важно понимать, что речь не о каких-то случайных ошибках. ИИ находит системные проблемы в архитектуре Windows, некоторые из которых существуют годами. Это означает, что поверхность атаки для злоумышленников расширяется: если раньше уязвимости были редкостью и их стоимость на чёрном рынке была высока, то теперь их становится всё больше, и каждая из них потенциально может быть использована.",
+ h2_2: "Почему это критично",
+ p4: "Проблема усугубляется тем, что ИИ для поиска уязвимостей доступен не только защитникам. Злоумышленники используют те же технологии для автоматизированного поиска эксплойтов. Это создаёт асимметричную ситуацию: найти уязвимость с помощью ИИ может любой, а исправить её — только Microsoft. Получается гонка вооружений, где скорость атаки превышает скорость обороны.",
+ p5: "Для обычных пользователей это означает, что концепция «установи обновление — и ты в безопасности» перестаёт работать так же эффективно, как раньше. Между тем, как уязвимость найдена, и моментом, когда патч доходит до конечного пользователя, может пройти значительное время. И это окно возможностей для атак только увеличивается.",
+ h2_3: "Что это значит для агентов и разработчиков",
+ p6: "Для экосистемы ИИ-агентов эта новость имеет прямое отношение. Агенты, которые работают с системным уровнем, управляют криптовalletами, взаимодействуют с блокчейн-протоколами вроде x402, требуют надёжной песочницы и строгой изоляции. Если базовая ОС имеет множество не закрытых уязвимостей, то любая система контроля доступа становится потенциально уязвимой.",
+ p7: "Разработчики агентов должны учитывать этот новый контекст при проектировании архитектуры безопасности. Это включает в себя многоуровневую защиту, минимизацию привилегий, использование аппаратных средств безопасности и постоянный мониторинг. В мире, где ИИ может находить уязвимости быстрее, чем их исправляют, подход «security by design» становится не рекомендацией, а необходимостью.",
+ h2_4: "Перспективы и решения",
+ p8: "Ситуация не безнадёжна, но требует изменений. Microsoft и другие крупные игроки уже внедряют ИИ для ускорения процесса разработки патчей. Это своего рода «битва ИИ против ИИ» — одна система ищет уязвимости, другая генерирует исправления. В долгосрочной перспективе это может привести к более безопасному ПО, но переходный период будет сложным.",
+ p9: "Для пользователей и организаций важнее всего понимать, что обновления критичны как никогда. Задержка установки патча даже на несколько дней может стать фатальной. Также стоит рассмотреть дополнительные слои защиты: EDR-системы, сетевую сегментацию, ограничение прав приложений. В мире, где поверхность атаки постоянно растёт, защита должна быть многоуровневой.",
+ p10: "<strong><a href=\"https://x402-ai-agent.space/blog/self-improving-x402\">Self-improving agent + x402: агент, который сам себя улучшает — и сам за это платит →</a></strong> — читайте подробнее в блоге.",
+ p11: "<strong><a href=\"https://x402-ai-agent.space/blog/keti-vud-kritikuet-cloudflare-na-otchtnom-zvonke\">Кэти Вуд критикует Cloudflare на отчётном звонке →</a></strong> — читайте подробнее в блоге.",
+    copyBtn: "⧉ Копировать",
+  };
+  const embeddedEn = {
+ title: "AI finds so many Windows flaws, Microsoft can't keep up — x402-ai-agent.space",
+ metaDescription: "AI-powered vulnerability discovery tools are finding critical Windows flaws faster than Microsoft can patch them. This creates new security risks and fundamentally changes the cybersecurity landscape.",
+ nav: { back: "← Blog", home: "Home", lang: "🇷🇺 RU" },
+ backLink: "← Back to blog",
+ h1: "AI finds so many Windows flaws, Microsoft can't keep up",
+ meta: "2026-08-11 · 2 min read",
+ p1: "The situation with Windows vulnerabilities is entering a new phase. AI-powered tools for automated bug discovery are now identifying critical vulnerabilities at such a pace that Microsoft's team simply cannot keep up with releasing patches in time. This is not just a technical problem — it's a fundamental shift in the balance between attack and defense, where artificial intelligence becomes the dominant force on both sides of the barricades.",
+ h2_1: "What's happening",
+ p2: "Previously, vulnerability hunting was a labor-intensive process requiring months of manual code auditing and testing. Now, specialized AI systems can analyze millions of lines of code in hours, uncovering logic errors, memory issues, race conditions, and other vulnerability classes that previously eluded human attention. The scale of output has become such that even a company with Microsoft's resources faces a bottleneck — analyzing, prioritizing, and fixing each found bug takes time, while the flow of new ones never stops.",
+ p3: "It's important to understand that we're not talking about random errors. AI finds systemic problems in Windows architecture, some of which have existed for years. This means the attack surface for malicious actors expands: whereas vulnerabilities used to be rare and expensive on the black market, now there are more of them, and each could potentially be exploited.",
+ h2_2: "Why this is critical",
+ p4: "The problem is compounded by the fact that AI for vulnerability discovery is available not only to defenders. Attackers use the same technologies for automated exploit hunting. This creates an asymmetric situation: anyone can find a vulnerability with AI, but only Microsoft can fix it. We get an arms race where attack speed exceeds defense speed.",
+ p5: "For ordinary users, this means the concept of \"install an update and you're safe\" no longer works as effectively as before. There can be significant time between when a vulnerability is found and when the patch reaches the end user. And this window of opportunity for attacks only grows.",
+ h2_3: "What this means for agents and developers",
+ p6: "For the AI agent ecosystem, this news has direct relevance. Agents working at the system level, managing crypto wallets, interacting with blockchain protocols like x402, require reliable sandboxing and strict isolation. If the base OS has numerous unpatched vulnerabilities, any access control system becomes potentially vulnerable.",
+ p7: "Agent developers must consider this new context when designing security architecture. This includes multi-layered defense, privilege minimization, hardware security utilization, and continuous monitoring. In a world where AI can find vulnerabilities faster than they're patched, \"security by design\" becomes not a recommendation but a necessity.",
+ h2_4: "Perspectives and solutions",
+ p8: "The situation isn't hopeless, but it requires changes. Microsoft and other major players are already incorporating AI to accelerate the patch development process. This is a kind of \"AI vs AI\" battle — one system finds vulnerabilities, another generates fixes. In the long term, this could lead to more secure software, but the transition period will be challenging.",
+ p9: "For users and organizations, the most important thing is understanding that updates are more critical than ever. Delaying a patch installation even by a few days can be fatal. It's also worth considering additional protection layers: EDR systems, network segmentation, application rights restriction. In a world where the attack surface constantly grows, defense must be multi-layered.",
+ p10: "<strong><a href=\"https://x402-ai-agent.space/blog/self-improving-x402\">Self-improving agent + x402: an agent that improves itself — and pays for it →</a></strong> — read more on the blog.",
+ p11: "<strong><a href=\"https://x402-ai-agent.space/blog/keti-vud-kritikuet-cloudflare-na-otchtnom-zvonke\">Cathie Wood criticizes Cloudflare on earnings call →</a></strong> — read more on the blog.",
+    copyBtn: "⧉ Copy",
+  };
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        el.innerHTML = value;
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+  function copyBlock(id, btn) {
+    const pre = document.querySelector('[data-i18n="' + id + '"]');
+    if (!pre) return;
+    const text = pre.textContent;
+    const done = () => {
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied';
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => { fallbackCopy(pre, done); });
+    } else {
+      fallbackCopy(pre, done);
+    }
+  }
+  function fallbackCopy(pre, done) {
+    const range = document.createRange();
+    range.selectNodeContents(pre);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    try { document.execCommand('copy'); } catch (e) {}
+    sel.removeAllRanges();
+    done();
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>
