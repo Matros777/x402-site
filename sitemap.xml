@@ -93,6 +93,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: keti-vud-kritikuet-cloudflare-na-otchtnom-zvonke -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/keti-vud-kritikuet-cloudflare-na-otchtnom-zvonke</loc>
+ <lastmod>2026-08-11</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
