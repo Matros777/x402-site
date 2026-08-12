@@ -701,8 +701,8 @@
       <div style="margin-top: 1.15rem;">
         <label for="facilitator" data-i18n="facilitator_label">Фасилитатор</label>
         <select id="facilitator">
-          <option value="xpay" selected>xpay (по умолчанию) — без API-ключа</option>
-          <option value="cdp">CDP Coinbase — для листинга на agentic.market</option>
+          <option value="xpay" selected data-i18n="fac_xpay">xpay (по умолчанию) — без API-ключа</option>
+          <option value="cdp" data-i18n="fac_cdp">CDP Coinbase — для листинга на agentic.market</option>
         </select>
         <p class="hint-xs" data-i18n="facilitator_hint">По умолчанию: facilitator.xpay.sh (оплата работает сразу). CDP нужен только если хочешь попасть в каталог agentic.market — для этого потребуется официальный API-ключ Coinbase Developer Platform. Без успешного settle через CDP листинга не будет.</p>
       </div>
@@ -793,7 +793,7 @@
       <div class="ai-help-body">
         <p class="hint" style="margin-top:0.9rem" data-i18n="ai_help_intro">Скопируй промпт ниже и отправь ChatGPT / Claude / Cursor — модель напишет <code>agent_logic</code> в формате, который понимает этот генератор. Импорты — над функцией. Ответ — только dict.</p>
         <div class="ai-help-label" data-i18n="ai_prompt_label">Промпт для ИИ</div>
-        <div class="ai-prompt-box" id="aiPromptText">Ты пишешь логику для генератора x402-агентов (сайт x402-ai-agent.space/generator).
+        <div class="ai-prompt-box" id="aiPromptText" data-i18n="ai_prompt_text">Ты пишешь логику для генератора x402-агентов (сайт x402-ai-agent.space/generator).
 
 ЖЁСТКИЕ ПРАВИЛА:
 1) Верни ОДИН фрагмент Python-кода — без markdown-ограждений, без пояснений вокруг.
@@ -904,6 +904,8 @@ httpx</pre>
         wallet_hint: "EVM-адрес в сети Base. Именно на него будут приходить платежи от агентов.",
         facilitator_label: "Фасилитатор",
         facilitator_hint: "По умолчанию: facilitator.xpay.sh (оплата работает сразу). CDP нужен только если хочешь попасть в каталог agentic.market — для этого потребуется официальный API-ключ Coinbase Developer Platform. Без успешного settle через CDP листинга не будет.",
+        fac_xpay: "xpay (по умолчанию) — без API-ключа",
+        fac_cdp: "CDP Coinbase — для листинга на agentic.market",
         cdp_note: "Ключи берутся из env при деплое (<code>CDP_API_KEY_ID</code>, <code>CDP_API_KEY_SECRET</code>). Создать: <a href=\"https://portal.cdp.coinbase.com/\" target=\"_blank\">portal.cdp.coinbase.com</a>. В коде ниже можно оставить плейсхолдеры.",
         cdp_listing_hint: "Для agentic.market: Bazaar extension + CDP + один реальный settle после деплоя. Verify alone недостаточно — индексируется только после settle.",
         step3: "3. Эндпоинт",
@@ -959,6 +961,8 @@ httpx</pre>
         wallet_hint: "EVM address on Base. This is where payments from agents will arrive.",
         facilitator_label: "Facilitator",
         facilitator_hint: "Default: facilitator.xpay.sh (payments work immediately). CDP is only needed if you want to get listed on agentic.market — requires an official Coinbase Developer Platform API key. Without successful CDP settlement, listing won't happen.",
+        fac_xpay: "xpay (default) - no API key needed",
+        fac_cdp: "CDP Coinbase - for listing on agentic.market",
         cdp_note: "Keys are taken from env on deploy (<code>CDP_API_KEY_ID</code>, <code>CDP_API_KEY_SECRET</code>). Create: <a href=\"https://portal.cdp.coinbase.com/\" target=\"_blank\">portal.cdp.coinbase.com</a>. Placeholders can be left in the code below.",
         cdp_listing_hint: "For agentic.market: Bazaar extension + CDP + one real settlement after deploy. Verify alone is not enough — indexing only happens after settlement.",
         step3: "3. Endpoint",
@@ -992,13 +996,15 @@ httpx</pre>
         ai_help_toggle: "Paste this prompt into chat with your AI agent",
         ai_help_intro: "Copy the prompt below into ChatGPT / Claude / Cursor — the model will write <code>agent_logic</code> in the format this generator expects. Imports go above the function. Return value must be a dict only.",
         ai_prompt_label: "Prompt for AI",
+        ai_prompt_text: "You are writing logic for the x402 agent generator (x402-ai-agent.space/generator).\n\nSTRICT RULES:\n1) Return ONE fragment of Python code, no markdown fences, no surrounding comments.\n2) Required function: def agent_logic(data: dict) -> dict\n3) Input: dict only (fields from JSON body and/or query). Use data.get(\"key\", default).\n4) Output: dict only (JSON-serializable: str, int, float, bool, list, dict). No Response, print, or file writes.\n5) Libraries: put import ABOVE def agent_logic. Standard library and these are already on the server: os, json, httpx. Anything else the user will add under 'extra libraries'.\n6) Do not add a web server, FastAPI, x402, verify/settle, the site generates that itself.\n7) Handle errors inside and return a dict with an \"error\" field; don't throw unhandled exceptions unless necessary.\n8) Network: if calling APIs, use httpx or requests, timeout is required.\n9) Don't hardcode secrets; read from os.getenv(\"NAME\", \"\").\n\nMINI-TEMPLATE:\nimport httpx\n\ndef agent_logic(data: dict) -> dict:\n    symbol = str(data.get(\"symbol\", \"BTC\")).upper()\n    # ... your logic ...\n    return {\"symbol\": symbol, \"result\": \"...\"}\n\nEXAMPLE (long/short signal):\ndef agent_logic(data: dict) -> dict:\n    symbol = str(data.get(\"symbol\", \"BTC\")).upper()\n    # demo logic without external APIs\n    signal = \"long\" if symbol in (\"BTC\", \"ETH\") else \"short\"\n    return {\"symbol\": symbol, \"signal\": signal, \"note\": \"demo\"}\n\nUser's task (paste here): ",
         btn_copy_prompt: "Copy prompt",
         extra_deps_label: "Extra libraries (pip)",
         extra_deps_hint: "If you need extra libraries — paste them here (comma or newline separated). They will be added to <code>requirements.txt</code> on generate. You can also paste Python imports (<code>from datetime import datetime</code>, <code>import json</code>) — they will be inserted into the code automatically. Still write imports in code above <code>agent_logic</code>.",
         extra_deps_note: "Packages (pip) go to <code>requirements.txt</code>. Python imports (<code>from datetime import datetime</code>, <code>import json</code>) are inserted into the code automatically. Standard library is excluded from requirements."
       }
     };
-    let currentLang = "ru";
+    let currentLang = new URLSearchParams(window.location.search).get("lang") || "ru";
+    if (currentLang === "en") { setLanguage("en"); }
     function updateSwitcher(lang) {
       const switcher = document.querySelector(".lang-switch");
       if (!switcher) return;
