@@ -170,6 +170,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: odin-prompt-armiya-agentov-kak-sozdat-sistemu -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/odin-prompt-armiya-agentov-kak-sozdat-sistemu</loc>
+ <lastmod>2026-08-12</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
