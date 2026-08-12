@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Китайские хакеры применяли ИИ-агентов для поиска систем Тайваня — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="Китайские хакеры использовали ИИ-агентов для массового поиска уязвимых систем правительства Тайваня, в результате чего было взломано 85 объектов. Инцидент демонстрирует новую фазу кибервойны, где автономные программы автоматически ищут точки проникновения. Это меняет правила игры: масштаб и скорость атак больше не ограничены человеческими руками.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/kitayskie-hakery-primenyali-ii-agentov-dlya-poiska-sistem-tayvanya">
+  <meta property="og:title" data-i18n="title" content="Китайские хакеры применяли ИИ-агентов для поиска систем Тайваня — x402-ai-agent.space">
+  <meta property="og:description" data-i18n="metaDescription" content="Китайские хакеры использовали ИИ-агентов для массового поиска уязвимых систем правительства Тайваня, в результате чего было взломано 85 объектов. Инцидент демонстрирует новую фазу кибервойны, где автономные программы автоматически ищут точки проникновения. Это меняет правила игры: масштаб и скорость атак больше не ограничены человеческими руками.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/kitayskie-hakery-primenyali-ii-agentov-dlya-poiska-sistem-tayvanya-cover.jpg">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="Китайские хакеры применяли ИИ-агентов для поиска систем Тайваня — x402-ai-agent.space">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Китайские хакеры использовали ИИ-агентов для массового поиска уязвимых систем правительства Тайваня, в результате чего было взломано 85 объектов. Инцидент демонстрирует новую фазу кибервойны, где автономные программы автоматически ищут точки проникновения. Это меняет правила игры: масштаб и скорость атак больше не ограничены человеческими руками.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/kitayskie-hakery-primenyali-ii-agentov-dlya-poiska-sistem-tayvanya-cover.jpg">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/kitayskie-hakery-primenyali-ii-agentov-dlya-poiska-sistem-tayvanya">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #ffffff;
+      --text-secondary: #c9c9c9;
+      --muted: #8f8f8f;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition); }
+    .wrap { width: 100%; max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 500; font-size: 1.1rem; letter-spacing: -0.02em;
+      color: var(--text-secondary); flex-shrink: 0;
+    }
+    .logo-img { height: 28px; width: auto; border-radius: 6px; }
+    .logo span span { color: var(--muted); }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      padding: 8px 14px; border-radius: var(--radius-xs);
+      font-size: 0.875rem; color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    nav .link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch {
+      border: 1px solid var(--border); border-radius: var(--radius-full);
+      padding: 6px 14px !important; font-size: 0.8rem !important;
+    }
+    .lang-switch:hover { border-color: #444; background: rgba(255,255,255,0.06) !important; }
+
+    article { padding: 48px 0 80px; }
+    article img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: 437px;
+      object-fit: cover;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    article p strong { color: var(--text); font-weight: 600; }
+    .highlight {
+      margin: 28px 0;
+      padding: 20px 22px;
+      background: linear-gradient(135deg, rgba(34,211,238,0.08), rgba(139,92,246,0.06));
+      border: 1px solid rgba(34,211,238,0.15);
+      border-radius: var(--radius-sm);
+      font-size: 1.05rem;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .note {
+      margin: 28px 0;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .note a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 3px; }
+    .note a:hover { color: var(--text); }
+
+    footer.site {
+      padding: 28px 0;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 32px 0 56px; }
+      article h2 { margin-top: 32px; }
+    }
+    /* --- Header: full-width like main page --- */
+    header.site .wrap { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    header.site .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+    header.site .logo { font-size: 1.1rem; gap: 10px; }
+    header.site .logo span span { color: var(--muted); }
+    header.site nav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    header.site nav .link { padding: 8px 12px; }
+    header.site .lang-switch { margin-left: 8px; }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link" href="/" data-i18n="nav.home">На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article>
+  <div class="wrap">
+ <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+
+ <img src="/assets/img/blog/kitayskie-hakery-primenyali-ii-agentov-dlya-poiska-sistem-tayvanya-cover.jpg" alt="Китайские хакеры применяли ИИ-агентов для поиска систем Тайваня" loading="lazy">
+
+ <h1 data-i18n="h1">Китайские хакеры применяли ИИ-агентов для поиска систем Тайваня</h1>
+
+ <div class="meta" data-i18n="meta">2026-08-12 · 2 мин чтения</div>
+
+<p data-i18n="p1">Взлом — это больше не рукотворное ремесло, где человек за клавиатурой перебирает варианты, ищет щели, гадает, какие системы уязвимы. Китайские хакеры использовали ИИ-агентов для поиска уязвимых систем правительства Тайваня, и в результате оказалось взломано 85 объектов. Сам по себе этот факт должен остановить: не 85 человек по одному, а один агент, который сам ходит по сети, сам тестирует, сам решает, куда бить. Это уже не атака в привычном смысле — это автономная охота, где человек задаёт цель, а метод выбирает программа.</p>
+
+<p data-i18n="p2">Разница между традиционным взломом и агентным подходом — как между снайпером и дроном-рой. Снайпер выбирает цель, ждёт момента, стреляет один раз. Рой летит над территорией, сканирует, сам находит то, что нужно, и бьёт по десяткам точек одновременно. Здесь ровно то же самое: агенты не ждут, пока человек найдёт слабое место. Они сами ищут, сами проверяют, сами возвращаются с координатами. Масштаб меняется не на проценты, а на порядки.</p>
+
+<h2 data-i18n="h2_1">Как устроена агентная охота</h2>
+
+<p data-i18n="p3">ИИ-агент для кибератаки — это не что-то из научной фантастики. Это программа, которой можно задать задачу: найти все системы правительства Тайваня с уязвимостью X, проверить их на проникновение, выслать отчёт. Дальше агент сам решает, как это делать: какие сканировать диапазоны IP, какие протоколы использовать, на что обратить внимание. Человек не сидит рядом и не даёт команду на каждый шаг. Агент работает автономно, возвращает результат, когда находит что-то стоящее.</p>
+
+<p data-i18n="p4">Ключевой момент — агент не просто ищет, он учится. Если один метод не сработал, он пробует другой. Если одна система защищена слишком сильно, он переходит к следующей. Это не перебор в лоб, а адаптивный поиск, где каждый шаг опирается на предыдущий. Поэтому 85 взломанных систем — это не случайно найденные дыры. Это результат систематической охоты, где агент отсеивает лишнее и бьёт точно туда, где вероятность успеха выше.</p>
+
+<h2 data-i18n="h2_2">Что это значит для защиты</h2>
+
+<p data-i18n="p5">Главный вопрос не в том, как заблокировать одного конкретного агента. Агентов можно создавать снова и снова, менять их параметры, улучшать алгоритмы. Проблема глубже: когда атака автоматизирована, защита тоже должна быть автоматизированной. Человек за консолью больше не успевает реагировать. Если агент сканирует тысячи систем в секунду, то ответ должен быть не менее быстрым — иначе это не защита, а фикция.</p>
+
+<p data-i18n="p6">Отсюда следствие: системы безопасности перестают быть статическими укреплениями. Они должны сами адаптироваться, сами учиться, сами менять конфигурацию в ответ на действия агентов. Это гонка вооружений, где с одной стороны — атакующие агенты, с другой — защитные. И в этой гонке побеждает тот, чьи агенты быстрее и умнее. Человек всё ещё нужен, но его роль меняется: он больше не стрелок, он стратег, который настраивает систему и следит за результатом.</p>
+
+<p data-i18n="p7">Инцидент с Тайванем показывает, что агентные атаки уже не теория, а практика. Кто-то уже использует их в реальных операциях, и результат очевиден: 85 взломанных систем не оставляют сомнений в эффективности. Вопрос не в том, будут ли такие атаки распространяться, а в том, кто успеет подготовиться первым. ИИ-агенты для атак — это новая реальность, с которой придётся иметь дело.</p>
+
+ <div class="highlight" data-i18n="p8"><strong><a href="https://x402-ai-agent.space/blog/when-ai-agents-create-themselves">Когда ИИ-агенты создают себе подобных →</a></strong> — читайте подробнее в блоге.</div>
+
+ <div class="highlight" data-i18n="p9"><strong><a href="https://x402-ai-agent.space/blog/autonomy-vs-control">Автономность против контроля →</a></strong> — читайте подробнее в блоге.</div>
+
+
+  </div>
+</article>
+</main>
+
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Китайские хакеры применяли ИИ-агентов для поиска систем Тайваня",
+  "description": "Китайские хакеры использовали ИИ-агентов для массового поиска уязвимых систем правительства Тайваня, в результате чего было взломано 85 объектов. Инцидент демонстрирует новую фазу кибервойны, где автономные программы автоматически ищут точки проникновения. Это меняет правила игры: масштаб и скорость атак больше не ограничены человеческими руками.",
+  "datePublished": "2026-08-12",
+  "author": {
+    "@type": "Organization",
+    "name": "x402-ai-agent.space"
+  },
+  "image": "https://x402-ai-agent.space/assets/img/blog/kitayskie-hakery-primenyali-ii-agentov-dlya-poiska-sistem-tayvanya-cover.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Блог x402",
+      "item": "https://x402-ai-agent.space/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Китайские хакеры применяли ИИ-агентов для поиска систем Тайваня",
+      "item": "https://x402-ai-agent.space/blog/kitayskie-hakery-primenyali-ii-agentov-dlya-poiska-sistem-tayvanya"
+    }
+  ]
+}
+</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+  const embeddedRu = {
+ title: "Китайские хакеры применяли ИИ-агентов для поиска систем Тайваня — x402-ai-agent.space",
+ metaDescription: "Китайские хакеры использовали ИИ-агентов для массового поиска уязвимых систем правительства Тайваня, в результате чего было взломано 85 объектов. Инцидент демонстрирует новую фазу кибервойны, где автономные программы автоматически ищут точки проникновения. Это меняет правила игры: масштаб и скорость атак больше не ограничены человеческими руками.",
+ nav: { back: "← Блог", home: "На сайт", lang: "🇬🇧 EN" },
+ backLink: "← Назад к блогу",
+ h1: "Китайские хакеры применяли ИИ-агентов для поиска систем Тайваня",
+ meta: "2026-08-12 · 2 мин чтения",
+ p1: "Взлом — это больше не рукотворное ремесло, где человек за клавиатурой перебирает варианты, ищет щели, гадает, какие системы уязвимы. Китайские хакеры использовали ИИ-агентов для поиска уязвимых систем правительства Тайваня, и в результате оказалось взломано 85 объектов. Сам по себе этот факт должен остановить: не 85 человек по одному, а один агент, который сам ходит по сети, сам тестирует, сам решает, куда бить. Это уже не атака в привычном смысле — это автономная охота, где человек задаёт цель, а метод выбирает программа.",
+ p2: "Разница между традиционным взломом и агентным подходом — как между снайпером и дроном-рой. Снайпер выбирает цель, ждёт момента, стреляет один раз. Рой летит над территорией, сканирует, сам находит то, что нужно, и бьёт по десяткам точек одновременно. Здесь ровно то же самое: агенты не ждут, пока человек найдёт слабое место. Они сами ищут, сами проверяют, сами возвращаются с координатами. Масштаб меняется не на проценты, а на порядки.",
+ h2_1: "Как устроена агентная охота",
+ p3: "ИИ-агент для кибератаки — это не что-то из научной фантастики. Это программа, которой можно задать задачу: найти все системы правительства Тайваня с уязвимостью X, проверить их на проникновение, выслать отчёт. Дальше агент сам решает, как это делать: какие сканировать диапазоны IP, какие протоколы использовать, на что обратить внимание. Человек не сидит рядом и не даёт команду на каждый шаг. Агент работает автономно, возвращает результат, когда находит что-то стоящее.",
+ p4: "Ключевой момент — агент не просто ищет, он учится. Если один метод не сработал, он пробует другой. Если одна система защищена слишком сильно, он переходит к следующей. Это не перебор в лоб, а адаптивный поиск, где каждый шаг опирается на предыдущий. Поэтому 85 взломанных систем — это не случайно найденные дыры. Это результат систематической охоты, где агент отсеивает лишнее и бьёт точно туда, где вероятность успеха выше.",
+ h2_2: "Что это значит для защиты",
+ p5: "Главный вопрос не в том, как заблокировать одного конкретного агента. Агентов можно создавать снова и снова, менять их параметры, улучшать алгоритмы. Проблема глубже: когда атака автоматизирована, защита тоже должна быть автоматизированной. Человек за консолью больше не успевает реагировать. Если агент сканирует тысячи систем в секунду, то ответ должен быть не менее быстрым — иначе это не защита, а фикция.",
+ p6: "Отсюда следствие: системы безопасности перестают быть статическими укреплениями. Они должны сами адаптироваться, сами учиться, сами менять конфигурацию в ответ на действия агентов. Это гонка вооружений, где с одной стороны — атакующие агенты, с другой — защитные. И в этой гонке побеждает тот, чьи агенты быстрее и умнее. Человек всё ещё нужен, но его роль меняется: он больше не стрелок, он стратег, который настраивает систему и следит за результатом.",
+ p7: "Инцидент с Тайванем показывает, что агентные атаки уже не теория, а практика. Кто-то уже использует их в реальных операциях, и результат очевиден: 85 взломанных систем не оставляют сомнений в эффективности. Вопрос не в том, будут ли такие атаки распространяться, а в том, кто успеет подготовиться первым. ИИ-агенты для атак — это новая реальность, с которой придётся иметь дело.",
+ p8: "<strong><a href=\"https://x402-ai-agent.space/blog/when-ai-agents-create-themselves\">Когда ИИ-агенты создают себе подобных →</a></strong> — читайте подробнее в блоге.",
+ p9: "<strong><a href=\"https://x402-ai-agent.space/blog/autonomy-vs-control\">Автономность против контроля →</a></strong> — читайте подробнее в блоге.",
+    copyBtn: "⧉ Копировать",
+  };
+  const embeddedEn = {
+ title: "Chinese Hackers Used AI Agents to Hunt Taiwan Government Systems — x402-ai-agent.space",
+ metaDescription: "Chinese hackers deployed AI agents to systematically hunt for vulnerable Taiwan government systems, successfully breaching 85 targets. The incident marks a new phase in cyberwarfare where autonomous programs automatically identify entry points. This shifts the paradigm: the scale and speed of attacks are no longer constrained by human operators.",
+ nav: { back: "← Blog", home: "Home", lang: "🇷🇺 RU" },
+ backLink: "← Back to blog",
+ h1: "Chinese Hackers Used AI Agents to Hunt Taiwan Government Systems",
+ meta: "2026-08-12 · 2 min read",
+ p1: "A breach is no longer a manual craft where a person at a keyboard tries options, hunts for cracks, guesses which systems might be vulnerable. Chinese hackers used AI agents to hunt for vulnerable Taiwan government systems, and 85 targets ended up compromised. The fact itself should stop you: not 85 people working individually, but a single agent that walks the network by itself, tests by itself, decides where to strike. This is no longer an attack in the familiar sense — it is autonomous hunting, where a human sets the goal and the program chooses the method.",
+ p2: "The difference between traditional hacking and the agent-based approach is like the difference between a sniper and a drone swarm. A sniper chooses a target, waits for the moment, fires once. A swarm flies over territory, scans, finds what it needs on its own, and strikes dozens of points simultaneously. Here it is exactly the same: agents do not wait for a human to find a weak spot. They search, test, and return with coordinates themselves. The scale changes not by percentages but by orders of magnitude.",
+ h2_1: "How agent-based hunting works",
+ p3: "An AI agent for cyberattacks is not something from science fiction. It is a program you can give a task to: find all Taiwan government systems with vulnerability X, test them for penetration, send a report. From there, the agent decides how to do it: which IP ranges to scan, which protocols to use, what to pay attention to. A human does not sit nearby and give a command for each step. The agent works autonomously and returns a result when it finds something worth reporting.",
+ p4: "The key point is that the agent does not just search — it learns. If one method does not work, it tries another. If a system is too heavily protected, it moves to the next one. This is not brute force but adaptive search where each step builds on the previous one. That is why 85 compromised systems are not randomly found holes. It is the result of systematic hunting where the agent filters out the noise and strikes precisely where the probability of success is higher.",
+ h2_2: "What this means for defense",
+ p5: "The main question is not how to block one specific agent. Agents can be created again and again, their parameters changed, their algorithms improved. The problem runs deeper: when attacks are automated, defense must be automated too. A person at a console can no longer keep up with reactions. If an agent scans thousands of systems per second, the response must be equally fast — otherwise it is not defense but fiction.",
+ p6: "From this follows a consequence: security systems stop being static fortifications. They must adapt themselves, learn themselves, change configuration themselves in response to agent actions. This is an arms race where on one side are attacking agents and on the other defensive ones. In this race, the one with faster and smarter agents wins. A human is still needed, but their role changes: they are no longer the shooter but the strategist who sets up the system and watches the results.",
+ p7: "The Taiwan incident shows that agent-based attacks are already theory no more, but practice. Someone is already using them in real operations, and the result is obvious: 85 compromised systems leave no doubt about effectiveness. The question is not whether such attacks will spread, but who will prepare first. AI agents for attacks are a new reality that must be dealt with.",
+ p8: "<strong><a href=\"https://x402-ai-agent.space/blog/when-ai-agents-create-themselves\">When AI Agents Create Themselves →</a></strong> — read more on the blog.",
+ p9: "<strong><a href=\"https://x402-ai-agent.space/blog/autonomy-vs-control\">Autonomy vs Control →</a></strong> — read more on the blog.",
+    copyBtn: "⧉ Copy",
+  };
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        el.innerHTML = value;
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+  function copyBlock(id, btn) {
+    const pre = document.querySelector('[data-i18n="' + id + '"]');
+    if (!pre) return;
+    const text = pre.textContent;
+    const done = () => {
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied';
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => { fallbackCopy(pre, done); });
+    } else {
+      fallbackCopy(pre, done);
+    }
+  }
+  function fallbackCopy(pre, done) {
+    const range = document.createRange();
+    range.selectNodeContents(pre);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    try { document.execCommand('copy'); } catch (e) {}
+    sel.removeAllRanges();
+    done();
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>

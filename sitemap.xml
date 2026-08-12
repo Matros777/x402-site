@@ -149,6 +149,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: kitayskie-hakery-primenyali-ii-agentov-dlya-poiska-sistem-tayvanya -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/kitayskie-hakery-primenyali-ii-agentov-dlya-poiska-sistem-tayvanya</loc>
+ <lastmod>2026-08-12</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
