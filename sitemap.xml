@@ -184,6 +184,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: 89-pokupateley-kripty-trebuyut-chestnyh-komissiy -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/89-pokupateley-kripty-trebuyut-chestnyh-komissiy</loc>
+ <lastmod>2026-08-13</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
