@@ -142,6 +142,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: kriptonaivnost-pochemu-my-vidim-tolko-kotirovki -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/kriptonaivnost-pochemu-my-vidim-tolko-kotirovki</loc>
+ <lastmod>2026-08-12</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
