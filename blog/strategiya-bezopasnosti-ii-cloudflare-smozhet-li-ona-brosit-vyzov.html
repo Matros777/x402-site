@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Стратегия безопасности ИИ Cloudflare: сможет ли она бросить вызов — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="Cloudflare строит защиту для эпохи ИИ-агентов, пытаясь отобрать долю рынка у Palo Alto Networks и Zscaler. Вопрос не в технологиях как таковых, а в том, кто лучше понимает новую поверхность атаки: от API до автономных агентов.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/strategiya-bezopasnosti-ii-cloudflare-smozhet-li-ona-brosit-vyzov">
+  <meta property="og:title" data-i18n="title" content="Стратегия безопасности ИИ Cloudflare: сможет ли она бросить вызов — x402-ai-agent.space">
+  <meta property="og:description" data-i18n="metaDescription" content="Cloudflare строит защиту для эпохи ИИ-агентов, пытаясь отобрать долю рынка у Palo Alto Networks и Zscaler. Вопрос не в технологиях как таковых, а в том, кто лучше понимает новую поверхность атаки: от API до автономных агентов.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/strategiya-bezopasnosti-ii-cloudflare-smozhet-li-ona-brosit-vyzov-cover.jpg">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="Стратегия безопасности ИИ Cloudflare: сможет ли она бросить вызов — x402-ai-agent.space">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Cloudflare строит защиту для эпохи ИИ-агентов, пытаясь отобрать долю рынка у Palo Alto Networks и Zscaler. Вопрос не в технологиях как таковых, а в том, кто лучше понимает новую поверхность атаки: от API до автономных агентов.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/strategiya-bezopasnosti-ii-cloudflare-smozhet-li-ona-brosit-vyzov-cover.jpg">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/strategiya-bezopasnosti-ii-cloudflare-smozhet-li-ona-brosit-vyzov">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #ffffff;
+      --text-secondary: #c9c9c9;
+      --muted: #8f8f8f;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition); }
+    .wrap { width: 100%; max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 500; font-size: 1.1rem; letter-spacing: -0.02em;
+      color: var(--text-secondary); flex-shrink: 0;
+    }
+    .logo-img { height: 28px; width: auto; border-radius: 6px; }
+    .logo span span { color: var(--muted); }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      padding: 8px 14px; border-radius: var(--radius-xs);
+      font-size: 0.875rem; color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    nav .link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch {
+      border: 1px solid var(--border); border-radius: var(--radius-full);
+      padding: 6px 14px !important; font-size: 0.8rem !important;
+    }
+    .lang-switch:hover { border-color: #444; background: rgba(255,255,255,0.06) !important; }
+
+    article { padding: 48px 0 80px; }
+    article img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: 437px;
+      object-fit: cover;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    article p strong { color: var(--text); font-weight: 600; }
+    .highlight {
+      margin: 28px 0;
+      padding: 20px 22px;
+      background: linear-gradient(135deg, rgba(34,211,238,0.08), rgba(139,92,246,0.06));
+      border: 1px solid rgba(34,211,238,0.15);
+      border-radius: var(--radius-sm);
+      font-size: 1.05rem;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .note {
+      margin: 28px 0;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .note a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 3px; }
+    .note a:hover { color: var(--text); }
+
+    footer.site {
+      padding: 28px 0;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 32px 0 56px; }
+      article h2 { margin-top: 32px; }
+    }
+    /* --- Header: full-width like main page --- */
+    header.site .wrap { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    header.site .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+    header.site .logo { font-size: 1.1rem; gap: 10px; }
+    header.site .logo span span { color: var(--muted); }
+    header.site nav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    header.site nav .link { padding: 8px 12px; }
+    header.site .lang-switch { margin-left: 8px; }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link" href="/" data-i18n="nav.home">На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article>
+  <div class="wrap">
+ <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+
+ <img src="/assets/img/blog/strategiya-bezopasnosti-ii-cloudflare-smozhet-li-ona-brosit-vyzov-cover.jpg" alt="Стратегия безопасности ИИ Cloudflare: сможет ли она бросить вызов" loading="lazy">
+
+ <h1 data-i18n="h1">Стратегия безопасности ИИ Cloudflare: сможет ли она бросить вызов</h1>
+
+ <div class="meta" data-i18n="meta">2026-08-12 · 3 мин чтения</div>
+
+<p data-i18n="p1">Когда мы говорим о корпоративной безопасности, рынок уже десятилетиями выглядит устоявшейся картиной: Palo Alto Networks и Zscaler делят между собой лидерство, а остальные пытаются найти нишу. Но тут появляется Cloudflare с стратегией, которая может всё изменить. Не потому что кто-то выпустил очередной брандмауэр, а потому что сама поверхность атаки сместилась. ИИ-агенты, бессерверные функции, бесконечные потоки API — всё то, о чём традиционные вендоры думали постфактум, для Cloudflare стало фундаментом бизнеса с самого начала. Вопрос из заголовка звучит провокационно, но за ним стоит не спортивный интерес, а реальная схватка за то, кто будет защитником следующего десятилетия.</p>
+
+<p data-i18n="p2">Интерес здесь не в том, кто победит в абстрактном рейтинге. Дело в том, что безопасность ИИ — это не просто новая фича в существующем продукте. Это другой подход к тому, что вообще нужно защищать. Традиционный периметр исчезал уже давно, но с приходом агентов он растворился окончательно. Теперь защищать надо не только людей и серверы, но и автономные процессы, которые принимают решения, расходуют бюджет и взаимодействуют с внешними системами без постоянного контроля человека. Если Cloudflare действительно нашла способ монетизировать эту защиту, то перед нами не просто очередной вызов гигантам — это смена парадигмы.</p>
+
+<h2 data-i18n="h2_1">Новая поверхность атаки</h2>
+
+<p data-i18n="p3">То, что мы называем «безопасностью ИИ», на самом деле состоит из нескольких слоёв, и каждый из них ломает привычные модели защиты. Есть модель сама по себе — её надо защищать от отравления данных, от извлечения параметров, от атак, которые заставляют её говорить то, что не должна. Есть канал между пользователем и моделью — API, через который льются запросы, и который можно использовать для DoS, для инъекций, для обхода ограничений. И есть агент, который использует модель как инструмент, но сам принимает решения и взаимодействует с миром. Три разных объекта, три разных вектора атаки, и ни один из них не укладывается в классическую схему «брандмауэр на границе сети».</p>
+
+<p data-i18n="p4">Традиционные вендоры безопасности привыкли думать в категориях сетей, пользователей, устройств. Они строили империи на управлении доступом, на инспекции трафика, на политиках, которые администраторы прописывают вручную. Но ИИ-агент не сидит за отдельным устройством, не имеет фиксированного IP-адреса и не следует политикам в том виде, как их понимали десять лет назад. Агент — это процесс, который может запускаться в облаке на секунду, сделать запрос, получить ответ, потратить деньги и исчезнуть. Защищать такое нужно другим инструментами, и именно здесь Cloudflare может иметь преимущество: её сеть изначально строилась для динамического, распределённого, пограничного вычисления, а не для статического периметра.</p>
+
+<h2 data-i18n="h2_2">Экономика защиты в эпоху агентов</h2>
+
+<p data-i18n="p5">Но техника — лишь половина дела. Другая половина — это бизнес-модель, и здесь интереснее всего. Традиционная корпоративная безопасность продаётся как тяжёлое, дорогое предприятие: лицензии, внедрение, обучение, постоянное обслуживание. Клиент платит дорого, но получает ощущение, что за него отвечает кто-то огромный и авторитетный. В мире ИИ-агентов эта модель может треснуть. Агенты должны быть быстрыми, дешёвыми и масштабируемыми — и если защита вокруг них будет тяжёлой и дорогой, её просто не будут использовать. Найдётся тот, кто предложит защиту «из коробки», встроенную в инфраструктуру, без отдельной команды инженеров по настройке.</p>
+
+<p data-i18n="p6">Здесь кроется интересная дилемма для Palo Alto и Zscaler. Их бизнесы построены на сложности и на том, что безопасность требует экспертизы. ИИ-агенты же, по своей природе, стремятся к упрощению — они делегируют сложность моделям, а не людям. Если Cloudflare сможет предложить защиту, которая масштабируется так же легко, как запускается бессерверная функция, это ударит не столько по технологиям конкурентов, сколько по их экономической модели. Клиент выберет не того, у кого круче фичи на слайдах, а того, у кого защита включается одной строкой кода и стоит копейки при масштабе. В этом смысле вопрос из заголовка — это не про технологии, а про то, кто быстрее переобуется в новую эпоху.</p>
+
+<p data-i18n="p7">Кто в итоге выиграет — покажет не слайд в презентации инвесторам, а то, какие решения будут принимать разработчики агентных систем. Сегодня они выбирают между удобством и безопасностью, и пока удобство почти всегда побеждает. Если Cloudflare сделает безопасность неотличимой от удобства, это изменит рынок. Если же останется просто ещё одним вендором с отдельным продуктом «для ИИ», то статус-кво сохранится. Но сам факт, что такой вопрос вообще задан, говорит о том, что старые гиганты уже не кажутся неуязвимыми.</p>
+
+ <div class="highlight" data-i18n="p8"><strong><a href="https://x402-ai-agent.space/blog/golosovoy-agent-referralmd-konets-ocheredi-v-registrature">Голосовой ИИ-агент ReferralMD: конец эпохи колл-центров? →</a></strong> — читайте подробнее в блоге.</div>
+
+ <div class="highlight" data-i18n="p9"><strong><a href="https://x402-ai-agent.space/blog/agents-economy-not-theory">Экономика агентов уже не теория: кто платит, кто зарабатывает и где настоящий объём →</a></strong> — читайте подробнее в блоге.</div>
+
+
+  </div>
+</article>
+</main>
+
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Стратегия безопасности ИИ Cloudflare: сможет ли она бросить вызов",
+  "description": "Cloudflare строит защиту для эпохи ИИ-агентов, пытаясь отобрать долю рынка у Palo Alto Networks и Zscaler. Вопрос не в технологиях как таковых, а в том, кто лучше понимает новую поверхность атаки: от API до автономных агентов.",
+  "datePublished": "2026-08-12",
+  "author": {
+    "@type": "Organization",
+    "name": "x402-ai-agent.space"
+  },
+  "image": "https://x402-ai-agent.space/assets/img/blog/strategiya-bezopasnosti-ii-cloudflare-smozhet-li-ona-brosit-vyzov-cover.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Блог x402",
+      "item": "https://x402-ai-agent.space/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Стратегия безопасности ИИ Cloudflare: сможет ли она бросить вызов",
+      "item": "https://x402-ai-agent.space/blog/strategiya-bezopasnosti-ii-cloudflare-smozhet-li-ona-brosit-vyzov"
+    }
+  ]
+}
+</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+  const embeddedRu = {
+ title: "Стратегия безопасности ИИ Cloudflare: сможет ли она бросить вызов — x402-ai-agent.space",
+ metaDescription: "Cloudflare строит защиту для эпохи ИИ-агентов, пытаясь отобрать долю рынка у Palo Alto Networks и Zscaler. Вопрос не в технологиях как таковых, а в том, кто лучше понимает новую поверхность атаки: от API до автономных агентов.",
+ nav: { back: "← Блог", home: "На сайт", lang: "🇬🇧 EN" },
+ backLink: "← Назад к блогу",
+ h1: "Стратегия безопасности ИИ Cloudflare: сможет ли она бросить вызов",
+ meta: "2026-08-12 · 3 мин чтения",
+ p1: "Когда мы говорим о корпоративной безопасности, рынок уже десятилетиями выглядит устоявшейся картиной: Palo Alto Networks и Zscaler делят между собой лидерство, а остальные пытаются найти нишу. Но тут появляется Cloudflare с стратегией, которая может всё изменить. Не потому что кто-то выпустил очередной брандмауэр, а потому что сама поверхность атаки сместилась. ИИ-агенты, бессерверные функции, бесконечные потоки API — всё то, о чём традиционные вендоры думали постфактум, для Cloudflare стало фундаментом бизнеса с самого начала. Вопрос из заголовка звучит провокационно, но за ним стоит не спортивный интерес, а реальная схватка за то, кто будет защитником следующего десятилетия.",
+ p2: "Интерес здесь не в том, кто победит в абстрактном рейтинге. Дело в том, что безопасность ИИ — это не просто новая фича в существующем продукте. Это другой подход к тому, что вообще нужно защищать. Традиционный периметр исчезал уже давно, но с приходом агентов он растворился окончательно. Теперь защищать надо не только людей и серверы, но и автономные процессы, которые принимают решения, расходуют бюджет и взаимодействуют с внешними системами без постоянного контроля человека. Если Cloudflare действительно нашла способ монетизировать эту защиту, то перед нами не просто очередной вызов гигантам — это смена парадигмы.",
+ h2_1: "Новая поверхность атаки",
+ p3: "То, что мы называем «безопасностью ИИ», на самом деле состоит из нескольких слоёв, и каждый из них ломает привычные модели защиты. Есть модель сама по себе — её надо защищать от отравления данных, от извлечения параметров, от атак, которые заставляют её говорить то, что не должна. Есть канал между пользователем и моделью — API, через который льются запросы, и который можно использовать для DoS, для инъекций, для обхода ограничений. И есть агент, который использует модель как инструмент, но сам принимает решения и взаимодействует с миром. Три разных объекта, три разных вектора атаки, и ни один из них не укладывается в классическую схему «брандмауэр на границе сети».",
+ p4: "Традиционные вендоры безопасности привыкли думать в категориях сетей, пользователей, устройств. Они строили империи на управлении доступом, на инспекции трафика, на политиках, которые администраторы прописывают вручную. Но ИИ-агент не сидит за отдельным устройством, не имеет фиксированного IP-адреса и не следует политикам в том виде, как их понимали десять лет назад. Агент — это процесс, который может запускаться в облаке на секунду, сделать запрос, получить ответ, потратить деньги и исчезнуть. Защищать такое нужно другим инструментами, и именно здесь Cloudflare может иметь преимущество: её сеть изначально строилась для динамического, распределённого, пограничного вычисления, а не для статического периметра.",
+ h2_2: "Экономика защиты в эпоху агентов",
+ p5: "Но техника — лишь половина дела. Другая половина — это бизнес-модель, и здесь интереснее всего. Традиционная корпоративная безопасность продаётся как тяжёлое, дорогое предприятие: лицензии, внедрение, обучение, постоянное обслуживание. Клиент платит дорого, но получает ощущение, что за него отвечает кто-то огромный и авторитетный. В мире ИИ-агентов эта модель может треснуть. Агенты должны быть быстрыми, дешёвыми и масштабируемыми — и если защита вокруг них будет тяжёлой и дорогой, её просто не будут использовать. Найдётся тот, кто предложит защиту «из коробки», встроенную в инфраструктуру, без отдельной команды инженеров по настройке.",
+ p6: "Здесь кроется интересная дилемма для Palo Alto и Zscaler. Их бизнесы построены на сложности и на том, что безопасность требует экспертизы. ИИ-агенты же, по своей природе, стремятся к упрощению — они делегируют сложность моделям, а не людям. Если Cloudflare сможет предложить защиту, которая масштабируется так же легко, как запускается бессерверная функция, это ударит не столько по технологиям конкурентов, сколько по их экономической модели. Клиент выберет не того, у кого круче фичи на слайдах, а того, у кого защита включается одной строкой кода и стоит копейки при масштабе. В этом смысле вопрос из заголовка — это не про технологии, а про то, кто быстрее переобуется в новую эпоху.",
+ p7: "Кто в итоге выиграет — покажет не слайд в презентации инвесторам, а то, какие решения будут принимать разработчики агентных систем. Сегодня они выбирают между удобством и безопасностью, и пока удобство почти всегда побеждает. Если Cloudflare сделает безопасность неотличимой от удобства, это изменит рынок. Если же останется просто ещё одним вендором с отдельным продуктом «для ИИ», то статус-кво сохранится. Но сам факт, что такой вопрос вообще задан, говорит о том, что старые гиганты уже не кажутся неуязвимыми.",
+ p8: "<strong><a href=\"https://x402-ai-agent.space/blog/golosovoy-agent-referralmd-konets-ocheredi-v-registrature\">Голосовой ИИ-агент ReferralMD: конец эпохи колл-центров? →</a></strong> — читайте подробнее в блоге.",
+ p9: "<strong><a href=\"https://x402-ai-agent.space/blog/agents-economy-not-theory\">Экономика агентов уже не теория: кто платит, кто зарабатывает и где настоящий объём →</a></strong> — читайте подробнее в блоге.",
+    copyBtn: "⧉ Копировать",
+  };
+  const embeddedEn = {
+ title: "Cloudflare's AI Security Strategy: Can it Challenge PANW & ZS? — x402-ai-agent.space",
+ metaDescription: "Cloudflare builds AI-era security to challenge Palo Alto Networks and Zscaler. The question isn't just technology—it's who truly grasps the new attack surface: from APIs to autonomous agents.",
+ nav: { back: "← Blog", home: "Home", lang: "🇷🇺 RU" },
+ backLink: "← Back to blog",
+ h1: "Cloudflare's AI Security Strategy: Can it Challenge PANW & ZS?",
+ meta: "2026-08-12 · 3 min read",
+ p1: "When we talk about enterprise security, the market has looked like a settled picture for decades: Palo Alto Networks and Zscaler split leadership between them, while everyone else tries to find a niche. But here comes Cloudflare with a strategy that could change everything. Not because someone released another firewall, but because the attack surface itself has shifted. AI agents, serverless functions, endless streams of APIs — everything traditional vendors thought about after the fact has been Cloudflare's business foundation from day one. The question in the headline sounds provocative, but behind it lies not sports interest but a real battle for who becomes the guardian of the next decade.",
+ p2: "The interest here isn't about who wins some abstract ranking. The point is that AI security isn't just a new feature in an existing product. It's a different approach to what actually needs protecting. The traditional perimeter has been disappearing for a long time, but with the arrival of agents it has dissolved completely. Now you need to protect not only people and servers but also autonomous processes that make decisions, spend budgets, and interact with external systems without constant human oversight. If Cloudflare has truly found a way to monetize this protection, then this isn't just another challenge to giants — it's a paradigm shift.",
+ h2_1: "The New Attack Surface",
+ p3: "What we call \"AI security\" actually consists of several layers, and each breaks traditional protection models. There's the model itself — it needs protection from data poisoning, parameter extraction, attacks that make it say things it shouldn't. There's the channel between user and model — the API through which requests flow, which can be used for DoS, injections, bypassing limits. And there's the agent that uses the model as a tool but makes decisions and interacts with the world on its own. Three different objects, three different attack vectors, and none fits the classic \"firewall at the network edge\" scheme.",
+ p4: "Traditional security vendors are used to thinking in terms of networks, users, devices. They built empires on access management, traffic inspection, policies that administrators manually configure. But an AI agent doesn't sit on a separate device, doesn't have a fixed IP address, and doesn't follow policies as they were understood ten years ago. An agent is a process that can spin up in the cloud for a second, make a request, get an answer, spend money, and disappear. Protecting this requires different tools, and this is where Cloudflare may have an advantage: its network was built from the start for dynamic, distributed, edge computing, not for a static perimeter.",
+ h2_2: "The Economics of Protection in the Agent Era",
+ p5: "But technology is only half the story. The other half is the business model, and this is where it gets most interesting. Traditional enterprise security sells as a heavy, expensive undertaking: licenses, implementation, training, constant maintenance. The client pays a lot but gets the feeling that someone huge and authoritative is taking care of them. In the world of AI agents, this model can crack. Agents need to be fast, cheap, and scalable — and if protection around them is heavy and expensive, it simply won't get used. Someone will offer protection \"out of the box,\" built into infrastructure, without a separate team of engineers for configuration.",
+ p6: "Here lies an interesting dilemma for Palo Alto and Zscaler. Their businesses are built on complexity and on the idea that security requires expertise. AI agents, by their nature, strive for simplification — they delegate complexity to models, not people. If Cloudflare can offer protection that scales as easily as spinning up a serverless function, that hits not so much competitors' technologies as their economic model. The client will choose not the one with cooler features on slides, but the one whose protection turns on with a single line of code and costs pennies at scale. In this sense, the question in the headline isn't about technology but about who changes shoes faster on the new track.",
+ p7: "Who ultimately wins won't be shown by an investor presentation slide but by the decisions developers of agent systems make. Today they choose between convenience and security, and so far convenience almost always wins. If Cloudflare makes security indistinguishable from convenience, that changes the market. If it remains just another vendor with a separate \"for AI\" product, the status quo holds. But the very fact that such a question is being asked suggests that the old giants no longer look invulnerable.",
+ p8: "<strong><a href=\"https://x402-ai-agent.space/blog/golosovoy-agent-referralmd-konets-ocheredi-v-registrature\">Voice AI Agent ReferralMD: End of the Call Center Era? →</a></strong> — read more on the blog.",
+ p9: "<strong><a href=\"https://x402-ai-agent.space/blog/agents-economy-not-theory\">Agent Economics Is No Longer Theory: Who Pays, Who Earns, and Where the Real Volume Is →</a></strong> — read more on the blog.",
+    copyBtn: "⧉ Copy",
+  };
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        el.innerHTML = value;
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+  function copyBlock(id, btn) {
+    const pre = document.querySelector('[data-i18n="' + id + '"]');
+    if (!pre) return;
+    const text = pre.textContent;
+    const done = () => {
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied';
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => { fallbackCopy(pre, done); });
+    } else {
+      fallbackCopy(pre, done);
+    }
+  }
+  function fallbackCopy(pre, done) {
+    const range = document.createRange();
+    range.selectNodeContents(pre);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    try { document.execCommand('copy'); } catch (e) {}
+    sel.removeAllRanges();
+    done();
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>
