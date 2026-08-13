@@ -212,6 +212,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: kogda-ii-agenty-delyat-territoriyu-bitva-za-kontrol -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/kogda-ii-agenty-delyat-territoriyu-bitva-za-kontrol</loc>
+ <lastmod>2026-08-13</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
