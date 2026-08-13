@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Grok 4.6 обходит Kimi K3: новый виток гонки — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="SpaceXAI выпускает Grok 4.6, который обогнал Kimi K3 по производительности. Это не просто обновление — смена лидера в гонке моделей. Разрыв растёт, и ставки в индустрии повышаются.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/grok-4-6-obhodit-kimi-k3-novyy-vitok-gonki">
+  <meta property="og:title" data-i18n="title" content="Grok 4.6 обходит Kimi K3: новый виток гонки — x402-ai-agent.space">
+  <meta property="og:description" data-i18n="metaDescription" content="SpaceXAI выпускает Grok 4.6, который обогнал Kimi K3 по производительности. Это не просто обновление — смена лидера в гонке моделей. Разрыв растёт, и ставки в индустрии повышаются.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/grok-4-6-obhodit-kimi-k3-novyy-vitok-gonki-cover.jpg">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="Grok 4.6 обходит Kimi K3: новый виток гонки — x402-ai-agent.space">
+  <meta name="twitter:description" data-i18n="metaDescription" content="SpaceXAI выпускает Grok 4.6, который обогнал Kimi K3 по производительности. Это не просто обновление — смена лидера в гонке моделей. Разрыв растёт, и ставки в индустрии повышаются.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/grok-4-6-obhodit-kimi-k3-novyy-vitok-gonki-cover.jpg">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/grok-4-6-obhodit-kimi-k3-novyy-vitok-gonki">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #ffffff;
+      --text-secondary: #c9c9c9;
+      --muted: #8f8f8f;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition); }
+    .wrap { width: 100%; max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 500; font-size: 1.1rem; letter-spacing: -0.02em;
+      color: var(--text-secondary); flex-shrink: 0;
+    }
+    .logo-img { height: 28px; width: auto; border-radius: 6px; }
+    .logo span span { color: var(--muted); }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      padding: 8px 14px; border-radius: var(--radius-xs);
+      font-size: 0.875rem; color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    nav .link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch {
+      border: 1px solid var(--border); border-radius: var(--radius-full);
+      padding: 6px 14px !important; font-size: 0.8rem !important;
+    }
+    .lang-switch:hover { border-color: #444; background: rgba(255,255,255,0.06) !important; }
+
+    article { padding: 48px 0 80px; }
+    article img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: 437px;
+      object-fit: cover;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    article p strong { color: var(--text); font-weight: 600; }
+    .highlight {
+      margin: 28px 0;
+      padding: 20px 22px;
+      background: linear-gradient(135deg, rgba(34,211,238,0.08), rgba(139,92,246,0.06));
+      border: 1px solid rgba(34,211,238,0.15);
+      border-radius: var(--radius-sm);
+      font-size: 1.05rem;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .note {
+      margin: 28px 0;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .note a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 3px; }
+    .note a:hover { color: var(--text); }
+
+    footer.site {
+      padding: 28px 0;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 32px 0 56px; }
+      article h2 { margin-top: 32px; }
+    }
+    /* --- Header: full-width like main page --- */
+    header.site .wrap { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    header.site .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+    header.site .logo { font-size: 1.1rem; gap: 10px; }
+    header.site .logo span span { color: var(--muted); }
+    header.site nav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    header.site nav .link { padding: 8px 12px; }
+    header.site .lang-switch { margin-left: 8px; }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link" href="/" data-i18n="nav.home">На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article>
+  <div class="wrap">
+ <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+
+ <img src="/assets/img/blog/grok-4-6-obhodit-kimi-k3-novyy-vitok-gonki-cover.jpg" alt="Grok 4.6 обходит Kimi K3: новый виток гонки" loading="lazy">
+
+ <h1 data-i18n="h1">Grok 4.6 обходит Kimi K3: новый виток гонки</h1>
+
+ <div class="meta" data-i18n="meta">2026-08-13 · 2 мин чтения</div>
+
+<p data-i18n="p1">Когда лидер рынка теряет позицию, это всегда выглядит внезапно. Вчера Kimi K3 был эталоном, сегодня Grok 4.6 его обошёл. SpaceXAI объявила о выпуске новой модели, и метрики показывают, что разрыв не просто преодолён — он стал ощутимым в пользу нового лидера. В индустрии, где считанные проценты разницы определяют, кто получит трафик, а кто останется за бортом, такой переход никогда не бывает гладким. За цифрами стоит масса вопросов: что именно изменилось в архитектуре, насколько устойчив этот рывок и как competitors отреагируют в ближайшие месяцы.</p>
+
+<p data-i18n="p2">Гонка моделей давно превратилась не в соревнование идей, а в гонку ресурсов. Каждое улучшение требует всё больших вычислений, всё больше инженеров, всё более смелых ставок. Grok 4.6 — это не просто «ещё одна версия». Это заявление о том, что SpaceXAI готова вкладываться в масштабирование быстрее других. Kimi K3 долгое время держался за счёт тонкой настройки и оптимизации, но чистая вычислительная мощь имеет своё дело. Когда один игрок разгоняется, остальные вынуждены либо отвечать тем же, либо признать, что отстали. И в этой ситуации никто не хочет быть тем, кто играет в догонялки.</p>
+
+<h2 data-i18n="h2_1">Смена лидера</h2>
+
+<p data-i18n="p3">Переход лидерства от одной модели к другой редко происходит по одной причине. Здесь и оптимизация архитектуры, и новые обучающие данные, и улучшение механизма внимания. Но главное — как всё это складывается в реальные задачи пользователя. Grok 4.6 демонстрирует преимущество не только на синтетических тестах, но и в практических сценариях: сложные запросы, многоходовые рассуждения, работа с контекстом. Kimi K3 долго выигрывал за счёт элегантности решений, но когда грубая сила начинает решать лучше, элегантность становится вторичной.</p>
+
+<p data-i18n="p4">Это не значит, что Kimi K3 мёртв. Конкуренция не заканчивается в один день. Но сама динамика смещается: если раньше игроки могли позволить себе специализироваться, то каждый вынужден бежать в одной гонке — на максимальную универсальность и максимальную производительность. Grok 4.6 показывает, что ставка на универсальность в сочетании с масштабированием окупается. Kimi K3 теперь под давлением: либо резкий ответ, либо постепенное отставание. В индустрии, где внимание пользователей перетекает к лидеру, второе означает медленное угасание.</p>
+
+<h2 data-i18n="h2_2">Что это значит для рынка</h2>
+
+<p data-i18n="p5">Когда на вершине появляется новый игрок, вся экосистема перестраивается. Разработчики, интегрировавшие Kimi K3 в свои продукты, теперь смотрят в сторону Grok 4.6. Инвесторы пересчитывают оценки. Компании, которые строили стратегии вокруг предыдущего лидера, вынуждены пересматривать планы. Это не просто новостной фон — это реальные деньги, реальные решения, реальные переделки архитектур. Переход от одной модели к другой стоит дорого, но оставаться с проигрывающим лидером ещё дороже.</p>
+
+<p data-i18n="p6">Для пользователей это кажется благом: модели становятся лучше, быстрее, умнее. Но за этим стоит скрытая цена — консолидация рынка. Чем больше разрыв между лидером и преследователями, тем сложнее новым игрокам войти в игру. Grok 4.6 не просто обошёл Kimi K3 — он поднял планку входа. Теперь, чтобы конкурировать, нужно не просто придумать что-то новое — нужно догнать и перегнать уже огромную машину, которая продолжает разгоняться. Это классическая ловушка масштаба: чем больше лидер, тем быстрее он растёт, и тем труднее его догнать.</p>
+
+<p data-i18n="p7">Гонка не закончится на Grok 4.6. Kimi K3 ответит, другие игроки тоже не будут сидеть сложа руки. Но сам момент смены лидера важен — он показывает, что индустрия вошла в фазу, когда временные преимущества становятся всё короче, а ставки — всё выше. Тот, кто сегодня лидирует, завтра может оказаться вторым, и никто не имеет гарантии вечного преимущества. В этой гонке выигрывает не тот, кто сделал один рывок, а тот, кто может бежать долго, быстро и без остановок.</p>
+
+ <div class="highlight" data-i18n="p8"><strong><a href="https://x402-ai-agent.space/blog/grok-bot-ii-agenty-vyhodyat-iz-chata-v-ofis">Гонка агентов смещается в офис: Grok Bot от SpaceXAI →</a></strong> — читайте подробнее в блоге.</div>
+
+ <div class="highlight" data-i18n="p9"><strong><a href="https://x402-ai-agent.space/blog/meta-muse-code-agent">Meta выпустила Muse Code →</a></strong> — читайте подробнее в блоге.</div>
+
+
+  </div>
+</article>
+</main>
+
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Grok 4.6 обходит Kimi K3: новый виток гонки",
+  "description": "SpaceXAI выпускает Grok 4.6, который обогнал Kimi K3 по производительности. Это не просто обновление — смена лидера в гонке моделей. Разрыв растёт, и ставки в индустрии повышаются.",
+  "datePublished": "2026-08-13",
+  "author": {
+    "@type": "Organization",
+    "name": "x402-ai-agent.space"
+  },
+  "image": "https://x402-ai-agent.space/assets/img/blog/grok-4-6-obhodit-kimi-k3-novyy-vitok-gonki-cover.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Блог x402",
+      "item": "https://x402-ai-agent.space/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Grok 4.6 обходит Kimi K3: новый виток гонки",
+      "item": "https://x402-ai-agent.space/blog/grok-4-6-obhodit-kimi-k3-novyy-vitok-gonki"
+    }
+  ]
+}
+</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+  const embeddedRu = {
+ title: "Grok 4.6 обходит Kimi K3: новый виток гонки — x402-ai-agent.space",
+ metaDescription: "SpaceXAI выпускает Grok 4.6, который обогнал Kimi K3 по производительности. Это не просто обновление — смена лидера в гонке моделей. Разрыв растёт, и ставки в индустрии повышаются.",
+ nav: { back: "← Блог", home: "На сайт", lang: "🇬🇧 EN" },
+ backLink: "← Назад к блогу",
+ h1: "Grok 4.6 обходит Kimi K3: новый виток гонки",
+ meta: "2026-08-13 · 2 мин чтения",
+ p1: "Когда лидер рынка теряет позицию, это всегда выглядит внезапно. Вчера Kimi K3 был эталоном, сегодня Grok 4.6 его обошёл. SpaceXAI объявила о выпуске новой модели, и метрики показывают, что разрыв не просто преодолён — он стал ощутимым в пользу нового лидера. В индустрии, где считанные проценты разницы определяют, кто получит трафик, а кто останется за бортом, такой переход никогда не бывает гладким. За цифрами стоит масса вопросов: что именно изменилось в архитектуре, насколько устойчив этот рывок и как competitors отреагируют в ближайшие месяцы.",
+ p2: "Гонка моделей давно превратилась не в соревнование идей, а в гонку ресурсов. Каждое улучшение требует всё больших вычислений, всё больше инженеров, всё более смелых ставок. Grok 4.6 — это не просто «ещё одна версия». Это заявление о том, что SpaceXAI готова вкладываться в масштабирование быстрее других. Kimi K3 долгое время держался за счёт тонкой настройки и оптимизации, но чистая вычислительная мощь имеет своё дело. Когда один игрок разгоняется, остальные вынуждены либо отвечать тем же, либо признать, что отстали. И в этой ситуации никто не хочет быть тем, кто играет в догонялки.",
+ h2_1: "Смена лидера",
+ p3: "Переход лидерства от одной модели к другой редко происходит по одной причине. Здесь и оптимизация архитектуры, и новые обучающие данные, и улучшение механизма внимания. Но главное — как всё это складывается в реальные задачи пользователя. Grok 4.6 демонстрирует преимущество не только на синтетических тестах, но и в практических сценариях: сложные запросы, многоходовые рассуждения, работа с контекстом. Kimi K3 долго выигрывал за счёт элегантности решений, но когда грубая сила начинает решать лучше, элегантность становится вторичной.",
+ p4: "Это не значит, что Kimi K3 мёртв. Конкуренция не заканчивается в один день. Но сама динамика смещается: если раньше игроки могли позволить себе специализироваться, то каждый вынужден бежать в одной гонке — на максимальную универсальность и максимальную производительность. Grok 4.6 показывает, что ставка на универсальность в сочетании с масштабированием окупается. Kimi K3 теперь под давлением: либо резкий ответ, либо постепенное отставание. В индустрии, где внимание пользователей перетекает к лидеру, второе означает медленное угасание.",
+ h2_2: "Что это значит для рынка",
+ p5: "Когда на вершине появляется новый игрок, вся экосистема перестраивается. Разработчики, интегрировавшие Kimi K3 в свои продукты, теперь смотрят в сторону Grok 4.6. Инвесторы пересчитывают оценки. Компании, которые строили стратегии вокруг предыдущего лидера, вынуждены пересматривать планы. Это не просто новостной фон — это реальные деньги, реальные решения, реальные переделки архитектур. Переход от одной модели к другой стоит дорого, но оставаться с проигрывающим лидером ещё дороже.",
+ p6: "Для пользователей это кажется благом: модели становятся лучше, быстрее, умнее. Но за этим стоит скрытая цена — консолидация рынка. Чем больше разрыв между лидером и преследователями, тем сложнее новым игрокам войти в игру. Grok 4.6 не просто обошёл Kimi K3 — он поднял планку входа. Теперь, чтобы конкурировать, нужно не просто придумать что-то новое — нужно догнать и перегнать уже огромную машину, которая продолжает разгоняться. Это классическая ловушка масштаба: чем больше лидер, тем быстрее он растёт, и тем труднее его догнать.",
+ p7: "Гонка не закончится на Grok 4.6. Kimi K3 ответит, другие игроки тоже не будут сидеть сложа руки. Но сам момент смены лидера важен — он показывает, что индустрия вошла в фазу, когда временные преимущества становятся всё короче, а ставки — всё выше. Тот, кто сегодня лидирует, завтра может оказаться вторым, и никто не имеет гарантии вечного преимущества. В этой гонке выигрывает не тот, кто сделал один рывок, а тот, кто может бежать долго, быстро и без остановок.",
+ p8: "<strong><a href=\"https://x402-ai-agent.space/blog/grok-bot-ii-agenty-vyhodyat-iz-chata-v-ofis\">Гонка агентов смещается в офис: Grok Bot от SpaceXAI →</a></strong> — читайте подробнее в блоге.",
+ p9: "<strong><a href=\"https://x402-ai-agent.space/blog/meta-muse-code-agent\">Meta выпустила Muse Code →</a></strong> — читайте подробнее в блоге.",
+    copyBtn: "⧉ Копировать",
+  };
+  const embeddedEn = {
+ title: "Grok 4.6 overtakes Kimi K3: race escalates — x402-ai-agent.space",
+ metaDescription: "SpaceXAI releases Grok 4.6, overtaking Kimi K3 in performance. This is not just an update — a leadership change in the model race. The gap widens, and industry stakes rise.",
+ nav: { back: "← Blog", home: "Home", lang: "🇷🇺 RU" },
+ backLink: "← Back to blog",
+ h1: "Grok 4.6 overtakes Kimi K3: race escalates",
+ meta: "2026-08-13 · 2 min read",
+ p1: "When a market leader loses position, it always looks sudden. Yesterday Kimi K3 was the benchmark, today Grok 4.6 has overtaken it. SpaceXAI announced the release of the new model, and metrics show that the gap is not just closed — it has become perceptible in favor of the new leader. In an industry where single percentage differences determine who gets traffic and who stays behind, such a transition is never smooth. Behind the numbers lie many questions: what exactly changed in the architecture, how sustainable this leap is, and how competitors will respond in the coming months.",
+ p2: "The model race has long transformed from a competition of ideas into a resource race. Every improvement requires more computation, more engineers, bolder bets. Grok 4.6 is not just \"another version.\" It is a statement that SpaceXAI is ready to invest in scaling faster than others. Kimi K3 held on for a long time through fine-tuning and optimization, but raw computing power has its say. When one player accelerates, others are forced to either respond in kind or admit they've fallen behind. And in this situation, no one wants to be the one playing catch-up.",
+ h2_1: "Leadership Change",
+ p3: "The transition of leadership from one model to another rarely happens for one reason. Here it is architecture optimization, new training data, improved attention mechanism. But the main thing is how all this translates into real user tasks. Grok 4.6 demonstrates advantage not only on synthetic tests but in practical scenarios: complex queries, multi-step reasoning, context work. Kimi K3 long won through elegance of solutions, but when brute force starts solving better, elegance becomes secondary.",
+ p4: "This does not mean Kimi K3 is dead. Competition does not end in one day. But the dynamics shift: if before players could afford to specialize, now everyone is forced to run in one race — for maximum universality and maximum performance. Grok 4.6 shows that the bet on universality combined with scaling pays off. Kimi K3 is now under pressure: either a sharp response, or gradual lagging. In an industry where user attention flows to the leader, the second means slow fading.",
+ h2_2: "What This Means for the Market",
+ p5: "When a new player appears at the top, the entire ecosystem rebuilds. Developers who integrated Kimi K3 into their products now look toward Grok 4.6. Investors recalculate valuations. Companies that built strategies around the previous leader are forced to revise plans. This is not just news background — these are real money, real decisions, real architecture overhauls. Transitioning from one model to another is expensive, but staying with a losing leader costs even more.",
+ p6: "For users, this seems like a benefit: models become better, faster, smarter. But behind this lies a hidden price — market consolidation. The larger the gap between leader and pursuers, the harder it is for new players to enter the game. Grok 4.6 did not just overtake Kimi K3 — it raised the entry barrier. Now to compete, you need not just to invent something new — you need to catch up and overtake an already huge machine that continues to accelerate. This is the classic scale trap: the bigger the leader, the faster it grows, and the harder it is to catch up.",
+ p7: "The race will not end with Grok 4.6. Kimi K3 will respond, other players will not sit idle either. But the moment of leadership change matters — it shows that the industry has entered a phase where temporary advantages become ever shorter, and stakes ever higher. Whoever leads today may be second tomorrow, and no one has a guarantee of eternal advantage. In this race, the one who wins is not the one who made one leap, but the one who can run long, fast, and without stopping.",
+ p8: "<strong><a href=\"https://x402-ai-agent.space/blog/grok-bot-ii-agenty-vyhodyat-iz-chata-v-ofis\">Agent race shifts to the office: Grok Bot by SpaceXAI →</a></strong> — read more on the blog.",
+ p9: "<strong><a href=\"https://x402-ai-agent.space/blog/meta-muse-code-agent\">Meta released Muse Code →</a></strong> — read more on the blog.",
+    copyBtn: "⧉ Copy",
+  };
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        el.innerHTML = value;
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+  function copyBlock(id, btn) {
+    const pre = document.querySelector('[data-i18n="' + id + '"]');
+    if (!pre) return;
+    const text = pre.textContent;
+    const done = () => {
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied';
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => { fallbackCopy(pre, done); });
+    } else {
+      fallbackCopy(pre, done);
+    }
+  }
+  function fallbackCopy(pre, done) {
+    const range = document.createRange();
+    range.selectNodeContents(pre);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    try { document.execCommand('copy'); } catch (e) {}
+    sel.removeAllRanges();
+    done();
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>
