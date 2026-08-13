@@ -191,6 +191,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: obval-x402-na-93-i-prizrak-vozrozhdeniya-cherez-cloudflare -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/obval-x402-na-93-i-prizrak-vozrozhdeniya-cherez-cloudflare</loc>
+ <lastmod>2026-08-13</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
