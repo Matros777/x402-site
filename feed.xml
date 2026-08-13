@@ -5,8 +5,15 @@
     <link>https://x402-ai-agent.space/blog/</link>
     <description>Articles about x402 protocol, AI agent payments, agentic economy, and autonomous agents.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 13 Aug 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 14 Aug 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://x402-ai-agent.space/feed.xml" rel="self" type="application/rss+xml"/>
+ <item>
+ <title>AI agents: victims and attackers in new web threats</title>
+ <link>https://x402-ai-agent.space/blog/ii-agenty-zhertvy-i-palachi-novoy-veb-ugrozy</link>
+ <guid isPermaLink="true">https://x402-ai-agent.space/blog/ii-agenty-zhertvy-i-palachi-novoy-veb-ugrozy</guid>
+ <pubDate>Fri, 14 Aug 2026 12:00:00 +0000</pubDate>
+ <description>AI agents are becoming both targets and instruments of cyberattacks on the web. This dual role reshapes our understanding of digital security. Agent infrastructure requires new protection mechanisms.</description>
+ </item>
  <item>
  <title>When AI Agents Fight for Territory: The Battle for Control</title>
  <link>https://x402-ai-agent.space/blog/kogda-ii-agenty-delyat-territoriyu-bitva-za-kontrol</link>

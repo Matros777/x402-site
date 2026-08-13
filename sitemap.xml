@@ -219,6 +219,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: ii-agenty-zhertvy-i-palachi-novoy-veb-ugrozy -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/ii-agenty-zhertvy-i-palachi-novoy-veb-ugrozy</loc>
+ <lastmod>2026-08-14</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
