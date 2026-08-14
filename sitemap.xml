@@ -233,6 +233,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: kto-potratil-dengi-agent-ili-vy -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/kto-potratil-dengi-agent-ili-vy</loc>
+ <lastmod>2026-08-14</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
