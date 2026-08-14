@@ -240,6 +240,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: tsukerberg-obeschaet-kazhdomu-isklyuchitelnyy-ii-agent -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/tsukerberg-obeschaet-kazhdomu-isklyuchitelnyy-ii-agent</loc>
+ <lastmod>2026-08-14</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
