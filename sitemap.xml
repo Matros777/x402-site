@@ -261,6 +261,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: gemini-3-7-flash-umnye-agenty-stanovyatsya-deshevle -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/gemini-3-7-flash-umnye-agenty-stanovyatsya-deshevle</loc>
+ <lastmod>2026-08-15</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
