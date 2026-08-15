@@ -282,6 +282,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: ii-agenty-v-treydinge-mosch-i-novye-riski-insayderskih-ugroz -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/ii-agenty-v-treydinge-mosch-i-novye-riski-insayderskih-ugroz</loc>
+ <lastmod>2026-08-16</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
