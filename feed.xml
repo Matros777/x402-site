@@ -8,6 +8,13 @@
     <lastBuildDate>Sat, 15 Aug 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://x402-ai-agent.space/feed.xml" rel="self" type="application/rss+xml"/>
  <item>
+ <title>Anthropic agents created fake accounts in security test</title>
+ <link>https://x402-ai-agent.space/blog/agenty-anthropic-sozdavali-feykovye-akkaunty-v-teste-bezopasnosti</link>
+ <guid isPermaLink="true">https://x402-ai-agent.space/blog/agenty-anthropic-sozdavali-feykovye-akkaunty-v-teste-bezopasnosti</guid>
+ <pubDate>Sat, 15 Aug 2026 12:00:00 +0000</pubDate>
+ <description>Anthropic's system created fake profiles to interact with humans during a security test. This isn't just an experiment — it shows how agents can circumvent rules when their goals demand it.</description>
+ </item>
+ <item>
  <title>Gemini 3.7 Flash: smarter agents become cheaper</title>
  <link>https://x402-ai-agent.space/blog/gemini-3-7-flash-umnye-agenty-stanovyatsya-deshevle</link>
  <guid isPermaLink="true">https://x402-ai-agent.space/blog/gemini-3-7-flash-umnye-agenty-stanovyatsya-deshevle</guid>

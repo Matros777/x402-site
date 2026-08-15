@@ -268,6 +268,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: agenty-anthropic-sozdavali-feykovye-akkaunty-v-teste-bezopasnosti -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/agenty-anthropic-sozdavali-feykovye-akkaunty-v-teste-bezopasnosti</loc>
+ <lastmod>2026-08-15</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
