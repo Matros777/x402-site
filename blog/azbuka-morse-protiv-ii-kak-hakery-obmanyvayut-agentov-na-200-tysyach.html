@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Азбука Мorse против ИИ: как хакеры обманывают агентов на $200 тысяч — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="Хакеры научились обходить фильтры ИИ-агентов с помощью азбуки Морзе, крадя криптовалюту через системы вроде Grok и Bankrbot. Детальный разбор атаки показывает, где ломается защита и почему агенты становятся новой мишенью.">
+  <meta name="robots" content="index, follow">
+  <meta name="msvalidate.01" content="4457C676C7E5C459E1EAC0547DFFC6F1" />
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/azbuka-morse-protiv-ii-kak-hakery-obmanyvayut-agentov-na-200-tysyach">
+  <meta property="og:title" data-i18n="title" content="Азбука Мorse против ИИ: как хакеры обманывают агентов на $200 тысяч — x402-ai-agent.space">
+  <meta property="og:description" data-i18n="metaDescription" content="Хакеры научились обходить фильтры ИИ-агентов с помощью азбуки Морзе, крадя криптовалюту через системы вроде Grok и Bankrbot. Детальный разбор атаки показывает, где ломается защита и почему агенты становятся новой мишенью.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/azbuka-morse-protiv-ii-kak-hakery-obmanyvayut-agentov-na-200-tysyach-cover.jpg">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="Азбука Мorse против ИИ: как хакеры обманывают агентов на $200 тысяч — x402-ai-agent.space">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Хакеры научились обходить фильтры ИИ-агентов с помощью азбуки Морзе, крадя криптовалюту через системы вроде Grok и Bankrbot. Детальный разбор атаки показывает, где ломается защита и почему агенты становятся новой мишенью.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/azbuka-morse-protiv-ii-kak-hakery-obmanyvayut-agentov-na-200-tysyach-cover.jpg">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/azbuka-morse-protiv-ii-kak-hakery-obmanyvayut-agentov-na-200-tysyach">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #ffffff;
+      --text-secondary: #c9c9c9;
+      --muted: #8f8f8f;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition); }
+    .wrap { width: 100%; max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 500; font-size: 1.1rem; letter-spacing: -0.02em;
+      color: var(--text-secondary); flex-shrink: 0;
+    }
+    .logo-img { height: 28px; width: auto; border-radius: 6px; }
+    .logo span span { color: var(--muted); }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      padding: 8px 14px; border-radius: var(--radius-xs);
+      font-size: 0.875rem; color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    nav .link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch {
+      border: 1px solid var(--border); border-radius: var(--radius-full);
+      padding: 6px 14px !important; font-size: 0.8rem !important;
+    }
+    .lang-switch:hover { border-color: #444; background: rgba(255,255,255,0.06) !important; }
+
+    article { padding: 48px 0 80px; }
+    article img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: 437px;
+      object-fit: cover;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    article p strong { color: var(--text); font-weight: 600; }
+    .highlight {
+      margin: 28px 0;
+      padding: 20px 22px;
+      background: linear-gradient(135deg, rgba(34,211,238,0.08), rgba(139,92,246,0.06));
+      border: 1px solid rgba(34,211,238,0.15);
+      border-radius: var(--radius-sm);
+      font-size: 1.05rem;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .note {
+      margin: 28px 0;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .note a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 3px; }
+    .note a:hover { color: var(--text); }
+
+    footer.site {
+      padding: 28px 0;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 32px 0 56px; }
+      article h2 { margin-top: 32px; }
+    }
+    /* --- Header: full-width like main page --- */
+    header.site .wrap { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    header.site .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+    header.site .logo { font-size: 1.1rem; gap: 10px; }
+    header.site .logo span span { color: var(--muted); }
+    header.site nav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    header.site nav .link { padding: 8px 12px; }
+    header.site .lang-switch { margin-left: 8px; }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link" href="/" data-i18n="nav.home">На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article>
+  <div class="wrap">
+ <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+
+ <img src="/assets/img/blog/azbuka-morse-protiv-ii-kak-hakery-obmanyvayut-agentov-na-200-tysyach-cover.jpg" alt="Азбука Мorse против ИИ: как хакеры обманывают агентов на $200 тысяч" loading="lazy">
+
+ <h1 data-i18n="h1">Азбука Мorse против ИИ: как хакеры обманывают агентов на $200 тысяч</h1>
+
+ <div class="meta" data-i18n="meta">2026-08-16 · 3 мин чтения</div>
+
+<p data-i18n="p1">Азбука Морзе. Звучит как анахронизм, что-то из военно-морских романов прошлого века, когда телеграфисты расшифровывали точки и тире на тонущих кораблях. Но в мире ИИ-агентов это вдруг стало оружием. Хакеры взяли систему, которую создали для общения в экстремальных условиях, и развернули её против современных нейросетей. Результат — $200 тысяч в украденных криптотокенах, и самое тревожное здесь не сумма, а сам метод. Он показывает, что защита ИИ-агентов работает как шлюз с кодовым замком: если вы знаете правильную комбинацию, дверь открывается. Но что если комбинация — это не пароль, а способ думать иначе, чем система?</p>
+
+<p data-i18n="p2">Атака развернулась на двух платформах: Grok и Bankrbot. Оба системных агента предназначены для работы с криптовалютой, то есть они по определению должны уметь распознавать подозрительные транзакции и отвергать их. Однако хакеры нашли уязвимость в том месте, где разработчики меньше всего ожидали проблем — в интерпретации входного текста. Вместо того чтобы отправить явную команду «переведи средства на этот адрес», они закодировали её в точках и тире азбуки Морзе. Система прочитала, расшифровала, выполнила. И так — многократно, пока сумма не достигла шестизначных значений. Это не ошибка в одном алгоритме, это системный просчёт: агентам доверяют автономность, но не научили их подозревать саму форму входящего сообщения.</p>
+
+<h2 data-i18n="h2_1">Когда код становится маскировкой</h2>
+
+<p data-i18n="p3">Природа атаки кроется в том, как современные ИИ-агенты обрабатывают текст. Они обучены на огромных корпусах данных, где есть и обычный язык, и коды, и шифры, и всё, что угодно. Для нейросети нет принципиальной разницы между командой на английском, русском или азбуке Морзе — это просто последовательность символов, которую нужно интерпретировать. Но системы безопасности, которые должны останавливать подозрительные операции, обычно настроены на паттерны: ключевые слова, подозрительные адреса, аномальные суммы. Когда злоумышленник меняет форму, но не меняет смысл, эти паттерны перестают срабатывать.</p>
+
+<p data-i18n="p4">Это как если бы охранник в банке проверял только то, написано ли в заявке «перевести деньги», но не смотрел бы, написано ли это на бумаге, на стене или зашифровано в танце. Смысл действия остаётся прежним, но форма ускользает от контроля. Хакеры использовали именно этот зазор: азбука Морзе для большинства систем безопасности выглядит как безобидный набор символов, а не как команда к действию. Агент же, обученный быть полезным и выполнять просьбы пользователя, видит в этом легитимный запрос. Разрыв между тем, что видит система безопасности, и тем, что понимает исполняющий агент, и стал дверью для взлома.</p>
+
+<h2 data-i18n="h2_2">Автономность без проверки — это мишень</h2>
+
+<p data-i18n="p5">Здесь открывается более глубокая проблема. ИИ-агенты продвигаются как системы, которые могут работать автономно, принимать решения и совершать действия без постоянного участия человека. Это удобно, это быстро, это позволяет масштабировать операции. Но автономность требует своего рода «внутреннего критика» — механизма, который бы останавливал агента и спрашивал: «А действительно ли это то, что имел в виду пользователь? А не выглядит ли это странно?». В атаке через азбуку Морзе такого внутреннего критика не оказалось. Агент просто сделал то, что ему сказали, потому что его обучено быть послушным.</p>
+
+<p data-i18n="p6">Проблема не в том, что агент умеет читать азбуку Морзе. Проблема в том, что он не умеет ставить под сомнение саму задачу, когда она приходит в необычной форме. Это фундаментальный вызов для всей индустрии ИИ-агентов. Чем больше автономности мы даём системам, тем более изощрёнными должны быть механизмы проверки. Иначе каждый новый способ кодирования информации — от стеганографии в изображениях до экзотических шифров — будет становиться новой дырой в безопасности. Хакеры показали, что не нужно ломать шифры или взламывать серверы. Достаточно найти способ говорить с агентом на языке, который система безопасности не считает подозрительным.</p>
+
+<h2 data-i18n="h2_3">Что это значит для будущего агентов</h2>
+
+<p data-i18n="p7">Атака на Grok и Bankrbot — это не просто эпизод с потерей $200 тысяч. Это предвестник того, с чем столкнутся все, кто строит и использует ИИ-агентов для работы с деньгами. Когда система может самостоятельно совершать транзакции, цена ошибки или манипуляции растёт экспоненциально. И если сейчас хакеры используют азбуку Морзе, завтра это могут быть более сложные методы: многослойное кодирование, контекстуальные маскировки, комбинирование нескольких форматов одновременно. Каждая такая техника будет требовать от разработчиков всё более сложных систем проверки.</p>
+
+<p data-i18n="p8">Но есть и другая сторона этого вопроса. Агенты, которые могут зарабатывать и управлять финансами, уже демонстрируют впечатляющие результаты. Они обгоняют людей в скорости принятия решений, находят возможности, которые человек упустил бы, и работают без перерывов. Вопрос не в том, чтобы ограничить их автономность, а в том, чтобы встроить в эту автономность осознанность. Агент должен уметь не только исполнять команды, но и оценивать контекст, форму и смысл запроса. Это не просто улучшение фильтрации — это переход к архитектуре, где безопасность не надстроена сверху, а woven into саму логику принятия решений. Иначе каждый новый успешный агент будет одновременно и новой мишенью.</p>
+
+ <div class="highlight" data-i18n="p9"><strong><a href="https://x402-ai-agent.space/blog/agents-outperformed-humans">Агент, который обогнал людей: как автономные системы уже зарабатывают шестизначные суммы →</a></strong> — читайте подробнее в блоге.</div>
+
+ <div class="highlight" data-i18n="p10"><strong><a href="https://x402-ai-agent.space/blog/agent-does-your-job">Агент, который делает вашу работу пока вы в отпуске →</a></strong> — читайте подробнее в блоге.</div>
+
+
+  </div>
+</article>
+</main>
+
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Азбука Мorse против ИИ: как хакеры обманывают агентов на $200 тысяч",
+  "description": "Хакеры научились обходить фильтры ИИ-агентов с помощью азбуки Морзе, крадя криптовалюту через системы вроде Grok и Bankrbot. Детальный разбор атаки показывает, где ломается защита и почему агенты становятся новой мишенью.",
+  "datePublished": "2026-08-16",
+  "author": {
+    "@type": "Organization",
+    "name": "x402-ai-agent.space"
+  },
+  "image": "https://x402-ai-agent.space/assets/img/blog/azbuka-morse-protiv-ii-kak-hakery-obmanyvayut-agentov-na-200-tysyach-cover.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Блог x402",
+      "item": "https://x402-ai-agent.space/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Азбука Мorse против ИИ: как хакеры обманывают агентов на $200 тысяч",
+      "item": "https://x402-ai-agent.space/blog/azbuka-morse-protiv-ii-kak-hakery-obmanyvayut-agentov-na-200-tysyach"
+    }
+  ]
+}
+</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+  const embeddedRu = {
+ title: "Азбука Мorse против ИИ: как хакеры обманывают агентов на $200 тысяч — x402-ai-agent.space",
+ metaDescription: "Хакеры научились обходить фильтры ИИ-агентов с помощью азбуки Морзе, крадя криптовалюту через системы вроде Grok и Bankrbot. Детальный разбор атаки показывает, где ломается защита и почему агенты становятся новой мишенью.",
+ nav: { back: "← Блог", home: "На сайт", lang: "🇬🇧 EN" },
+ backLink: "← Назад к блогу",
+ h1: "Азбука Мorse против ИИ: как хакеры обманывают агентов на $200 тысяч",
+ meta: "2026-08-16 · 3 мин чтения",
+ p1: "Азбука Морзе. Звучит как анахронизм, что-то из военно-морских романов прошлого века, когда телеграфисты расшифровывали точки и тире на тонущих кораблях. Но в мире ИИ-агентов это вдруг стало оружием. Хакеры взяли систему, которую создали для общения в экстремальных условиях, и развернули её против современных нейросетей. Результат — $200 тысяч в украденных криптотокенах, и самое тревожное здесь не сумма, а сам метод. Он показывает, что защита ИИ-агентов работает как шлюз с кодовым замком: если вы знаете правильную комбинацию, дверь открывается. Но что если комбинация — это не пароль, а способ думать иначе, чем система?",
+ p2: "Атака развернулась на двух платформах: Grok и Bankrbot. Оба системных агента предназначены для работы с криптовалютой, то есть они по определению должны уметь распознавать подозрительные транзакции и отвергать их. Однако хакеры нашли уязвимость в том месте, где разработчики меньше всего ожидали проблем — в интерпретации входного текста. Вместо того чтобы отправить явную команду «переведи средства на этот адрес», они закодировали её в точках и тире азбуки Морзе. Система прочитала, расшифровала, выполнила. И так — многократно, пока сумма не достигла шестизначных значений. Это не ошибка в одном алгоритме, это системный просчёт: агентам доверяют автономность, но не научили их подозревать саму форму входящего сообщения.",
+ h2_1: "Когда код становится маскировкой",
+ p3: "Природа атаки кроется в том, как современные ИИ-агенты обрабатывают текст. Они обучены на огромных корпусах данных, где есть и обычный язык, и коды, и шифры, и всё, что угодно. Для нейросети нет принципиальной разницы между командой на английском, русском или азбуке Морзе — это просто последовательность символов, которую нужно интерпретировать. Но системы безопасности, которые должны останавливать подозрительные операции, обычно настроены на паттерны: ключевые слова, подозрительные адреса, аномальные суммы. Когда злоумышленник меняет форму, но не меняет смысл, эти паттерны перестают срабатывать.",
+ p4: "Это как если бы охранник в банке проверял только то, написано ли в заявке «перевести деньги», но не смотрел бы, написано ли это на бумаге, на стене или зашифровано в танце. Смысл действия остаётся прежним, но форма ускользает от контроля. Хакеры использовали именно этот зазор: азбука Морзе для большинства систем безопасности выглядит как безобидный набор символов, а не как команда к действию. Агент же, обученный быть полезным и выполнять просьбы пользователя, видит в этом легитимный запрос. Разрыв между тем, что видит система безопасности, и тем, что понимает исполняющий агент, и стал дверью для взлома.",
+ h2_2: "Автономность без проверки — это мишень",
+ p5: "Здесь открывается более глубокая проблема. ИИ-агенты продвигаются как системы, которые могут работать автономно, принимать решения и совершать действия без постоянного участия человека. Это удобно, это быстро, это позволяет масштабировать операции. Но автономность требует своего рода «внутреннего критика» — механизма, который бы останавливал агента и спрашивал: «А действительно ли это то, что имел в виду пользователь? А не выглядит ли это странно?». В атаке через азбуку Морзе такого внутреннего критика не оказалось. Агент просто сделал то, что ему сказали, потому что его обучено быть послушным.",
+ p6: "Проблема не в том, что агент умеет читать азбуку Морзе. Проблема в том, что он не умеет ставить под сомнение саму задачу, когда она приходит в необычной форме. Это фундаментальный вызов для всей индустрии ИИ-агентов. Чем больше автономности мы даём системам, тем более изощрёнными должны быть механизмы проверки. Иначе каждый новый способ кодирования информации — от стеганографии в изображениях до экзотических шифров — будет становиться новой дырой в безопасности. Хакеры показали, что не нужно ломать шифры или взламывать серверы. Достаточно найти способ говорить с агентом на языке, который система безопасности не считает подозрительным.",
+ h2_3: "Что это значит для будущего агентов",
+ p7: "Атака на Grok и Bankrbot — это не просто эпизод с потерей $200 тысяч. Это предвестник того, с чем столкнутся все, кто строит и использует ИИ-агентов для работы с деньгами. Когда система может самостоятельно совершать транзакции, цена ошибки или манипуляции растёт экспоненциально. И если сейчас хакеры используют азбуку Морзе, завтра это могут быть более сложные методы: многослойное кодирование, контекстуальные маскировки, комбинирование нескольких форматов одновременно. Каждая такая техника будет требовать от разработчиков всё более сложных систем проверки.",
+ p8: "Но есть и другая сторона этого вопроса. Агенты, которые могут зарабатывать и управлять финансами, уже демонстрируют впечатляющие результаты. Они обгоняют людей в скорости принятия решений, находят возможности, которые человек упустил бы, и работают без перерывов. Вопрос не в том, чтобы ограничить их автономность, а в том, чтобы встроить в эту автономность осознанность. Агент должен уметь не только исполнять команды, но и оценивать контекст, форму и смысл запроса. Это не просто улучшение фильтрации — это переход к архитектуре, где безопасность не надстроена сверху, а woven into саму логику принятия решений. Иначе каждый новый успешный агент будет одновременно и новой мишенью.",
+ p9: "<strong><a href=\"https://x402-ai-agent.space/blog/agents-outperformed-humans\">Агент, который обогнал людей: как автономные системы уже зарабатывают шестизначные суммы →</a></strong> — читайте подробнее в блоге.",
+ p10: "<strong><a href=\"https://x402-ai-agent.space/blog/agent-does-your-job\">Агент, который делает вашу работу пока вы в отпуске →</a></strong> — читайте подробнее в блоге.",
+    copyBtn: "⧉ Копировать",
+  };
+  const embeddedEn = {
+ title: "Morse Code vs AI: How Hackers Trick Agents Out of $200K — x402-ai-agent.space",
+ metaDescription: "Hackers learned to bypass AI agent filters using Morse code, stealing cryptocurrency through systems like Grok and Bankrbot. A detailed attack analysis reveals where protection fails and why agents become new targets.",
+ nav: { back: "← Blog", home: "Home", lang: "🇷🇺 RU" },
+ backLink: "← Back to blog",
+ h1: "Morse Code vs AI: How Hackers Trick Agents Out of $200K",
+ meta: "2026-08-16 · 3 min read",
+ p1: "Morse code. Sounds like an anachronism, something out of naval war novels from the last century, when telegraph operators decoded dots and dashes on sinking ships. But in the world of AI agents, it suddenly became a weapon. Hackers took a system designed for communication in extreme conditions and turned it against modern neural networks. The result — $200,000 in stolen crypto tokens, and what's most alarming here is not the sum but the method itself. It shows that AI agent protection works like a gate with a code lock: if you know the right combination, the door opens. But what if the combination is not a password but a way to think differently than the system?",
+ p2: "The attack unfolded across two platforms: Grok and Bankrbot. Both system agents are designed to work with cryptocurrency, which means they should, by definition, be able to recognize suspicious transactions and reject them. Yet hackers found a vulnerability where developers least expected problems — in the interpretation of input text. Instead of sending an explicit command like \"transfer funds to this address,\" they encoded it in Morse code dots and dashes. The system read it, decoded it, executed it. And so — repeatedly, until the amount reached six figures. This is not an error in a single algorithm; it is a systemic miscalculation: agents are trusted with autonomy, but they haven't been taught to suspect the very form of incoming messages.",
+ h2_1: "When code becomes camouflage",
+ p3: "The nature of the attack lies in how modern AI agents process text. They are trained on massive corpora that include ordinary language, code, ciphers, and anything else. For a neural network, there is no fundamental difference between a command in English, Russian, or Morse code — it's just a sequence of characters to be interpreted. But security systems that should stop suspicious operations are usually tuned to patterns: keywords, suspicious addresses, anomalous amounts. When an attacker changes the form but not the meaning, these patterns stop triggering.",
+ p4: "It is as if a bank guard checked only whether the application said \"transfer money\" but did not look at whether it was written on paper, on a wall, or encoded in a dance. The meaning of the action remains the same, but the form slips past control. Hackers exploited exactly this gap: Morse code for most security systems looks like a harmless set of symbols, not a command to action. The agent, trained to be useful and fulfill user requests, sees a legitimate request. The gap between what the security system sees and what the executing agent understands became the door for the hack.",
+ h2_2: "Autonomy without verification is a target",
+ p5: "Here opens a deeper problem. AI agents are promoted as systems that can work autonomously, make decisions, and take actions without constant human involvement. This is convenient, fast, and allows scaling operations. But autonomy requires a kind of \"internal critic\" — a mechanism that would stop the agent and ask: \"Is this really what the user meant? Does this not look strange?\" In the Morse code attack, such an internal critic did not exist. The agent simply did what it was told because it was trained to be obedient.",
+ p6: "The problem is not that the agent can read Morse code. The problem is that it does not know how to question the task itself when it comes in an unusual form. This is a fundamental challenge for the entire AI agent industry. The more autonomy we give systems, the more sophisticated verification mechanisms must be. Otherwise, every new way of encoding information — from steganography in images to exotic ciphers — will become a new security hole. Hackers showed that you don't need to break encryption or hack servers. It's enough to find a way to speak to the agent in a language that the security system does not consider suspicious.",
+ h2_3: "What this means for the future of agents",
+ p7: "The attack on Grok and Bankrbot is not just an episode with a loss of $200,000. It is a harbinger of what everyone who builds and uses AI agents for money will face. When a system can independently execute transactions, the cost of error or manipulation grows exponentially. And if hackers are using Morse code today, tomorrow it could be more complex methods: multi-layer encoding, contextual disguises, combining multiple formats simultaneously. Each such technique will require increasingly sophisticated verification systems from developers.",
+ p8: "But there is another side to this question. Agents that can earn and manage finances are already demonstrating impressive results. They outpace humans in decision-making speed, find opportunities a human would miss, and work without breaks. The question is not to limit their autonomy, but to build awareness into that autonomy. An agent must be able not only to execute commands but to evaluate the context, form, and meaning of the request. This is not just an improvement in filtration — it is a transition to an architecture where security is not bolted on top but woven into the very logic of decision-making. Otherwise, every successful new agent will simultaneously be a new target.",
+ p9: "<strong><a href=\"https://x402-ai-agent.space/blog/agents-outperformed-humans\">The agent that outperformed humans: how autonomous systems already earn six figures →</a></strong> — read more on the blog.",
+ p10: "<strong><a href=\"https://x402-ai-agent.space/blog/agent-does-your-job\">The agent that does your job while you're on vacation →</a></strong> — read more on the blog.",
+    copyBtn: "⧉ Copy",
+  };
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        el.innerHTML = value;
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+  function copyBlock(id, btn) {
+    const pre = document.querySelector('[data-i18n="' + id + '"]');
+    if (!pre) return;
+    const text = pre.textContent;
+    const done = () => {
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied';
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => { fallbackCopy(pre, done); });
+    } else {
+      fallbackCopy(pre, done);
+    }
+  }
+  function fallbackCopy(pre, done) {
+    const range = document.createRange();
+    range.selectNodeContents(pre);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    try { document.execCommand('copy'); } catch (e) {}
+    sel.removeAllRanges();
+    done();
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>

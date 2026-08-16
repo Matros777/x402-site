@@ -289,6 +289,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: azbuka-morse-protiv-ii-kak-hakery-obmanyvayut-agentov-na-200-tysyach -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/azbuka-morse-protiv-ii-kak-hakery-obmanyvayut-agentov-na-200-tysyach</loc>
+ <lastmod>2026-08-16</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
