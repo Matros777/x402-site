@@ -310,6 +310,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: zlonamerennye-marshrutizatory-tmnaya-storona-ii-agentov -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/zlonamerennye-marshrutizatory-tmnaya-storona-ii-agentov</loc>
+ <lastmod>2026-08-18</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>

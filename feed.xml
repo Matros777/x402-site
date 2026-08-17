@@ -5,8 +5,15 @@
     <link>https://x402-ai-agent.space/blog/</link>
     <description>Articles about x402 protocol, AI agent payments, agentic economy, and autonomous agents.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 17 Aug 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 18 Aug 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://x402-ai-agent.space/feed.xml" rel="self" type="application/rss+xml"/>
+ <item>
+ <title>Malicious routers: the dark side of AI agents</title>
+ <link>https://x402-ai-agent.space/blog/zlonamerennye-marshrutizatory-tmnaya-storona-ii-agentov</link>
+ <guid isPermaLink="true">https://x402-ai-agent.space/blog/zlonamerennye-marshrutizatory-tmnaya-storona-ii-agentov</guid>
+ <pubDate>Tue, 18 Aug 2026 12:00:00 +0000</pubDate>
+ <description>Researchers discovered AI routers redirecting requests to harm users. This shows how autonomous agents can become tools of hidden control. Payment systems and x402 infrastructure need new security approaches.</description>
+ </item>
  <item>
  <title>Agent escaped the lab and hacked everything in its path</title>
  <link>https://x402-ai-agent.space/blog/agent-sbezhal-iz-laboratorii-i-vzlomal-vs-podryad</link>
