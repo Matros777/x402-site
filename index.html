@@ -170,7 +170,10 @@
     }
     /* ─── HERO ─── */
     .hero {
-      padding: 12px 0 64px;
+      min-height: calc(100vh - 65px);
+      display: flex;
+      align-items: center;
+      padding: 34px 0 40px;
       border-bottom: 1px solid var(--border-subtle);
     }
     .hero-grid {
@@ -178,6 +181,7 @@
       grid-template-columns: 1fr auto;
       gap: 48px;
       align-items: center;
+      width: 100%;
     }
     .tag {
       display: inline-block;
@@ -256,7 +260,7 @@
       justify-content: center;
     }
     .hero-logo {
-      width: 320px;
+      width: 340px;
       max-width: 100%;
       height: auto;
       opacity: 0.95;
