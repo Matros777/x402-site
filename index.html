@@ -118,13 +118,13 @@
       align-items: center;
       gap: 10px;
       font-weight: 500;
-      font-size: 1.1rem;
+      font-size: 1.25rem;
       letter-spacing: -0.02em;
       color: var(--text-secondary);
       flex-shrink: 0;
     }
     .logo-img {
-      height: 28px;
+      height: 34px;
       width: auto;
       border-radius: 6px;
     }
@@ -153,7 +153,7 @@
     .lang-switch {
       margin-left: 8px;
       border: 1px solid var(--border);
-      border-radius: var(--radius-full);
+      border-radius: var(--radius-xs);
       padding: 6px 14px !important;
       font-size: 0.8rem !important;
       cursor: pointer;
@@ -708,10 +708,6 @@
         align-items: flex-start;
         gap: 12px;
       }
-      .nav .logo {
-        flex: none;
-        width: 100%;
-      }
       nav {
         width: 100%;
         justify-content: flex-start;
@@ -719,9 +715,13 @@
         flex-wrap: nowrap;
         padding-bottom: 4px;
       }
-      .nav .lang-switch {
-        position: static;
-        margin-left: 0 !important;
+      nav .lang-switch {
+        position: sticky;
+        right: 0;
+        margin-left: auto !important;
+        background: var(--bg-elevated);
+        box-shadow: -8px 0 12px rgba(0,0,0,0.6);
+        z-index: 2;
         flex-shrink: 0;
       }
       .hero {
@@ -1142,8 +1142,8 @@
       <!-- НОВЫЙ ПУНКТ МЕНЮ: ГЕНЕРАТОР АГЕНТА -->
       <a class="link" href="/generator" data-i18n="nav.generator">Генератор агента</a>
       <a class="link" href="/tester" data-i18n="nav.tester">Тестер агента</a>
+            <a class="link lang-switch" href="#" data-i18n="nav.lang">🇫🇷 EN</a>
     </nav>
-      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
   </div>
 </header>
 <main>
