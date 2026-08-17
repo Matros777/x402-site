@@ -63,9 +63,9 @@
       z-index: 100;
     }
     .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-    .logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--text); }
-    .logo-img { width: 28px; height: 28px; border-radius: 6px; }
-    .logo span { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.02em; }
+    .logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: #a3a3a3; }
+    .logo-img { width: 28px; height: 34px; border-radius: 6px; }
+    .logo span { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em; }
     .logo span span { color: var(--muted); font-weight: 400; }
     nav { display: flex; align-items: center; gap: 8px; }
     nav .link {
@@ -128,7 +128,7 @@
       /* --- Header: full-width like main page --- */
     header.site .wrap { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
     header.site .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
-    header.site .logo { font-size: 1.1rem; gap: 10px; }
+    header.site .logo { font-size: 1.25rem; gap: 10px; }
     header.site .logo span span { color: var(--muted); }
     header.site nav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
     header.site nav .link { padding: 8px 12px; }
@@ -139,7 +139,7 @@
 <header class="site">
   <div class="wrap nav">
     <div class="logo">
-      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img" width="34" height="34" fetchpriority="low">
       <span>x402<span>.ai</span></span>
     </div>
     <nav>

@@ -160,10 +160,10 @@ footer.site a:hover{color:var(--text)}
 small.note{color:var(--muted);font-size:13px}
 
 /* Logo image in header */
-.logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.logo-img{height:28px;width:auto;border-radius:6px;object-fit:contain}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0;color:#a3a3a3}
+.logo-img{height:34px;width:auto;border-radius:6px;object-fit:contain}
 .logo span{font-weight:700;letter-spacing:-.02em;font-size:20px}
-.logo span span{color:var(--muted)}
+.logo span span{color:#a3a3a3}
 
 /* Hero with logo art */
 .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;text-align:left}
