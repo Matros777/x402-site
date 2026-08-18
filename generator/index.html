@@ -943,7 +943,8 @@ httpx</pre>
         btn_copy_prompt: "Копировать промпт",
         extra_deps_label: "Доп. библиотеки (pip)",
         extra_deps_hint: "Если вам нужны доп. библиотеки — вставляйте их сюда (через запятую или с новой строки). Они попадут в <code>requirements.txt</code> при генерации. Импорты (<code>from datetime import datetime</code>, <code>import json</code>) тоже можно вставлять сюда — они добавятся в код автоматически. Импорты всё равно пишите в коде над <code>agent_logic</code>.",
-        extra_deps_note: "Пакеты (pip) — в <code>requirements.txt</code>. Python-импорты (<code>from datetime import datetime</code>, <code>import json</code>) — вставятся в код автоматически. Стандартная библиотека в requirements не попадает."
+        extra_deps_note: "Пакеты (pip) — в <code>requirements.txt</code>. Python-импорты (<code>from datetime import datetime</code>, <code>import json</code>) — вставятся в код автоматически. Стандартная библиотека в requirements не попадает.",
+        code_default: "def agent_logic(data: dict) -> dict:\n    symbol = data.get(\"symbol\", \"DOGE\")\n    # твоя логика здесь\n    return {\n        \"symbol\": symbol,\n        \"message\": \"Hello from x402 agent\"\n    }"
       },
       en: {
         nav_home: "← Back to home",
@@ -1001,7 +1002,8 @@ httpx</pre>
         btn_copy_prompt: "Copy prompt",
         extra_deps_label: "Extra libraries (pip)",
         extra_deps_hint: "If you need extra libraries — paste them here (comma or newline separated). They will be added to <code>requirements.txt</code> on generate. You can also paste Python imports (<code>from datetime import datetime</code>, <code>import json</code>) — they will be inserted into the code automatically. Still write imports in code above <code>agent_logic</code>.",
-        extra_deps_note: "Packages (pip) go to <code>requirements.txt</code>. Python imports (<code>from datetime import datetime</code>, <code>import json</code>) are inserted into the code automatically. Standard library is excluded from requirements."
+        extra_deps_note: "Packages (pip) go to <code>requirements.txt</code>. Python imports (<code>from datetime import datetime</code>, <code>import json</code>) are inserted into the code automatically. Standard library is excluded from requirements.",
+        code_default: "def agent_logic(data: dict) -> dict:\n    symbol = data.get(\"symbol\", \"DOGE\")\n    # your logic here\n    return {\n        \"symbol\": symbol,\n        \"message\": \"Hello from x402 agent\"\n    }"
       }
     };
     let currentLang = new URLSearchParams(window.location.search).get("lang") || "ru";
@@ -1025,6 +1027,11 @@ httpx</pre>
           el.innerHTML = i18n[lang][key];
         }
       });
+      // обновляем дефолтный код в textarea (только если пользователь не редактировал)
+      const codeTa = document.getElementById("code");
+      if (codeTa && i18n[lang] && i18n[lang].code_default) {
+        codeTa.value = i18n[lang].code_default;
+      }
       document.documentElement.lang = lang;
       updateSwitcher(lang);
     }
