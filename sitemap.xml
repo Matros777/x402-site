@@ -317,6 +317,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: pyat-trillionov-kak-agenty-menyayut-torgovlyu -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/pyat-trillionov-kak-agenty-menyayut-torgovlyu</loc>
+ <lastmod>2026-08-19</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
