@@ -331,6 +331,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: uoll-strit-i-ethereum-kak-menyaetsya-kaznacheyskaya-strategiya -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/uoll-strit-i-ethereum-kak-menyaetsya-kaznacheyskaya-strategiya</loc>
+ <lastmod>2026-08-19</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
