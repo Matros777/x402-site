@@ -324,6 +324,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: openai-usilivaet-zaschitu-posle-vzlomov -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/openai-usilivaet-zaschitu-posle-vzlomov</loc>
+ <lastmod>2026-08-19</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
