@@ -380,6 +380,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: artur-heys-vozvraschaetsya-valyuta-dlya-agentov -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/artur-heys-vozvraschaetsya-valyuta-dlya-agentov</loc>
+ <lastmod>2026-08-21</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
