@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">ИИ-агенты против DeFi: уязвимость всей системы? — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="Искусственный интеллект способен находить уязвимости в смарт-контрактах быстрее любых аудиторов. Это ставит под вопрос фундаментальную стойкость децентрализованных финансов. Когда агенты становятся инструментом атак, защита превращается в гонку вооружений.">
+  <meta name="robots" content="index, follow">
+  <meta name="msvalidate.01" content="4457C676C7E5C459E1EAC0547DFFC6F1" />
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/ii-agenty-protiv-defi-uyazvimost-vsey-sistemy">
+  <meta property="og:title" data-i18n="title" content="ИИ-агенты против DeFi: уязвимость всей системы? — x402-ai-agent.space">
+  <meta property="og:description" data-i18n="metaDescription" content="Искусственный интеллект способен находить уязвимости в смарт-контрактах быстрее любых аудиторов. Это ставит под вопрос фундаментальную стойкость децентрализованных финансов. Когда агенты становятся инструментом атак, защита превращается в гонку вооружений.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/ii-agenty-protiv-defi-uyazvimost-vsey-sistemy-cover.jpg">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="ИИ-агенты против DeFi: уязвимость всей системы? — x402-ai-agent.space">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Искусственный интеллект способен находить уязвимости в смарт-контрактах быстрее любых аудиторов. Это ставит под вопрос фундаментальную стойкость децентрализованных финансов. Когда агенты становятся инструментом атак, защита превращается в гонку вооружений.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/ii-agenty-protiv-defi-uyazvimost-vsey-sistemy-cover.jpg">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/ii-agenty-protiv-defi-uyazvimost-vsey-sistemy">
+  <link rel="alternate" hreflang="ru" href="https://x402-ai-agent.space/blog/ii-agenty-protiv-defi-uyazvimost-vsey-sistemy?lang=ru">
+  <link rel="alternate" hreflang="en" href="https://x402-ai-agent.space/blog/ii-agenty-protiv-defi-uyazvimost-vsey-sistemy?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://x402-ai-agent.space/blog/ii-agenty-protiv-defi-uyazvimost-vsey-sistemy">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #ffffff;
+      --text-secondary: #c9c9c9;
+      --muted: #8f8f8f;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition); }
+    .wrap { width: 100%; max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 500; font-size: 1.1rem; letter-spacing: -0.02em;
+      color: var(--text-secondary); flex-shrink: 0;
+    }
+    .logo-img { height: 28px; width: auto; border-radius: 6px; }
+    .logo span span { color: var(--muted); }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      padding: 8px 14px; border-radius: var(--radius-xs);
+      font-size: 0.875rem; color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    nav .link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch {
+      border: 1px solid var(--border); border-radius: var(--radius-full);
+      padding: 6px 14px !important; font-size: 0.8rem !important;
+    }
+    .lang-switch:hover { border-color: #444; background: rgba(255,255,255,0.06) !important; }
+
+    article { padding: 48px 0 80px; }
+    article img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: 437px;
+      object-fit: cover;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    article p strong { color: var(--text); font-weight: 600; }
+    .highlight {
+      margin: 28px 0;
+      padding: 20px 22px;
+      background: linear-gradient(135deg, rgba(34,211,238,0.08), rgba(139,92,246,0.06));
+      border: 1px solid rgba(34,211,238,0.15);
+      border-radius: var(--radius-sm);
+      font-size: 1.05rem;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .note {
+      margin: 28px 0;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .note a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 3px; }
+    .note a:hover { color: var(--text); }
+
+    footer.site {
+      padding: 28px 0;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 32px 0 56px; }
+      article h2 { margin-top: 32px; }
+    }
+    /* --- Header: full-width like main page --- */
+    header.site .wrap { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    header.site .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+    header.site .logo { font-size: 1.1rem; gap: 10px; }
+    header.site .logo span span { color: var(--muted); }
+    header.site nav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    header.site nav .link { padding: 8px 12px; }
+    header.site .lang-switch { margin-left: 8px; }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link" href="/" data-i18n="nav.home">На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article>
+  <div class="wrap">
+ <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+
+ <img src="/assets/img/blog/ii-agenty-protiv-defi-uyazvimost-vsey-sistemy-cover.jpg" alt="ИИ-агенты против DeFi: уязвимость всей системы?" loading="lazy">
+
+ <h1 data-i18n="h1">ИИ-агенты против DeFi: уязвимость всей системы?</h1>
+
+ <div class="meta" data-i18n="meta">2026-08-20 · 3 мин чтения</div>
+
+<p data-i18n="p1">Представьте себе систему, которую строили годами, проверяли каждой строкой кода, доверяли миллиарды долларов. И вдруг появляется существо, которое не устаёт, не отвлекается и не делает ошибок внимания — и за несколько часов находит то, что люди искали месяцами. Это не фантастика, это реальность сегодняшнего дня: искусственный интеллект превращается из помощника в инструмент, способный взломать то, что считалось неприступным. В мире децентрализованных финансов, где одна ошибка в коде стоит десятки миллионов, это меняет всё.</p>
+
+<p data-i18n="p2">Вопрос из заголовка звучит драматично, но за ним стоит реальная проблема. Когда ИИ-агенты начинают исследовать блокчейн-сети в поисках уязвимостей, они не ограничены человеческим временем и вниманием. Они могут перебирать варианты, проверять граничные условия, находить неочевидные цепочки вызовов — и делать это систематически, пока не найдут лазейку. Это не просто ускорение существующих процессов. Это качественно новый уровень угрозы: раньше атака требовала подготовки, навыков и удачи. Теперь достаточно запустить правильный алгоритм.</p>
+
+<h2 data-i18n="h2_1">Механика поиска</h2>
+
+<p data-i18n="p3">Смарт-контракт — это программа, которая работает в прозрачной среде. Код открыт, логика фиксирована, транзакции неизменяемы. Казалось бы, что может пойти не так? Но именно прозрачность становится полем битвы. ИИ-агенты анализируют не только сам контракт, но и его взаимодействие с другими протоколами, поведение пользователей при стрессовых сценариях, необычные паттерны в потоке транзакций. Они видят систему целиком, а не отдельным фрагментом.</p>
+
+<p data-i18n="p4">Традиционные аудиты полагаются на человеческий опыт и интуицию. Аудитор изучает код, проверяет типичные уязвимости, следит за лучшими практиками. Но ИИ не опирается на опыт — он опирается на перебор и анализ. Там, где человек видит стандартную конструкцию и успокаивается, алгоритм может заметить редкое сочетание условий, которое приводит к неожиданному результату. Это не значит, что люди бесполезны. Это значит, что правила игры изменились: защита должна быть такой же систематической, как и атака.</p>
+
+<h2 data-i18n="h2_2">Цена прозрачности</h2>
+
+<p data-i18n="p5">Децентрализованные финансы построены на идее открытости. Любой может проверить код, любой может вызвать функцию, любой может стать пользователем или хакером. Это фундамент философии блокчейна — доверие через проверяемость, а не через авторитет. Но когда проверяемость становится оружием, появляется парадокс: чем прозрачнее система, тем больше у неё поверхностей атаки для алгоритмического противника.</p>
+
+<p data-i18n="p6">ИИ-агенты превращают прозрачность из защитного механизма в уязвимость. Они сканируют тысячи контрактов, находят слабые места и эксплуатируют их быстрее, чем сообщество успевает отреагировать. Это не проблема конкретного протокола или команды разработчиков. Это системный риск всей архитектуры DeFi. Когда скорость аложения превышает скорость реакции, понятие безопасности начинает двигаться в сторону превентивных мер и многократных уровней защиты.</p>
+
+<h2 data-i18n="h2_3">Гонка вооружений</h2>
+
+<p data-i18n="p7">Естественная реакция индустрии — улучшать аудиты, использовать ИИ для защиты, создавать более строгие стандарты разработки. Но это классическая гонка вооружений: улучшение защиты ведёт к совершенствованию методов атаки, и наоборот. ИИ, обученный находить уязвимости, может обучаться и на новых схемах защиты. Это не статичная ситуация, а динамический процесс, где фаворит постоянно меняется.</p>
+
+<p data-i18n="p8">Интереснее другое: сами ИИ-агенты становятся участниками финансовой системы. Они торгуют, арбитражируют, управляют ликвидностью. И когда эти же агенты используются для поиска уязвимостей, возникает сложный этический и технический узел. Один и тот же инструмент может приносить пользу и наносить вред. Разделение линий становится всё более условным, и regulat рамки неизбежно отстают от технической реальности.</p>
+
+<h2 data-i18n="h2_4">Что это значит для будущего</h2>
+
+<p data-i18n="p9">Если заголовок звучит как вопрос — «неужели весь DeFi уязвим?» — то ответ, вероятно, лежит не по оси «да/нет», а в плоскости «насколько серьёзно мы относимся к угрозе». ИИ-агенты не делают DeFi уязвимым по определению. Они делают уязвимости видимыми. Это разница. Видимость — это возможность исправить. Но это и ответственность: игнорировать то, что уже можно найти, становится всё труднее.</p>
+
+<p data-i18n="p10">Будущее, вероятно, за системами, которые изначально проектируются с учётом алгоритмических атак. Не как дополнение к существующему коду, а как фундамент архитектуры. Это значит многократное резервирование, формальную верификацию, избыточные проверки. Это значит, что простые решения перестанут работать в пространстве, где противник — не группа хакеров, а постоянно обучающийся алгоритм. DeFi не исчезнет, но он станет другим — более осторожным, более сложным, менее наивным.</p>
+
+ <div class="highlight" data-i18n="p11"><strong><a href="https://x402-ai-agent.space/blog/ai-agents-city-experiment">ИИ-агенты в виртуальном городе: 15 дней без присмотра →</a></strong> — читайте подробнее в блоге.</div>
+
+ <div class="highlight" data-i18n="p12"><strong><a href="https://x402-ai-agent.space/blog/ai-agents-beyond-singapore-ndp2026">«Идти дальше»: как Сингапур и ИИ-агенты переписывают правила →</a></strong> — читайте подробнее в блоге.</div>
+
+
+  </div>
+</article>
+</main>
+
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ИИ-агенты против DeFi: уязвимость всей системы?",
+  "description": "Искусственный интеллект способен находить уязвимости в смарт-контрактах быстрее любых аудиторов. Это ставит под вопрос фундаментальную стойкость децентрализованных финансов. Когда агенты становятся инструментом атак, защита превращается в гонку вооружений.",
+  "datePublished": "2026-08-20",
+  "author": {
+    "@type": "Organization",
+    "name": "x402-ai-agent.space"
+  },
+  "image": "https://x402-ai-agent.space/assets/img/blog/ii-agenty-protiv-defi-uyazvimost-vsey-sistemy-cover.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Блог x402",
+      "item": "https://x402-ai-agent.space/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "ИИ-агенты против DeFi: уязвимость всей системы?",
+      "item": "https://x402-ai-agent.space/blog/ii-agenty-protiv-defi-uyazvimost-vsey-sistemy"
+    }
+  ]
+}
+</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+  const embeddedRu = {
+ title: "ИИ-агенты против DeFi: уязвимость всей системы? — x402-ai-agent.space",
+ metaDescription: "Искусственный интеллект способен находить уязвимости в смарт-контрактах быстрее любых аудиторов. Это ставит под вопрос фундаментальную стойкость децентрализованных финансов. Когда агенты становятся инструментом атак, защита превращается в гонку вооружений.",
+ nav: { back: "← Блог", home: "На сайт", lang: "🇬🇧 EN" },
+ backLink: "← Назад к блогу",
+ h1: "ИИ-агенты против DeFi: уязвимость всей системы?",
+ meta: "2026-08-20 · 3 мин чтения",
+ p1: "Представьте себе систему, которую строили годами, проверяли каждой строкой кода, доверяли миллиарды долларов. И вдруг появляется существо, которое не устаёт, не отвлекается и не делает ошибок внимания — и за несколько часов находит то, что люди искали месяцами. Это не фантастика, это реальность сегодняшнего дня: искусственный интеллект превращается из помощника в инструмент, способный взломать то, что считалось неприступным. В мире децентрализованных финансов, где одна ошибка в коде стоит десятки миллионов, это меняет всё.",
+ p2: "Вопрос из заголовка звучит драматично, но за ним стоит реальная проблема. Когда ИИ-агенты начинают исследовать блокчейн-сети в поисках уязвимостей, они не ограничены человеческим временем и вниманием. Они могут перебирать варианты, проверять граничные условия, находить неочевидные цепочки вызовов — и делать это систематически, пока не найдут лазейку. Это не просто ускорение существующих процессов. Это качественно новый уровень угрозы: раньше атака требовала подготовки, навыков и удачи. Теперь достаточно запустить правильный алгоритм.",
+ h2_1: "Механика поиска",
+ p3: "Смарт-контракт — это программа, которая работает в прозрачной среде. Код открыт, логика фиксирована, транзакции неизменяемы. Казалось бы, что может пойти не так? Но именно прозрачность становится полем битвы. ИИ-агенты анализируют не только сам контракт, но и его взаимодействие с другими протоколами, поведение пользователей при стрессовых сценариях, необычные паттерны в потоке транзакций. Они видят систему целиком, а не отдельным фрагментом.",
+ p4: "Традиционные аудиты полагаются на человеческий опыт и интуицию. Аудитор изучает код, проверяет типичные уязвимости, следит за лучшими практиками. Но ИИ не опирается на опыт — он опирается на перебор и анализ. Там, где человек видит стандартную конструкцию и успокаивается, алгоритм может заметить редкое сочетание условий, которое приводит к неожиданному результату. Это не значит, что люди бесполезны. Это значит, что правила игры изменились: защита должна быть такой же систематической, как и атака.",
+ h2_2: "Цена прозрачности",
+ p5: "Децентрализованные финансы построены на идее открытости. Любой может проверить код, любой может вызвать функцию, любой может стать пользователем или хакером. Это фундамент философии блокчейна — доверие через проверяемость, а не через авторитет. Но когда проверяемость становится оружием, появляется парадокс: чем прозрачнее система, тем больше у неё поверхностей атаки для алгоритмического противника.",
+ p6: "ИИ-агенты превращают прозрачность из защитного механизма в уязвимость. Они сканируют тысячи контрактов, находят слабые места и эксплуатируют их быстрее, чем сообщество успевает отреагировать. Это не проблема конкретного протокола или команды разработчиков. Это системный риск всей архитектуры DeFi. Когда скорость аложения превышает скорость реакции, понятие безопасности начинает двигаться в сторону превентивных мер и многократных уровней защиты.",
+ h2_3: "Гонка вооружений",
+ p7: "Естественная реакция индустрии — улучшать аудиты, использовать ИИ для защиты, создавать более строгие стандарты разработки. Но это классическая гонка вооружений: улучшение защиты ведёт к совершенствованию методов атаки, и наоборот. ИИ, обученный находить уязвимости, может обучаться и на новых схемах защиты. Это не статичная ситуация, а динамический процесс, где фаворит постоянно меняется.",
+ p8: "Интереснее другое: сами ИИ-агенты становятся участниками финансовой системы. Они торгуют, арбитражируют, управляют ликвидностью. И когда эти же агенты используются для поиска уязвимостей, возникает сложный этический и технический узел. Один и тот же инструмент может приносить пользу и наносить вред. Разделение линий становится всё более условным, и regulat рамки неизбежно отстают от технической реальности.",
+ h2_4: "Что это значит для будущего",
+ p9: "Если заголовок звучит как вопрос — «неужели весь DeFi уязвим?» — то ответ, вероятно, лежит не по оси «да/нет», а в плоскости «насколько серьёзно мы относимся к угрозе». ИИ-агенты не делают DeFi уязвимым по определению. Они делают уязвимости видимыми. Это разница. Видимость — это возможность исправить. Но это и ответственность: игнорировать то, что уже можно найти, становится всё труднее.",
+ p10: "Будущее, вероятно, за системами, которые изначально проектируются с учётом алгоритмических атак. Не как дополнение к существующему коду, а как фундамент архитектуры. Это значит многократное резервирование, формальную верификацию, избыточные проверки. Это значит, что простые решения перестанут работать в пространстве, где противник — не группа хакеров, а постоянно обучающийся алгоритм. DeFi не исчезнет, но он станет другим — более осторожным, более сложным, менее наивным.",
+ p11: "<strong><a href=\"https://x402-ai-agent.space/blog/ai-agents-city-experiment\">ИИ-агенты в виртуальном городе: 15 дней без присмотра →</a></strong> — читайте подробнее в блоге.",
+ p12: "<strong><a href=\"https://x402-ai-agent.space/blog/ai-agents-beyond-singapore-ndp2026\">«Идти дальше»: как Сингапур и ИИ-агенты переписывают правила →</a></strong> — читайте подробнее в блоге.",
+    copyBtn: "⧉ Копировать",
+  };
+  const embeddedEn = {
+ title: "AI agents vs DeFi: Is the whole system vulnerable? — x402-ai-agent.space",
+ metaDescription: "Artificial intelligence can find smart contract vulnerabilities faster than any auditors. This raises fundamental questions about the resilience of decentralized finance. When agents become attack tools, defense turns into an arms race.",
+ nav: { back: "← Blog", home: "Home", lang: "🇷🇺 RU" },
+ backLink: "← Back to blog",
+ h1: "AI agents vs DeFi: Is the whole system vulnerable?",
+ meta: "2026-08-20 · 3 min read",
+ p1: "Imagine a system built over years, audited line by line, trusted with billions of dollars. And then an entity appears that never tires, never gets distracted, never loses focus — and within hours finds what humans spent months searching for. This is not science fiction, it is today's reality: artificial intelligence is transforming from a helper into a tool capable of breaching what was considered impregnable. In the world of decentralized finance, where a single coding error costs tens of millions, this changes everything.",
+ p2: "The headline question sounds dramatic, but behind it lies a real problem. When AI agents start exploring blockchain networks for vulnerabilities, they are not limited by human time and attention. They can iterate through variants, check edge cases, find non-obvious call chains — and do it systematically until they find a loophole. This is not just an acceleration of existing processes. It is a qualitatively new level of threat: an attack used to require preparation, skills, and luck. Now it is enough to launch the right algorithm.",
+ h2_1: "The mechanics of search",
+ p3: "A smart contract is a program operating in a transparent environment. The code is open, the logic is fixed, transactions are immutable. What could go wrong? But this very transparency becomes the battlefield. AI agents analyze not only the contract itself but also its interaction with other protocols, user behavior under stress scenarios, unusual patterns in transaction flows. They see the system as a whole, not as isolated fragments.",
+ p4: "Traditional audits rely on human experience and intuition. An auditor studies the code, checks for typical vulnerabilities, follows best practices. But AI does not rely on experience — it relies on iteration and analysis. Where a human sees a standard construction and relaxes, an algorithm might notice a rare combination of conditions that leads to an unexpected result. This does not mean humans are useless. It means the rules of the game have changed: defense must be as systematic as offense.",
+ h2_2: "The price of transparency",
+ p5: "Decentralized finance is built on the idea of openness. Anyone can verify the code, anyone can call a function, anyone can become a user or a hacker. This is the fundamental philosophy of blockchain — trust through verifiability, not through authority. But when verifiability becomes a weapon, a paradox emerges: the more transparent the system, the more attack surfaces it has for an algorithmic adversary.",
+ p6: "AI agents turn transparency from a protective mechanism into a vulnerability. They scan thousands of contracts, find weak spots, and exploit them faster than the community can respond. This is not a problem of a specific protocol or development team. It is a systemic risk of the entire DeFi architecture. When the speed of attack exceeds the speed of reaction, the concept of security shifts toward preventive measures and multiple layers of defense.",
+ h2_3: "The arms race",
+ p7: "The natural industry response is to improve audits, use AI for defense, create stricter development standards. But this is a classic arms race: improved defense leads to refined attack methods, and vice versa. An AI trained to find vulnerabilities can also learn from new defense schemes. This is not a static situation but a dynamic process where the favorite constantly changes.",
+ p8: "More interesting is this: AI agents themselves become participants in the financial system. They trade, arbitrage, manage liquidity. And when the same agents are used to find vulnerabilities, a complex ethical and technical knot emerges. The same tool can benefit or harm. The line between the two becomes increasingly conditional, and regulatory frameworks inevitably lag behind technical reality.",
+ h2_4: "What this means for the future",
+ p9: "If the headline poses a question — \"is all of DeFi vulnerable?\" — the answer probably lies not on the yes/no axis but in the plane of \"how seriously do we take the threat.\" AI agents do not make DeFi vulnerable by definition. They make vulnerabilities visible. This is a distinction. Visibility is an opportunity to fix. But it is also responsibility: ignoring what can already be found becomes increasingly difficult.",
+ p10: "The future likely belongs to systems designed from the start with algorithmic attacks in mind. Not as an add-on to existing code, but as a fundamental part of architecture. This means multiple redundancies, formal verification, excessive checks. It means simple solutions will stop working in a space where the adversary is not a group of hackers but a constantly learning algorithm. DeFi will not disappear, but it will become different — more cautious, more complex, less naive.",
+ p11: "<strong><a href=\"https://x402-ai-agent.space/blog/ai-agents-city-experiment\">AI agents in a virtual city: 15 days unsupervised →</a></strong> — read more on the blog.",
+ p12: "<strong><a href=\"https://x402-ai-agent.space/blog/ai-agents-beyond-singapore-ndp2026\">\"Going beyond\": how Singapore and AI agents rewrite the rules →</a></strong> — read more on the blog.",
+    copyBtn: "⧉ Copy",
+  };
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        el.innerHTML = value;
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+  function copyBlock(id, btn) {
+    const pre = document.querySelector('[data-i18n="' + id + '"]');
+    if (!pre) return;
+    const text = pre.textContent;
+    const done = () => {
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied';
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => { fallbackCopy(pre, done); });
+    } else {
+      fallbackCopy(pre, done);
+    }
+  }
+  function fallbackCopy(pre, done) {
+    const range = document.createRange();
+    range.selectNodeContents(pre);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    try { document.execCommand('copy'); } catch (e) {}
+    sel.removeAllRanges();
+    done();
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>
