@@ -345,6 +345,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: kak-prestupniki-prevraschayut-ii-v-oruzhie -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/kak-prestupniki-prevraschayut-ii-v-oruzhie</loc>
+ <lastmod>2026-08-20</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
