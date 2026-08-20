@@ -366,6 +366,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: dva-milliona-tranzaktsiy-za-sem-tysyach-dollarov -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/dva-milliona-tranzaktsiy-za-sem-tysyach-dollarov</loc>
+ <lastmod>2026-08-20</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
