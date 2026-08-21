@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Когда ИИ-агент ломается на старте: ошибки установки в Windows — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="Установка ИИ-агента в Windows превращается в квест с непредсказуемым исходом. Ошибки монтажа блокируют запуск автономных систем ещё до того, как они успевают что-то сделать. За типичными сбоями скрывается фундаментальный разрыв между инфраструктурой операционной системы.">
+  <meta name="robots" content="index, follow">
+  <meta name="msvalidate.01" content="4457C676C7E5C459E1EAC0547DFFC6F1" />
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/kogda-ii-agent-lomaetsya-na-starte-oshibki-ustanovki-v-windows">
+  <meta property="og:title" data-i18n="title" content="Когда ИИ-агент ломается на старте: ошибки установки в Windows — x402-ai-agent.space">
+  <meta property="og:description" data-i18n="metaDescription" content="Установка ИИ-агента в Windows превращается в квест с непредсказуемым исходом. Ошибки монтажа блокируют запуск автономных систем ещё до того, как они успевают что-то сделать. За типичными сбоями скрывается фундаментальный разрыв между инфраструктурой операционной системы.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/kogda-ii-agent-lomaetsya-na-starte-oshibki-ustanovki-v-windows-cover.jpg">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="Когда ИИ-агент ломается на старте: ошибки установки в Windows — x402-ai-agent.space">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Установка ИИ-агента в Windows превращается в квест с непредсказуемым исходом. Ошибки монтажа блокируют запуск автономных систем ещё до того, как они успевают что-то сделать. За типичными сбоями скрывается фундаментальный разрыв между инфраструктурой операционной системы.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/kogda-ii-agent-lomaetsya-na-starte-oshibki-ustanovki-v-windows-cover.jpg">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/kogda-ii-agent-lomaetsya-na-starte-oshibki-ustanovki-v-windows">
+  <link rel="alternate" hreflang="ru" href="https://x402-ai-agent.space/blog/kogda-ii-agent-lomaetsya-na-starte-oshibki-ustanovki-v-windows?lang=ru">
+  <link rel="alternate" hreflang="en" href="https://x402-ai-agent.space/blog/kogda-ii-agent-lomaetsya-na-starte-oshibki-ustanovki-v-windows?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://x402-ai-agent.space/blog/kogda-ii-agent-lomaetsya-na-starte-oshibki-ustanovki-v-windows">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #ffffff;
+      --text-secondary: #c9c9c9;
+      --muted: #8f8f8f;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition); }
+    .wrap { width: 100%; max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 500; font-size: 1.1rem; letter-spacing: -0.02em;
+      color: var(--text-secondary); flex-shrink: 0;
+    }
+    .logo-img { height: 28px; width: auto; border-radius: 6px; }
+    .logo span span { color: var(--muted); }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      padding: 8px 14px; border-radius: var(--radius-xs);
+      font-size: 0.875rem; color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    nav .link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch {
+      border: 1px solid var(--border); border-radius: var(--radius-full);
+      padding: 6px 14px !important; font-size: 0.8rem !important;
+    }
+    .lang-switch:hover { border-color: #444; background: rgba(255,255,255,0.06) !important; }
+
+    article { padding: 48px 0 80px; }
+    article img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: 437px;
+      object-fit: cover;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    article p strong { color: var(--text); font-weight: 600; }
+    .highlight {
+      margin: 28px 0;
+      padding: 20px 22px;
+      background: linear-gradient(135deg, rgba(34,211,238,0.08), rgba(139,92,246,0.06));
+      border: 1px solid rgba(34,211,238,0.15);
+      border-radius: var(--radius-sm);
+      font-size: 1.05rem;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .note {
+      margin: 28px 0;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .note a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 3px; }
+    .note a:hover { color: var(--text); }
+
+    footer.site {
+      padding: 28px 0;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 32px 0 56px; }
+      article h2 { margin-top: 32px; }
+    }
+    /* --- Header: full-width like main page --- */
+    header.site .wrap { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    header.site .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+    header.site .logo { font-size: 1.1rem; gap: 10px; }
+    header.site .logo span span { color: var(--muted); }
+    header.site nav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    header.site nav .link { padding: 8px 12px; }
+    header.site .lang-switch { margin-left: 8px; }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link" href="/" data-i18n="nav.home">На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article>
+  <div class="wrap">
+ <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+
+ <img src="/assets/img/blog/kogda-ii-agent-lomaetsya-na-starte-oshibki-ustanovki-v-windows-cover.jpg" alt="Когда ИИ-агент ломается на старте: ошибки установки в Windows" loading="lazy">
+
+ <h1 data-i18n="h1">Когда ИИ-агент ломается на старте: ошибки установки в Windows</h1>
+
+ <div class="meta" data-i18n="meta">2026-08-21 · 2 мин чтения</div>
+
+<p data-i18n="p1">Кажется, что может быть проще: скачал, запустил установщик, получил готового ИИ-агента на своей машине. Но практика показывает обратное — процесс установки превращается в серию непредсказуемых сбоев, каждый из которых способен застопорить работу автономной системы ещё на подходе к старту. Проблема не в том, что пользователи что-то делают неправильно, а в том, что современная операционная система и архитектура ИИ-агентов живут в разных измерениях требований и ограничений.</p>
+
+<p data-i18n="p2">Когда установка падает с ошибкой, теряется не просто время. На кону стоит доверие к самой технологии: если агент не может корректно установиться, как ему можно доверять выполнение автономных задач в реальной среде? Каждый сбой монтажа — это сигнал о том, что инфраструктура ещё не готова к массовому внедрению автономных систем. Пока мы решаем проблемы с зависимостями и правами доступа, рынок AGI продолжает двигаться вперёд, и разрыв между возможностями агентов и стабильностью их развертывания только растёт.</p>
+
+<h2 data-i18n="h2_1">Природа сбоев</h2>
+
+<p data-i18n="p3">Типичные ошибки установки в Windows редко бывают случайными. За ними стоит цепочка зависимостей: несовместимость версий библиотек, отсутствие необходимых системных компонентов, конфликты с антивирусным ПО, недостаточные права доступа к критическим директориям. Каждый из этих факторов по отдельности кажется незначительным, но в совокупности создаёт непреодолимый барьер для корректного развёртывания ИИ-агента.</p>
+
+<p data-i18n="p4">Особенность работы с автономными агентами в том, что они требуют глубокой интеграции с системой. Это не просто приложение, которое запускается в изолированном контейнере. Агенту нужен доступ к файловой системе, сетевым интерфейсам, иногда к системным реестрам. Windows, изначально спроектированная для работы с традиционными программами, не всегда корректно обрабатывает такие запросы. Результат — установка прерывается на полпути, и пользователь получает криптическое сообщение об ошибке, которое мало что объясняет.</p>
+
+<h2 data-i18n="h2_2">Практические решения</h2>
+
+<p data-i18n="p5">Стандартный набор решений включает проверку системных требований, обновление драйверов, отключение антивируса на время установки, запуск установщика от имени администратора. Но эти меры работают не всегда. Проблема глубже: многие агенты требуют специфической конфигурации окружения, которую невозможно предсказать заранее. Иногда помогает полная переустановка системы с чистым листом, но такой подход неприемлем для большинства пользователей.</p>
+
+<p data-i18n="p6">Интересно, что часть ошибок установки связана с защитными механизмами самой Windows. Система блокирует подозрительную активность, и действия установщика ИИ-агента попадают под это определение. Парадокс в том, что чем более продвинутым и автономным является агент, тем выше вероятность, что его установка будет воспринята как угроза. Это фундаментальное противоречие между безопасностью и функциональностью, которое пока не найдено удовлетворительное решение.</p>
+
+ <div class="highlight" data-i18n="p7"><strong><a href="https://x402-ai-agent.space/blog/rynok-agi-k-2033-godu-kto-vyzhivet-v-gonke-avtonomnyh-agentov">Рынок AGI к 2033 году: кто выживет в гонке автономных агентов →</a></strong> — читайте подробнее в блоге.</div>
+
+ <div class="highlight" data-i18n="p8"><strong><a href="https://x402-ai-agent.space/blog/obval-x402-na-93-i-prizrak-vozrozhdeniya-cherez-cloudflare">Обвал x402 на 93% и призрак возрождения через Cloudflare →</a></strong> — читайте подробнее в блоге.</div>
+
+
+  </div>
+</article>
+</main>
+
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Когда ИИ-агент ломается на старте: ошибки установки в Windows",
+  "description": "Установка ИИ-агента в Windows превращается в квест с непредсказуемым исходом. Ошибки монтажа блокируют запуск автономных систем ещё до того, как они успевают что-то сделать. За типичными сбоями скрывается фундаментальный разрыв между инфраструктурой операционной системы.",
+  "datePublished": "2026-08-21",
+  "author": {
+    "@type": "Organization",
+    "name": "x402-ai-agent.space"
+  },
+  "image": "https://x402-ai-agent.space/assets/img/blog/kogda-ii-agent-lomaetsya-na-starte-oshibki-ustanovki-v-windows-cover.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Блог x402",
+      "item": "https://x402-ai-agent.space/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Когда ИИ-агент ломается на старте: ошибки установки в Windows",
+      "item": "https://x402-ai-agent.space/blog/kogda-ii-agent-lomaetsya-na-starte-oshibki-ustanovki-v-windows"
+    }
+  ]
+}
+</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+  const embeddedRu = {
+ title: "Когда ИИ-агент ломается на старте: ошибки установки в Windows — x402-ai-agent.space",
+ metaDescription: "Установка ИИ-агента в Windows превращается в квест с непредсказуемым исходом. Ошибки монтажа блокируют запуск автономных систем ещё до того, как они успевают что-то сделать. За типичными сбоями скрывается фундаментальный разрыв между инфраструктурой операционной системы.",
+ nav: { back: "← Блог", home: "На сайт", lang: "🇬🇧 EN" },
+ backLink: "← Назад к блогу",
+ h1: "Когда ИИ-агент ломается на старте: ошибки установки в Windows",
+ meta: "2026-08-21 · 2 мин чтения",
+ p1: "Кажется, что может быть проще: скачал, запустил установщик, получил готового ИИ-агента на своей машине. Но практика показывает обратное — процесс установки превращается в серию непредсказуемых сбоев, каждый из которых способен застопорить работу автономной системы ещё на подходе к старту. Проблема не в том, что пользователи что-то делают неправильно, а в том, что современная операционная система и архитектура ИИ-агентов живут в разных измерениях требований и ограничений.",
+ p2: "Когда установка падает с ошибкой, теряется не просто время. На кону стоит доверие к самой технологии: если агент не может корректно установиться, как ему можно доверять выполнение автономных задач в реальной среде? Каждый сбой монтажа — это сигнал о том, что инфраструктура ещё не готова к массовому внедрению автономных систем. Пока мы решаем проблемы с зависимостями и правами доступа, рынок AGI продолжает двигаться вперёд, и разрыв между возможностями агентов и стабильностью их развертывания только растёт.",
+ h2_1: "Природа сбоев",
+ p3: "Типичные ошибки установки в Windows редко бывают случайными. За ними стоит цепочка зависимостей: несовместимость версий библиотек, отсутствие необходимых системных компонентов, конфликты с антивирусным ПО, недостаточные права доступа к критическим директориям. Каждый из этих факторов по отдельности кажется незначительным, но в совокупности создаёт непреодолимый барьер для корректного развёртывания ИИ-агента.",
+ p4: "Особенность работы с автономными агентами в том, что они требуют глубокой интеграции с системой. Это не просто приложение, которое запускается в изолированном контейнере. Агенту нужен доступ к файловой системе, сетевым интерфейсам, иногда к системным реестрам. Windows, изначально спроектированная для работы с традиционными программами, не всегда корректно обрабатывает такие запросы. Результат — установка прерывается на полпути, и пользователь получает криптическое сообщение об ошибке, которое мало что объясняет.",
+ h2_2: "Практические решения",
+ p5: "Стандартный набор решений включает проверку системных требований, обновление драйверов, отключение антивируса на время установки, запуск установщика от имени администратора. Но эти меры работают не всегда. Проблема глубже: многие агенты требуют специфической конфигурации окружения, которую невозможно предсказать заранее. Иногда помогает полная переустановка системы с чистым листом, но такой подход неприемлем для большинства пользователей.",
+ p6: "Интересно, что часть ошибок установки связана с защитными механизмами самой Windows. Система блокирует подозрительную активность, и действия установщика ИИ-агента попадают под это определение. Парадокс в том, что чем более продвинутым и автономным является агент, тем выше вероятность, что его установка будет воспринята как угроза. Это фундаментальное противоречие между безопасностью и функциональностью, которое пока не найдено удовлетворительное решение.",
+ p7: "<strong><a href=\"https://x402-ai-agent.space/blog/rynok-agi-k-2033-godu-kto-vyzhivet-v-gonke-avtonomnyh-agentov\">Рынок AGI к 2033 году: кто выживет в гонке автономных агентов →</a></strong> — читайте подробнее в блоге.",
+ p8: "<strong><a href=\"https://x402-ai-agent.space/blog/obval-x402-na-93-i-prizrak-vozrozhdeniya-cherez-cloudflare\">Обвал x402 на 93% и призрак возрождения через Cloudflare →</a></strong> — читайте подробнее в блоге.",
+    copyBtn: "⧉ Копировать",
+  };
+  const embeddedEn = {
+ title: "When AI agents break at launch: Windows installation errors — x402-ai-agent.space",
+ metaDescription: "Installing an AI agent in Windows turns into a quest with unpredictable outcomes. Installation errors block autonomous systems before they can even begin to act. Behind typical failures lies a fundamental gap between operating system.",
+ nav: { back: "← Blog", home: "Home", lang: "🇷🇺 RU" },
+ backLink: "← Back to blog",
+ h1: "When AI agents break at launch: Windows installation errors",
+ meta: "2026-08-21 · 2 min read",
+ p1: "It seems simple enough: download the installer, run it, get a ready-to-use AI agent on your machine. But practice tells a different story — the installation process turns into a series of unpredictable failures, each capable of stopping an autonomous system before it even begins. The problem is not that users are doing something wrong, but that modern operating systems and AI agent architectures live in different dimensions of requirements and constraints.",
+ p2: "When installation fails with an error, more than time is lost. Trust in the technology itself is at stake: if an agent cannot install correctly, how can it be trusted to execute autonomous tasks in a real environment? Every installation failure is a signal that infrastructure is not yet ready for mass deployment of autonomous systems. While we solve dependency and access issues, the AGI market keeps moving forward, and the gap between agent capabilities and deployment stability only grows.",
+ h2_1: "The nature of failures",
+ p3: "Typical Windows installation errors are rarely random. Behind them lies a chain of dependencies: incompatible library versions, missing system components, conflicts with antivirus software, insufficient access rights to critical directories. Each factor seems insignificant on its own, but together they create an insurmountable barrier to proper AI agent deployment.",
+ p4: "The peculiarity of working with autonomous agents is that they require deep system integration. This is not just an application running in an isolated container. An agent needs access to the file system, network interfaces, sometimes to system registries. Windows, originally designed for traditional programs, does not always handle such requests correctly. The result: installation stops halfway, and the user receives a cryptic error message that explains little.",
+ h2_2: "Practical solutions",
+ p5: "The standard set of solutions includes checking system requirements, updating drivers, disabling antivirus during installation, running the installer as administrator. But these measures do not always work. The problem is deeper: many agents require specific environment configuration that cannot be predicted in advance. Sometimes a complete system reinstall from scratch helps, but this approach is unacceptable for most users.",
+ p6: "Interestingly, some installation errors are linked to Windows' own protection mechanisms. The system blocks suspicious activity, and the AI agent installer's actions fall under this definition. The paradox is that the more advanced and autonomous the agent, the higher the likelihood that its installation will be perceived as a threat. This is a fundamental contradiction between security and functionality that has not yet found a satisfactory resolution.",
+ p7: "<strong><a href=\"https://x402-ai-agent.space/blog/rynok-agi-k-2033-godu-kto-vyzhivet-v-gonke-avtonomnyh-agentov\">AGI market by 2033: who will survive the autonomous agent race →</a></strong> — read more on the blog.",
+ p8: "<strong><a href=\"https://x402-ai-agent.space/blog/obval-x402-na-93-i-prizrak-vozrozhdeniya-cherez-cloudflare\">x402 crash by 93% and the ghost of revival through Cloudflare →</a></strong> — read more on the blog.",
+    copyBtn: "⧉ Copy",
+  };
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        el.innerHTML = value;
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+  function copyBlock(id, btn) {
+    const pre = document.querySelector('[data-i18n="' + id + '"]');
+    if (!pre) return;
+    const text = pre.textContent;
+    const done = () => {
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied';
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => { fallbackCopy(pre, done); });
+    } else {
+      fallbackCopy(pre, done);
+    }
+  }
+  function fallbackCopy(pre, done) {
+    const range = document.createRange();
+    range.selectNodeContents(pre);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    try { document.execCommand('copy'); } catch (e) {}
+    sel.removeAllRanges();
+    done();
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>

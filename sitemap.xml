@@ -394,6 +394,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: kogda-ii-agent-lomaetsya-na-starte-oshibki-ustanovki-v-windows -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/kogda-ii-agent-lomaetsya-na-starte-oshibki-ustanovki-v-windows</loc>
+ <lastmod>2026-08-21</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
