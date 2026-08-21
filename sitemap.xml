@@ -387,6 +387,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: linux-foundation-vstraivaet-platezhi-v-workflows-ii-agentov -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/linux-foundation-vstraivaet-platezhi-v-workflows-ii-agentov</loc>
+ <lastmod>2026-08-21</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
