@@ -408,6 +408,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: ramp-podklyuchaet-x402-k-solana-dlya-platezhey-agentov -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/ramp-podklyuchaet-x402-k-solana-dlya-platezhey-agentov</loc>
+ <lastmod>2026-08-22</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>

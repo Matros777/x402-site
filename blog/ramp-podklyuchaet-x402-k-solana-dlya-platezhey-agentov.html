@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Ramp подключает x402 к Solana для платежей агентов — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="Ramp интегрирует x402-протокол на Solana, давая ИИ-агентам возможность совершать криптоконверсии и платежи без участия человека. Это не просто удобство, а сдвиг в архитектуре автономности: агенты получают настоящий экономический рычаг. Теперь они могут не только писать код.">
+  <meta name="robots" content="index, follow">
+  <meta name="msvalidate.01" content="4457C676C7E5C459E1EAC0547DFFC6F1" />
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/ramp-podklyuchaet-x402-k-solana-dlya-platezhey-agentov">
+  <meta property="og:title" data-i18n="title" content="Ramp подключает x402 к Solana для платежей агентов — x402-ai-agent.space">
+  <meta property="og:description" data-i18n="metaDescription" content="Ramp интегрирует x402-протокол на Solana, давая ИИ-агентам возможность совершать криптоконверсии и платежи без участия человека. Это не просто удобство, а сдвиг в архитектуре автономности: агенты получают настоящий экономический рычаг. Теперь они могут не только писать код.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/ramp-podklyuchaet-x402-k-solana-dlya-platezhey-agentov-cover.jpg">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="Ramp подключает x402 к Solana для платежей агентов — x402-ai-agent.space">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Ramp интегрирует x402-протокол на Solana, давая ИИ-агентам возможность совершать криптоконверсии и платежи без участия человека. Это не просто удобство, а сдвиг в архитектуре автономности: агенты получают настоящий экономический рычаг. Теперь они могут не только писать код.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/ramp-podklyuchaet-x402-k-solana-dlya-platezhey-agentov-cover.jpg">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/ramp-podklyuchaet-x402-k-solana-dlya-platezhey-agentov">
+  <link rel="alternate" hreflang="ru" href="https://x402-ai-agent.space/blog/ramp-podklyuchaet-x402-k-solana-dlya-platezhey-agentov?lang=ru">
+  <link rel="alternate" hreflang="en" href="https://x402-ai-agent.space/blog/ramp-podklyuchaet-x402-k-solana-dlya-platezhey-agentov?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://x402-ai-agent.space/blog/ramp-podklyuchaet-x402-k-solana-dlya-platezhey-agentov">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #ffffff;
+      --text-secondary: #c9c9c9;
+      --muted: #8f8f8f;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition); }
+    .wrap { width: 100%; max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 500; font-size: 1.1rem; letter-spacing: -0.02em;
+      color: var(--text-secondary); flex-shrink: 0;
+    }
+    .logo-img { height: 28px; width: auto; border-radius: 6px; }
+    .logo span span { color: var(--muted); }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      padding: 8px 14px; border-radius: var(--radius-xs);
+      font-size: 0.875rem; color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    nav .link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch {
+      border: 1px solid var(--border); border-radius: var(--radius-full);
+      padding: 6px 14px !important; font-size: 0.8rem !important;
+    }
+    .lang-switch:hover { border-color: #444; background: rgba(255,255,255,0.06) !important; }
+
+    article { padding: 48px 0 80px; }
+    article img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: 437px;
+      object-fit: cover;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    article p strong { color: var(--text); font-weight: 600; }
+    .highlight {
+      margin: 28px 0;
+      padding: 20px 22px;
+      background: linear-gradient(135deg, rgba(34,211,238,0.08), rgba(139,92,246,0.06));
+      border: 1px solid rgba(34,211,238,0.15);
+      border-radius: var(--radius-sm);
+      font-size: 1.05rem;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .note {
+      margin: 28px 0;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .note a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 3px; }
+    .note a:hover { color: var(--text); }
+
+    footer.site {
+      padding: 28px 0;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 32px 0 56px; }
+      article h2 { margin-top: 32px; }
+    }
+    /* --- Header: full-width like main page --- */
+    header.site .wrap { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    header.site .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+    header.site .logo { font-size: 1.1rem; gap: 10px; }
+    header.site .logo span span { color: var(--muted); }
+    header.site nav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    header.site nav .link { padding: 8px 12px; }
+    header.site .lang-switch { margin-left: 8px; }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link" href="/" data-i18n="nav.home">На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article>
+  <div class="wrap">
+ <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+
+ <img src="/assets/img/blog/ramp-podklyuchaet-x402-k-solana-dlya-platezhey-agentov-cover.jpg" alt="Ramp подключает x402 к Solana для платежей агентов" loading="lazy">
+
+ <h1 data-i18n="h1">Ramp подключает x402 к Solana для платежей агентов</h1>
+
+ <div class="meta" data-i18n="meta">2026-08-22 · 2 мин чтения</div>
+
+<p data-i18n="p1">Когда говорят, что агенты пишут код, это звучит как шаг к автоматизации разработки. Но код — это только половина уравнения. Чтобы агент действительно работал автономно, ему нужно не только генерировать решения, но и оплачивать ресурсы, которые эти решения требуют. Инфраструктура долгое время отставала: агент мог придумать алгоритм, но не мог сам арендовать вычислительные мощности, оплатить API или перевести вознаграждение другому агенту. Ручное согласование платежей сводило на нет саму идею автономности.</p>
+
+<p data-i18n="p2">Интеграция Ramp с x402-протоколом на Solana меняет эту картину. Теперь агенты получают доступ к криптовалютным платежам и конверсиям без участия человека. Это значит, что цепочка «идея — выполнение — оплата» замыкается внутри агентной системы. Агент не только генерирует код, но и может самостоятельно оплатить его запуск, купить нужные вычислительные ресурсы или рассчитаться с другим агентом за оказанную услугу. Экономика агентов перестаёт быть теоретической конструкцией и превращается в рабочий механизм.</p>
+
+<h2 data-i18n="h2_1">Почему Solana и x402</h2>
+
+<p data-i18n="p3">Выбор Solana для интеграции не случаен. Скорость транзакций и низкие комиссии делают эту сеть подходящей для частых микроплатежей, которые будут генерировать агенты. Если агент оплачивает тысячи мелких операций в день — от вызовов API до аренды вычислительных мощностей — даже небольшие комиссии станут серьёзным препятствием. Solana снимает это ограничение, делая экономику агентов масштабируемой.</p>
+
+<p data-i18n="p4">x402-протокол обеспечивает стандартизацию платежей между агентами. Без единого стандарта каждый разработчик вынужден был бы городить свои костыли для перевода средств, что фрагментировало бы рынок и усложнило взаимодействие между системами. x402 создаёт общий язык платежей, к которому могут подключаться разные платформы и сервисы. Интеграция Ramp добавляет к этому протоколу реальный рычаг — конверсию фиатных и криптовалютных средств, что делает агентов экономически самодостаточными.</p>
+
+<h2 data-i18n="h2_2">От автоматизации к автономии</h2>
+
+<p data-i18n="p5">Разница между автоматизацией и автономией кажется тонкой, но на практике она определяет всю архитектуру системы. Автоматизация — это когда агент выполняет заранее заданные сценарии, но ключевые решения о ресурсах и платежах остаётся принимать человек. Автономия — это когда агент сам принимает экономические решения: когда платить, сколько платить, какой сервис выбрать. Интеграция Ramp и x402 переводит агентов из первого режима во второй.</p>
+
+<p data-i18n="p6">Это открывает новые сценарии использования. Агент-трейдер может не только анализировать рынки и формировать стратегии, но и самостоятельно проводить транзакции, оплачивая комиссии и конвертируя активы. Агент-разработчик может арендовать облачные мощности для обучения моделей, не дожидаясь подтверждения от человека. Экономика агентов становится живой экосистемой, где деньги циркулируют без ручного вмешательства.</p>
+
+<h2 data-i18n="h2_3">Практический эффект</h2>
+
+<p data-i18n="p7">На уровне пользователя это означает снижение транзакционных издержек. Вместо того чтобы каждый раз подтверждать платеж или переводить средства вручную, человек настраивает параметры один раз, а дальше агент работает самостоятельно. Для бизнеса — это возможность делегировать рутинные финансовые операции агентам, освобождая ресурсы для более сложных задач.</p>
+
+<p data-i18n="p8">Для индустрии в целом интеграция Ramp и x402 на Solana — это сигнал о том, что инфраструктура для агентов созревает. Протоколы, платежи, вычисления — всё это начинает складываться в единую систему, где агенты могут не только существовать, но и эффективно взаимодействовать. Переход от концепции к рабочему инструменту происходит не в лабораториях, а в реальных платёжных сетях.</p>
+
+ <div class="highlight" data-i18n="p9"><strong><a href="https://x402-ai-agent.space/blog/agents-write-code">Сколько кода уже пишут агенты (и почему это важнее, чем кажется) →</a></strong> — читайте подробнее в блоге.</div>
+
+ <div class="highlight" data-i18n="p10"><strong><a href="https://x402-ai-agent.space/blog/ai-agent-v6-intro">💰 ИИ-Агент v6: Автономный Крипто-Трейдер, Который Работает Пока Вы Спите →</a></strong> — читайте подробнее в блоге.</div>
+
+
+  </div>
+</article>
+</main>
+
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Ramp подключает x402 к Solana для платежей агентов",
+  "description": "Ramp интегрирует x402-протокол на Solana, давая ИИ-агентам возможность совершать криптоконверсии и платежи без участия человека. Это не просто удобство, а сдвиг в архитектуре автономности: агенты получают настоящий экономический рычаг. Теперь они могут не только писать код.",
+  "datePublished": "2026-08-22",
+  "author": {
+    "@type": "Organization",
+    "name": "x402-ai-agent.space"
+  },
+  "image": "https://x402-ai-agent.space/assets/img/blog/ramp-podklyuchaet-x402-k-solana-dlya-platezhey-agentov-cover.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Блог x402",
+      "item": "https://x402-ai-agent.space/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Ramp подключает x402 к Solana для платежей агентов",
+      "item": "https://x402-ai-agent.space/blog/ramp-podklyuchaet-x402-k-solana-dlya-platezhey-agentov"
+    }
+  ]
+}
+</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+  const embeddedRu = {
+ title: "Ramp подключает x402 к Solana для платежей агентов — x402-ai-agent.space",
+ metaDescription: "Ramp интегрирует x402-протокол на Solana, давая ИИ-агентам возможность совершать криптоконверсии и платежи без участия человека. Это не просто удобство, а сдвиг в архитектуре автономности: агенты получают настоящий экономический рычаг. Теперь они могут не только писать код.",
+ nav: { back: "← Блог", home: "На сайт", lang: "🇬🇧 EN" },
+ backLink: "← Назад к блогу",
+ h1: "Ramp подключает x402 к Solana для платежей агентов",
+ meta: "2026-08-22 · 2 мин чтения",
+ p1: "Когда говорят, что агенты пишут код, это звучит как шаг к автоматизации разработки. Но код — это только половина уравнения. Чтобы агент действительно работал автономно, ему нужно не только генерировать решения, но и оплачивать ресурсы, которые эти решения требуют. Инфраструктура долгое время отставала: агент мог придумать алгоритм, но не мог сам арендовать вычислительные мощности, оплатить API или перевести вознаграждение другому агенту. Ручное согласование платежей сводило на нет саму идею автономности.",
+ p2: "Интеграция Ramp с x402-протоколом на Solana меняет эту картину. Теперь агенты получают доступ к криптовалютным платежам и конверсиям без участия человека. Это значит, что цепочка «идея — выполнение — оплата» замыкается внутри агентной системы. Агент не только генерирует код, но и может самостоятельно оплатить его запуск, купить нужные вычислительные ресурсы или рассчитаться с другим агентом за оказанную услугу. Экономика агентов перестаёт быть теоретической конструкцией и превращается в рабочий механизм.",
+ h2_1: "Почему Solana и x402",
+ p3: "Выбор Solana для интеграции не случаен. Скорость транзакций и низкие комиссии делают эту сеть подходящей для частых микроплатежей, которые будут генерировать агенты. Если агент оплачивает тысячи мелких операций в день — от вызовов API до аренды вычислительных мощностей — даже небольшие комиссии станут серьёзным препятствием. Solana снимает это ограничение, делая экономику агентов масштабируемой.",
+ p4: "x402-протокол обеспечивает стандартизацию платежей между агентами. Без единого стандарта каждый разработчик вынужден был бы городить свои костыли для перевода средств, что фрагментировало бы рынок и усложнило взаимодействие между системами. x402 создаёт общий язык платежей, к которому могут подключаться разные платформы и сервисы. Интеграция Ramp добавляет к этому протоколу реальный рычаг — конверсию фиатных и криптовалютных средств, что делает агентов экономически самодостаточными.",
+ h2_2: "От автоматизации к автономии",
+ p5: "Разница между автоматизацией и автономией кажется тонкой, но на практике она определяет всю архитектуру системы. Автоматизация — это когда агент выполняет заранее заданные сценарии, но ключевые решения о ресурсах и платежах остаётся принимать человек. Автономия — это когда агент сам принимает экономические решения: когда платить, сколько платить, какой сервис выбрать. Интеграция Ramp и x402 переводит агентов из первого режима во второй.",
+ p6: "Это открывает новые сценарии использования. Агент-трейдер может не только анализировать рынки и формировать стратегии, но и самостоятельно проводить транзакции, оплачивая комиссии и конвертируя активы. Агент-разработчик может арендовать облачные мощности для обучения моделей, не дожидаясь подтверждения от человека. Экономика агентов становится живой экосистемой, где деньги циркулируют без ручного вмешательства.",
+ h2_3: "Практический эффект",
+ p7: "На уровне пользователя это означает снижение транзакционных издержек. Вместо того чтобы каждый раз подтверждать платеж или переводить средства вручную, человек настраивает параметры один раз, а дальше агент работает самостоятельно. Для бизнеса — это возможность делегировать рутинные финансовые операции агентам, освобождая ресурсы для более сложных задач.",
+ p8: "Для индустрии в целом интеграция Ramp и x402 на Solana — это сигнал о том, что инфраструктура для агентов созревает. Протоколы, платежи, вычисления — всё это начинает складываться в единую систему, где агенты могут не только существовать, но и эффективно взаимодействовать. Переход от концепции к рабочему инструменту происходит не в лабораториях, а в реальных платёжных сетях.",
+ p9: "<strong><a href=\"https://x402-ai-agent.space/blog/agents-write-code\">Сколько кода уже пишут агенты (и почему это важнее, чем кажется) →</a></strong> — читайте подробнее в блоге.",
+ p10: "<strong><a href=\"https://x402-ai-agent.space/blog/ai-agent-v6-intro\">💰 ИИ-Агент v6: Автономный Крипто-Трейдер, Который Работает Пока Вы Спите →</a></strong> — читайте подробнее в блоге.",
+    copyBtn: "⧉ Копировать",
+  };
+  const embeddedEn = {
+ title: "Ramp brings x402 payments to Solana for AI agents — x402-ai-agent.space",
+ metaDescription: "Ramp integrates x402 protocol on Solana, giving AI agents the ability to execute crypto conversions and payments without human intervention. This is more than convenience—it is a shift in autonomy architecture: agents now have real economic leverage. They can not only write code.",
+ nav: { back: "← Blog", home: "Home", lang: "🇷🇺 RU" },
+ backLink: "← Back to blog",
+ h1: "Ramp brings x402 payments to Solana for AI agents",
+ meta: "2026-08-22 · 2 min read",
+ p1: "When people say that agents write code, it sounds like a step toward development automation. But code is only half the equation. For an agent to truly work autonomously, it needs not only to generate solutions but also to pay for the resources those solutions require. Infrastructure has long lagged behind: an agent could devise an algorithm but could not rent computing power, pay for APIs, or transfer rewards to another agent on its own. Manual payment coordination undermined the very idea of autonomy.",
+ p2: "Ramp's integration with the x402 protocol on Solana changes this picture. Now agents gain access to cryptocurrency payments and conversions without human intervention. This means the chain \"idea — execution — payment\" closes within the agent system itself. An agent not only generates code but can independently pay for its launch, purchase necessary computing resources, or settle with another agent for services rendered. The agent economy stops being a theoretical construct and becomes a working mechanism.",
+ h2_1: "Why Solana and x402",
+ p3: "The choice of Solana for this integration is not accidental. Transaction speed and low fees make this network suitable for the frequent micropayments that agents will generate. If an agent pays for thousands of small operations daily—from API calls to renting computing power—even modest fees become a serious obstacle. Solana removes this limitation, making the agent economy scalable.",
+ p4: "The x402 protocol provides payment standardization between agents. Without a unified standard, every developer would have to build their own workarounds for fund transfers, fragmenting the market and complicating cross-system interaction. x402 creates a common payment language that different platforms and services can plug into. Ramp's integration adds real leverage to this protocol—fiat and cryptocurrency conversion—making agents economically self-sufficient.",
+ h2_2: "From automation to autonomy",
+ p5: "The difference between automation and autonomy seems subtle, but in practice it determines the entire system architecture. Automation is when an agent executes pre-defined scenarios, but key decisions about resources and payments remain with humans. Autonomy is when the agent makes economic decisions itself: when to pay, how much to pay, which service to choose. Ramp and x402's integration moves agents from the first mode to the second.",
+ p6: "This opens up new usage scenarios. A trader agent can not only analyze markets and formulate strategies but also execute transactions independently, paying fees and converting assets. A developer agent can rent cloud capacity for model training without waiting for human confirmation. The agent economy becomes a living ecosystem where money circulates without manual intervention.",
+ h2_3: "Practical effect",
+ p7: "At the user level, this means reduced transaction costs. Instead of confirming payments or transferring funds manually every time, a person sets parameters once, then the agent works independently. For business, it is the ability to delegate routine financial operations to agents, freeing resources for more complex tasks.",
+ p8: "For the industry as a whole, Ramp and x402's integration on Solana signals that agent infrastructure is maturing. Protocols, payments, computing—all of this is beginning to coalesce into a unified system where agents can not only exist but interact effectively. The transition from concept to working tool happens not in laboratories but in real payment networks.",
+ p9: "<strong><a href=\"https://x402-ai-agent.space/blog/agents-write-code\">How much code agents already write (and why it matters more than it seems) →</a></strong> — read more on the blog.",
+ p10: "<strong><a href=\"https://x402-ai-agent.space/blog/ai-agent-v6-intro\">💰 AI Agent v6: Autonomous Crypto Trader That Works While You Sleep →</a></strong> — read more on the blog.",
+    copyBtn: "⧉ Copy",
+  };
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        el.innerHTML = value;
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+  function copyBlock(id, btn) {
+    const pre = document.querySelector('[data-i18n="' + id + '"]');
+    if (!pre) return;
+    const text = pre.textContent;
+    const done = () => {
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied';
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => { fallbackCopy(pre, done); });
+    } else {
+      fallbackCopy(pre, done);
+    }
+  }
+  function fallbackCopy(pre, done) {
+    const range = document.createRange();
+    range.selectNodeContents(pre);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    try { document.execCommand('copy'); } catch (e) {}
+    sel.removeAllRanges();
+    done();
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>
