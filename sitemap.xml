@@ -422,6 +422,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: coinbase-otvechaet-na-kritiku-prodazhi-efiriuma -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/coinbase-otvechaet-na-kritiku-prodazhi-efiriuma</loc>
+ <lastmod>2026-08-23</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
