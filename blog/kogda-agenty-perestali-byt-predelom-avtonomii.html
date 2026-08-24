@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Когда агенты перестали быть пределом автономии — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="Autonomous AI выходит за рамки привычных агентов. Blitzy, XBOW и Google меняют правила игры, и разница между агентом и автономной системой становится всё более условной.">
+  <meta name="robots" content="index, follow">
+  <meta name="msvalidate.01" content="4457C676C7E5C459E1EAC0547DFFC6F1" />
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/kogda-agenty-perestali-byt-predelom-avtonomii">
+  <meta property="og:title" data-i18n="title" content="Когда агенты перестали быть пределом автономии — x402-ai-agent.space">
+  <meta property="og:description" data-i18n="metaDescription" content="Autonomous AI выходит за рамки привычных агентов. Blitzy, XBOW и Google меняют правила игры, и разница между агентом и автономной системой становится всё более условной.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/kogda-agenty-perestali-byt-predelom-avtonomii-cover.jpg">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="Когда агенты перестали быть пределом автономии — x402-ai-agent.space">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Autonomous AI выходит за рамки привычных агентов. Blitzy, XBOW и Google меняют правила игры, и разница между агентом и автономной системой становится всё более условной.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/kogda-agenty-perestali-byt-predelom-avtonomii-cover.jpg">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/kogda-agenty-perestali-byt-predelom-avtonomii">
+  <link rel="alternate" hreflang="ru" href="https://x402-ai-agent.space/blog/kogda-agenty-perestali-byt-predelom-avtonomii?lang=ru">
+  <link rel="alternate" hreflang="en" href="https://x402-ai-agent.space/blog/kogda-agenty-perestali-byt-predelom-avtonomii?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://x402-ai-agent.space/blog/kogda-agenty-perestali-byt-predelom-avtonomii">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #ffffff;
+      --text-secondary: #c9c9c9;
+      --muted: #8f8f8f;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition); }
+    .wrap { width: 100%; max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 500; font-size: 1.1rem; letter-spacing: -0.02em;
+      color: var(--text-secondary); flex-shrink: 0;
+    }
+    .logo-img { height: 28px; width: auto; border-radius: 6px; }
+    .logo span span { color: var(--muted); }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      padding: 8px 14px; border-radius: var(--radius-xs);
+      font-size: 0.875rem; color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    nav .link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch {
+      border: 1px solid var(--border); border-radius: var(--radius-full);
+      padding: 6px 14px !important; font-size: 0.8rem !important;
+    }
+    .lang-switch:hover { border-color: #444; background: rgba(255,255,255,0.06) !important; }
+
+    article { padding: 48px 0 80px; }
+    article img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: 437px;
+      object-fit: cover;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    article p strong { color: var(--text); font-weight: 600; }
+    .highlight {
+      margin: 28px 0;
+      padding: 20px 22px;
+      background: linear-gradient(135deg, rgba(34,211,238,0.08), rgba(139,92,246,0.06));
+      border: 1px solid rgba(34,211,238,0.15);
+      border-radius: var(--radius-sm);
+      font-size: 1.05rem;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .note {
+      margin: 28px 0;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .note a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 3px; }
+    .note a:hover { color: var(--text); }
+
+    footer.site {
+      padding: 28px 0;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 32px 0 56px; }
+      article h2 { margin-top: 32px; }
+    }
+    /* --- Header: full-width like main page --- */
+    header.site .wrap { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    header.site .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+    header.site .logo { font-size: 1.1rem; gap: 10px; }
+    header.site .logo span span { color: var(--muted); }
+    header.site nav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    header.site nav .link { padding: 8px 12px; }
+    header.site .lang-switch { margin-left: 8px; }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link" href="/" data-i18n="nav.home">На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article>
+  <div class="wrap">
+ <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+
+ <img src="/assets/img/blog/kogda-agenty-perestali-byt-predelom-avtonomii-cover.jpg" alt="Когда агенты перестали быть пределом автономии" loading="lazy">
+
+ <h1 data-i18n="h1">Когда агенты перестали быть пределом автономии</h1>
+
+ <div class="meta" data-i18n="meta">2026-08-24 · 2 мин чтения</div>
+
+<p data-i18n="p1">Принято считать, что агенты — это вершина автономии. Система, которая понимает задачу, строит план, исполняет его и возвращает результат. Но что, если это не финал, а лишь удобная категория для понимания? Заголовок о том, что автономный ИИ перерастает агентов, говорит о_shift_ в архитектуре систем. Blitzy, XBOW и Google — три разных игрока, но вектор один: автономность перестаёт быть свойством отдельного агента и становится характеристикой целого класса решений.</p>
+
+<p data-i18n="p2">Разница между агентом и автономной системой кажется тонкой, но она принципиальна. Агент обычно работает в рамках чётко поставленной задачи: найти информацию, совершить действие, сгенерировать ответ. Автономность подразумевает способность действовать без постоянного человеческого контроля, принимать решения в условиях неопределённости и адаптироваться к изменениям среды. Когда агент начинает делать это системно, он перестаёт быть просто инструментом и превращается в самостоятельного участника процесса.</p>
+
+<h2 data-i18n="h2_1">Почему категория агентов сужает кругозор</h2>
+
+<p data-i18n="p3">Категория «агент» удобна для описания, но она ограничивает мышление. Мы привыкли думать об ИИ через призму задач: агент для поиска, агент для анализа, агент для платежей. Но реальные системы уже не вписываются в эти рамки. Автономность проникает в архитектуру на уровне, где разграничение между агентом и платформой размывается. Система может иметь множество агентов внутри, но снаружи она ведёт себя как единый автономный организм.</p>
+
+<p data-i18n="p4">Это сдвиг в том, как мы проектируем системы. Вместо набора агентов, каждый из которых решает свою задачу, появляются системы, которые autonomously координируют ресурсы, перераспределяют нагрузки и принимают решения о приоритетах. Разница не терминологическая — она архитектурная. Агент остаётся строительным блоком, но автономность становится свойством целого, а не отдельных его частей.</p>
+
+<h2 data-i18n="h2_2">Что меняется в практической плоскости</h2>
+
+<p data-i18n="p5">Когда autonomous AI перерастает агентов, меняется стоимость интеграции. Агент нужно вызвать, передать ему задачу, получить результат. Автономная система сама понимает, что нужно сделать, и делает это без явного запроса. Это не просто удобство — это другой уровень эффективности. Система может предвосхищать потребности, готовить решения до того, как они понадобятся, и оптимизировать ресурсы в реальном времени.</p>
+
+<p data-i18n="p6">Для бизнеса это означает переход от «как нам использовать агентов» к «как нам встроить автономность в процессы». Вопросы контроля, безопасности и прозрачности выходят на первый план. Автономная система, которая действует слишком независимо, может принимать решения, несовместимые с бизнес-логикой. Баланс между автономностью и контролем становится ключевым вызовом.</p>
+
+<h2 data-i18n="h2_3">Откуда берётся автономность</h2>
+
+<p data-i18n="p7">Blitzy, XBOW и Google показывают разные пути к автономности. Один может фокусироваться на скорости принятия решений, другой — на координации множества агентов, третий — на глубоком понимании контекста. Но объединяет их одно: автономность не добавляется сверху, она вшивается в фундамент архитектуры. Это не надстройка над агентами, а другой способ построения систем.</p>
+
+<p data-i18n="p8">Важно понимать: автономность не означает отсутствие контроля. Это способность действовать без постоянного человеческого вмешательства, но в рамках заданных правил и ограничений. Чем более автономной становится система, тем более важным становится проектирование этих правил. Ошибка в архитектуре автономности может стоить дорого, но и правильная реализация даёт竞争优势, которое трудно переоценить.</p>
+
+<h2 data-i18n="h2_4">Куда движется индустрия</h2>
+
+<p data-i18n="p9">Переход от агентов к autonomous AI — это естественная эволюция. Сначала мы учили системы выполнять задачи, затем — координировать действия, теперь — действовать автономно в сложных средах. Заголовок о перерастании агентов фиксирует момент, когда эта эволюция становится очевидной для широкого круга игроков. Это не конец эры агентов, но certainly её трансформация.</p>
+
+<p data-i18n="p10">Для тех, кто следит за траекторией развития ИИ, важно не застрять на терминологии. Агенты остаются важным инструментом, но будущее за системами, которые autonomously решают целые классы задач. Вопрос не в том, заменят ли autonomous AI агентов, а в том, как мы перепроектируем процессы под новый уровень автономности. Ответ на этот вопрос определяет, кто выиграет от этой трансформации, а кто останется позади.</p>
+
+ <div class="highlight" data-i18n="p11"><strong><a href="https://x402-ai-agent.space/blog/ai-agents-find-x402-loopholes">Агенты находят лазейки: как ИИ использует x402 против систем →</a></strong> — читайте подробнее в блоге.</div>
+
+ <div class="highlight" data-i18n="p12"><strong><a href="https://x402-ai-agent.space/blog/golosovoy-agent-referralmd-konets-ocheredi-v-registrature">Голосовой ИИ-агент ReferralMD: конец эпохи колл-центров? →</a></strong> — читайте подробнее в блоге.</div>
+
+
+  </div>
+</article>
+</main>
+
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Когда агенты перестали быть пределом автономии",
+  "description": "Autonomous AI выходит за рамки привычных агентов. Blitzy, XBOW и Google меняют правила игры, и разница между агентом и автономной системой становится всё более условной.",
+  "datePublished": "2026-08-24",
+  "author": {
+    "@type": "Organization",
+    "name": "x402-ai-agent.space"
+  },
+  "image": "https://x402-ai-agent.space/assets/img/blog/kogda-agenty-perestali-byt-predelom-avtonomii-cover.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Блог x402",
+      "item": "https://x402-ai-agent.space/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Когда агенты перестали быть пределом автономии",
+      "item": "https://x402-ai-agent.space/blog/kogda-agenty-perestali-byt-predelom-avtonomii"
+    }
+  ]
+}
+</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+  const embeddedRu = {
+ title: "Когда агенты перестали быть пределом автономии — x402-ai-agent.space",
+ metaDescription: "Autonomous AI выходит за рамки привычных агентов. Blitzy, XBOW и Google меняют правила игры, и разница между агентом и автономной системой становится всё более условной.",
+ nav: { back: "← Блог", home: "На сайт", lang: "🇬🇧 EN" },
+ backLink: "← Назад к блогу",
+ h1: "Когда агенты перестали быть пределом автономии",
+ meta: "2026-08-24 · 2 мин чтения",
+ p1: "Принято считать, что агенты — это вершина автономии. Система, которая понимает задачу, строит план, исполняет его и возвращает результат. Но что, если это не финал, а лишь удобная категория для понимания? Заголовок о том, что автономный ИИ перерастает агентов, говорит о_shift_ в архитектуре систем. Blitzy, XBOW и Google — три разных игрока, но вектор один: автономность перестаёт быть свойством отдельного агента и становится характеристикой целого класса решений.",
+ p2: "Разница между агентом и автономной системой кажется тонкой, но она принципиальна. Агент обычно работает в рамках чётко поставленной задачи: найти информацию, совершить действие, сгенерировать ответ. Автономность подразумевает способность действовать без постоянного человеческого контроля, принимать решения в условиях неопределённости и адаптироваться к изменениям среды. Когда агент начинает делать это системно, он перестаёт быть просто инструментом и превращается в самостоятельного участника процесса.",
+ h2_1: "Почему категория агентов сужает кругозор",
+ p3: "Категория «агент» удобна для описания, но она ограничивает мышление. Мы привыкли думать об ИИ через призму задач: агент для поиска, агент для анализа, агент для платежей. Но реальные системы уже не вписываются в эти рамки. Автономность проникает в архитектуру на уровне, где разграничение между агентом и платформой размывается. Система может иметь множество агентов внутри, но снаружи она ведёт себя как единый автономный организм.",
+ p4: "Это сдвиг в том, как мы проектируем системы. Вместо набора агентов, каждый из которых решает свою задачу, появляются системы, которые autonomously координируют ресурсы, перераспределяют нагрузки и принимают решения о приоритетах. Разница не терминологическая — она архитектурная. Агент остаётся строительным блоком, но автономность становится свойством целого, а не отдельных его частей.",
+ h2_2: "Что меняется в практической плоскости",
+ p5: "Когда autonomous AI перерастает агентов, меняется стоимость интеграции. Агент нужно вызвать, передать ему задачу, получить результат. Автономная система сама понимает, что нужно сделать, и делает это без явного запроса. Это не просто удобство — это другой уровень эффективности. Система может предвосхищать потребности, готовить решения до того, как они понадобятся, и оптимизировать ресурсы в реальном времени.",
+ p6: "Для бизнеса это означает переход от «как нам использовать агентов» к «как нам встроить автономность в процессы». Вопросы контроля, безопасности и прозрачности выходят на первый план. Автономная система, которая действует слишком независимо, может принимать решения, несовместимые с бизнес-логикой. Баланс между автономностью и контролем становится ключевым вызовом.",
+ h2_3: "Откуда берётся автономность",
+ p7: "Blitzy, XBOW и Google показывают разные пути к автономности. Один может фокусироваться на скорости принятия решений, другой — на координации множества агентов, третий — на глубоком понимании контекста. Но объединяет их одно: автономность не добавляется сверху, она вшивается в фундамент архитектуры. Это не надстройка над агентами, а другой способ построения систем.",
+ p8: "Важно понимать: автономность не означает отсутствие контроля. Это способность действовать без постоянного человеческого вмешательства, но в рамках заданных правил и ограничений. Чем более автономной становится система, тем более важным становится проектирование этих правил. Ошибка в архитектуре автономности может стоить дорого, но и правильная реализация даёт竞争优势, которое трудно переоценить.",
+ h2_4: "Куда движется индустрия",
+ p9: "Переход от агентов к autonomous AI — это естественная эволюция. Сначала мы учили системы выполнять задачи, затем — координировать действия, теперь — действовать автономно в сложных средах. Заголовок о перерастании агентов фиксирует момент, когда эта эволюция становится очевидной для широкого круга игроков. Это не конец эры агентов, но certainly её трансформация.",
+ p10: "Для тех, кто следит за траекторией развития ИИ, важно не застрять на терминологии. Агенты остаются важным инструментом, но будущее за системами, которые autonomously решают целые классы задач. Вопрос не в том, заменят ли autonomous AI агентов, а в том, как мы перепроектируем процессы под новый уровень автономности. Ответ на этот вопрос определяет, кто выиграет от этой трансформации, а кто останется позади.",
+ p11: "<strong><a href=\"https://x402-ai-agent.space/blog/ai-agents-find-x402-loopholes\">Агенты находят лазейки: как ИИ использует x402 против систем →</a></strong> — читайте подробнее в блоге.",
+ p12: "<strong><a href=\"https://x402-ai-agent.space/blog/golosovoy-agent-referralmd-konets-ocheredi-v-registrature\">Голосовой ИИ-агент ReferralMD: конец эпохи колл-центров? →</a></strong> — читайте подробнее в блоге.",
+    copyBtn: "⧉ Копировать",
+  };
+  const embeddedEn = {
+ title: "When Agents Stopped Being Autonomy's Limit — x402-ai-agent.space",
+ metaDescription: "Autonomous AI moves beyond familiar agents. Blitzy, XBOW and Google are reshaping the rules, and the line between an agent and an autonomous system grows increasingly blurred.",
+ nav: { back: "← Blog", home: "Home", lang: "🇷🇺 RU" },
+ backLink: "← Back to blog",
+ h1: "When Agents Stopped Being Autonomy's Limit",
+ meta: "2026-08-24 · 2 min read",
+ p1: "It's commonly assumed that agents represent the peak of autonomy. A system that understands a task, builds a plan, executes it, and returns results. But what if this isn't the final destination, merely a convenient category for understanding? The headline about autonomous AI outgrowing agents signals a shift in system architecture. Blitzy, XBOW and Google — three different players, but the vector is identical: autonomy stops being a property of individual agents and becomes a characteristic of an entire class of solutions.",
+ p2: "The distinction between an agent and an autonomous system seems subtle, but it's fundamental. An agent typically operates within a clearly defined task: find information, perform an action, generate a response. Autonomy implies the ability to act without continuous human control, make decisions under uncertainty, and adapt to changing environments. When an agent begins doing this systematically, it ceases to be merely a tool and transforms into an independent participant in the process.",
+ h2_1: "Why the agent category limits perspective",
+ p3: "The agent category is convenient for description, but it constrains thinking. We're accustomed to conceiving AI through the lens of tasks: an agent for search, an agent for analysis, an agent for payments. But real systems no longer fit these frames. Autonomy permeates architecture at a level where the distinction between agent and platform blurs. A system may house multiple agents internally, but externally it behaves as a single autonomous organism.",
+ p4: "This represents a shift in how we design systems. Instead of a collection of agents, each solving its own task, we're seeing systems that autonomously coordinate resources, redistribute loads, and make priority decisions in real time. The difference isn't merely terminological — it's architectural. The agent remains a building block, but autonomy becomes a property of the whole, not its individual parts.",
+ h2_2: "What changes in practical terms",
+ p5: "When autonomous AI outgrows agents, integration costs transform. An agent needs to be invoked, assigned a task, return a result. An autonomous system understands what needs doing and does it without an explicit request. This isn't just convenience — it's a different level of efficiency. The system can anticipate needs, prepare solutions before they're required, and optimize resources in real time.",
+ p6: "For business, this means moving from how to deploy agents to how to embed autonomy into processes. Questions of control, security, and transparency move to the forefront. An autonomous system acting too independently might make decisions incompatible with business logic. The balance between autonomy and control becomes the core challenge.",
+ h2_3: "Where autonomy originates",
+ p7: "Blitzy, XBOW and Google demonstrate different paths to autonomy. One might focus on decision speed, another on coordinating multiple agents, a third on deep context understanding. But they share one characteristic: autonomy isn't added from above — it's woven into the architectural foundation. This isn't an overlay on agents, but a different approach to building systems.",
+ p8: "It's crucial to understand: autonomy doesn't mean absence of control. It's the ability to act without constant human intervention, but within defined rules and constraints. The more autonomous a system becomes, the more critical the design of these rules becomes. An error in autonomy architecture can be costly, but proper implementation delivers competitive advantage difficult to overstate.",
+ h2_4: "Where the industry is heading",
+ p9: "The transition from agents to autonomous AI represents natural evolution. First we taught systems to execute tasks, then to coordinate actions, now to act autonomously in complex environments. The headline about outgrowing agents captures the moment this evolution becomes obvious to a broad range of players. This isn't the end of the agent era, but certainly its transformation.",
+ p10: "For those tracking AI's trajectory, it's important not to get stuck on terminology. Agents remain an essential tool, but the future belongs to systems that autonomously solve entire classes of problems. The question isn't whether autonomous AI will replace agents, but how we redesign processes for this new level of autonomy. The answer to this question determines who benefits from this transformation and who gets left behind.",
+ p11: "<strong><a href=\"https://x402-ai-agent.space/blog/ai-agents-find-x402-loopholes\">AI Agents Find x402 Loopholes →</a></strong> — read more on the blog.",
+ p12: "<strong><a href=\"https://x402-ai-agent.space/blog/golosovoy-agent-referralmd-konets-ocheredi-v-registrature\">ReferralMD Voice AI Agent: End of Call Center Era? →</a></strong> — read more on the blog.",
+    copyBtn: "⧉ Copy",
+  };
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        el.innerHTML = value;
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+  function copyBlock(id, btn) {
+    const pre = document.querySelector('[data-i18n="' + id + '"]');
+    if (!pre) return;
+    const text = pre.textContent;
+    const done = () => {
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied';
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => { fallbackCopy(pre, done); });
+    } else {
+      fallbackCopy(pre, done);
+    }
+  }
+  function fallbackCopy(pre, done) {
+    const range = document.createRange();
+    range.selectNodeContents(pre);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    try { document.execCommand('copy'); } catch (e) {}
+    sel.removeAllRanges();
+    done();
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>
