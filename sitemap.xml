@@ -450,6 +450,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: visa-i-mastercard-pishut-pravila-dlya-deneg-kotorye-tratyat-sami -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/visa-i-mastercard-pishut-pravila-dlya-deneg-kotorye-tratyat-sami</loc>
+ <lastmod>2026-08-26</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
