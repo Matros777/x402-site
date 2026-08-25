@@ -5,8 +5,15 @@
     <link>https://x402-ai-agent.space/blog/</link>
     <description>Articles about x402 protocol, AI agent payments, agentic economy, and autonomous agents.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 24 Aug 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 25 Aug 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://x402-ai-agent.space/feed.xml" rel="self" type="application/rss+xml"/>
+ <item>
+ <title>IBM deploys thousands of agents: when AI becomes workforce</title>
+ <link>https://x402-ai-agent.space/blog/ibm-zapuskaet-tysyachi-agentov-kogda-ii-stanovitsya-rabochey-siloy</link>
+ <guid isPermaLink="true">https://x402-ai-agent.space/blog/ibm-zapuskaet-tysyachi-agentov-kogda-ii-stanovitsya-rabochey-siloy</guid>
+ <pubDate>Tue, 25 Aug 2026 12:00:00 +0000</pubDate>
+ <description>IBM Consulting deploys thousands of AI agents across security and transformation projects. This is not an experiment but real scaling of autonomous systems in corporate environments. Agents work in parallel, execute specific tasks, and reshape assumptions about automation should look like.</description>
+ </item>
  <item>
  <title>When Agents Stopped Being Autonomy's Limit</title>
  <link>https://x402-ai-agent.space/blog/kogda-agenty-perestali-byt-predelom-avtonomii</link>
