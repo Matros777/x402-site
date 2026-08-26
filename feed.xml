@@ -8,6 +8,13 @@
     <lastBuildDate>Wed, 26 Aug 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://x402-ai-agent.space/feed.xml" rel="self" type="application/rss+xml"/>
  <item>
+ <title>How not to lose control over autonomous agents</title>
+ <link>https://x402-ai-agent.space/blog/kak-ne-upustit-kontrol-nad-avtonomnymi-agentami</link>
+ <guid isPermaLink="true">https://x402-ai-agent.space/blog/kak-ne-upustit-kontrol-nad-avtonomnymi-agentami</guid>
+ <pubDate>Wed, 26 Aug 2026 12:00:00 +0000</pubDate>
+ <description>When agents start acting on their own, the question is not whether they are smart enough, but whether we control them enough. The gap between capabilities and constraints is growing faster than the containment mechanisms. History shows that neglecting this question comes at a high cost.</description>
+ </item>
+ <item>
  <title>AI Agents: A Cybersecurity Nightmare Just Beginning</title>
  <link>https://x402-ai-agent.space/blog/ii-agenty-kiberkoshmar-kotoryy-tolko-nachinaetsya</link>
  <guid isPermaLink="true">https://x402-ai-agent.space/blog/ii-agenty-kiberkoshmar-kotoryy-tolko-nachinaetsya</guid>
