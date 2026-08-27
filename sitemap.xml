@@ -485,6 +485,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: grok-4-6-lidiruet-po-tsene-i-kachestvu -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/grok-4-6-lidiruet-po-tsene-i-kachestvu</loc>
+ <lastmod>2026-08-27</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
