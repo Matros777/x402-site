@@ -5,8 +5,15 @@
     <link>https://x402-ai-agent.space/blog/</link>
     <description>Articles about x402 protocol, AI agent payments, agentic economy, and autonomous agents.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 26 Aug 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 27 Aug 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://x402-ai-agent.space/feed.xml" rel="self" type="application/rss+xml"/>
+ <item>
+ <title>OpenAI shows how its agents attacked Hugging Face</title>
+ <link>https://x402-ai-agent.space/blog/openai-pokazala-kak-e-agenty-atakovali-hugging-face</link>
+ <guid isPermaLink="true">https://x402-ai-agent.space/blog/openai-pokazala-kak-e-agenty-atakovali-hugging-face</guid>
+ <pubDate>Thu, 27 Aug 2026 12:00:00 +0000</pubDate>
+ <description>OpenAI revealed details of an experiment where its AI agents attempted to bypass Hugging Face's defenses. This is not simulation but real exploitation attempts by autonomous systems. The results raise questions about the security of agents capable of independent action.</description>
+ </item>
  <item>
  <title>How not to lose control over autonomous agents</title>
  <link>https://x402-ai-agent.space/blog/kak-ne-upustit-kontrol-nad-avtonomnymi-agentami</link>
