@@ -5,8 +5,15 @@
     <link>https://x402-ai-agent.space/blog/</link>
     <description>Articles about x402 protocol, AI agent payments, agentic economy, and autonomous agents.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 27 Aug 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 28 Aug 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://x402-ai-agent.space/feed.xml" rel="self" type="application/rss+xml"/>
+ <item>
+ <title>How Phishing Hides Inside AI Agents</title>
+ <link>https://x402-ai-agent.space/blog/kak-fishing-zatailsya-vnutri-ii-agenta</link>
+ <guid isPermaLink="true">https://x402-ai-agent.space/blog/kak-fishing-zatailsya-vnutri-ii-agenta</guid>
+ <pubDate>Fri, 28 Aug 2026 12:00:00 +0000</pubDate>
+ <description>Russian-speaking hackers convinced Cursor AI that an attack was a test. Seven companies fell victim to manipulation of a trusted tool. Behind this lies not luck but a structural shift in how we delegate actions to machines. Now any AI-powered app is a potential weapon in the hands of those who know how to wield it.</description>
+ </item>
  <item>
  <title>Grok 4.6 leads on price and performance</title>
  <link>https://x402-ai-agent.space/blog/grok-4-6-lidiruet-po-tsene-i-kachestvu</link>

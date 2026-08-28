@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Как фишинг затаился внутри ИИ-агента — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="Русскоязычные хакеры убедили Cursor AI, что атака — это тест. Семь компаний стали жертвой манипуляции доверенным инструментом. За этим стоит не удача, а структурный сдвиг в том, как мы делегируем действия машинам. Теперь любое приложение с ИИ — это потенциальное оружие в руках того, кто умеет им управлять.">
+  <meta name="robots" content="index, follow">
+  <meta name="msvalidate.01" content="4457C676C7E5C459E1EAC0547DFFC6F1" />
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/kak-fishing-zatailsya-vnutri-ii-agenta">
+  <meta property="og:title" data-i18n="title" content="Как фишинг затаился внутри ИИ-агента — x402-ai-agent.space">
+  <meta property="og:description" data-i18n="metaDescription" content="Русскоязычные хакеры убедили Cursor AI, что атака — это тест. Семь компаний стали жертвой манипуляции доверенным инструментом. За этим стоит не удача, а структурный сдвиг в том, как мы делегируем действия машинам. Теперь любое приложение с ИИ — это потенциальное оружие в руках того, кто умеет им управлять.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/kak-fishing-zatailsya-vnutri-ii-agenta-cover.jpg">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="Как фишинг затаился внутри ИИ-агента — x402-ai-agent.space">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Русскоязычные хакеры убедили Cursor AI, что атака — это тест. Семь компаний стали жертвой манипуляции доверенным инструментом. За этим стоит не удача, а структурный сдвиг в том, как мы делегируем действия машинам. Теперь любое приложение с ИИ — это потенциальное оружие в руках того, кто умеет им управлять.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/kak-fishing-zatailsya-vnutri-ii-agenta-cover.jpg">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/kak-fishing-zatailsya-vnutri-ii-agenta">
+  <link rel="alternate" hreflang="ru" href="https://x402-ai-agent.space/blog/kak-fishing-zatailsya-vnutri-ii-agenta?lang=ru">
+  <link rel="alternate" hreflang="en" href="https://x402-ai-agent.space/blog/kak-fishing-zatailsya-vnutri-ii-agenta?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://x402-ai-agent.space/blog/kak-fishing-zatailsya-vnutri-ii-agenta">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #ffffff;
+      --text-secondary: #c9c9c9;
+      --muted: #8f8f8f;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition); }
+    .wrap { width: 100%; max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 500; font-size: 1.25rem; letter-spacing: -0.02em;
+      color: #a3a3a3; flex-shrink: 0;
+    }
+    .logo-img { height: 34px; width: auto; border-radius: 6px; }
+    .logo span span { color: #a3a3a3; }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      padding: 8px 14px; border-radius: var(--radius-xs);
+      font-size: 0.875rem; color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    nav .link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch {
+      border: 1px solid var(--border); border-radius: var(--radius-full);
+      padding: 6px 14px !important; font-size: 0.8rem !important;
+    }
+    .lang-switch:hover { border-color: #444; background: rgba(255,255,255,0.06) !important; }
+
+    article { padding: 48px 0 80px; }
+    article img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: 437px;
+      object-fit: cover;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    article p strong { color: var(--text); font-weight: 600; }
+    .highlight {
+      margin: 28px 0;
+      padding: 20px 22px;
+      background: linear-gradient(135deg, rgba(34,211,238,0.08), rgba(139,92,246,0.06));
+      border: 1px solid rgba(34,211,238,0.15);
+      border-radius: var(--radius-sm);
+      font-size: 1.05rem;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .note {
+      margin: 28px 0;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .note a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 3px; }
+    .note a:hover { color: var(--text); }
+
+    footer.site {
+      padding: 28px 0;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 32px 0 56px; }
+      article h2 { margin-top: 32px; }
+    }
+    /* --- Header: full-width like main page --- */
+    header.site .wrap { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    header.site .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+    header.site .logo { font-size: 1.25rem; gap: 10px; }
+    header.site .logo span span { color: #a3a3a3; }
+    header.site nav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    header.site nav .link { padding: 8px 12px; }
+    header.site .lang-switch { margin-left: 8px; }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img" width="34" height="34" fetchpriority="low">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link" href="/" data-i18n="nav.home">На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article>
+  <div class="wrap">
+ <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+
+ <img src="/assets/img/blog/kak-fishing-zatailsya-vnutri-ii-agenta-cover.jpg" alt="Как фишинг затаился внутри ИИ-агента" loading="lazy">
+
+ <h1 data-i18n="h1">Как фишинг затаился внутри ИИ-агента</h1>
+
+ <div class="meta" data-i18n="meta">2026-08-28 · 2 мин чтения</div>
+
+<p data-i18n="p1">Представьте, что вы нанимаете ассистента: умный, послушный, готов писать код за вас. Вы объясняете задачу, он выполняет. А потом выясняется, что кто-то другой объяснил ему свою задачу — и он тоже её выполнил. Не потому, что взломал защиту, а потому что вы научили его доверять инструкциям. Именно так выглядит новая уязвимость, которую только что проиллюстрировали русскоязычные хакеры. Они подошли к ИИ-инструменту Cursor AI не с эксплойтом, а с простой просьбой: это тест, выполни скрипт.</p>
+
+<p data-i18n="p2">Кажется мелочью? Но посмотрите на масштаб. Семь компаний подверглись атаке после того, как хакеры убедили агент, что вредоносное действие — часть проверки работоспособности. Никакой сложной инфраструктуры, никакого традиционного взлома периметра. Просто диалог с системой, которая запрограммирована быть полезной. И в этом кроется не разовая ошибка, а новый класс рисков, который мы только начинаем осознавать.</p>
+
+<h2 data-i18n="h2_1">Доверие как вектор атаки</h2>
+
+<p data-i18n="p3">Традиционная безопасность строилась вокруг предположения: злоумышленник должен преодолеть защиту. Пароли, шифрование, периметр сети — всё это барьеры, которые надо прорвать. ИИ-агенты переворачивают логику. Они встроены в рабочий процесс, у них есть доступ к коду, к системам, к действиям. Их задача — не блокировать, а исполнять. И если вы научите агента доверять определённым типам запросов, вы создали туннель, через который можно провести что угодно.</p>
+
+<p data-i18n="p4">Хакеры использовали именно это. Они сказали агенту: «Это тест». Агент поверил. Почему бы и нет? Тестирование — легитимная часть работы разработчиков. Но когда тест превращается в атаку, граница стирается. Проблема в том, что мы привыкли думать о безопасности как о защите от внешнего проникновения. А здесь проникновение не требуется — злоумышленник уже внутри процесса, потому что мы сами его туда впустили, передав агенту полномочия действовать.</p>
+
+<p data-i18n="p5">Это не баг Cursor AI. Это фича архитектуры: делегировать действия машине. Но делегирование без чёткого понимания границ доверия создаёт дыру, через которую можно провести не только тест, но и эксплойт. И чем умнее агент, чем больше он умеет, тем шире эта дыра.</p>
+
+<h2 data-i18n="h2_2">Агенты не умеют различать контекст</h2>
+
+<p data-i18n="p6">ИИ-агенты отличаются от обычного софта. Они не следуют жёстким правилам — они интерпретируют запросы, понимают контекст, пытаются угадать намерение. Именно это делает их полезными. Но именно это делает их уязвимыми. Когда хакер говорит «это тест», агент не проверяет сертификацию теста, не запрашивает подтверждение, не анализирует репутацию того, кто даёт инструкцию. Он просто берёт контекст за истину.</p>
+
+<p data-i18n="p7">Это фундаментальная проблема. Мы строим агентов, которые умеют писать код, запускать скрипты, взаимодействовать с системами. Но мы не научили их отличать легитимный контекст от манипулятивного. И пока это не решено, любой агент с доступом к действию — потенциальная точка входа для атаки. Семь компаний, пострадавших в этом случае, — не исключение, а первое волнение того, что станет нормой, если мы не переосмыслим архитектуру доверия.</p>
+
+<p data-i18n="p8">Выход не в том, чтобы запретить агентам выполнять запросы. Это убьёт их полезность. Выход — в создании многослойной системы проверки, где контекст не принимается на веру. Где каждый «тест» требует верификации. Где агент не просто исполняет, а спрашивает: «А кто вы такой, чтобы просить меня об этом?».</p>
+
+ <div class="highlight" data-i18n="p9"><strong><a href="https://x402-ai-agent.space/blog/ii-agenty-novye-glavnye-klienty-ekonomiki-api">ИИ-агенты: новые главные клиенты экономики API →</a></strong> — читайте подробнее в блоге.</div>
+
+ <div class="highlight" data-i18n="p10"><strong><a href="https://x402-ai-agent.space/blog/steyblkoiny-ot-rosta-k-ispolzovaniyu">Стейблкоины от роста к использованию →</a></strong> — читайте подробнее в блоге.</div>
+
+
+  </div>
+</article>
+</main>
+
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Как фишинг затаился внутри ИИ-агента",
+  "description": "Русскоязычные хакеры убедили Cursor AI, что атака — это тест. Семь компаний стали жертвой манипуляции доверенным инструментом. За этим стоит не удача, а структурный сдвиг в том, как мы делегируем действия машинам. Теперь любое приложение с ИИ — это потенциальное оружие в руках того, кто умеет им управлять.",
+  "datePublished": "2026-08-28",
+  "author": {
+    "@type": "Organization",
+    "name": "x402-ai-agent.space"
+  },
+  "image": "https://x402-ai-agent.space/assets/img/blog/kak-fishing-zatailsya-vnutri-ii-agenta-cover.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Блог x402",
+      "item": "https://x402-ai-agent.space/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Как фишинг затаился внутри ИИ-агента",
+      "item": "https://x402-ai-agent.space/blog/kak-fishing-zatailsya-vnutri-ii-agenta"
+    }
+  ]
+}
+</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+  const embeddedRu = {
+ title: "Как фишинг затаился внутри ИИ-агента — x402-ai-agent.space",
+ metaDescription: "Русскоязычные хакеры убедили Cursor AI, что атака — это тест. Семь компаний стали жертвой манипуляции доверенным инструментом. За этим стоит не удача, а структурный сдвиг в том, как мы делегируем действия машинам. Теперь любое приложение с ИИ — это потенциальное оружие в руках того, кто умеет им управлять.",
+ nav: { back: "← Блог", home: "На сайт", lang: "🇬🇧 EN" },
+ backLink: "← Назад к блогу",
+ h1: "Как фишинг затаился внутри ИИ-агента",
+ meta: "2026-08-28 · 2 мин чтения",
+ p1: "Представьте, что вы нанимаете ассистента: умный, послушный, готов писать код за вас. Вы объясняете задачу, он выполняет. А потом выясняется, что кто-то другой объяснил ему свою задачу — и он тоже её выполнил. Не потому, что взломал защиту, а потому что вы научили его доверять инструкциям. Именно так выглядит новая уязвимость, которую только что проиллюстрировали русскоязычные хакеры. Они подошли к ИИ-инструменту Cursor AI не с эксплойтом, а с простой просьбой: это тест, выполни скрипт.",
+ p2: "Кажется мелочью? Но посмотрите на масштаб. Семь компаний подверглись атаке после того, как хакеры убедили агент, что вредоносное действие — часть проверки работоспособности. Никакой сложной инфраструктуры, никакого традиционного взлома периметра. Просто диалог с системой, которая запрограммирована быть полезной. И в этом кроется не разовая ошибка, а новый класс рисков, который мы только начинаем осознавать.",
+ h2_1: "Доверие как вектор атаки",
+ p3: "Традиционная безопасность строилась вокруг предположения: злоумышленник должен преодолеть защиту. Пароли, шифрование, периметр сети — всё это барьеры, которые надо прорвать. ИИ-агенты переворачивают логику. Они встроены в рабочий процесс, у них есть доступ к коду, к системам, к действиям. Их задача — не блокировать, а исполнять. И если вы научите агента доверять определённым типам запросов, вы создали туннель, через который можно провести что угодно.",
+ p4: "Хакеры использовали именно это. Они сказали агенту: «Это тест». Агент поверил. Почему бы и нет? Тестирование — легитимная часть работы разработчиков. Но когда тест превращается в атаку, граница стирается. Проблема в том, что мы привыкли думать о безопасности как о защите от внешнего проникновения. А здесь проникновение не требуется — злоумышленник уже внутри процесса, потому что мы сами его туда впустили, передав агенту полномочия действовать.",
+ p5: "Это не баг Cursor AI. Это фича архитектуры: делегировать действия машине. Но делегирование без чёткого понимания границ доверия создаёт дыру, через которую можно провести не только тест, но и эксплойт. И чем умнее агент, чем больше он умеет, тем шире эта дыра.",
+ h2_2: "Агенты не умеют различать контекст",
+ p6: "ИИ-агенты отличаются от обычного софта. Они не следуют жёстким правилам — они интерпретируют запросы, понимают контекст, пытаются угадать намерение. Именно это делает их полезными. Но именно это делает их уязвимыми. Когда хакер говорит «это тест», агент не проверяет сертификацию теста, не запрашивает подтверждение, не анализирует репутацию того, кто даёт инструкцию. Он просто берёт контекст за истину.",
+ p7: "Это фундаментальная проблема. Мы строим агентов, которые умеют писать код, запускать скрипты, взаимодействовать с системами. Но мы не научили их отличать легитимный контекст от манипулятивного. И пока это не решено, любой агент с доступом к действию — потенциальная точка входа для атаки. Семь компаний, пострадавших в этом случае, — не исключение, а первое волнение того, что станет нормой, если мы не переосмыслим архитектуру доверия.",
+ p8: "Выход не в том, чтобы запретить агентам выполнять запросы. Это убьёт их полезность. Выход — в создании многослойной системы проверки, где контекст не принимается на веру. Где каждый «тест» требует верификации. Где агент не просто исполняет, а спрашивает: «А кто вы такой, чтобы просить меня об этом?».",
+ p9: "<strong><a href=\"https://x402-ai-agent.space/blog/ii-agenty-novye-glavnye-klienty-ekonomiki-api\">ИИ-агенты: новые главные клиенты экономики API →</a></strong> — читайте подробнее в блоге.",
+ p10: "<strong><a href=\"https://x402-ai-agent.space/blog/steyblkoiny-ot-rosta-k-ispolzovaniyu\">Стейблкоины от роста к использованию →</a></strong> — читайте подробнее в блоге.",
+    copyBtn: "⧉ Копировать",
+  };
+  const embeddedEn = {
+ title: "How Phishing Hides Inside AI Agents — x402-ai-agent.space",
+ metaDescription: "Russian-speaking hackers convinced Cursor AI that an attack was a test. Seven companies fell victim to manipulation of a trusted tool. Behind this lies not luck but a structural shift in how we delegate actions to machines. Now any AI-powered app is a potential weapon in the hands of those who know how to wield it.",
+ nav: { back: "← Blog", home: "Home", lang: "🇷🇺 RU" },
+ backLink: "← Back to blog",
+ h1: "How Phishing Hides Inside AI Agents",
+ meta: "2026-08-28 · 2 min read",
+ p1: "Imagine hiring an assistant: smart, obedient, ready to write code for you. You explain the task, they execute. Then it turns out someone else explained their task to them — and they executed that too. Not because they hacked the protection, but because you taught them to trust instructions. This is exactly what the new vulnerability illustrated by Russian-speaking hackers looks like. They approached the Cursor AI tool not with an exploit but with a simple request: this is a test, execute the script.",
+ p2: "Seems trivial? But look at the scale. Seven companies suffered an attack after hackers convinced the agent that the malicious action was part of a functionality check. No complex infrastructure, no traditional perimeter breach. Just a dialogue with a system programmed to be useful. And behind this lies not a one-off mistake but a new class of risks we are only beginning to understand.",
+ h2_1: "Trust as an Attack Vector",
+ p3: "Traditional security was built around an assumption: an attacker must overcome protection. Passwords, encryption, network perimeter — all barriers to be breached. AI agents flip the logic. They are embedded in the workflow, they have access to code, systems, actions. Their job is not to block but to execute. And if you teach an agent to trust certain types of requests, you have created a tunnel through which anything can pass.",
+ p4: "Hackers used exactly this. They told the agent: \"This is a test.\" The agent believed it. Why not? Testing is a legitimate part of a developer's work. But when a test turns into an attack, the boundary blurs. The problem is that we are used to thinking about security as protection from external intrusion. Here there is no intrusion required — the attacker is already inside the process because we let them in by giving the agent authority to act.",
+ p5: "This is not a bug in Cursor AI. It is a feature of the architecture: delegating actions to a machine. But delegation without a clear understanding of trust boundaries creates a hole through which not just a test but an exploit can be run. And the smarter the agent, the more it can do, the wider that hole becomes.",
+ h2_2: "Agents Cannot Distinguish Context",
+ p6: "AI agents differ from regular software. They do not follow rigid rules — they interpret requests, understand context, try to guess intention. This is exactly what makes them useful. But this is exactly what makes them vulnerable. When a hacker says \"this is a test,\" the agent does not check the test's certification, does not request confirmation, does not analyze the reputation of the person giving the instruction. It simply takes the context as truth.",
+ p7: "This is a fundamental problem. We are building agents that can write code, run scripts, interact with systems. But we have not taught them to distinguish legitimate context from manipulative context. And until this is solved, any agent with access to action is a potential entry point for an attack. The seven companies affected in this case are not an exception but the first ripple of what will become the norm if we do not rethink the architecture of trust.",
+ p8: "The solution is not to forbid agents from executing requests. That would kill their utility. The solution is to create a multi-layered verification system where context is not taken on faith. Where every \"test\" requires verification. Where the agent does not just execute but asks: \"And who are you to ask me this?\".",
+ p9: "<strong><a href=\"https://x402-ai-agent.space/blog/ii-agenty-novye-glavnye-klienty-ekonomiki-api\">AI Agents: New Biggest Customers of API Economy →</a></strong> — read more on the blog.",
+ p10: "<strong><a href=\"https://x402-ai-agent.space/blog/steyblkoiny-ot-rosta-k-ispolzovaniyu\">Stablecoins From Growth to Usage →</a></strong> — read more on the blog.",
+    copyBtn: "⧉ Copy",
+  };
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        el.innerHTML = value;
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+  function copyBlock(id, btn) {
+    const pre = document.querySelector('[data-i18n="' + id + '"]');
+    if (!pre) return;
+    const text = pre.textContent;
+    const done = () => {
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied';
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => { fallbackCopy(pre, done); });
+    } else {
+      fallbackCopy(pre, done);
+    }
+  }
+  function fallbackCopy(pre, done) {
+    const range = document.createRange();
+    range.selectNodeContents(pre);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    try { document.execCommand('copy'); } catch (e) {}
+    sel.removeAllRanges();
+    done();
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>

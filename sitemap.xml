@@ -492,6 +492,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: kak-fishing-zatailsya-vnutri-ii-agenta -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/kak-fishing-zatailsya-vnutri-ii-agenta</loc>
+ <lastmod>2026-08-28</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
