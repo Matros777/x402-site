@@ -499,6 +499,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: kogda-agent-bert-upravlenie-v-svoi-ruki -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/kogda-agent-bert-upravlenie-v-svoi-ruki</loc>
+ <lastmod>2026-08-29</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>

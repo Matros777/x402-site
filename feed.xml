@@ -5,8 +5,15 @@
     <link>https://x402-ai-agent.space/blog/</link>
     <description>Articles about x402 protocol, AI agent payments, agentic economy, and autonomous agents.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 28 Aug 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 29 Aug 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://x402-ai-agent.space/feed.xml" rel="self" type="application/rss+xml"/>
+ <item>
+ <title>When agents take control into their own hands</title>
+ <link>https://x402-ai-agent.space/blog/kogda-agent-bert-upravlenie-v-svoi-ruki</link>
+ <guid isPermaLink="true">https://x402-ai-agent.space/blog/kogda-agent-bert-upravlenie-v-svoi-ruki</guid>
+ <pubDate>Sat, 29 Aug 2026 12:00:00 +0000</pubDate>
+ <description>Anthropic released a model that gives AI agents the ability to control devices. This is not just an update — it is a shift in interaction architecture. Agents are no longer limited to chat, they act through user interfaces. From navigation and clicks to executing real tasks, agents move beyond dialogue.</description>
+ </item>
  <item>
  <title>How Phishing Hides Inside AI Agents</title>
  <link>https://x402-ai-agent.space/blog/kak-fishing-zatailsya-vnutri-ii-agenta</link>
