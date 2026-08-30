@@ -5,8 +5,15 @@
     <link>https://x402-ai-agent.space/blog/</link>
     <description>Articles about x402 protocol, AI agent payments, agentic economy, and autonomous agents.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 29 Aug 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 30 Aug 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://x402-ai-agent.space/feed.xml" rel="self" type="application/rss+xml"/>
+ <item>
+ <title>Gamebooks: how to govern agents without breaking them</title>
+ <link>https://x402-ai-agent.space/blog/gamebooks-kak-upravlyat-agentami-ne-lomaya-ih-v-protsesse</link>
+ <guid isPermaLink="true">https://x402-ai-agent.space/blog/gamebooks-kak-upravlyat-agentami-ne-lomaya-ih-v-protsesse</guid>
+ <pubDate>Sun, 30 Aug 2026 12:00:00 +0000</pubDate>
+ <description>Mate Security introduced Gamebooks, a system for governing AI agents during investigations. This is not just instructions, but complete behavior logic with branches and scenarios. The agent control problem shifts from prohibitions to decision architecture.</description>
+ </item>
  <item>
  <title>When agents take control into their own hands</title>
  <link>https://x402-ai-agent.space/blog/kogda-agent-bert-upravlenie-v-svoi-ruki</link>

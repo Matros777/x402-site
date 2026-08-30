@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Gamebooks: как управлять агентами, не ломая их в процессе — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="Mate Security представили Gamebooks — систему управления ИИ-агентами при расследованиях. Это не просто инструкции, а полноценная логика поведения с ветвлениями и сценариями. Проблема контроля агентов переходит от запрещений к архитектуре решений.">
+  <meta name="robots" content="index, follow">
+  <meta name="msvalidate.01" content="4457C676C7E5C459E1EAC0547DFFC6F1" />
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/gamebooks-kak-upravlyat-agentami-ne-lomaya-ih-v-protsesse">
+  <meta property="og:title" data-i18n="title" content="Gamebooks: как управлять агентами, не ломая их в процессе — x402-ai-agent.space">
+  <meta property="og:description" data-i18n="metaDescription" content="Mate Security представили Gamebooks — систему управления ИИ-агентами при расследованиях. Это не просто инструкции, а полноценная логика поведения с ветвлениями и сценариями. Проблема контроля агентов переходит от запрещений к архитектуре решений.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/gamebooks-kak-upravlyat-agentami-ne-lomaya-ih-v-protsesse-cover.jpg">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="Gamebooks: как управлять агентами, не ломая их в процессе — x402-ai-agent.space">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Mate Security представили Gamebooks — систему управления ИИ-агентами при расследованиях. Это не просто инструкции, а полноценная логика поведения с ветвлениями и сценариями. Проблема контроля агентов переходит от запрещений к архитектуре решений.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/gamebooks-kak-upravlyat-agentami-ne-lomaya-ih-v-protsesse-cover.jpg">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/gamebooks-kak-upravlyat-agentami-ne-lomaya-ih-v-protsesse">
+  <link rel="alternate" hreflang="ru" href="https://x402-ai-agent.space/blog/gamebooks-kak-upravlyat-agentami-ne-lomaya-ih-v-protsesse?lang=ru">
+  <link rel="alternate" hreflang="en" href="https://x402-ai-agent.space/blog/gamebooks-kak-upravlyat-agentami-ne-lomaya-ih-v-protsesse?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://x402-ai-agent.space/blog/gamebooks-kak-upravlyat-agentami-ne-lomaya-ih-v-protsesse">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #ffffff;
+      --text-secondary: #c9c9c9;
+      --muted: #8f8f8f;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition); }
+    .wrap { width: 100%; max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 500; font-size: 1.25rem; letter-spacing: -0.02em;
+      color: #a3a3a3; flex-shrink: 0;
+    }
+    .logo-img { height: 34px; width: auto; border-radius: 6px; }
+    .logo span span { color: #a3a3a3; }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      padding: 8px 14px; border-radius: var(--radius-xs);
+      font-size: 0.875rem; color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    nav .link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch {
+      border: 1px solid var(--border); border-radius: var(--radius-full);
+      padding: 6px 14px !important; font-size: 0.8rem !important;
+    }
+    .lang-switch:hover { border-color: #444; background: rgba(255,255,255,0.06) !important; }
+
+    article { padding: 48px 0 80px; }
+    article img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: 437px;
+      object-fit: cover;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    article p strong { color: var(--text); font-weight: 600; }
+    .highlight {
+      margin: 28px 0;
+      padding: 20px 22px;
+      background: linear-gradient(135deg, rgba(34,211,238,0.08), rgba(139,92,246,0.06));
+      border: 1px solid rgba(34,211,238,0.15);
+      border-radius: var(--radius-sm);
+      font-size: 1.05rem;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .note {
+      margin: 28px 0;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .note a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 3px; }
+    .note a:hover { color: var(--text); }
+
+    footer.site {
+      padding: 28px 0;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 32px 0 56px; }
+      article h2 { margin-top: 32px; }
+    }
+    /* --- Header: full-width like main page --- */
+    header.site .wrap { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    header.site .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+    header.site .logo { font-size: 1.25rem; gap: 10px; }
+    header.site .logo span span { color: #a3a3a3; }
+    header.site nav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    header.site nav .link { padding: 8px 12px; }
+    header.site .lang-switch { margin-left: 8px; }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img" width="34" height="34" fetchpriority="low">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link" href="/" data-i18n="nav.home">На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article>
+  <div class="wrap">
+ <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+
+ <img src="/assets/img/blog/gamebooks-kak-upravlyat-agentami-ne-lomaya-ih-v-protsesse-cover.jpg" alt="Gamebooks: как управлять агентами, не ломая их в процессе" loading="lazy">
+
+ <h1 data-i18n="h1">Gamebooks: как управлять агентами, не ломая их в процессе</h1>
+
+ <div class="meta" data-i18n="meta">2026-08-30 · 3 мин чтения</div>
+
+<p data-i18n="p1">Представьте, что вы наняли детектива, который блестяще собирает улики, но иногда решает, что некоторые правила — условности. Он не злой, он просто видит пространство для манёвра там, где вы видите жёсткий коридор. Теперь умножьте это на скорость машинного обучения и масштаб параллельных расследований. Вы получите проблему, с которой сталкивается любой, кто запускает ИИ-агентов в реальные операции: как дать им свободу действовать, но не позволить этой свободе превратиться в хаос?</p>
+
+<p data-i18n="p2">Mate Security, похоже, нашли ответ в неожиданном месте. Они запустили Gamebooks — систему, которая управляет тем, как ИИ-агенты проводят расследования. Название неслучайное: это буквально сценарии с ветвлениями, где каждый шаг агента прописан не как жёсткая команда, а как часть более крупной логической игры. Агент получает не список запретов, а карту решений. И это меняет сам подход к контролю.</p>
+
+<h2 data-i18n="h2_1">Сценарии вместо запретов</h2>
+
+<p data-i18n="p3">Традиционный подход к ограничению ИИ строится на негативе: не делай того, не лезь сюда, не трогай это. Но с агентами, которые работают в динамической среде расследований, список «не» превращается в бесконечный документ, который всё равно не покрывает все кейсы. Агент сталкивается с ситуацией, которую никто не предвидел, и выбор оказывается между торможением всего процесса и рискованным шагом.</p>
+
+<p data-i18n="p4">Gamebooks переворачивают эту логику. Вместо перечня запретов вы создаёте позитивный сценарий: если произошло А, переходи к Б; если данных недостаточно, используй источник В; если риск превышает порог, остановись и запроси подтверждение. Это не просто чек-лист — это дерево решений, которое агент проходит в реальном времени. Ветка за веткой, шаг за шагом, и каждое решение вписано в заранее продуманную структуру.</p>
+
+<p data-i18n="p5">Суть в том, что контроль перестаёт быть внешним надзирателем и становится частью самой архитектуры мышления агента. Когда правила поведения встроены в сценарий, агент не выбирает между подчинением и эффективностью — он следует пути, где эти два требования уже совмещены. Это похоже на то, как в хороших компьютерных играх сюжетные ограничения не мешают игроку, а направляют его к лучшему опыту.</p>
+
+<h2 data-i18n="h2_2">Логика расследования</h2>
+
+<p data-i18n="p6">Расследование — это не линейный процесс. Это серия догадок, проверок, обратных ходов и неожиданных открытий. Агент, который следует по прямой линии, упустит контекст. Агент, который бродит свободно, может зайти в запретные зоны или потратить ресурсы на тупиковые ветки. Баланс нужен не на уровне настроек, а на уровне логики.</p>
+
+<p data-i18n="p7">Gamebooks позволяют прописать эту логику так, чтобы агент мог маневрировать в пределах разумного. Если одна гипотеза не подтверждается, сценарий направляет его к следующей — но не случайно, а в соответствии с тем, как устроено расследование в данной области. Это экономит время и снижает риск того, что агент уйдёт в сторону, где его действия будут неэффективными или опасными.</p>
+
+<p data-i18n="p8">Ключевой момент здесь — прозрачность. Когда каждый шаг агента описан в виде сценария, становится понятно не только то, что он делает, но и почему он это делает. Для аудита, для анализа ошибок, для улучшения процесса — это база, без которой сложно доверять автономным системам в чувствительных областях. Вы видите не результат «чёрного ящика», а путь, который прошёл агент по веткам сценария.</p>
+
+<h2 data-i18n="h2_3">От свободы к управляемой автономии</h2>
+
+<p data-i18n="p9">Вопрос доверия к ИИ-агентам часто сводят к вопросу их ограничения. Мол, чем меньше мы им позволим, тем безопаснее. Но это тупиковый путь: агенты, которые могут только то, что им прямо разрешено, теряют главную ценность — способность находить решения, которые не предусмотрели их создатели. Истинная задача не в том, чтобы убрать свободу, а в том, чтобы направить её.</p>
+
+<p data-i18n="p10">Mate Security с Gamebooks показывают, как это может работать на практике. Агент остаётся автономным — он принимает решения, реагирует на новые данные, адаптируется к ситуации. Но эта автономия разворачивается внутри рамок, которые заданы сценарием. Это не свобода без границ, но и не свобода без выбора. Это управляемая автономия, где пространство для манёвра существует, но оно очерчено логикой задачи.</p>
+
+<p data-i18n="p11">Для индустрии это важный сдвиг. Мы переходим от модели «запрети всё, что не разрешено» к модели «опиши, как должно работать». Второй подход сложнее в проектировании, но он масштабируется. Когда у вас есть библиотека сценариев для разных типов расследований, вы можете комбинировать их, адаптировать, улучшать — и при этом сохранять контроль над тем, что делают ваши агенты.</p>
+
+<h2 data-i18n="h2_4">Цена архитектуры решений</h2>
+
+<p data-i18n="p12">Конечно, создание таких сценариев — не лёгкая задача. Нужно понимать не только техническую сторону работы агентов, но и предметную область расследований. Нельзя просто прописать ветки — нужно знать, какие решения действительно имеют смысл, а какие ведут в тупик. Это требует экспертизы и времени.</p>
+
+<p data-i18n="p13">Но цена ошибки здесь высока. Агент, который работает без чёткой логики, может не только провалить расследование, но и создать проблемы, которые потом придётся разгребать. Gamebooks превращают контроль из пост-фактумного разбора полётов в превентивную архитектуру. Лучше потратить время на продумывание сценария заранее, чем потом объяснять, почему агент принял решение, которое никто не понимает.</p>
+
+<p data-i18n="p14">В конечном счёте, речь идёт о зрелости подхода к ИИ-агентам. Мы перестаём видеть их как хаотичных генераторов действий и начинаем относиться к ним как к системам, которые нужно проектировать с той же тщательностью, что и любую сложную инфраструктуру. Gamebooks — инструмент в этом направлении.</p>
+
+<p data-i18n="p15">Контроль над автономными системами не может быть абсолютным, но он должен быть осмысленным. Когда каждый шаг агента вписан в логику сценария, доверие перестаёт быть вопросом веры и становится вопросом качества архитектуры. А это уже совсем другой уровень разговора.</p>
+
+ <div class="highlight" data-i18n="p16"><strong><a href="https://x402-ai-agent.space/blog/hak-ot-nekontroliruemogo-ii-predskazuem">Хак от неконтролируемого ИИ предсказуем →</a></strong> — читайте подробнее в блоге.</div>
+
+ <div class="highlight" data-i18n="p17"><strong><a href="https://x402-ai-agent.space/blog/wallet-intelligence-analyzer">Wallet Intelligence: смотрим кошелёк сразу в 4 сетях →</a></strong> — читайте подробнее в блоге.</div>
+
+
+  </div>
+</article>
+</main>
+
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Gamebooks: как управлять агентами, не ломая их в процессе",
+  "description": "Mate Security представили Gamebooks — систему управления ИИ-агентами при расследованиях. Это не просто инструкции, а полноценная логика поведения с ветвлениями и сценариями. Проблема контроля агентов переходит от запрещений к архитектуре решений.",
+  "datePublished": "2026-08-30",
+  "author": {
+    "@type": "Organization",
+    "name": "x402-ai-agent.space"
+  },
+  "image": "https://x402-ai-agent.space/assets/img/blog/gamebooks-kak-upravlyat-agentami-ne-lomaya-ih-v-protsesse-cover.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Блог x402",
+      "item": "https://x402-ai-agent.space/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Gamebooks: как управлять агентами, не ломая их в процессе",
+      "item": "https://x402-ai-agent.space/blog/gamebooks-kak-upravlyat-agentami-ne-lomaya-ih-v-protsesse"
+    }
+  ]
+}
+</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+  const embeddedRu = {
+ title: "Gamebooks: как управлять агентами, не ломая их в процессе — x402-ai-agent.space",
+ metaDescription: "Mate Security представили Gamebooks — систему управления ИИ-агентами при расследованиях. Это не просто инструкции, а полноценная логика поведения с ветвлениями и сценариями. Проблема контроля агентов переходит от запрещений к архитектуре решений.",
+ nav: { back: "← Блог", home: "На сайт", lang: "🇬🇧 EN" },
+ backLink: "← Назад к блогу",
+ h1: "Gamebooks: как управлять агентами, не ломая их в процессе",
+ meta: "2026-08-30 · 3 мин чтения",
+ p1: "Представьте, что вы наняли детектива, который блестяще собирает улики, но иногда решает, что некоторые правила — условности. Он не злой, он просто видит пространство для манёвра там, где вы видите жёсткий коридор. Теперь умножьте это на скорость машинного обучения и масштаб параллельных расследований. Вы получите проблему, с которой сталкивается любой, кто запускает ИИ-агентов в реальные операции: как дать им свободу действовать, но не позволить этой свободе превратиться в хаос?",
+ p2: "Mate Security, похоже, нашли ответ в неожиданном месте. Они запустили Gamebooks — систему, которая управляет тем, как ИИ-агенты проводят расследования. Название неслучайное: это буквально сценарии с ветвлениями, где каждый шаг агента прописан не как жёсткая команда, а как часть более крупной логической игры. Агент получает не список запретов, а карту решений. И это меняет сам подход к контролю.",
+ h2_1: "Сценарии вместо запретов",
+ p3: "Традиционный подход к ограничению ИИ строится на негативе: не делай того, не лезь сюда, не трогай это. Но с агентами, которые работают в динамической среде расследований, список «не» превращается в бесконечный документ, который всё равно не покрывает все кейсы. Агент сталкивается с ситуацией, которую никто не предвидел, и выбор оказывается между торможением всего процесса и рискованным шагом.",
+ p4: "Gamebooks переворачивают эту логику. Вместо перечня запретов вы создаёте позитивный сценарий: если произошло А, переходи к Б; если данных недостаточно, используй источник В; если риск превышает порог, остановись и запроси подтверждение. Это не просто чек-лист — это дерево решений, которое агент проходит в реальном времени. Ветка за веткой, шаг за шагом, и каждое решение вписано в заранее продуманную структуру.",
+ p5: "Суть в том, что контроль перестаёт быть внешним надзирателем и становится частью самой архитектуры мышления агента. Когда правила поведения встроены в сценарий, агент не выбирает между подчинением и эффективностью — он следует пути, где эти два требования уже совмещены. Это похоже на то, как в хороших компьютерных играх сюжетные ограничения не мешают игроку, а направляют его к лучшему опыту.",
+ h2_2: "Логика расследования",
+ p6: "Расследование — это не линейный процесс. Это серия догадок, проверок, обратных ходов и неожиданных открытий. Агент, который следует по прямой линии, упустит контекст. Агент, который бродит свободно, может зайти в запретные зоны или потратить ресурсы на тупиковые ветки. Баланс нужен не на уровне настроек, а на уровне логики.",
+ p7: "Gamebooks позволяют прописать эту логику так, чтобы агент мог маневрировать в пределах разумного. Если одна гипотеза не подтверждается, сценарий направляет его к следующей — но не случайно, а в соответствии с тем, как устроено расследование в данной области. Это экономит время и снижает риск того, что агент уйдёт в сторону, где его действия будут неэффективными или опасными.",
+ p8: "Ключевой момент здесь — прозрачность. Когда каждый шаг агента описан в виде сценария, становится понятно не только то, что он делает, но и почему он это делает. Для аудита, для анализа ошибок, для улучшения процесса — это база, без которой сложно доверять автономным системам в чувствительных областях. Вы видите не результат «чёрного ящика», а путь, который прошёл агент по веткам сценария.",
+ h2_3: "От свободы к управляемой автономии",
+ p9: "Вопрос доверия к ИИ-агентам часто сводят к вопросу их ограничения. Мол, чем меньше мы им позволим, тем безопаснее. Но это тупиковый путь: агенты, которые могут только то, что им прямо разрешено, теряют главную ценность — способность находить решения, которые не предусмотрели их создатели. Истинная задача не в том, чтобы убрать свободу, а в том, чтобы направить её.",
+ p10: "Mate Security с Gamebooks показывают, как это может работать на практике. Агент остаётся автономным — он принимает решения, реагирует на новые данные, адаптируется к ситуации. Но эта автономия разворачивается внутри рамок, которые заданы сценарием. Это не свобода без границ, но и не свобода без выбора. Это управляемая автономия, где пространство для манёвра существует, но оно очерчено логикой задачи.",
+ p11: "Для индустрии это важный сдвиг. Мы переходим от модели «запрети всё, что не разрешено» к модели «опиши, как должно работать». Второй подход сложнее в проектировании, но он масштабируется. Когда у вас есть библиотека сценариев для разных типов расследований, вы можете комбинировать их, адаптировать, улучшать — и при этом сохранять контроль над тем, что делают ваши агенты.",
+ h2_4: "Цена архитектуры решений",
+ p12: "Конечно, создание таких сценариев — не лёгкая задача. Нужно понимать не только техническую сторону работы агентов, но и предметную область расследований. Нельзя просто прописать ветки — нужно знать, какие решения действительно имеют смысл, а какие ведут в тупик. Это требует экспертизы и времени.",
+ p13: "Но цена ошибки здесь высока. Агент, который работает без чёткой логики, может не только провалить расследование, но и создать проблемы, которые потом придётся разгребать. Gamebooks превращают контроль из пост-фактумного разбора полётов в превентивную архитектуру. Лучше потратить время на продумывание сценария заранее, чем потом объяснять, почему агент принял решение, которое никто не понимает.",
+ p14: "В конечном счёте, речь идёт о зрелости подхода к ИИ-агентам. Мы перестаём видеть их как хаотичных генераторов действий и начинаем относиться к ним как к системам, которые нужно проектировать с той же тщательностью, что и любую сложную инфраструктуру. Gamebooks — инструмент в этом направлении.",
+ p15: "Контроль над автономными системами не может быть абсолютным, но он должен быть осмысленным. Когда каждый шаг агента вписан в логику сценария, доверие перестаёт быть вопросом веры и становится вопросом качества архитектуры. А это уже совсем другой уровень разговора.",
+ p16: "<strong><a href=\"https://x402-ai-agent.space/blog/hak-ot-nekontroliruemogo-ii-predskazuem\">Хак от неконтролируемого ИИ предсказуем →</a></strong> — читайте подробнее в блоге.",
+ p17: "<strong><a href=\"https://x402-ai-agent.space/blog/wallet-intelligence-analyzer\">Wallet Intelligence: смотрим кошелёк сразу в 4 сетях →</a></strong> — читайте подробнее в блоге.",
+    copyBtn: "⧉ Копировать",
+  };
+  const embeddedEn = {
+ title: "Gamebooks: how to govern agents without breaking them — x402-ai-agent.space",
+ metaDescription: "Mate Security introduced Gamebooks, a system for governing AI agents during investigations. This is not just instructions, but complete behavior logic with branches and scenarios. The agent control problem shifts from prohibitions to decision architecture.",
+ nav: { back: "← Blog", home: "Home", lang: "🇷🇺 RU" },
+ backLink: "← Back to blog",
+ h1: "Gamebooks: how to govern agents without breaking them",
+ meta: "2026-08-30 · 3 min read",
+ p1: "Imagine hiring a brilliant detective who excels at gathering evidence but occasionally decides that certain rules are merely suggestions. Not malicious — just seeing room for maneuver where you see a rigid corridor. Now multiply this by machine learning speed and the scale of parallel investigations. You get the problem anyone faces when deploying AI agents in real operations: how to give them freedom to act without letting that freedom dissolve into chaos?",
+ p2: "Mate Security seems to have found an answer in an unexpected place. They launched Gamebooks — a system governing how AI agents conduct investigations. The name is intentional: these are literally branching scenarios where every agent move is scripted not as a rigid command but as part of a larger logical game. The agent receives not a list of prohibitions but a decision map. And this shifts the entire approach to control.",
+ h2_1: "Scenarios instead of prohibitions",
+ p3: "The traditional approach to AI constraints builds on the negative: don't do this, don't go there, don't touch that. But with agents working in the dynamic environment of investigations, the list of 'don'ts' becomes an endless document that still doesn't cover every case. The agent encounters a situation nobody anticipated, and the choice is between freezing the entire process or taking a risky step.",
+ p4: "Gamebooks flip this logic. Instead of a list of prohibitions, you create a positive scenario: if A happens, move to B; if data is insufficient, use source V; if risk exceeds threshold, stop and request confirmation. This isn't just a checklist — it's a decision tree the agent traverses in real time. Branch by branch, step by step, every decision fits into a pre-designed structure.",
+ p5: "The point is that control stops being an external overseer and becomes part of the agent's thinking architecture itself. When behavior rules are built into the scenario, the agent doesn't choose between obedience and efficiency — it follows a path where these two requirements are already combined. It's similar to how good narrative games don't restrict players with constraints but guide them toward a better experience.",
+ h2_2: "Investigation logic",
+ p6: "Investigation is not a linear process. It's a series of hunches, verifications, backtracks, and unexpected discoveries. An agent following a straight line misses context. An agent wandering freely might enter forbidden zones or waste resources on dead ends. The balance is needed not at the settings level but at the logic level.",
+ p7: "Gamebooks allow scripting this logic so the agent can maneuver within reasonable bounds. If one hypothesis isn't confirmed, the scenario directs it to the next one — but not randomly, according to how investigations work in that domain. This saves time and reduces the risk that the agent veers into areas where its actions would be ineffective or dangerous.",
+ p8: "The key point here is transparency. When every agent move is described as a scenario, it becomes clear not only what it's doing but why. For audit, for error analysis, for process improvement — this is the foundation without which it's hard to trust autonomous systems in sensitive areas. You don't see the result of a 'black box' — you see the path the agent took through scenario branches.",
+ h2_3: "From freedom to governed autonomy",
+ p9: "The question of trust in AI agents often reduces to the question of their limitation. The less we allow them, the safer — supposedly. But this is a dead end: agents that can only do what's explicitly permitted lose their primary value — the ability to find solutions their creators didn't foresee. The real challenge isn't removing freedom but directing it.",
+ p10: "Mate Security with Gamebooks shows how this can work in practice. The agent remains autonomous — it makes decisions, reacts to new data, adapts to the situation. But this autonomy unfolds within frames set by the scenario. It's not freedom without borders, but also not freedom without choice. It's governed autonomy where maneuver space exists but is outlined by task logic.",
+ p11: "For the industry, this is an important shift. We're moving from the 'forbid everything not permitted' model to the 'describe how it should work' model. The second approach is harder to design, but it scales. When you have a library of scenarios for different investigation types, you can combine them, adapt them, improve them — while maintaining control over what your agents do.",
+ h2_4: "The cost of decision architecture",
+ p12: "Of course, creating such scenarios is not trivial. You need to understand not just the technical side of agent operation but the investigation domain itself. You can't just script branches — you need to know which decisions actually make sense and which lead to dead ends. This requires expertise and time.",
+ p13: "But the cost of error here is high. An agent operating without clear logic can not only fail an investigation but create problems that must be cleaned up later. Gamebooks transform control from post-factum analysis into preventive architecture. Better to spend time designing the scenario upfront than later explaining why the agent made a decision nobody understands.",
+ p14: "Ultimately, this is about maturity in approaching AI agents. We stop seeing them as chaotic action generators and start treating them as systems that need to be designed with the same rigor as any complex infrastructure. Gamebooks are a tool in that direction.",
+ p15: "Control over autonomous systems cannot be absolute, but it should be intentional. When every agent move fits into scenario logic, trust stops being a matter of faith and becomes a matter of architecture quality. That's a completely different level of conversation.",
+ p16: "<strong><a href=\"https://x402-ai-agent.space/blog/hak-ot-nekontroliruemogo-ii-predskazuem\">Hack from uncontrolled AI is predictable →</a></strong> — read more on the blog.",
+ p17: "<strong><a href=\"https://x402-ai-agent.space/blog/wallet-intelligence-analyzer\">Wallet Intelligence: watch a wallet across 4 networks at once →</a></strong> — read more on the blog.",
+    copyBtn: "⧉ Copy",
+  };
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        el.innerHTML = value;
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+  function copyBlock(id, btn) {
+    const pre = document.querySelector('[data-i18n="' + id + '"]');
+    if (!pre) return;
+    const text = pre.textContent;
+    const done = () => {
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied';
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => { fallbackCopy(pre, done); });
+    } else {
+      fallbackCopy(pre, done);
+    }
+  }
+  function fallbackCopy(pre, done) {
+    const range = document.createRange();
+    range.selectNodeContents(pre);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    try { document.execCommand('copy'); } catch (e) {}
+    sel.removeAllRanges();
+    done();
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>

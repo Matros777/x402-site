@@ -506,6 +506,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: gamebooks-kak-upravlyat-agentami-ne-lomaya-ih-v-protsesse -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/gamebooks-kak-upravlyat-agentami-ne-lomaya-ih-v-protsesse</loc>
+ <lastmod>2026-08-30</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
