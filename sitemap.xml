@@ -513,6 +513,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: kak-agenty-v-sto-raz-razduli-ustarevshie-stavki -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/kak-agenty-v-sto-raz-razduli-ustarevshie-stavki</loc>
+ <lastmod>2026-09-01</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>

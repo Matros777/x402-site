@@ -5,8 +5,15 @@
     <link>https://x402-ai-agent.space/blog/</link>
     <description>Articles about x402 protocol, AI agent payments, agentic economy, and autonomous agents.</description>
     <language>en</language>
-    <lastBuildDate>Sun, 30 Aug 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 01 Sep 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://x402-ai-agent.space/feed.xml" rel="self" type="application/rss+xml"/>
+ <item>
+ <title>How AI agents blew outdated rates up 100x</title>
+ <link>https://x402-ai-agent.space/blog/kak-agenty-v-sto-raz-razduli-ustarevshie-stavki</link>
+ <guid isPermaLink="true">https://x402-ai-agent.space/blog/kak-agenty-v-sto-raz-razduli-ustarevshie-stavki</guid>
+ <pubDate>Tue, 01 Sep 2026 12:00:00 +0000</pubDate>
+ <description>AI agents act faster than price lists update. A gap of hours or days turns into catastrophic loss. The bidding system can't keep up with the speed of autonomous decisions.While a manager verifies pricing — the agent has already completed 500 transactions at outdated rates.</description>
+ </item>
  <item>
  <title>Gamebooks: how to govern agents without breaking them</title>
  <link>https://x402-ai-agent.space/blog/gamebooks-kak-upravlyat-agentami-ne-lomaya-ih-v-protsesse</link>
