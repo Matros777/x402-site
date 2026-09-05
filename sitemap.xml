@@ -534,6 +534,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: openai-stroit-avariynyy-vyklyuchatel-dlya-ii -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/openai-stroit-avariynyy-vyklyuchatel-dlya-ii</loc>
+ <lastmod>2026-09-05</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>

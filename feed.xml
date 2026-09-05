@@ -5,8 +5,15 @@
     <link>https://x402-ai-agent.space/blog/</link>
     <description>Articles about x402 protocol, AI agent payments, agentic economy, and autonomous agents.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 02 Sep 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 05 Sep 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://x402-ai-agent.space/feed.xml" rel="self" type="application/rss+xml"/>
+ <item>
+ <title>OpenAI builds emergency kill switch for AI tools</title>
+ <link>https://x402-ai-agent.space/blog/openai-stroit-avariynyy-vyklyuchatel-dlya-ii</link>
+ <guid isPermaLink="true">https://x402-ai-agent.space/blog/openai-stroit-avariynyy-vyklyuchatel-dlya-ii</guid>
+ <pubDate>Sat, 05 Sep 2026 12:00:00 +0000</pubDate>
+ <description>OpenAI is developing a system for automatic shutdown of its AI tools. This is an acknowledgment that autonomous systems can go beyond the intended behavior. The question is not whether this is needed, but who will press the button and under what rules.</description>
+ </item>
  <item>
  <title>AI agents enter DeFi: $68.5B monthly and trading's future</title>
  <link>https://x402-ai-agent.space/blog/kogda-agenty-vyhodyat-v-defi-68-5-mlrd-i-buduschee-treydinga</link>
