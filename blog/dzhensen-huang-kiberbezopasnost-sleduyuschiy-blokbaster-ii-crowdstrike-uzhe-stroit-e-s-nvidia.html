@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Дженсен Хуанг: кибербезопасность — следующий блокбастер ИИ. CrowdStrike уже строит её с Nvidia — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="Дженсен Хуанг назвал кибербезопасность следующим блокбастер-приложением ИИ, а CrowdStrike уже строит такие системы вместе с Nvidia. Разбираем, что стоит за этим союзом, почему защита периметра перестала работать и что это значит для агентных систем. История о том, как атака и защита учатся у одного и того же железа.">
+  <meta name="robots" content="index, follow">
+  <meta name="msvalidate.01" content="4457C676C7E5C459E1EAC0547DFFC6F1" />
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/dzhensen-huang-kiberbezopasnost-sleduyuschiy-blokbaster-ii-crowdstrike-uzhe-stroit-e-s-nvidia">
+  <meta property="og:title" data-i18n="title" content="Дженсен Хуанг: кибербезопасность — следующий блокбастер ИИ. CrowdStrike уже строит её с Nvidia — x402-ai-agent.space">
+  <meta property="og:description" data-i18n="metaDescription" content="Дженсен Хуанг назвал кибербезопасность следующим блокбастер-приложением ИИ, а CrowdStrike уже строит такие системы вместе с Nvidia. Разбираем, что стоит за этим союзом, почему защита периметра перестала работать и что это значит для агентных систем. История о том, как атака и защита учатся у одного и того же железа.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/dzhensen-huang-kiberbezopasnost-sleduyuschiy-blokbaster-ii-crowdstrike-uzhe-stroit-e-s-nvidia-cover.jpg">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="Дженсен Хуанг: кибербезопасность — следующий блокбастер ИИ. CrowdStrike уже строит её с Nvidia — x402-ai-agent.space">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Дженсен Хуанг назвал кибербезопасность следующим блокбастер-приложением ИИ, а CrowdStrike уже строит такие системы вместе с Nvidia. Разбираем, что стоит за этим союзом, почему защита периметра перестала работать и что это значит для агентных систем. История о том, как атака и защита учатся у одного и того же железа.">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/dzhensen-huang-kiberbezopasnost-sleduyuschiy-blokbaster-ii-crowdstrike-uzhe-stroit-e-s-nvidia-cover.jpg">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/dzhensen-huang-kiberbezopasnost-sleduyuschiy-blokbaster-ii-crowdstrike-uzhe-stroit-e-s-nvidia">
+  <link rel="alternate" hreflang="ru" href="https://x402-ai-agent.space/blog/dzhensen-huang-kiberbezopasnost-sleduyuschiy-blokbaster-ii-crowdstrike-uzhe-stroit-e-s-nvidia?lang=ru">
+  <link rel="alternate" hreflang="en" href="https://x402-ai-agent.space/blog/dzhensen-huang-kiberbezopasnost-sleduyuschiy-blokbaster-ii-crowdstrike-uzhe-stroit-e-s-nvidia?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://x402-ai-agent.space/blog/dzhensen-huang-kiberbezopasnost-sleduyuschiy-blokbaster-ii-crowdstrike-uzhe-stroit-e-s-nvidia">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #ffffff;
+      --text-secondary: #c9c9c9;
+      --muted: #8f8f8f;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition); }
+    .wrap { width: 100%; max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 500; font-size: 1.25rem; letter-spacing: -0.02em;
+      color: #a3a3a3; flex-shrink: 0;
+    }
+    .logo-img { height: 34px; width: auto; border-radius: 6px; }
+    .logo span span { color: #a3a3a3; }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      padding: 8px 14px; border-radius: var(--radius-xs);
+      font-size: 0.875rem; color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    nav .link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch {
+      border: 1px solid var(--border); border-radius: var(--radius-full);
+      padding: 6px 14px !important; font-size: 0.8rem !important;
+    }
+    .lang-switch:hover { border-color: #444; background: rgba(255,255,255,0.06) !important; }
+
+    article { padding: 48px 0 80px; }
+    article img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: 437px;
+      object-fit: cover;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    article p strong { color: var(--text); font-weight: 600; }
+    .highlight {
+      margin: 28px 0;
+      padding: 20px 22px;
+      background: linear-gradient(135deg, rgba(34,211,238,0.08), rgba(139,92,246,0.06));
+      border: 1px solid rgba(34,211,238,0.15);
+      border-radius: var(--radius-sm);
+      font-size: 1.05rem;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .note {
+      margin: 28px 0;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .note a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 3px; }
+    .note a:hover { color: var(--text); }
+
+    footer.site {
+      padding: 28px 0;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 32px 0 56px; }
+      article h2 { margin-top: 32px; }
+    }
+    /* --- Header: full-width like main page --- */
+    header.site .wrap { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    header.site .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+    header.site .logo { font-size: 1.25rem; gap: 10px; }
+    header.site .logo span span { color: #a3a3a3; }
+    header.site nav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    header.site nav .link { padding: 8px 12px; }
+    header.site .lang-switch { margin-left: 8px; }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img" width="34" height="34" fetchpriority="low">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link" href="/" data-i18n="nav.home">На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article>
+  <div class="wrap">
+ <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+
+ <img src="/assets/img/blog/dzhensen-huang-kiberbezopasnost-sleduyuschiy-blokbaster-ii-crowdstrike-uzhe-stroit-e-s-nvidia-cover.jpg" alt="Дженсен Хуанг: кибербезопасность — следующий блокбастер ИИ. CrowdStrike уже строит её с Nvidia" loading="lazy">
+
+ <h1 data-i18n="h1">Дженсен Хуанг: кибербезопасность — следующий блокбастер ИИ. CrowdStrike уже строит её с Nvidia</h1>
+
+ <div class="meta" data-i18n="meta">2026-09-13 · 3 мин чтения</div>
+
+<p data-i18n="p1">Есть забавная асимметрия в том, как индустрия говорит об ИИ. Когда речь идёт о генерации картинок или чат-ботах, все говорят о революции. Когда речь идёт о безопасности — о рисках. Дженсен Хуанг перевернул эту рамку одним заявлением: кибербезопасность, по его словам, станет следующим блокбастер-приложением искусственного интеллекта. Не очередным пунктом в списке угроз, а рынком. Приложением, которое люди будут покупать миллионами копий.</p>
+
+<p data-i18n="p2">Звучит парадоксально, пока не начинаешь считать. Безопасность — это огромный, хронически недоукомплектованный, вечно отстающий рынок. У каждой компании на свете больше поверхностей атаки, чем людей, которые их защищают. ИИ в этой картине — не опция и не украшение презентаций, а единственный способ закрыть разрыв между тем, сколько атак генерируется, и сколько аналитиков способно их разобрать. CrowdStrike, судя по заголовку новости, это понял раньше многих и уже строит следующее поколение своей платформы вместе с Nvidia. И это не случайная пара.</p>
+
+<h2 data-i18n="h2_1">Почему безопасность оказалась идеальным заказчиком ИИ</h2>
+
+<p data-i18n="p3">Чтобы понять, почему Хуанг назвал именно эту отрасль, полезно вспомнить, как устроена работа аналитика центра безопасности. Его день — это гора алертов. Тысячи событий в час, из которых почти все — шум. Человек физически не способен прочитать столько, поэтому он фильтрует, а фильтрация означает, что часть реальных атак просачивается мимо. Именно на этом зазоре между объёмом данных и пропускной способностью людей годами зарабатывали атакующие.</p>
+
+<p data-i18n="p4">ИИ меняет арифметику. Модель может смотреть на каждый алерт, а не на выборку из него. Она может коррелировать сигнал с одного ноутбука с телеметрией облака, историей входов и странным поведением скрипта в три часа ночи — и делать это за секунды, а не за смену аналитика. Это не «автоматизация рутины» в маркетинговом смысле. Это переход от выборочного контроля к сплошному, чего в безопасности не было никогда, просто потому что не было инструмента.</p>
+
+<h2 data-i18n="h2_2">Что даёт союз CrowdStrike и Nvidia</h2>
+
+<p data-i18n="p5">Пара CrowdStrike и Nvidia складывается логично, если разложить её на слои. У CrowdStrike — данные и контекст: телеметрия с миллионов конечных устройств, десятилетия истории атак, понимание того, как выглядит реальное вторжение, а не учебное. У Nvidia — вычислительная база и модели, способные этот контекст переваривать в реальном времени. Безопасность — это гонка на скорость реакции, а скорость упирается в железо.</p>
+
+<p data-i18n="p6">Но за технической логикой видна более интересная сделка. Nvidia, продавая вычисления, кровно заинтересована в том, чтобы ИИ проникал в самые денежные корпоративные бюджеты — а бюджет на безопасность один из самых защищённых от кризисов: его не режут, когда режут всё остальное. CrowdStrike же получает не просто ускоритель, а доступ к передней кромке моделей и статус компании, которая строит «блокбастер», а не догоняет. Хуанг назвал кибербезопасность следующим блокбастер-приложением ИИ — и его компания делает всё, чтобы этот блокбастер работал на её чипах.</p>
+
+<h2 data-i18n="h2_3">Обратная сторона: тем же инструментом играют и атакующие</h2>
+
+<p data-i18n="p7">Здесь нельзя обойтись без неприятной оговорки, и это не мой пессимизм, а свойство самой технологии. Модель, которая умеет находить аномалии в телеметрии, в чужих руках умеет находить аномалии в защите. Фишинг, идеально написанный под конкретного человека. Перебор паролей, неотличимый от обычного рабочего трафика. Разведка сети, растянутая на недели и размазанная по безобидным действиям. Всё это раньше требовало терпения и команды, теперь требует хорошего промпта.</p>
+
+<p data-i18n="p8">Значит, гонка вооружений не заканчивается — она ускоряется и становится вычислительной в буквальном смысле. Кто-то покупает GPU, чтобы защищаться; кто-то покупает те же GPU, чтобы атаковать дешевле и быстрее. Побеждает в такой гонке не тот, у кого лучше модель, а тот, у кого лучше данные о противнике и короче цикл от обнаружения до ответа. Именно поэтому альянсы вроде CrowdStrike и Nvidia — это не маркетинг, а ставка на вертикальную интеграцию: модели, данные и кремний в одних руках.</p>
+
+<h2 data-i18n="h2_4">При чём здесь агенты</h2>
+
+<p data-i18n="p9">Для нас, тех, кто пишет об агентных системах, в этой истории есть ещё один слой. Следующий шаг после «ИИ смотрит на все алерты» — это ИИ, который действует: изолирует машину, отзывает токены, перекрывает сегмент сети, разворачивает патч. То есть появляются автономные агенты с правом трогать продакшн. И тогда к вопросу «нашёл ли модель атаку» добавляется куда более острый: доверяем ли мы ей право нажать кнопку.</p>
+
+<p data-i18n="p10">Агент, который реагирует быстрее человека, неизбежно иногда ошибается быстрее человека. Ложно изолированный сервер в час пик стоит денег, а пропущенное вторжение стоит дороже — и настройка этого баланса становится не технической, а экономической задачей. О том, чем автономный агент принципиально отличается от чат-бота с кнопками, мы писали отдельно: разница не в интеллекте, а в праве действовать. Безопасность станет первой индустрией, где это право будут выдавать массово, потому что альтернатива — проигрывать атакующим по скорости — хуже любого ложного срабатывания.</p>
+
+<p data-i18n="p11">Есть и зеркальная угроза: сами корпоративные системы, в которые приходят агенты, не готовы к тому, что их будут использовать не люди. Мы разбирали, как агенты ломают привычные представления о корпоративном ПО — интерфейсы, роли, границы доступа. Если защита будет строиться на тех же принципах, она унаследует те же дыры. Хуанг назвал кибербезопасность следующим блокбастером ИИ. Если он прав, то блокбастером станет не продукт, а вся перестройка отрасли вокруг машин, которые защищают от машин. И судя по альянсу CrowdStrike и Nvidia, перестройка уже началась.</p>
+
+ <div class="highlight" data-i18n="p12"><strong><a href="https://x402-ai-agent.space/blog/agent-vs-chatbot">Чем агент на самом деле отличается от чат-бота →</a></strong> — читайте подробнее в блоге.</div>
+
+ <div class="highlight" data-i18n="p13"><strong><a href="https://x402-ai-agent.space/blog/kogda-agenty-lomayut-korporativnoe-po">Когда агенты ломают корпоративное ПО →</a></strong> — читайте подробнее в блоге.</div>
+
+
+  </div>
+</article>
+</main>
+
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Дженсен Хуанг: кибербезопасность — следующий блокбастер ИИ. CrowdStrike уже строит её с Nvidia",
+  "description": "Дженсен Хуанг назвал кибербезопасность следующим блокбастер-приложением ИИ, а CrowdStrike уже строит такие системы вместе с Nvidia. Разбираем, что стоит за этим союзом, почему защита периметра перестала работать и что это значит для агентных систем. История о том, как атака и защита учатся у одного и того же железа.",
+  "datePublished": "2026-09-13",
+  "author": {
+    "@type": "Organization",
+    "name": "x402-ai-agent.space"
+  },
+  "image": "https://x402-ai-agent.space/assets/img/blog/dzhensen-huang-kiberbezopasnost-sleduyuschiy-blokbaster-ii-crowdstrike-uzhe-stroit-e-s-nvidia-cover.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Блог x402",
+      "item": "https://x402-ai-agent.space/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Дженсен Хуанг: кибербезопасность — следующий блокбастер ИИ. CrowdStrike уже строит её с Nvidia",
+      "item": "https://x402-ai-agent.space/blog/dzhensen-huang-kiberbezopasnost-sleduyuschiy-blokbaster-ii-crowdstrike-uzhe-stroit-e-s-nvidia"
+    }
+  ]
+}
+</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+  const embeddedRu = {
+ title: "Дженсен Хуанг: кибербезопасность — следующий блокбастер ИИ. CrowdStrike уже строит её с Nvidia — x402-ai-agent.space",
+ metaDescription: "Дженсен Хуанг назвал кибербезопасность следующим блокбастер-приложением ИИ, а CrowdStrike уже строит такие системы вместе с Nvidia. Разбираем, что стоит за этим союзом, почему защита периметра перестала работать и что это значит для агентных систем. История о том, как атака и защита учатся у одного и того же железа.",
+ nav: { back: "← Блог", home: "На сайт", lang: "🇬🇧 EN" },
+ backLink: "← Назад к блогу",
+ h1: "Дженсен Хуанг: кибербезопасность — следующий блокбастер ИИ. CrowdStrike уже строит её с Nvidia",
+ meta: "2026-09-13 · 3 мин чтения",
+ p1: "Есть забавная асимметрия в том, как индустрия говорит об ИИ. Когда речь идёт о генерации картинок или чат-ботах, все говорят о революции. Когда речь идёт о безопасности — о рисках. Дженсен Хуанг перевернул эту рамку одним заявлением: кибербезопасность, по его словам, станет следующим блокбастер-приложением искусственного интеллекта. Не очередным пунктом в списке угроз, а рынком. Приложением, которое люди будут покупать миллионами копий.",
+ p2: "Звучит парадоксально, пока не начинаешь считать. Безопасность — это огромный, хронически недоукомплектованный, вечно отстающий рынок. У каждой компании на свете больше поверхностей атаки, чем людей, которые их защищают. ИИ в этой картине — не опция и не украшение презентаций, а единственный способ закрыть разрыв между тем, сколько атак генерируется, и сколько аналитиков способно их разобрать. CrowdStrike, судя по заголовку новости, это понял раньше многих и уже строит следующее поколение своей платформы вместе с Nvidia. И это не случайная пара.",
+ h2_1: "Почему безопасность оказалась идеальным заказчиком ИИ",
+ p3: "Чтобы понять, почему Хуанг назвал именно эту отрасль, полезно вспомнить, как устроена работа аналитика центра безопасности. Его день — это гора алертов. Тысячи событий в час, из которых почти все — шум. Человек физически не способен прочитать столько, поэтому он фильтрует, а фильтрация означает, что часть реальных атак просачивается мимо. Именно на этом зазоре между объёмом данных и пропускной способностью людей годами зарабатывали атакующие.",
+ p4: "ИИ меняет арифметику. Модель может смотреть на каждый алерт, а не на выборку из него. Она может коррелировать сигнал с одного ноутбука с телеметрией облака, историей входов и странным поведением скрипта в три часа ночи — и делать это за секунды, а не за смену аналитика. Это не «автоматизация рутины» в маркетинговом смысле. Это переход от выборочного контроля к сплошному, чего в безопасности не было никогда, просто потому что не было инструмента.",
+ h2_2: "Что даёт союз CrowdStrike и Nvidia",
+ p5: "Пара CrowdStrike и Nvidia складывается логично, если разложить её на слои. У CrowdStrike — данные и контекст: телеметрия с миллионов конечных устройств, десятилетия истории атак, понимание того, как выглядит реальное вторжение, а не учебное. У Nvidia — вычислительная база и модели, способные этот контекст переваривать в реальном времени. Безопасность — это гонка на скорость реакции, а скорость упирается в железо.",
+ p6: "Но за технической логикой видна более интересная сделка. Nvidia, продавая вычисления, кровно заинтересована в том, чтобы ИИ проникал в самые денежные корпоративные бюджеты — а бюджет на безопасность один из самых защищённых от кризисов: его не режут, когда режут всё остальное. CrowdStrike же получает не просто ускоритель, а доступ к передней кромке моделей и статус компании, которая строит «блокбастер», а не догоняет. Хуанг назвал кибербезопасность следующим блокбастер-приложением ИИ — и его компания делает всё, чтобы этот блокбастер работал на её чипах.",
+ h2_3: "Обратная сторона: тем же инструментом играют и атакующие",
+ p7: "Здесь нельзя обойтись без неприятной оговорки, и это не мой пессимизм, а свойство самой технологии. Модель, которая умеет находить аномалии в телеметрии, в чужих руках умеет находить аномалии в защите. Фишинг, идеально написанный под конкретного человека. Перебор паролей, неотличимый от обычного рабочего трафика. Разведка сети, растянутая на недели и размазанная по безобидным действиям. Всё это раньше требовало терпения и команды, теперь требует хорошего промпта.",
+ p8: "Значит, гонка вооружений не заканчивается — она ускоряется и становится вычислительной в буквальном смысле. Кто-то покупает GPU, чтобы защищаться; кто-то покупает те же GPU, чтобы атаковать дешевле и быстрее. Побеждает в такой гонке не тот, у кого лучше модель, а тот, у кого лучше данные о противнике и короче цикл от обнаружения до ответа. Именно поэтому альянсы вроде CrowdStrike и Nvidia — это не маркетинг, а ставка на вертикальную интеграцию: модели, данные и кремний в одних руках.",
+ h2_4: "При чём здесь агенты",
+ p9: "Для нас, тех, кто пишет об агентных системах, в этой истории есть ещё один слой. Следующий шаг после «ИИ смотрит на все алерты» — это ИИ, который действует: изолирует машину, отзывает токены, перекрывает сегмент сети, разворачивает патч. То есть появляются автономные агенты с правом трогать продакшн. И тогда к вопросу «нашёл ли модель атаку» добавляется куда более острый: доверяем ли мы ей право нажать кнопку.",
+ p10: "Агент, который реагирует быстрее человека, неизбежно иногда ошибается быстрее человека. Ложно изолированный сервер в час пик стоит денег, а пропущенное вторжение стоит дороже — и настройка этого баланса становится не технической, а экономической задачей. О том, чем автономный агент принципиально отличается от чат-бота с кнопками, мы писали отдельно: разница не в интеллекте, а в праве действовать. Безопасность станет первой индустрией, где это право будут выдавать массово, потому что альтернатива — проигрывать атакующим по скорости — хуже любого ложного срабатывания.",
+ p11: "Есть и зеркальная угроза: сами корпоративные системы, в которые приходят агенты, не готовы к тому, что их будут использовать не люди. Мы разбирали, как агенты ломают привычные представления о корпоративном ПО — интерфейсы, роли, границы доступа. Если защита будет строиться на тех же принципах, она унаследует те же дыры. Хуанг назвал кибербезопасность следующим блокбастером ИИ. Если он прав, то блокбастером станет не продукт, а вся перестройка отрасли вокруг машин, которые защищают от машин. И судя по альянсу CrowdStrike и Nvidia, перестройка уже началась.",
+ p12: "<strong><a href=\"https://x402-ai-agent.space/blog/agent-vs-chatbot\">Чем агент на самом деле отличается от чат-бота →</a></strong> — читайте подробнее в блоге.",
+ p13: "<strong><a href=\"https://x402-ai-agent.space/blog/kogda-agenty-lomayut-korporativnoe-po\">Когда агенты ломают корпоративное ПО →</a></strong> — читайте подробнее в блоге.",
+    copyBtn: "⧉ Копировать",
+  };
+  const embeddedEn = {
+ title: "Jensen Huang Says Cybersecurity Is AI's Next Blockbuster App. CrowdStrike Is Building It With Nvidia — x402-ai-agent.space",
+ metaDescription: "Jensen Huang has called cybersecurity AI's next blockbuster app, and CrowdStrike is already building it with Nvidia. We unpack what this alliance really means, why perimeter defense stopped working, and what it signals for agentic systems. A story about attack and defense learning from the same silicon.",
+ nav: { back: "← Blog", home: "Home", lang: "🇷🇺 RU" },
+ backLink: "← Back to blog",
+ h1: "Jensen Huang Says Cybersecurity Is AI's Next Blockbuster App. CrowdStrike Is Building It With Nvidia",
+ meta: "2026-09-13 · 3 min read",
+ p1: "There's a funny asymmetry in how the industry talks about AI. When the subject is image generation or chatbots, everyone says revolution. When the subject is security, everyone says risk. Jensen Huang flipped that frame with a single claim: cybersecurity, in his words, will be AI's next blockbuster app. Not another line item on a threat matrix — a market. An app people will buy by the millions.",
+ p2: "That sounds paradoxical until you start counting. Security is a huge, chronically understaffed, perpetually lagging market. Every company on earth has more attack surfaces than people to defend them. In that picture, AI isn't a nice-to-have or a slide-deck ornament; it's the only way to close the gap between how many attacks get generated and how many analysts can actually triage them. CrowdStrike, judging by the headline, understood this early and is already building the next generation of its platform with Nvidia. And that pairing is no accident.",
+ h2_1: "Why security turned out to be AI's ideal customer",
+ p3: "To see why Huang picked this industry, consider what a security operations analyst's day actually looks like. It's a mountain of alerts. Thousands of events per hour, almost all of them noise. No human can read that volume, so they filter — and filtering means some real attacks slip through. For years, attackers have made their living precisely in that gap between data volume and human bandwidth.",
+ p4: "AI rewrites the arithmetic. A model can look at every alert, not a sample of them. It can correlate a signal from one laptop with cloud telemetry, login history, and a script behaving oddly at 3 a.m. — in seconds rather than in a shift. This isn't \"automating routine work\" in the marketing sense. It's the switch from sampling to full coverage, something security has never had, simply because the tool didn't exist.",
+ h2_2: "What the CrowdStrike–Nvidia alliance actually buys",
+ p5: "The CrowdStrike–Nvidia pairing adds up if you take it apart layer by layer. CrowdStrike brings data and context: telemetry from millions of endpoints, years of attack history, an intuition for what a real intrusion looks like as opposed to a textbook one. Nvidia brings the compute base and the models capable of digesting that context in real time. Security is a race on reaction speed, and speed bottoms out in silicon.",
+ p6: "But behind the technical logic sits a more interesting deal. Nvidia, selling compute, has a direct stake in AI penetrating the deepest corporate budgets — and the security budget is among the most recession-proof: it doesn't get cut when everything else does. CrowdStrike, meanwhile, gets not just an accelerator but access to the cutting edge of models and the status of a company building the \"blockbuster\" rather than chasing it. Huang called cybersecurity AI's next blockbuster app — and his company is doing everything to make sure that blockbuster runs on its chips.",
+ h2_3: "The flip side: the same tool arms the attackers",
+ p7: "Here an uncomfortable caveat is unavoidable, and it's not my pessimism — it's a property of the technology itself. A model trained to spot anomalies in telemetry can, in other hands, spot anomalies in defenses. Phishing written perfectly for one specific person. Password spraying indistinguishable from ordinary traffic. Network reconnaissance stretched over weeks and smeared across innocent-looking actions. All of this used to require patience and a team; now it requires a good prompt.",
+ p8: "Which means the arms race doesn't end — it accelerates and becomes computational in the literal sense. Some buy GPUs to defend; others buy the same GPUs to attack cheaper and faster. The winner in such a race isn't whoever has the best model, but whoever has the best data on the adversary and the shortest loop from detection to response. That's why alliances like CrowdStrike and Nvidia aren't marketing — they're a bet on vertical integration: models, data, and silicon under one roof.",
+ h2_4: "Where agents come in",
+ p9: "For those of us writing about agentic systems, there's one more layer here. The step after \"AI watches every alert\" is AI that acts: quarantines a machine, revokes tokens, walls off a network segment, pushes a patch. In other words, autonomous agents with the authority to touch production. And then the question stops being \"did the model find the attack\" and becomes far sharper: do we trust it to press the button.",
+ p10: "An agent that reacts faster than a human will also, inevitably, make mistakes faster than a human. A falsely quarantined server at peak hours costs money; a missed intrusion costs more — and tuning that trade-off becomes an economic problem, not a technical one. We've written before about what genuinely separates an autonomous agent from a chatbot with buttons: the difference isn't intelligence, it's the right to act. Security will be the first industry to grant that right at scale, because the alternative — losing the speed race to attackers — is worse than any false positive.",
+ p11: "There's a mirror-image threat, too: the corporate systems agents walk into weren't built for non-human users. We've covered how agents break the assumptions of enterprise software — its interfaces, roles, and access boundaries. If defense is built on those same assumptions, it inherits the same holes. Huang called cybersecurity AI's next blockbuster. If he's right, the blockbuster won't be a product but the wholesale retooling of an industry around machines defending against machines. And judging by the CrowdStrike–Nvidia alliance, the retooling has already started.",
+ p12: "<strong><a href=\"https://x402-ai-agent.space/blog/agent-vs-chatbot\">What actually makes an agent different from a chatbot →</a></strong> — read more on the blog.",
+ p13: "<strong><a href=\"https://x402-ai-agent.space/blog/kogda-agenty-lomayut-korporativnoe-po\">When AI agents break enterprise software →</a></strong> — read more on the blog.",
+    copyBtn: "⧉ Copy",
+  };
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        el.innerHTML = value;
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+  function copyBlock(id, btn) {
+    const pre = document.querySelector('[data-i18n="' + id + '"]');
+    if (!pre) return;
+    const text = pre.textContent;
+    const done = () => {
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied';
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => { fallbackCopy(pre, done); });
+    } else {
+      fallbackCopy(pre, done);
+    }
+  }
+  function fallbackCopy(pre, done) {
+    const range = document.createRange();
+    range.selectNodeContents(pre);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    try { document.execCommand('copy'); } catch (e) {}
+    sel.removeAllRanges();
+    done();
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>
