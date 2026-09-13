@@ -125,6 +125,33 @@
  }
  .section-head p { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.65; }
 
+ /* Blog head row: title + X embed */
+ .blog-head {
+  display: flex; gap: 28px; align-items: flex-start;
+  margin-bottom: 40px;
+ }
+ .blog-head .section-head { flex: 1 1 0; min-width: 0; margin-bottom: 0; max-width: none; }
+ .x-embed { flex-shrink: 0; width: 320px; min-width: 0; }
+ .x-embed .twitter-tweet {
+  margin: 0 !important; max-width: 100% !important; width: 100% !important;
+  border-radius: var(--radius); overflow: hidden;
+ }
+ .x-fallback {
+  display: none;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px;
+ }
+ .x-fallback .xfb-user { color: var(--muted); font-size: 0.8rem; margin-bottom: 8px; }
+ .x-fallback .xfb-text {
+  color: var(--text); font-size: 0.95rem; line-height: 1.5; margin-bottom: 14px;
+ }
+ .x-fallback .xfb-btn {
+  display: inline-block; padding: 8px 16px; background: var(--bg-card);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  font-size: 0.85rem; color: var(--text); transition: all var(--transition);
+ }
+ .x-fallback .xfb-btn:hover { border-color: #444; background: rgba(255,255,255,0.05); }
+
  /* Posts grid */
  .grid {
   display: grid;
@@ -171,6 +198,8 @@
  @media (max-width: 600px) {
   .grid { grid-template-columns: 1fr; }
   .block { padding: 40px 0 56px; }
+  .blog-head { flex-direction: column; gap: 16px; }
+  .x-embed { width: 100%; order: -1; }
  }
   /* --- Header: full-width like main page --- */
  header.site .wrap { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
@@ -200,6 +229,7 @@
 <article>
 <section class="block">
  <div class="wrap">
+ <div class="blog-head">
  <div class="section-head">
   <div class="kicker" data-i18n="kicker">Блог</div>
   <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
@@ -210,6 +240,16 @@
   </a>
   </div>
   <p data-i18n="desc">Реальные кейсы, стратегии и инструменты для автономных агентов — от крипто-трейдинга до микроплатежей.</p>
+ </div>
+ <div class="x-embed" id="x-embed">
+  <blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">Jensen Huang Says Cybersecurity Is AI&#39;s Next Blockbuster App. CrowdStrike Is Building It With Nvidia <a href="https://t.co/nc0vyIevoa">https://t.co/nc0vyIevoa</a></p>&mdash; Cryptoartmaster (@VitalijMatros) <a href="https://x.com/VitalijMatros/status/2098898769995588019?ref_src=twsrc%5Etfw">September 12, 2026</a></blockquote>
+  <script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+  <div class="x-fallback" id="x-fallback">
+   <div class="xfb-user">@VitalijMatros</div>
+   <div class="xfb-text">Jensen Huang Says Cybersecurity Is AI's Next Blockbuster App. CrowdStrike Is Building It With Nvidia</div>
+   <a class="xfb-btn" href="https://x.com/VitalijMatros/status/2098898769995588019" target="_blank" rel="noopener">Открыть оригинал в X&nbsp;↗</a>
+  </div>
+ </div>
  </div>
 
  <div class="grid">
@@ -1255,8 +1295,24 @@
   history.replaceState({}, '', `?lang=${next}`);
   });
  }
- setLanguage(lang);
- });
-</script>
+setLanguage(lang);
+  });
+ </script>
+ <script>
+  /* X embed: если виджет не отрисовался (гео-блок и т.п.) — показываем оригинал */
+  (function () {
+   var box = document.getElementById('x-embed');
+   if (!box) return;
+   var fallback = document.getElementById('x-fallback');
+   if (!fallback) return;
+   setTimeout(function () {
+    var rendered = box.querySelector('.twitter-tweet-rendered, iframe[src*="platform.twitter"], iframe[src*="platform.x"]');
+    if (rendered) return; /* виджет на месте — всё ок */
+    var quote = box.querySelector('.twitter-tweet');
+    if (quote) quote.style.display = 'none';
+    fallback.style.display = 'block';
+   }, 7000);
+  })();
+ </script>
 </body>
 </html>
