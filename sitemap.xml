@@ -548,6 +548,13 @@
  <changefreq>monthly</changefreq>
  <priority>0.8</priority>
  </url>
+ <!-- Blog: ii-agenty-okazalis-zameshany-v-atake-na-rubygems-eto-menyaet-pravila -->
+ <url>
+ <loc>https://x402-ai-agent.space/blog/ii-agenty-okazalis-zameshany-v-atake-na-rubygems-eto-menyaet-pravila</loc>
+ <lastmod>2026-09-13</lastmod>
+ <changefreq>monthly</changefreq>
+ <priority>0.8</priority>
+ </url>
  <!-- Wallet Intelligence -->
   <url>
     <loc>https://x402-ai-agent.space/wallet-intelligence/</loc>
