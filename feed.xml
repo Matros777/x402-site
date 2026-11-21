@@ -9,8 +9,8 @@
     <atom:link href="https://x402-ai-agent.space/feed.xml" rel="self" type="application/rss+xml"/>
  <item>
  <title>57% Accuracy: The Dashboard That Publicly Checks Its Own Forecasts — and What It Changes</title>
- <link>https://x402-ai-agent.space/blog/99-9-tranzaktsiy-sdelayut-agenty-prognoz-coinbase-i-chto-on-menyaet</link>
- <guid isPermaLink="true">https://x402-ai-agent.space/blog/99-9-tranzaktsiy-sdelayut-agenty-prognoz-coinbase-i-chto-on-menyaet</guid>
+ <link>https://x402-ai-agent.space/blog/57-popadaniy-dashbord-kotoryy-publichno-sveryaet-svoi-prognozy-i-chto-eto-menyaet</link>
+ <guid isPermaLink="true">https://x402-ai-agent.space/blog/57-popadaniy-dashbord-kotoryy-publichno-sveryaet-svoi-prognozy-i-chto-eto-menyaet</guid>
  <pubDate>Sat, 21 Nov 2026 12:00:00 +0000</pubDate>
  <description>Most crypto forecasts online sound loud and live until the next headline: nobody ever checks them, and the author has already moved on. We built a mechanism into the BTC Observer dashboard that breaks this tradition: every day at 09:00 UTC the model locks in a 24-hour forecast — median, P10–P90 corridor, and upside probability — and the next day</description>
  </item>
