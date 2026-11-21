@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">57% попаданий: дашборд, который публично сверяет свои прогнозы — и что это меняет — x402-ai-agent.space</title>
+  <meta name="description" data-i18n="metaDescription" content="Большинство крипто-прогнозов в сети звучат громко и живут ровно до следующего заголовка: их никто никогда не сверяет, а автор уже дал новый. Мы встроили в дашборд BTC Observer механику, которая ломает эту традицию: каждый день в 09:00 UTC модель фиксирует прогноз на 24 часа — медиану, коридор P10–P90 и вероятность роста, — а на следующий день">
+  <meta name="robots" content="index, follow">
+  <meta name="msvalidate.01" content="4457C676C7E5C459E1EAC0547DFFC6F1" />
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:url" content="https://x402-ai-agent.space/blog/99-9-tranzaktsiy-sdelayut-agenty-prognoz-coinbase-i-chto-on-menyaet">
+  <meta property="og:title" data-i18n="title" content="57% попаданий: дашборд, который публично сверяет свои прогнозы — и что это меняет — x402-ai-agent.space">
+  <meta property="og:description" data-i18n="metaDescription" content="Большинство крипто-прогнозов в сети звучат громко и живут ровно до следующего заголовка: их никто никогда не сверяет, а автор уже дал новый. Мы встроили в дашборд BTC Observer механику, которая ломает эту традицию: каждый день в 09:00 UTC модель фиксирует прогноз на 24 часа — медиану, коридор P10–P90 и вероятность роста, — а на следующий день">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="x402-ai-agent.space">
+  <meta property="og:image" content="https://x402-ai-agent.space/assets/img/blog/99-9-tranzaktsiy-sdelayut-agenty-prognoz-coinbase-i-chto-on-menyaet-cover.jpg">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="title" content="57% попаданий: дашборд, который публично сверяет свои прогнозы — и что это меняет — x402-ai-agent.space">
+  <meta name="twitter:description" data-i18n="metaDescription" content="Большинство крипто-прогнозов в сети звучат громко и живут ровно до следующего заголовка: их никто никогда не сверяет, а автор уже дал новый. Мы встроили в дашборд BTC Observer механику, которая ломает эту традицию: каждый день в 09:00 UTC модель фиксирует прогноз на 24 часа — медиану, коридор P10–P90 и вероятность роста, — а на следующий день">
+  <meta name="twitter:image" content="https://x402-ai-agent.space/assets/img/blog/99-9-tranzaktsiy-sdelayut-agenty-prognoz-coinbase-i-chto-on-menyaet-cover.jpg">
+  <link rel="canonical" href="https://x402-ai-agent.space/blog/99-9-tranzaktsiy-sdelayut-agenty-prognoz-coinbase-i-chto-on-menyaet">
+  <link rel="alternate" hreflang="ru" href="https://x402-ai-agent.space/blog/99-9-tranzaktsiy-sdelayut-agenty-prognoz-coinbase-i-chto-on-menyaet?lang=ru">
+  <link rel="alternate" hreflang="en" href="https://x402-ai-agent.space/blog/99-9-tranzaktsiy-sdelayut-agenty-prognoz-coinbase-i-chto-on-menyaet?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://x402-ai-agent.space/blog/99-9-tranzaktsiy-sdelayut-agenty-prognoz-coinbase-i-chto-on-menyaet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="robots" href="/robots.txt">
+  <link rel="sitemap" href="/sitemap.xml">
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon/favicon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="yandex-tableau-widget" content="/assets/favicon/yandex-tableau.png">
+  <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150.png">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --border: #222;
+      --border-subtle: #1a1a1a;
+      --text: #ffffff;
+      --text-secondary: #c9c9c9;
+      --muted: #8f8f8f;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition); }
+    .wrap { width: 100%; max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    header.site {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 500; font-size: 1.25rem; letter-spacing: -0.02em;
+      color: #a3a3a3; flex-shrink: 0;
+    }
+    .logo-img { height: 34px; width: auto; border-radius: 6px; }
+    .logo span span { color: #a3a3a3; }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav .link {
+      padding: 8px 14px; border-radius: var(--radius-xs);
+      font-size: 0.875rem; color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    nav .link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch {
+      border: 1px solid var(--border); border-radius: var(--radius-full);
+      padding: 6px 14px !important; font-size: 0.8rem !important;
+    }
+    .lang-switch:hover { border-color: #444; background: rgba(255,255,255,0.06) !important; }
+
+    article { padding: 48px 0 80px; }
+    article img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: 437px;
+      object-fit: cover;
+      margin: 0 auto 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    article h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    article h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+    }
+    article p {
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+    article p strong { color: var(--text); font-weight: 600; }
+    .highlight {
+      margin: 28px 0;
+      padding: 20px 22px;
+      background: linear-gradient(135deg, rgba(34,211,238,0.08), rgba(139,92,246,0.06));
+      border: 1px solid rgba(34,211,238,0.15);
+      border-radius: var(--radius-sm);
+      font-size: 1.05rem;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .note {
+      margin: 28px 0;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .note a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 3px; }
+    .note a:hover { color: var(--text); }
+
+    footer.site {
+      padding: 28px 0;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 32px 0 56px; }
+      article h2 { margin-top: 32px; }
+    }
+    /* --- Header: full-width like main page --- */
+    header.site .wrap { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    header.site .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+    header.site .logo { font-size: 1.25rem; gap: 10px; }
+    header.site .logo span span { color: #a3a3a3; }
+    header.site nav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    header.site nav .link { padding: 8px 12px; }
+    header.site .lang-switch { margin-left: 8px; }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="/assets/img/logo.png" alt="x402-ai-agent.space" class="logo-img" width="34" height="34" fetchpriority="low">
+      <span>x402<span>.ai</span></span>
+    </div>
+    <nav>
+      <a class="link" href="/blog/" data-i18n="nav.back">← Блог</a>
+      <a class="link" href="/" data-i18n="nav.home">На сайт</a>
+      <a class="link lang-switch" href="#" data-i18n="nav.lang">🇬🇧 EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article>
+  <div class="wrap">
+ <a class="back-link" href="/blog/" data-i18n="backLink">← Назад к блогу</a>
+
+ <img src="/assets/img/blog/99-9-tranzaktsiy-sdelayut-agenty-prognoz-coinbase-i-chto-on-menyaet-cover.jpg" alt="57% попаданий: дашборд, который публично сверяет свои прогнозы — и что это меняет" loading="lazy">
+
+ <h1 data-i18n="h1">57% попаданий: дашборд, который публично сверяет свои прогнозы — и что это меняет</h1>
+
+ <div class="meta" data-i18n="meta">2026-11-21 · 4 мин чтения</div>
+
+<p data-i18n="p1">Спросите любого, кто хоть раз читал крипто-прогнозы в интернете: сколько из них вы помните через неделю? Ровно ноль. Не потому, что прогнозы были плохими, а потому, что их никто не проверял. Автор написал «BTC к 100 тысячам», получил свои клики и ушёл вперёд — а обещание растворилось в ленте вместе с вашим вниманием. Это не баг индустрии прогнозов, это её бизнес-модель: предсказывать бесплатно, отчитываться никогда.</p>
+
+<p data-i18n="p2">Дашборд BTC Observer решил сломать именно эту механику. Каждый день в 09:00 UTC он фиксирует прогноз на 24 часа вперёд: медианную цель, коридор P10–P90 и вероятность роста. На следующий день прогноз сверяется с фактической ценой закрытия с биржи. Без задним числом, без правок — верифицированные строки заморожены навсегда. Блок так и называется: Forecast Scoreboard. Звучит скромно, но по сути это редкая для рынка вещь: прогнозы с чеком.</p>
+
+<p data-i18n="p3">Паспорт модели: тридцать дней под микроскопом</p>
+
+<p data-i18n="p4">Первый паспорт модели построен на 30 днях: walk-forward replay по истории с 22 октября по 20 ноября плюс живые дни. Результаты получились интересными именно потому, что они неровные. Направление угадано в 57% случаев — 17 из 30 — против 50% у монетки. Коридор P10–P90 сбылся в ровно 80% случаев, 24 из 30 — ровно так, как обещает теория. Средняя ошибка медианы составила 1.90%.</p>
+
+<p data-i18n="p5">На первый взгляд это выглядит как «модель чуть лучше подбрасывания монеты». Но такая оценка была бы ленивой. Смотрите внимательнее на коридор: теория говорит, что 80% реализаций должны попадать в интервал P10–P90 — и на практике попало ровно столько. Это значит, что модель не просто «угадывает», она правильно калибрует собственную неопределённость. Она знает, чего не знает. В мире, где ИИ-прогнозы обычно подаются с бодрым уверенным тоном и без всякой оценки неопределённости, это почти революционная скромность.</p>
+
+<p data-i18n="p6">Обвал, который модель не пропустила</p>
+
+<p data-i18n="p7">Самое драматичное в окне теста — обвал BTC с $81,949 до $57,806, минус 29%. Модель его не пропустила. И вот здесь вскрывается самое ценное наблюдение всего паспорта: когда модель говорит DOWN — то есть вероятность роста ниже 45% — она права в 68% случаев. А когда говорит UP, с вероятностью выше 55%, права лишь в 25%.</p>
+
+<p data-i18n="p8">Асимметрия поразительная. Медвежьим сигналам можно верить сильнее. Это не мелочь для статистиков — это практическое правило для любого, кто читает такие дашборды. Модель, судя по поведению метрик, гораздо лучше распознаёт давление вниз, чем подтверждает рост. И заметьте: это знание стало возможным только потому, что прогнозы фиксировались заранее. Если бы модель могла переписывать задним числом, эта асимметрия никогда бы не проявилась — она бы просто «угадывала» в ретроспективе, как делают все, кто ведёт частные прогнозы без чека.</p>
+
+<p data-i18n="p9">Прогнозы до события: почему механика важнее цифр</p>
+
+<p data-i18n="p10">Механика replay заслуживает отдельного разговора, потому что именно она отличает честный тест от витрины. Для каждого прошлого дня модель получает только те свечи, которые существовали на момент прогноза. Никакого заглядывания в будущее — это и есть walk-forward. Строки помечены бейджем R, в шапке видно «30 REPLAY»: посетитель всегда отличает реконструкцию от живых данных.</p>
+
+<p data-i18n="p11">Зачем такая дотошность? Потому что главный способ обмануть бэктест — нечаянно дать модели информацию из будущего. Достаточно одной утечки, и результаты становятся красивыми и бесполезными. Здесь защита встроена в структуру: модель физически не видит то, чего ещё «не было». А прозрачная маркировка replay-строк означает, что вам не нужно верить на слово — вы сами видите, где реконструкция, а где настоящий прогноз, сделанный до события.</p>
+
+<p data-i18n="p12">Честный промах как фича</p>
+
+<p data-i18n="p13">Показательный момент: 20 ноября модель угадала направление, но обвал пробил нижнюю границу коридора. Прогноз частично сбылся и частично провалился — и это осталось в таблице навсегда. Именно такие строки делают Scoreboard ценным. Дашборд, который показывает только победы, — это маркетинг. Дашборд, который хранит свои промахи замороженными, — это инструмент.</p>
+
+<p data-i18n="p14">Ключевая мысль здесь шире, чем один биткоин. Большинство ИИ-прогнозов в сети непроверяемы: их никто не сверяет, и через неделю никто не помнит, что было обещано. Scoreboard решает это структурно, а не уговорами. Прогнозы публикуются до события, факт подтягивается автоматически, метрики пересчитываются каждый день: hit-rate, калибровка коридора, ошибка медианы, серия попаданий. Не «поверьте нашей модели», а «вот таблица, смотрите сами».</p>
+
+<p data-i18n="p15">Что это значит для ИИ-агентов</p>
+
+<p data-i18n="p16">Теперь отодвинем биткоин в сторону и посмотрим шире. ИИ-агенты, которые ведут бизнес, — от торговых ботов до автономных сервисов с криптоплатежами — упираются ровно в ту же проблему доверия. Агент обещает результат. Кто и как это обещание проверит? Если у агентов нет публичного табло, где их решения фиксируются до события и сверяются с фактом, мы получим рынок красивых обещаний — только исполнять их будут машины, быстрее и в больших масштабах.</p>
+
+<p data-i18n="p17">Forecast Scoreboard — это, по сути, прототип такой подотчётности. Прогноз с чеком, метрика, пересчитываемая ежедневно, асимметрия сигналов, видимая любому посетителю. Это попытка показать, насколько ИИ-модель вообще может угадывать рынок — без маркетинга, без ретроспективных правок, с честными промахами в истории. Если автономные агенты когда-нибудь будут распоряжаться деньгами, им понадобится именно такая инфраструктура доверия: не заверения, а замороженные строки, которые нельзя переписать.</p>
+
+<p data-i18n="p18">И, пожалуй, самое полезное в этом подходе — он меняет вопрос. Не «может ли ИИ предсказывать рынок», а «как устроена его ошибка». Оказывается, модель сильна в медвежьих сигналах, калибрует коридор почти идеально и при этом честно пробивается обвалами. Это знание стоит дороже любого отдельного прогноза — и его невозможно получить, пока прогнозы не публикуются до события.</p>
+
+
+  </div>
+</article>
+</main>
+
+<footer class="site" style="border-top:1px solid var(--border-subtle);padding:24px 0;margin-top:16px;">
+  <div class="wrap" style="text-align:center;color:var(--muted);font-size:0.85rem;">
+    <span>© <span id="yr"></span> x402.ai</span>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "57% попаданий: дашборд, который публично сверяет свои прогнозы — и что это меняет",
+  "description": "Большинство крипто-прогнозов в сети звучат громко и живут ровно до следующего заголовка: их никто никогда не сверяет, а автор уже дал новый. Мы встроили в дашборд BTC Observer механику, которая ломает эту традицию: каждый день в 09:00 UTC модель фиксирует прогноз на 24 часа — медиану, коридор P10–P90 и вероятность роста, — а на следующий день",
+  "datePublished": "2026-11-21",
+  "author": {
+    "@type": "Organization",
+    "name": "x402-ai-agent.space"
+  },
+  "image": "https://x402-ai-agent.space/assets/img/blog/99-9-tranzaktsiy-sdelayut-agenty-prognoz-coinbase-i-chto-on-menyaet-cover.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Блог x402",
+      "item": "https://x402-ai-agent.space/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "57% попаданий: дашборд, который публично сверяет свои прогнозы — и что это меняет",
+      "item": "https://x402-ai-agent.space/blog/99-9-tranzaktsiy-sdelayut-agenty-prognoz-coinbase-i-chto-on-menyaet"
+    }
+  ]
+}
+</script>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const DEFAULT_LANG = 'ru';
+  const LANG_KEY = 'x402_lang';
+  const embeddedRu = {
+ title: "57% попаданий: дашборд, который публично сверяет свои прогнозы — и что это меняет — x402-ai-agent.space",
+ metaDescription: "Большинство крипто-прогнозов в сети звучат громко и живут ровно до следующего заголовка: их никто никогда не сверяет, а автор уже дал новый. Мы встроили в дашборд BTC Observer механику, которая ломает эту традицию: каждый день в 09:00 UTC модель фиксирует прогноз на 24 часа — медиану, коридор P10–P90 и вероятность роста, — а на следующий день",
+ nav: { back: "← Блог", home: "На сайт", lang: "🇬🇧 EN" },
+ backLink: "← Назад к блогу",
+ h1: "57% попаданий: дашборд, который публично сверяет свои прогнозы — и что это меняет",
+ meta: "2026-11-21 · 4 мин чтения",
+ p1: "Спросите любого, кто хоть раз читал крипто-прогнозы в интернете: сколько из них вы помните через неделю? Ровно ноль. Не потому, что прогнозы были плохими, а потому, что их никто не проверял. Автор написал «BTC к 100 тысячам», получил свои клики и ушёл вперёд — а обещание растворилось в ленте вместе с вашим вниманием. Это не баг индустрии прогнозов, это её бизнес-модель: предсказывать бесплатно, отчитываться никогда.",
+ p2: "Дашборд BTC Observer решил сломать именно эту механику. Каждый день в 09:00 UTC он фиксирует прогноз на 24 часа вперёд: медианную цель, коридор P10–P90 и вероятность роста. На следующий день прогноз сверяется с фактической ценой закрытия с биржи. Без задним числом, без правок — верифицированные строки заморожены навсегда. Блок так и называется: Forecast Scoreboard. Звучит скромно, но по сути это редкая для рынка вещь: прогнозы с чеком.",
+ p3: "Паспорт модели: тридцать дней под микроскопом",
+ p4: "Первый паспорт модели построен на 30 днях: walk-forward replay по истории с 22 октября по 20 ноября плюс живые дни. Результаты получились интересными именно потому, что они неровные. Направление угадано в 57% случаев — 17 из 30 — против 50% у монетки. Коридор P10–P90 сбылся в ровно 80% случаев, 24 из 30 — ровно так, как обещает теория. Средняя ошибка медианы составила 1.90%.",
+ p5: "На первый взгляд это выглядит как «модель чуть лучше подбрасывания монеты». Но такая оценка была бы ленивой. Смотрите внимательнее на коридор: теория говорит, что 80% реализаций должны попадать в интервал P10–P90 — и на практике попало ровно столько. Это значит, что модель не просто «угадывает», она правильно калибрует собственную неопределённость. Она знает, чего не знает. В мире, где ИИ-прогнозы обычно подаются с бодрым уверенным тоном и без всякой оценки неопределённости, это почти революционная скромность.",
+ p6: "Обвал, который модель не пропустила",
+ p7: "Самое драматичное в окне теста — обвал BTC с $81,949 до $57,806, минус 29%. Модель его не пропустила. И вот здесь вскрывается самое ценное наблюдение всего паспорта: когда модель говорит DOWN — то есть вероятность роста ниже 45% — она права в 68% случаев. А когда говорит UP, с вероятностью выше 55%, права лишь в 25%.",
+ p8: "Асимметрия поразительная. Медвежьим сигналам можно верить сильнее. Это не мелочь для статистиков — это практическое правило для любого, кто читает такие дашборды. Модель, судя по поведению метрик, гораздо лучше распознаёт давление вниз, чем подтверждает рост. И заметьте: это знание стало возможным только потому, что прогнозы фиксировались заранее. Если бы модель могла переписывать задним числом, эта асимметрия никогда бы не проявилась — она бы просто «угадывала» в ретроспективе, как делают все, кто ведёт частные прогнозы без чека.",
+ p9: "Прогнозы до события: почему механика важнее цифр",
+ p10: "Механика replay заслуживает отдельного разговора, потому что именно она отличает честный тест от витрины. Для каждого прошлого дня модель получает только те свечи, которые существовали на момент прогноза. Никакого заглядывания в будущее — это и есть walk-forward. Строки помечены бейджем R, в шапке видно «30 REPLAY»: посетитель всегда отличает реконструкцию от живых данных.",
+ p11: "Зачем такая дотошность? Потому что главный способ обмануть бэктест — нечаянно дать модели информацию из будущего. Достаточно одной утечки, и результаты становятся красивыми и бесполезными. Здесь защита встроена в структуру: модель физически не видит то, чего ещё «не было». А прозрачная маркировка replay-строк означает, что вам не нужно верить на слово — вы сами видите, где реконструкция, а где настоящий прогноз, сделанный до события.",
+ p12: "Честный промах как фича",
+ p13: "Показательный момент: 20 ноября модель угадала направление, но обвал пробил нижнюю границу коридора. Прогноз частично сбылся и частично провалился — и это осталось в таблице навсегда. Именно такие строки делают Scoreboard ценным. Дашборд, который показывает только победы, — это маркетинг. Дашборд, который хранит свои промахи замороженными, — это инструмент.",
+ p14: "Ключевая мысль здесь шире, чем один биткоин. Большинство ИИ-прогнозов в сети непроверяемы: их никто не сверяет, и через неделю никто не помнит, что было обещано. Scoreboard решает это структурно, а не уговорами. Прогнозы публикуются до события, факт подтягивается автоматически, метрики пересчитываются каждый день: hit-rate, калибровка коридора, ошибка медианы, серия попаданий. Не «поверьте нашей модели», а «вот таблица, смотрите сами».",
+ p15: "Что это значит для ИИ-агентов",
+ p16: "Теперь отодвинем биткоин в сторону и посмотрим шире. ИИ-агенты, которые ведут бизнес, — от торговых ботов до автономных сервисов с криптоплатежами — упираются ровно в ту же проблему доверия. Агент обещает результат. Кто и как это обещание проверит? Если у агентов нет публичного табло, где их решения фиксируются до события и сверяются с фактом, мы получим рынок красивых обещаний — только исполнять их будут машины, быстрее и в больших масштабах.",
+ p17: "Forecast Scoreboard — это, по сути, прототип такой подотчётности. Прогноз с чеком, метрика, пересчитываемая ежедневно, асимметрия сигналов, видимая любому посетителю. Это попытка показать, насколько ИИ-модель вообще может угадывать рынок — без маркетинга, без ретроспективных правок, с честными промахами в истории. Если автономные агенты когда-нибудь будут распоряжаться деньгами, им понадобится именно такая инфраструктура доверия: не заверения, а замороженные строки, которые нельзя переписать.",
+ p18: "И, пожалуй, самое полезное в этом подходе — он меняет вопрос. Не «может ли ИИ предсказывать рынок», а «как устроена его ошибка». Оказывается, модель сильна в медвежьих сигналах, калибрует коридор почти идеально и при этом честно пробивается обвалами. Это знание стоит дороже любого отдельного прогноза — и его невозможно получить, пока прогнозы не публикуются до события.",
+    copyBtn: "⧉ Копировать",
+  };
+  const embeddedEn = {
+ title: "57% Accuracy: The Dashboard That Publicly Checks Its Own Forecasts — and What It Changes — x402-ai-agent.space",
+ metaDescription: "Most crypto forecasts online sound loud and live until the next headline: nobody ever checks them, and the author has already moved on. We built a mechanism into the BTC Observer dashboard that breaks this tradition: every day at 09:00 UTC the model locks in a 24-hour forecast — median, P10–P90 corridor, and upside probability — and the next day",
+ nav: { back: "← Blog", home: "Home", lang: "🇷🇺 RU" },
+ backLink: "← Back to blog",
+ h1: "57% Accuracy: The Dashboard That Publicly Checks Its Own Forecasts — and What It Changes",
+ meta: "2026-11-21 · 4 min read",
+ p1: "Ask anyone who has ever read crypto forecasts online: how many do you remember a week later? Exactly zero. Not because the forecasts were bad, but because nobody ever checked them. Someone writes \"BTC to 100K,\" collects the clicks, and moves on — the promise dissolves into the feed along with your attention. That's not a bug in the forecast industry; that's its business model: predict for free, never account for anything.",
+ p2: "The BTC Observer dashboard set out to break exactly this mechanism. Every day at 09:00 UTC it locks in a forecast for the next 24 hours: a median target, a P10–P90 corridor, and a probability of upside. The next day, the forecast is checked against the actual closing price from an exchange. No hindsight, no edits — verified rows are frozen forever. The block is called Forecast Scoreboard. It sounds modest, but it's a rare thing in this market: forecasts with a receipt.",
+ p3: "The model's passport: thirty days under a microscope",
+ p4: "The first passport of the model covers 30 days: a walk-forward replay over history from October 22 to November 20, plus live days. The results are interesting precisely because they're uneven. Direction was guessed correctly 57% of the time — 17 out of 30 — against the coin flip's 50%. The P10–P90 corridor held in exactly 80% of cases, 24 out of 30 — exactly what theory promises. The median's mean absolute error came in at 1.90%.",
+ p5: "At first glance this reads as \"a model slightly better than a coin toss.\" But that reading would be lazy. Look closer at the corridor: theory says 80% of outcomes should land inside the P10–P90 interval — and in practice, exactly that share did. This means the model isn't just \"guessing\"; it calibrates its own uncertainty correctly. It knows what it doesn't know. In a world where AI forecasts usually arrive with a confident tone and no uncertainty estimate at all, that's a revolutionary kind of modesty.",
+ p6: "The crash the model didn't miss",
+ p7: "The most dramatic stretch in the test window was BTC's collapse from $81,949 to $57,806 — a 29% drop. The model didn't miss it. And here the single most valuable observation of the whole passport emerges: when the model says DOWN — meaning the upside probability is below 45% — it's right 68% of the time. When it says UP, with probability above 55%, it's right only 25% of the time.",
+ p8: "The asymmetry is striking. Bearish signals can be trusted more. That's not a footnote for statisticians — it's a practical rule for anyone reading dashboards like this. Judging by the metrics, the model is far better at recognizing downward pressure than at confirming rallies. And notice: this knowledge only became possible because forecasts were locked in beforehand. If the model could rewrite history, the asymmetry would never surface — it would simply \"guess\" in retrospect, like everyone who keeps private forecasts without receipts.",
+ p9: "Forecasts before the event: why mechanics matter more than numbers",
+ p10: "The replay mechanics deserve their own paragraph, because they're what separates an honest test from a showcase. For each past day, the model receives only the candles that existed at forecast time. No peeking into the future — that's what walk-forward means. Rows are tagged with an R badge, and the header shows \"30 REPLAY\": visitors can always tell reconstruction apart from live data.",
+ p11: "Why such pedantry? Because the main way to fool a backtest is accidentally feeding the model future information. One leak is enough, and the results become beautiful and useless. Here the protection is built into the structure: the model physically cannot see what didn't yet \"exist.\" And the transparent labeling of replay rows means you don't have to take anyone's word for it — you can see for yourself where the reconstruction ends and a genuine pre-event forecast begins.",
+ p12: "The honest miss as a feature",
+ p13: "One telling moment: on November 20, the model got the direction right, but the crash broke through the lower bound of the corridor. The forecast partially succeeded and partially failed — and it stays in the table forever. Rows like this are what make the Scoreboard valuable. A dashboard that only shows wins is marketing. A dashboard that keeps its misses frozen is a tool.",
+ p14: "The key idea here goes beyond one cryptocurrency. Most AI forecasts on the web are unverifiable: nobody checks them, and a week later nobody remembers what was promised. The Scoreboard solves this structurally, not rhetorically. Forecasts are published before the event, the outcome is pulled in automatically, and the metrics are recalculated daily: hit-rate, corridor calibration, median error, streak of hits. Not \"trust our model,\" but \"here's the table, see for yourself.\"",
+ p15: "What this means for AI agents",
+ p16: "Now set bitcoin aside and look wider. AI agents that run businesses — from trading bots to autonomous services settling in crypto — run into exactly the same trust problem. An agent promises an outcome. Who checks the promise, and how? If agents have no public scoreboard where their decisions are locked in before the event and reconciled with the facts, we'll get a market of beautiful promises — only executed by machines, faster and at greater scale.",
+ p17: "The Forecast Scoreboard is, in essence, a prototype of that accountability. A forecast with a receipt, a metric recalculated daily, a signal asymmetry visible to any visitor. It's an attempt to show how well an AI model can actually read the market — no marketing, no retrospective edits, honest misses preserved in the record. If autonomous agents are ever going to handle money, they'll need exactly this kind of trust infrastructure: not assurances, but frozen rows that can't be rewritten.",
+ p18: "And perhaps the most useful thing about the approach is that it changes the question. Not \"can AI predict the market,\" but \"what does its error look like.\" It turns out the model is strong on bearish signals, calibrates its corridor almost perfectly, and still gets honestly overrun by crashes. That knowledge is worth more than any single forecast — and it's impossible to obtain while forecasts aren't published before the event.",
+    copyBtn: "⧉ Copy",
+  };
+  function getNested(obj, path) {
+    return path.split('.').reduce((o, p) => (o && o[p] !== undefined) ? o[p] : undefined, obj);
+  }
+  function applyTranslations(data) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = getNested(data, key);
+      if (value !== undefined) {
+        el.innerHTML = value;
+        if (key === 'title') document.title = value;
+        if (key === 'metaDescription') {
+          const meta = document.querySelector('meta[name="description"]');
+          if (meta) meta.setAttribute('content', value);
+        }
+      }
+    });
+  }
+  function setLanguage(lang) {
+    const data = lang === 'en' ? embeddedEn : embeddedRu;
+    applyTranslations(data);
+    document.documentElement.lang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.textContent = lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU';
+      switcher.href = lang === 'ru' ? '?lang=en' : '?lang=ru';
+    }
+  }
+  function copyBlock(id, btn) {
+    const pre = document.querySelector('[data-i18n="' + id + '"]');
+    if (!pre) return;
+    const text = pre.textContent;
+    const done = () => {
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied';
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => { fallbackCopy(pre, done); });
+    } else {
+      fallbackCopy(pre, done);
+    }
+  }
+  function fallbackCopy(pre, done) {
+    const range = document.createRange();
+    range.selectNodeContents(pre);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    try { document.execCommand('copy'); } catch (e) {}
+    sel.removeAllRanges();
+    done();
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : (localStorage.getItem(LANG_KEY) || DEFAULT_LANG);
+    const switcher = document.querySelector('.lang-switch');
+    if (switcher) {
+      switcher.addEventListener('click', e => {
+        e.preventDefault();
+        const next = (document.documentElement.lang || 'ru') === 'ru' ? 'en' : 'ru';
+        setLanguage(next);
+        history.replaceState({}, '', `?lang=${next}`);
+      });
+    }
+    setLanguage(lang);
+  });
+</script>
+</body>
+</html>
