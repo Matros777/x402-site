@@ -148,6 +148,24 @@ code.inl{font-family:var(--mono);background:var(--bg-elev2);padding:2px 7px;bord
   }
 }
 
+/* Mobile only: show the whole cover, no cropping.
+   !important overrides the fixed 437px / object-fit:cover rules inlined in post pages. */
+@media (max-width: 600px) {
+  html body article img,
+  html body article figure img,
+  html body article img.inline,
+  html body .article img,
+  html body .article figure img,
+  html body .article img.inline {
+    width: auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    margin: 14px auto !important;
+  }
+}
+
 /* ---- Footer ---- */
 footer.site{border-top:1px solid var(--line);padding:48px 0;color:var(--muted);font-size:14px}
 footer.site .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
