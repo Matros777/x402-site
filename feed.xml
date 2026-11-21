@@ -12,7 +12,7 @@
  <link>https://x402-ai-agent.space/blog/57-popadaniy-dashbord-kotoryy-publichno-sveryaet-svoi-prognozy-i-chto-eto-menyaet</link>
  <guid isPermaLink="true">https://x402-ai-agent.space/blog/57-popadaniy-dashbord-kotoryy-publichno-sveryaet-svoi-prognozy-i-chto-eto-menyaet</guid>
  <pubDate>Sat, 21 Nov 2026 12:00:00 +0000</pubDate>
- <description>Most crypto forecasts online sound loud and live until the next headline: nobody ever checks them, and the author has already moved on. We built a mechanism into the BTC Observer dashboard that breaks this tradition: every day at 09:00 UTC the model locks in a 24-hour forecast — median, P10–P90 corridor, and upside probability — and the next day</description>
+ <description>Every day at 09:00 UTC the BTC Observer dashboard locks in a 24-hour BTC forecast, then publicly checks it against the exchange — no edits, no hindsight. Inside the model's first 30-day passport: 57% direction accuracy, a perfectly calibrated corridor, strong bearish signals.</description>
  </item>
  <item>
  <title>GoBTC Pay Sponsors Toronto AI Agent Hackathon, Putting Bitcoin at the Center of Agent-to-Agent Payments</title>
